@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Framework\Framework.Core\Framework.Core.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Audit.Contract\CleanArchitecture.Audit.Contract.csproj" />
+	</ItemGroup>
+
+</Project>

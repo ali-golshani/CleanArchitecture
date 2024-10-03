@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Framework\Framework.Loggings\Framework.Loggings.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Validator\Framework.Validator.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
+		<ProjectReference Include="..\..\Audit\CleanArchitecture.Audit\CleanArchitecture.Audit.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Commands\CleanArchitecture.Ordering.Commands.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Persistence\CleanArchitecture.Ordering.Persistence.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Queries\CleanArchitecture.Ordering.Queries.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Framework\Framework.Validator\Framework.Validator.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Domain.Services\CleanArchitecture.Ordering.Domain.Services.csproj" />
+	</ItemGroup>
+
+</Project>
