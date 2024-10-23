@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Audit;
 
-public class CommandAuditAgent : AuditAgent<CommandAuditTrail>, ICommandAuditAgent
+public class CommandAuditAgent : AuditAgent<CommandAuditTrail>
 {
     private readonly IServiceScopeFactory serviceScopeFactory;
 

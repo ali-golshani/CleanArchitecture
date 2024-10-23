@@ -11,6 +11,7 @@
 		<ProjectReference Include="..\..\Framework\Framework.DependencyInjection\Framework.DependencyInjection.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
 	</ItemGroup>
 
 </Project>

@@ -27,7 +27,7 @@ internal sealed class CommandUseCase<TRequest, TResponse> :
         IActorResolver actorResolver,
         IServiceScopeFactory serviceScopeFactory,
         ILogger<CommandUseCase<TRequest, TResponse>> logger,
-        ICommandAuditAgent commandLogger,
+        CommandAuditAgent commandLogger,
         IEnumerable<IValidator<TRequest>>? validators,
         IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers)
         : base(logger, commandLogger)

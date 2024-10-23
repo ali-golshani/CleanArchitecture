@@ -22,7 +22,7 @@ internal sealed class QueryUseCase<TRequest, TResponse> :
     public QueryUseCase(
         IActorResolver actorResolver,
         ILogger<QueryUseCase<TRequest, TResponse>> logger,
-        IQueryAuditAgent queryLogger,
+        QueryAuditAgent queryLogger,
         IEnumerable<IValidator<TRequest>> validators,
         IEnumerable<IAccessVerifier<TRequest>> accessVerifiers,
         IRequestHandler<TRequest, TResponse> handler)

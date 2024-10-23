@@ -4,7 +4,7 @@ using CleanArchitecture.Audit.Persistence;
 
 namespace CleanArchitecture.Audit;
 
-public class QueryAuditAgent : AuditAgent<QueryAuditTrail>, IQueryAuditAgent
+public class QueryAuditAgent : AuditAgent<QueryAuditTrail>
 {
     private readonly IServiceScopeFactory serviceScopeFactory;
 

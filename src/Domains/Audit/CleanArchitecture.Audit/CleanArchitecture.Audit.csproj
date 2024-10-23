@@ -10,7 +10,7 @@
 		<ProjectReference Include="..\..\..\Framework\Framework.Core\Framework.Core.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
-		<ProjectReference Include="..\CleanArchitecture.Audit.Contract\CleanArchitecture.Audit.Contract.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
 	</ItemGroup>
 
 </Project>

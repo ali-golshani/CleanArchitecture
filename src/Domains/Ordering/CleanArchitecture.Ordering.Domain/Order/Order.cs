@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Ordering.Domain.DomainEvents;
+﻿using CleanArchitecture.Ordering.Domain.IntegrationEvents;
 using CleanArchitecture.Ordering.Domain.DomainRules;
 
 namespace CleanArchitecture.Ordering.Domain;
@@ -31,7 +31,7 @@ public class Order : CommandAwareEntity
     public string TrackingCode { get; }
     public OrderStatus Status { get; private set; }
 
-    public ICollection<OrderEvent> Events { get; } = [];
+    public ICollection<OrderStatusChangedEvent> Events { get; } = [];
 
     public void UpdatePrice(decimal price)
     {
@@ -56,6 +56,6 @@ public class Order : CommandAwareEntity
 
     private void RaiseEvent()
     {
-        Events.Add(new OrderEvent(this));
+        Events.Add(new OrderStatusChangedEvent(this));
     }
 }

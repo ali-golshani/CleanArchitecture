@@ -11,9 +11,9 @@ public abstract class QueryAuditUseCase<TRequest, TResponse>
     protected abstract Task<Result<TResponse>> InternalExecute(TRequest request, Actor actor, CancellationToken cancellationToken);
 
     protected readonly ILogger logger;
-    private readonly IQueryAuditAgent queryLogger;
+    private readonly QueryAuditAgent queryLogger;
 
-    protected QueryAuditUseCase(ILogger logger, IQueryAuditAgent queryLogger)
+    protected QueryAuditUseCase(ILogger logger, QueryAuditAgent queryLogger)
     {
         this.logger = logger;
         this.queryLogger = queryLogger;

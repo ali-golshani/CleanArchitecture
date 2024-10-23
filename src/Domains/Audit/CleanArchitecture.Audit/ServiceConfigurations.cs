@@ -8,7 +8,5 @@ public static class ServiceConfigurations
     {
         services.AddSingleton<CommandAuditAgent>();
         services.AddSingleton<QueryAuditAgent>();
-        services.AddSingleton<ICommandAuditAgent>(x => x.GetRequiredService<CommandAuditAgent>());
-        services.AddSingleton<IQueryAuditAgent>(x => x.GetRequiredService<QueryAuditAgent>());
     }
 }

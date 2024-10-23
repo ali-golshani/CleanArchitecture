@@ -11,9 +11,9 @@ public abstract class CommandAuditUseCase<TRequest, TResponse>
     protected abstract Task<Result<TResponse>> InternalExecute(TRequest request, Actor actor, CancellationToken cancellationToken);
 
     protected readonly ILogger logger;
-    private readonly ICommandAuditAgent commandLogger;
+    private readonly CommandAuditAgent commandLogger;
 
-    protected CommandAuditUseCase(ILogger logger, ICommandAuditAgent commandLogger)
+    protected CommandAuditUseCase(ILogger logger, CommandAuditAgent commandLogger)
     {
         this.logger = logger;
         this.commandLogger = commandLogger;

@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Domain\CleanArchitecture.Ordering.Domain.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Queries.Contracts\CleanArchitecture.Ordering.Queries.Contracts.csproj" />
+	</ItemGroup>
+
+</Project>
