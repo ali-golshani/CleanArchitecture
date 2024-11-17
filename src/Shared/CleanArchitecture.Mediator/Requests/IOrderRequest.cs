@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Mediator;
+﻿namespace CleanArchitecture.Mediator.Requests;
 
 public interface IOrderRequest
 {

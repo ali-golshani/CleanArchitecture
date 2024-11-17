@@ -1,4 +1,4 @@
-﻿using Framework.Mediator.BatchCommands;
+﻿using CleanArchitecture.Mediator.BatchCommands;
 using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands;

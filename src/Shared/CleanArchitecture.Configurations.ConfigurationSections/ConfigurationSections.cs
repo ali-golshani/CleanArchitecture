@@ -9,7 +9,7 @@ public static class ConfigurationSections
 
     public static class Cors
     {
-        public const string CorsOrigins = "Cors:Origins";
+        public const string Origins = "Cors:Origins";
     }
 
     public static class Authentication

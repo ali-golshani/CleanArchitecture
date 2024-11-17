@@ -1,4 +1,4 @@
-﻿namespace Framework.Mediator.BatchCommands;
+﻿namespace CleanArchitecture.Mediator.BatchCommands;
 
 public class BatchCommandHandlingParameters
 {

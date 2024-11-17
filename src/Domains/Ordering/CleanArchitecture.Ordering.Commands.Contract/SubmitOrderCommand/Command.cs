@@ -1,10 +1,11 @@
-﻿using Framework.Results;
+﻿using CleanArchitecture.Mediator.Requests;
+using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.SubmitOrderCommand;
 
 public class Command :
     CommandBase,
-    Mediator.IOrderRequest,
+    IOrderRequest,
     ICommand<Command, Empty>
 {
     public override string RequestTitle => "Submit Order";

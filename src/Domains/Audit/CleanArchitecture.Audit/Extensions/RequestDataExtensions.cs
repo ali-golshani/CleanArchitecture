@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Audit.Domain;
+using CleanArchitecture.Mediator.Requests;
 
 namespace CleanArchitecture.Audit;
 

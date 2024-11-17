@@ -1,7 +1,6 @@
-﻿using CleanArchitecture.Mediator;
-using Framework.Results.Exceptions;
+﻿using Framework.Results.Exceptions;
 
-namespace Framework.Mediator.BatchCommands;
+namespace CleanArchitecture.Mediator.BatchCommands;
 
 public abstract class BatchCommandsServiceBase<TCommand>
     where TCommand : Command

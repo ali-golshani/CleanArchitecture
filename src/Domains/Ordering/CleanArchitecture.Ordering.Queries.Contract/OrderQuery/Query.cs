@@ -1,8 +1,10 @@
-﻿namespace CleanArchitecture.Ordering.Queries.OrderQuery;
+﻿using CleanArchitecture.Mediator.Requests;
+
+namespace CleanArchitecture.Ordering.Queries.OrderQuery;
 
 public class Query :
     QueryBase,
-    Mediator.IOrderRequest,
+    IOrderRequest,
     IQuery<Query, Models.Order?>
 {
     public override string RequestTitle => "Order Query";

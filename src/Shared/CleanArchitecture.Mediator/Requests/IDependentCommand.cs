@@ -1,6 +1,4 @@
-﻿using CleanArchitecture.Mediator;
-
-namespace Framework.Mediator;
+﻿namespace CleanArchitecture.Mediator.Requests;
 
 public interface IDependentCommand
 {
