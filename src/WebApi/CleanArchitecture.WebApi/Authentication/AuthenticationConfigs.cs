@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.WebApi.Shared.Authentication;
+﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.WebApi.Shared.Authentication;
 
 namespace CleanArchitecture.WebApi.Authentication;
 
@@ -14,7 +15,7 @@ internal static class AuthenticationConfigs
 
         foreach (var schema in AuthenticationSchemes.Schemas)
         {
-            string sectionPath = $"Authentication:{schema.Name}";
+            string sectionPath = ConfigurationSections.Authentication.Schema(schema.Name);
             var section = configuration.GetRequiredSection(sectionPath);
 
             var settings = new JwtBearerAuthenticationSettings();

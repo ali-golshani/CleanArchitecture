@@ -10,7 +10,8 @@ internal sealed class ConfigureCorsOptions(IConfiguration configuration)
 
     public void Configure(CorsOptions options)
     {
-        var origins = configuration.GetSection("Cors:Origins").Get<string[]>() ?? [];
+        var sectionPath = Configurations.ConfigurationSections.Cors.CorsOrigins;
+        var origins = configuration.GetSection(sectionPath).Get<string[]>() ?? [];
 
         options.AddDefaultPolicy(builder =>
         {

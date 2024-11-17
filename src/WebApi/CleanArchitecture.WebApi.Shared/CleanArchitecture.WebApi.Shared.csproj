@@ -23,6 +23,7 @@
     <ProjectReference Include="..\..\Framework\Framework.Results\Framework.Results.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
+    <ProjectReference Include="..\..\Shared\CleanArchitecture.Configurations.ConfigurationSections\CleanArchitecture.Configurations.ConfigurationSections.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
   </ItemGroup>

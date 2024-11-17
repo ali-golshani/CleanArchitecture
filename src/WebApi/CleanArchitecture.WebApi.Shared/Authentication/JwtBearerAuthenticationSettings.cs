@@ -1,4 +1,5 @@
-﻿using IdentityModel.AspNetCore.OAuth2Introspection;
+﻿using CleanArchitecture.Configurations;
+using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -8,9 +9,6 @@ namespace CleanArchitecture.WebApi.Shared.Authentication;
 
 public sealed class JwtBearerAuthenticationSettings
 {
-    public const string JwtBearerOptionsConfigurationSection = nameof(JwtBearerOptions);
-    public const string OAuth2IntrospectionOptionsConfigurationSection = nameof(OAuth2IntrospectionOptions);
-
     public string? SecurityKey { get; set; }
     public string? IntrospectionSchema { get; set; }
 
@@ -46,7 +44,8 @@ public sealed class JwtBearerAuthenticationSettings
 
     private void Configure(IConfigurationSection settingsSection, JwtBearerOptions options)
     {
-        var section = settingsSection.GetSection(JwtBearerOptionsConfigurationSection);
+        var sectionPath = ConfigurationSections.Authentication.JwtBearerOptions;
+        var section = settingsSection.GetSection(sectionPath);
         section.Bind(options);
 
         options.TokenValidationParameters.ValidIssuer = options.ClaimsIssuer;
@@ -63,7 +62,8 @@ public sealed class JwtBearerAuthenticationSettings
 
     private static void Configure(IConfigurationSection settingsSection, OAuth2IntrospectionOptions options)
     {
-        var section = settingsSection.GetSection(OAuth2IntrospectionOptionsConfigurationSection);
+        var sectionPath = ConfigurationSections.Authentication.OAuth2IntrospectionOptions;
+        var section = settingsSection.GetSection(sectionPath);
         section.Bind(options);
 
         options.RoleClaimType = Actors.ClaimTypes.Role;

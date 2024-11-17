@@ -1,6 +1,4 @@
 - Polly
-- Versioning
-- Swagger . Authentication
 - Process Manager
 - Environment Configs
 	- CORS
