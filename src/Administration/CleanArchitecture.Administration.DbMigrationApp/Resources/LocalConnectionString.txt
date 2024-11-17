@@ -1,0 +1,1 @@
+﻿Server=.;Database=CleanArchitectureDb;User Id=golshani;Password=Ali_Golshani;TrustServerCertificate=True;
