@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -38,6 +39,23 @@ namespace Framework.MassTransit.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "OutboxState",
+                schema: "outbox",
+                columns: table => new
+                {
+                    OutboxId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LockId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Delivered = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    LastSequenceNumber = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OutboxState", x => x.OutboxId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "OutboxMessage",
                 schema: "outbox",
                 columns: table => new
@@ -68,23 +86,18 @@ namespace Framework.MassTransit.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OutboxMessage", x => x.SequenceNumber);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "OutboxState",
-                schema: "outbox",
-                columns: table => new
-                {
-                    OutboxId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LockId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    RowVersion = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: true),
-                    Created = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Delivered = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    LastSequenceNumber = table.Column<long>(type: "bigint", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OutboxState", x => x.OutboxId);
+                    table.ForeignKey(
+                        name: "FK_OutboxMessage_InboxState_InboxMessageId_InboxConsumerId",
+                        columns: x => new { x.InboxMessageId, x.InboxConsumerId },
+                        principalSchema: "outbox",
+                        principalTable: "InboxState",
+                        principalColumns: new[] { "MessageId", "ConsumerId" });
+                    table.ForeignKey(
+                        name: "FK_OutboxMessage_OutboxState_OutboxId",
+                        column: x => x.OutboxId,
+                        principalSchema: "outbox",
+                        principalTable: "OutboxState",
+                        principalColumn: "OutboxId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -132,11 +145,11 @@ namespace Framework.MassTransit.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "InboxState",
+                name: "OutboxMessage",
                 schema: "outbox");
 
             migrationBuilder.DropTable(
-                name: "OutboxMessage",
+                name: "InboxState",
                 schema: "outbox");
 
             migrationBuilder.DropTable(

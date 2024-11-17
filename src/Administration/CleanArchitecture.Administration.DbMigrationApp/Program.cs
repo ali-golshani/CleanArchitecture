@@ -1,26 +1,35 @@
-﻿namespace CleanArchitecture.Administration.DbMigrationApp;
+﻿using Microsoft.Extensions.DependencyInjection;
+
+namespace CleanArchitecture.Administration.DbMigrationApp;
 
 internal static class Program
 {
     public static void Main()
     {
-        Console.WriteLine();
+        var services = ServiceCollectionBuilder.Build(out _);
+        var rootServiceProvider = services.BuildServiceProvider();
+
+        using var scope = rootServiceProvider.CreateScope();
+        var serviceProvider = scope.ServiceProvider;
+        MigrateAll(serviceProvider);
+
+        Exit();
     }
 
-    public static void MigrateAll()
+    public static void MigrateAll(IServiceProvider serviceProvider)
     {
         try
         {
-            var migrateDbApp = new MigrateDbApp();
-            var massTransitMigrateDbApp = new MassTransitMigrateDbApp();
-            var capMigrateDbApp = new CapMigrateDbApp();
+            var migrateDbApp = new MigrateCleanDbService(serviceProvider);
+            var massTransitMigrateDbApp = new MassTransitMigrateDbService(serviceProvider);
+            var capMigrateDbApp = new CapMigrateDbService(serviceProvider);
 
             migrateDbApp.AuditDbContext();
             Console.WriteLine();
             migrateDbApp.OrderingDbContext();
 
             Console.WriteLine();
-            
+
             massTransitMigrateDbApp.MassTransitDbContext();
             Console.WriteLine();
             massTransitMigrateDbApp.MassTransitSqlTransport();
@@ -33,8 +42,12 @@ internal static class Program
         {
             Console.WriteLine(exp);
         }
+    }
 
-        Console.WriteLine();
-        Console.WriteLine("Press Enter to Exit ...");
+    private static void Exit()
+    {
+        Console.WriteLine("Please Wait...");
+        Thread.Sleep(1000);
+        Console.Write("Press Ctrl + C to exit ...");
     }
 }

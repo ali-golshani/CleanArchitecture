@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Administration.DbMigrationApp;
 
-public class CapMigrateDbApp : BasicApp
+public class CapMigrateDbService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public void CapSql()
     {

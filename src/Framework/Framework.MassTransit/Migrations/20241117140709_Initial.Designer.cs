@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Framework.MassTransit.Migrations
 {
     [DbContext(typeof(MassTransitDbContext))]
-    [Migration("20241105060041_Initial")]
+    [Migration("20241117140709_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -21,7 +21,7 @@ namespace Framework.MassTransit.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("outbox")
-                .HasAnnotation("ProductVersion", "8.0.10")
+                .HasAnnotation("ProductVersion", "9.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -67,8 +67,6 @@ namespace Framework.MassTransit.Migrations
                         .HasColumnType("rowversion");
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("MessageId", "ConsumerId");
 
                     b.HasIndex("Delivered");
 
@@ -196,6 +194,18 @@ namespace Framework.MassTransit.Migrations
                     b.HasIndex("Created");
 
                     b.ToTable("OutboxState", "outbox");
+                });
+
+            modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxMessage", b =>
+                {
+                    b.HasOne("MassTransit.EntityFrameworkCoreIntegration.OutboxState", null)
+                        .WithMany()
+                        .HasForeignKey("OutboxId");
+
+                    b.HasOne("MassTransit.EntityFrameworkCoreIntegration.InboxState", null)
+                        .WithMany()
+                        .HasForeignKey("InboxMessageId", "InboxConsumerId")
+                        .HasPrincipalKey("MessageId", "ConsumerId");
                 });
 #pragma warning restore 612, 618
         }

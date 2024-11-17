@@ -11,7 +11,7 @@ internal sealed class CustomerCommodityValidationRequestHandler : IRequestHandle
 
         var customerId = request.CustomerId;
         var commodityId = request.CommodityId;
-        var result = commodityId > 0 && customerId > 0 && commodityId + customerId < 100;
+        var result = commodityId > 0 && customerId > 0 && commodityId + customerId < 1000;
 
         return result;
     }

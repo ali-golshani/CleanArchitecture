@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Administration.DbMigrationApp;
 
-public class MassTransitMigrateDbApp : BasicApp
+public class MassTransitMigrateDbService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public void MassTransitDbContext()
     {

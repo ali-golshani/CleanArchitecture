@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Administration.DbMigrationApp;
 
-public class MigrateDbApp : BasicApp
+public class MigrateCleanDbService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public void AuditDbContext()
     {
