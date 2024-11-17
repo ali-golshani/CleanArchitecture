@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.3.1" />
+		<PackageReference Include="DotNetCore.CAP.SqlServer" Version="8.3.1" />
+		<PackageReference Include="Savorboard.CAP.InMemoryMessageQueue" Version="8.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Framework.Application\Framework.Application.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.Cap\Framework.Cap.csproj" />
+    <ProjectReference Include="..\..\..\Framework\Framework.Results\Framework.Results.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Commands.Contract\CleanArchitecture.Ordering.Commands.Contract.csproj" />
+  </ItemGroup>
+
+</Project>

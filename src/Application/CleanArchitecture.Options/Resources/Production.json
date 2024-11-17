@@ -1,0 +1,15 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "Cors": {
+    "Origins": [
+      "https://example.com",
+      "https://anotherdomain.com"
+    ]
+  },
+  "AllowedHosts": "*"
+}

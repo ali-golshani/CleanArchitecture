@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>CleanArchitecture.Ordering.Commands</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+  </ItemGroup>
+
+</Project>

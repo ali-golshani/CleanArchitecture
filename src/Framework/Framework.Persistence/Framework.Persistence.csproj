@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DistributedLock.SqlServer" Version="1.0.5" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.Domain\Framework.Domain.csproj" />
+		<ProjectReference Include="..\Framework.Exceptions\Framework.Exceptions.csproj" />
+		<ProjectReference Include="..\Framework.Queries\Framework.Queries.csproj" />
+		<ProjectReference Include="..\Framework.Threading\Framework.Threading.csproj" />
+	</ItemGroup>
+
+</Project>

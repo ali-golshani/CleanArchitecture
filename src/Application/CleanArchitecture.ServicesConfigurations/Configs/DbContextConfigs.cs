@@ -1,0 +1,29 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace CleanArchitecture.ServicesConfigurations.Configs;
+
+internal static class DbContextConfigs
+{
+    public static void RegisterDbContexts(this IServiceCollection services, string connectionString)
+    {
+        services
+            .AddDbContext<Ordering.Persistence.OrderingDbContext>(optionsBuilder =>
+            SqlConfigs.Configure(optionsBuilder, connectionString, Ordering.Persistence.Settings.SchemaNames.Ordering),
+            ServiceLifetime.Scoped);
+
+        services
+            .AddDbContext<Audit.Persistence.AuditDbContext>(optionsBuilder =>
+            SqlConfigs.Configure(optionsBuilder, connectionString, Audit.Settings.Persistence.SchemaNames.Audit),
+            ServiceLifetime.Scoped);
+
+        services
+            .AddDbContext<Framework.MassTransit.MassTransitDbContext>(
+            optionsBuilder => SqlConfigs.Configure(optionsBuilder, connectionString, Framework.MassTransit.Settings.Persistence.SchemaNames.MassTransit),
+            ServiceLifetime.Scoped);
+
+        services
+            .AddDbContext<Querying.Persistence.EmptyDbContext>(
+            optionsBuilder => optionsBuilder.UseSqlServer(connectionString));
+    }
+}

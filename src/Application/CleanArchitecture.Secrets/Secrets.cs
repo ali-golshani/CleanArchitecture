@@ -1,0 +1,63 @@
+﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.Secrets.Exceptions;
+
+namespace CleanArchitecture.Secrets;
+
+public static class Secrets
+{
+    public static Stream ConfigurationStream(SecretsConfiguration configuration)
+    {
+        var text = ConfigurationString(configuration);
+        if (ShouldDecrypt(configuration))
+        {
+            text = EnvironmentVariables.TryDecrypt(text);
+        }
+        return ToStream(text);
+    }
+
+    private static string ConfigurationString(SecretsConfiguration configuration)
+    {
+        switch (configuration)
+        {
+            default:
+                throw new InvalidSecretsConfigurationException(configuration);
+
+            case SecretsConfiguration.Development:
+                return Properties.Resources.Development;
+
+            case SecretsConfiguration.Staging:
+                return Properties.Resources.Staging;
+
+            case SecretsConfiguration.Production:
+                return Properties.Resources.Production;
+
+            case SecretsConfiguration.DbMigration:
+                return Properties.Resources.DbMigration;
+        }
+    }
+
+    private static bool ShouldDecrypt(SecretsConfiguration onfiguration)
+    {
+        switch (onfiguration)
+        {
+            default:
+            case SecretsConfiguration.Development:
+                return false;
+
+            case SecretsConfiguration.Staging:
+            case SecretsConfiguration.Production:
+            case SecretsConfiguration.DbMigration:
+                return true;
+        }
+    }
+
+    private static MemoryStream ToStream(string text)
+    {
+        var stream = new MemoryStream();
+        var writer = new StreamWriter(stream);
+        writer.Write(text);
+        writer.Flush();
+        stream.Position = 0;
+        return stream;
+    }
+}

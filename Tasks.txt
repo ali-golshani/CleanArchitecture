@@ -1,0 +1,13 @@
+- Polly
+- Versioning
+- Swagger . Authentication
+- Process Manager
+- Environment Configs
+	- CORS
+	- Urls
+- In Memory Monitoring Middleware
+- Health check
+- Tracing
+- Metrics
+- Test
+- Seri Log
