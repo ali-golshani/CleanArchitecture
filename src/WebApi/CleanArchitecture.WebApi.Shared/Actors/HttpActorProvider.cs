@@ -1,10 +1,14 @@
 ﻿using CleanArchitecture.Actors;
+using System.Security.Claims;
 
 namespace CleanArchitecture.WebApi.Shared.Actors;
 
 internal class HttpActorProvider : IActorProvider
 {
     private readonly IHttpContextAccessor httpContextAccessor;
+
+    private bool actorResolved = false;
+    private Actor? actor = null;
 
     public HttpActorProvider(IHttpContextAccessor httpContextAccessor)
     {
@@ -13,8 +17,19 @@ internal class HttpActorProvider : IActorProvider
 
     public Actor? CurrentActor()
     {
-        var user = httpContextAccessor?.HttpContext?.User;
+        if (actorResolved)
+        {
+            return actor;
+        }
 
+        actorResolved = true;
+        var user = httpContextAccessor?.HttpContext?.User;
+        actor = ResolveActor(user);
+        return actor;
+    }
+
+    private static Actor? ResolveActor(ClaimsPrincipal? user)
+    {
         if (user is null)
         {
             return null;
