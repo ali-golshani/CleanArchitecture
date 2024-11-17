@@ -118,16 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="DbMigration" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\DbMigration.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="DbMigrationCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ConnectionStrings\DbMigrationCS.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="Development" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Development.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="DevelopmentAuth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Authentication\DevelopmentAuth.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Production" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Production.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="DevelopmentCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ConnectionStrings\DevelopmentCS.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="Staging" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Staging.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  <data name="ProductionAuth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Authentication\ProductionAuth.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="ProductionCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ConnectionStrings\ProductionCS.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="StagingAuth" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Authentication\StagingAuth.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
+  <data name="StagingCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\ConnectionStrings\StagingCS.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

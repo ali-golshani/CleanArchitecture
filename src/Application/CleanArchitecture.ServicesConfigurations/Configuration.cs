@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Configurations;
-using CleanArchitecture.Secrets;
 using CleanArchitecture.ServicesConfigurations.Configs;
 using CleanArchitecture.Shared;
 using Microsoft.Extensions.Configuration;
@@ -18,8 +17,9 @@ public static class Configuration
         configuration.Sources.Clear();
         GlobalConfigs.RegisterSettings(configuration);
         configuration.AddJsonStream(Options.Options.ConfigurationStream(optionsConfiguration));
-        configuration.AddEnvironmentVariables(EnvironmentVariables.EnvironmentVariablesPrefix);
-        configuration.AddJsonStream(Secrets.Secrets.ConfigurationStream(secretsConfiguration));
+        configuration.AddEnvironmentVariables(Secrets.EnvironmentVariables.EnvironmentVariablesPrefix);
+        configuration.AddJsonStream(Secrets.Authentication.ConfigurationStream(secretsConfiguration));
+        configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(secretsConfiguration));
     }
 
     public static void RegisterServices(

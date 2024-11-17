@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Configurations;
-using CleanArchitecture.Secrets;
 using CleanArchitecture.ServicesConfigurations.Configs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +14,9 @@ public static class TestConfiguration
         configuration.Sources.Clear();
         GlobalConfigs.RegisterSettings(configuration);
         configuration.AddJsonStream(Options.Options.ConfigurationStream(optionsConfiguration));
-        configuration.AddEnvironmentVariables(EnvironmentVariables.EnvironmentVariablesPrefix);
-        configuration.AddJsonStream(Secrets.Secrets.ConfigurationStream(SecretsConfiguration.Staging));
+        configuration.AddEnvironmentVariables(Secrets.EnvironmentVariables.EnvironmentVariablesPrefix);
+        configuration.AddJsonStream(Secrets.Authentication.ConfigurationStream(SecretsConfiguration.Staging));
+        configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(SecretsConfiguration.Staging));
     }
 
     public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)

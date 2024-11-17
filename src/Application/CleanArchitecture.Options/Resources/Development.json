@@ -14,43 +14,5 @@
     ]
   },
 
-  "Authentication": {
-
-    "Default": {
-      "SecurityKey": "qwertyuiopasdfghjklzxcvbnm123456",
-      "IntrospectionSchema": null,
-      "JwtBearerOptions": {
-        "Authority": null,
-        "Audience": "www.example.com",
-        "ClaimsIssuer": "Online JWT Builder",
-        "SaveToken": true,
-        "RequireHttpsMetadata": true,
-        "IncludeErrorDetails": true
-      }
-    },
-
-    "InternalServices": {
-      "SecurityKey": null,
-      "IntrospectionSchema": "InternalServicesIntrospection",
-      "JwtBearerOptions": {
-        "Authority": "https://sso.ime.co.ir",
-        "Audience": "ime.auctionmanagement.api",
-        "ClaimsIssuer": null,
-        "SaveToken": true,
-        "RequireHttpsMetadata": true,
-        "IncludeErrorDetails": true
-      },
-      "OAuth2IntrospectionOptions": {
-        "Authority": "https://sso.ime.co.ir",
-        "EnableCaching": true,
-        "CacheDuration": "00:05:00",
-        "CacheKeyPrefix": "IME.AuctionManagement.Api",
-        "SaveToken": true,
-        "SkipTokensWithDots": true
-      }
-    }
-
-  },
-
   "AllowedHosts": "*"
 }

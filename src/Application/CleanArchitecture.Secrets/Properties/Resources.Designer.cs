@@ -63,40 +63,68 @@ namespace CleanArchitecture.Secrets.Properties {
         /// <summary>
         ///   Looks up a localized string similar to V0kSgpPoDz/gce1RFNKfIwHjS2DvyQxZDPWiWsI7V+lbPK7SBNzgDCoCCtAZHkNPNzavhPUwkkUYc07R5YPpYwKB7NebT5uiHCpQgGRnA/n2kUvg1vVJCH2FtUtLeyQwMP4T1CXMNBQaDVT5dbtezvcSLwAAFJicpn7IMJFkzrK988yF4mujjhHb6XvqeNYCDxQ2S+IQN7cFFKMh4YbIU50bpMA6g8O0UjAqTNlAxQU=.
         /// </summary>
-        internal static string DbMigration {
+        internal static string DbMigrationCS {
             get {
-                return ResourceManager.GetString("DbMigration", resourceCulture);
+                return ResourceManager.GetString("DbMigrationCS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Byte[].
+        /// </summary>
+        internal static byte[] DevelopmentAuth {
+            get {
+                object obj = ResourceManager.GetObject("DevelopmentAuth", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to {
-        ///  &quot;ConnectionStrings&quot;: {
-        ///    &quot;ConnectionString&quot;: &quot;Server=.;Database=CleanArchitectureDb;User Id=golshani;Password=Ali_Golshani;TrustServerCertificate=True;&quot;
-        ///  }
+        ///	&quot;ConnectionStrings&quot;: {
+        ///		&quot;ConnectionString&quot;: &quot;Server=.;Database=CleanArchitectureDb;User Id=golshani;Password=Ali_Golshani;TrustServerCertificate=True;&quot;
+        ///	}
         ///}.
         /// </summary>
-        internal static string Development {
+        internal static string DevelopmentCS {
             get {
-                return ResourceManager.GetString("Development", resourceCulture);
+                return ResourceManager.GetString("DevelopmentCS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dg7cK8bsrRT0VAO6GfGKafbY6ou5B622+dN8DVPCzrSrKrDV8+qKNp6Mic8bi/MW6vHJBiUAjzkDgasHyHh7c9/qH6fgkn1LQQVKpLmVodT4KnlHws9YQRkZ0hjpJNxPHZjtPZh3AGdQqASVY5l8QXwDCt2eL8IiwUWStzEVOEmQ4SXpb8BiqTEALWyYk82xavNKTEaNJSUQ/Ibl8MDoqtc9XXtmFWvDeEmqtosZRsPa6k478uTOmeJZPrnpOYwn6rOz/jmmbBv10o1d+AlElbsnKRYq1XiF5RPg+/6qadn1KCxY7ykVLsxfmKXfYnVtsK7oliwTSMjPDmY0NdNzpi3+T/yZ5aIvT835puCvCvVEpJBtYfHe47+987+gZr5n7PHSQi/Y/tBkc9kiRIviZlO0BziPzpVau0eDUlHuFhpJkXswvDI4Ni5MlVbwau+/yU1Jmz7T4x2B+UTP41L3soWJ1VhA4qRBtc8Lk+cuEyfr7gAb4pYNToEKmG1n+ze6 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string ProductionAuth {
+            get {
+                return ResourceManager.GetString("ProductionAuth", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to V0kSgpPoDz/gce1RFNKfIwHjS2DvyQxZDPWiWsI7V+lbPK7SBNzgDCoCCtAZHkNPNzavhPUwkkUYc07R5YPpYwKB7NebT5uiHCpQgGRnA/n2kUvg1vVJCH2FtUtLeyQwMP4T1CXMNBQaDVT5dbtezvcSLwAAFJicpn7IMJFkzrK988yF4mujjhHb6XvqeNYCDxQ2S+IQN7cFFKMh4YbIU50bpMA6g8O0UjAqTNlAxQU=.
         /// </summary>
-        internal static string Production {
+        internal static string ProductionCS {
             get {
-                return ResourceManager.GetString("Production", resourceCulture);
+                return ResourceManager.GetString("ProductionCS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dg7cK8bsrRT0VAO6GfGKafbY6ou5B622+dN8DVPCzrSrKrDV8+qKNp6Mic8bi/MW6vHJBiUAjzkDgasHyHh7c9/qH6fgkn1LQQVKpLmVodT4KnlHws9YQRkZ0hjpJNxPHZjtPZh3AGdQqASVY5l8QXwDCt2eL8IiwUWStzEVOEmQ4SXpb8BiqTEALWyYk82xavNKTEaNJSUQ/Ibl8MDoqtc9XXtmFWvDeEmqtosZRsPa6k478uTOmeJZPrnpOYwn6rOz/jmmbBv10o1d+AlElbsnKRYq1XiF5RPg+/6qadn1KCxY7ykVLsxfmKXfYnVtsK7oliwTSMjPDmY0NdNzpi3+T/yZ5aIvT835puCvCvVEpJBtYfHe47+987+gZr5n7PHSQi/Y/tBkc9kiRIviZlO0BziPzpVau0eDUlHuFhpJkXswvDI4Ni5MlVbwau+/yU1Jmz7T4x2B+UTP41L3soWJ1VhA4qRBtc8Lk+cuEyfr7gAb4pYNToEKmG1n+ze6 [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string StagingAuth {
+            get {
+                return ResourceManager.GetString("StagingAuth", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to V0kSgpPoDz/gce1RFNKfIwHjS2DvyQxZDPWiWsI7V+lbPK7SBNzgDCoCCtAZHkNPNzavhPUwkkUYc07R5YPpYwKB7NebT5uiHCpQgGRnA/n2kUvg1vVJCH2FtUtLeyQwMP4T1CXMNBQaDVT5dbtezvcSLwAAFJicpn7IMJFkzrK988yF4mujjhHb6XvqeNYCDxQ2S+IQN7cFFKMh4YbIU50bpMA6g8O0UjAqTNlAxQU=.
         /// </summary>
-        internal static string Staging {
+        internal static string StagingCS {
             get {
-                return ResourceManager.GetString("Staging", resourceCulture);
+                return ResourceManager.GetString("StagingCS", resourceCulture);
             }
         }
     }

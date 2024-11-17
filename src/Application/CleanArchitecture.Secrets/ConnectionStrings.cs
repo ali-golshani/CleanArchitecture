@@ -3,9 +3,9 @@ using CleanArchitecture.Secrets.Exceptions;
 
 namespace CleanArchitecture.Secrets;
 
-public static class Secrets
+public static class ConnectionStrings
 {
-    public static Stream ConfigurationStream(SecretsConfiguration configuration)
+    public static MemoryStream ConfigurationStream(SecretsConfiguration configuration)
     {
         var text = ConfigurationString(configuration);
         if (ShouldDecrypt(configuration))
@@ -23,16 +23,16 @@ public static class Secrets
                 throw new InvalidSecretsConfigurationException(configuration);
 
             case SecretsConfiguration.Development:
-                return Properties.Resources.Development;
+                return Properties.Resources.DevelopmentCS;
 
             case SecretsConfiguration.Staging:
-                return Properties.Resources.Staging;
+                return Properties.Resources.StagingCS;
 
             case SecretsConfiguration.Production:
-                return Properties.Resources.Production;
+                return Properties.Resources.ProductionCS;
 
             case SecretsConfiguration.DbMigration:
-                return Properties.Resources.DbMigration;
+                return Properties.Resources.DbMigrationCS;
         }
     }
 
