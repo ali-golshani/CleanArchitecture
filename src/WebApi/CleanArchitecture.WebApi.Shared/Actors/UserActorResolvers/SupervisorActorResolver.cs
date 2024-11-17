@@ -6,7 +6,6 @@ internal sealed class SupervisorActorResolver : IUserActorResolver
 {
     public IEnumerable<Actor> GetActors(ClaimsUser user)
     {
-        var roles = user.Roles;
         string username = user.Username;
         string displayName = user.DisplayName;
 
