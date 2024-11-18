@@ -13,7 +13,7 @@ public static class TestConfiguration
     {
         configuration.Sources.Clear();
         GlobalConfigs.RegisterSettings(configuration);
-        configuration.AddJsonStream(Options.Options.ConfigurationStream(optionsConfiguration));
+        configuration.AddJsonStream(EnvironmentOptions.Options.ConfigurationStream(optionsConfiguration));
         configuration.AddEnvironmentVariables(Secrets.EnvironmentVariables.EnvironmentVariablesPrefix);
         configuration.AddJsonStream(Secrets.Authentication.ConfigurationStream(SecretsConfiguration.Staging));
         configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(SecretsConfiguration.Staging));

@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Configurations;
 
-namespace CleanArchitecture.Options;
+namespace CleanArchitecture.EnvironmentOptions;
 
 public static class Options
 {
