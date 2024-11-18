@@ -14,6 +14,7 @@
     <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
     <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+    <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="7.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.OData" Version="9.1.0" />
   </ItemGroup>
@@ -26,6 +27,10 @@
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Configurations.ConfigurationSections\CleanArchitecture.Configurations.ConfigurationSections.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Middlewares\" />
   </ItemGroup>
 
 </Project>
