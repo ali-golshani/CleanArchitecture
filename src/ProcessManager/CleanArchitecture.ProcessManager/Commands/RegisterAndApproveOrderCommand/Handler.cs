@@ -14,7 +14,7 @@ public sealed class Handler : IRequestHandler<Command, Empty>
 
     public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
     {
-        var registered = false;
+        var control = false;
 
         try
         {
@@ -35,7 +35,7 @@ public sealed class Handler : IRequestHandler<Command, Empty>
                 return registerResult;
             }
 
-            registered = true;
+            control = true;
 
             var otherCommand = new Ordering.Commands.EmptyTestingCommand.Command
             {
@@ -44,11 +44,13 @@ public sealed class Handler : IRequestHandler<Command, Empty>
 
             var otherResult = await commandService.Handle(otherCommand, cancellationToken);
 
+            control = false;
+
             return otherResult;
         }
         finally
         {
-            if (registered)
+            if (control)
             {
                 var controlCommand = new Ordering.Commands.ControlOrderStatusCommand.Command
                 {
