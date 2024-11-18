@@ -3,7 +3,7 @@ using Framework.Results;
 
 namespace Infrastructure.CommoditySystem;
 
-public class CommoditySystem(IRequestMediator requestHandler) : ICommoditySystem
+internal class CommoditySystem(IRequestMediator requestHandler) : ICommoditySystem
 {
     private readonly IRequestMediator requestHandler = requestHandler;
 

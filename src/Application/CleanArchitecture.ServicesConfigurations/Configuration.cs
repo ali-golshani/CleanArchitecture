@@ -63,6 +63,7 @@ public static class Configuration
 
         Infrastructure.CommoditySystem.ServiceConfigurations.RegisterServices(services);
 
+        ProcessManager.ServiceConfigurations.RegisterServices(services);
         Querying.ServiceConfigurations.RegisterServices(services);
         Scheduling.ServiceConfigurations.RegisterServices(services);
         BackgroundServices.ServiceConfigurations.RegisterServices(services);
