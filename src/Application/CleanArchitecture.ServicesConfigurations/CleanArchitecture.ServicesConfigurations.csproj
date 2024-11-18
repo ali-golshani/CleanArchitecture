@@ -26,7 +26,7 @@
     <ProjectReference Include="..\..\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Configurations.ConfigurationSections\CleanArchitecture.Configurations.ConfigurationSections.csproj" />
     <ProjectReference Include="..\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.EnvironmentOptions\CleanArchitecture.EnvironmentOptions.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Options\CleanArchitecture.Options.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Scheduling\CleanArchitecture.Scheduling.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Secrets\CleanArchitecture.Secrets.csproj" />

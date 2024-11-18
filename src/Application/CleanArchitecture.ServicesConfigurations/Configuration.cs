@@ -16,7 +16,7 @@ public static class Configuration
     {
         configuration.Sources.Clear();
         GlobalConfigs.RegisterSettings(configuration);
-        configuration.AddJsonStream(EnvironmentOptions.Options.ConfigurationStream(optionsConfiguration));
+        configuration.AddJsonStream(Options.Options.ConfigurationStream(optionsConfiguration));
         configuration.AddEnvironmentVariables(Secrets.EnvironmentVariables.EnvironmentVariablesPrefix);
         configuration.AddJsonStream(Secrets.Authentication.ConfigurationStream(secretsConfiguration));
         configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(secretsConfiguration));
