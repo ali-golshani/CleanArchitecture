@@ -1,8 +1,0 @@
-{
-  "Cors": {
-    "Origins": [
-      "https://example.com",
-      "https://anotherdomain.com"
-    ]
-  }
-}
