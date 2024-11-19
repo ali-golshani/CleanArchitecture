@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.ServicesConfigurations;
+﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.ServicesConfigurations;
 using MassTransit;
 using MassTransit.SqlTransport;
 using Microsoft.Extensions.Configuration;
@@ -16,11 +17,12 @@ public static class ServiceCollectionBuilder
         var services = new ServiceCollection();
 
         configurationBuilder.SetBasePath(AppPath);
-        DbMigrationConfiguration.ConfigureAppConfiguration(configurationBuilder, Configurations.GlobalSettings.OptionsConfiguration);
+        SystemEnvironment.SetDbMigrationEnvironment();
+        Configuration.ConfigureAppConfiguration(configurationBuilder, SystemEnvironment.Environment);
 
         configuration = configurationBuilder.Build();
 
-        DbMigrationConfiguration.ConfigureServices(services, configuration);
+        Configuration.ConfigureServices(services, configuration);
         services.AddLogging(Configuration.ConfigureLogging);
 
         ConfigureMassTransitMigrationServices(services);

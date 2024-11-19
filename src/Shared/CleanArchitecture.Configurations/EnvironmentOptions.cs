@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Configurations;
 
-public class EnvironmentOptions
+internal class EnvironmentOptions : IEnvironment
 {
     public static readonly EnvironmentOptions Development = new EnvironmentOptions
     (

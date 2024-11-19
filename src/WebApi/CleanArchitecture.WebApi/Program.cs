@@ -23,21 +23,20 @@ public static class Program
 
         if (isProduction)
         {
-            GlobalSettings.SetProductionEnvironment();
+            SystemEnvironment.SetProductionEnvironment();
         }
         else if (isStaging)
         {
-            GlobalSettings.SetStagingEnvironment();
+            SystemEnvironment.SetStagingEnvironment();
         }
 
         ServicesConfigurations.Configuration.ConfigureAppConfiguration
         (
             configuration: configuration,
-            optionsConfiguration: GlobalSettings.OptionsConfiguration,
-            secretsConfiguration: GlobalSettings.SecretsConfiguration
+            environment: SystemEnvironment.Environment
         );
 
-        ServicesConfigurations.Configuration.RegisterServices(services, configuration);
+        ServicesConfigurations.Configuration.ConfigureServices(services, configuration);
 
         services.AddLogging(builder =>
         {

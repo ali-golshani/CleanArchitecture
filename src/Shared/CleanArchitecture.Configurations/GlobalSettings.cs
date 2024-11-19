@@ -2,22 +2,6 @@
 
 public static class GlobalSettings
 {
-    private static EnvironmentOptions environmentOptions = EnvironmentOptions.Development;
-
-    public static void SetProductionEnvironment()
-    {
-        environmentOptions = EnvironmentOptions.Production;
-    }
-
-    public static void SetStagingEnvironment()
-    {
-        environmentOptions = EnvironmentOptions.Staging;
-    }
-
-    public static EnvironmentMode Environment => environmentOptions.EnvironmentMode;
-    public static OptionsConfiguration OptionsConfiguration => environmentOptions.OptionsConfiguration;
-    public static SecretsConfiguration SecretsConfiguration => environmentOptions.SecretsConfiguration;
-
     public static class Messaging
     {
         public static readonly MessagingSystem MessagingSystem = MessagingSystem.MassTransit;

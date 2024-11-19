@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.ServicesConfigurations;
+﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.ServicesConfigurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -28,14 +29,13 @@ internal static class Program
         Configuration.ConfigureAppConfiguration
         (
             configuration: configuration,
-            optionsConfiguration: Configurations.GlobalSettings.OptionsConfiguration,
-            secretsConfiguration: Configurations.GlobalSettings.SecretsConfiguration
+            environment: SystemEnvironment.Environment
         );
     }
 
     private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        Configuration.RegisterServices(services, context.Configuration);
+        Configuration.ConfigureServices(services, context.Configuration);
         services.AddScoped<MainApp>();
 
         services.AddHostedService<MainHostedService>();

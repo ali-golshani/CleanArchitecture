@@ -9,22 +9,17 @@ namespace CleanArchitecture.ServicesConfigurations;
 
 public static class Configuration
 {
-    public static void ConfigureAppConfiguration(
-        IConfigurationBuilder configuration,
-        OptionsConfiguration optionsConfiguration,
-        SecretsConfiguration secretsConfiguration)
+    public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment environment)
     {
         configuration.Sources.Clear();
         GlobalConfigs.RegisterSettings(configuration);
-        configuration.AddJsonStream(Options.Options.ConfigurationStream(optionsConfiguration));
+        configuration.AddJsonStream(Options.Options.ConfigurationStream(environment.OptionsConfiguration));
         configuration.AddEnvironmentVariables(Secrets.EnvironmentVariables.EnvironmentVariablesPrefix);
-        configuration.AddJsonStream(Secrets.Authentication.ConfigurationStream(secretsConfiguration));
-        configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(secretsConfiguration));
+        configuration.AddJsonStream(Secrets.Authentication.ConfigurationStream(environment.SecretsConfiguration));
+        configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(environment.SecretsConfiguration));
     }
 
-    public static void RegisterServices(
-        IServiceCollection services,
-        IConfiguration configuration)
+    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.CleanArchitectureConnectionString();
 

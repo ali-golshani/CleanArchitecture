@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.ServicesConfigurations;
+﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.ServicesConfigurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,13 +19,12 @@ public static class ServiceCollectionBuilder
         Configuration.ConfigureAppConfiguration
         (
             configuration: configurationBuilder,
-            optionsConfiguration: Configurations.GlobalSettings.OptionsConfiguration,
-            secretsConfiguration: Configurations.GlobalSettings.SecretsConfiguration
+            environment: SystemEnvironment.Environment
         );
 
         configuration = configurationBuilder.Build();
 
-        Configuration.RegisterServices(services, configuration);
+        Configuration.ConfigureServices(services, configuration);
         services.AddLogging(Configuration.ConfigureLogging);
 
         return services;
