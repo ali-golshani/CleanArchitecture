@@ -31,7 +31,7 @@ public static class ServiceCollectionBuilder
         Configuration.ConfigureServices(services, configuration);
         services.AddLogging(Configuration.ConfigureLogging);
 
-        services.RegisterAsSelf<ITestService>();
+        services.RegisterAsSelf<IService>();
 
         return services;
     }

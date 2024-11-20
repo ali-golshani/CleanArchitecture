@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Administration.ProgrammerApp.Services;
+﻿namespace CleanArchitecture.Administration.HostedApp.Services;
 
-public class MainApp(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal class RegisterOrderService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {

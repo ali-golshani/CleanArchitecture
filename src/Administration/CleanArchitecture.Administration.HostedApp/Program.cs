@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Administration.ProgrammerApp.Services;
+﻿using CleanArchitecture.Administration.HostedApp.Services;
 using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations;
 using Framework.Mediator.Extensions;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Administration.ProgrammerApp;
+namespace CleanArchitecture.Administration.HostedApp;
 
 internal static class Program
 {
@@ -38,9 +38,8 @@ internal static class Program
     private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
         Configuration.ConfigureServices(services, context.Configuration);
-        services.RegisterAsSelf<ServiceBase>();
-
-        services.AddHostedService<MainHostedService>();
+        services.RegisterAsSelf<IService>();
+        services.AddHostedService<HostedService>();
     }
 
     private static void ConfigureLogging(HostBuilderContext context, ILoggingBuilder builder)

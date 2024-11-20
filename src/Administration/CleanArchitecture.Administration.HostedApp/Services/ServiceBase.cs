@@ -3,9 +3,9 @@ using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Administration.ProgrammerApp.Services;
+namespace CleanArchitecture.Administration.HostedApp.Services;
 
-public abstract class ServiceBase
+internal abstract class ServiceBase : IService
 {
     private readonly IServiceProvider serviceProvider;
     protected static readonly Actor Actor = new Programmer("golshani", "Ali");

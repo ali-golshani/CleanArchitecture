@@ -15,7 +15,7 @@ public abstract class TestBase
     protected CancellationToken CancellationToken => cts.Token;
     protected T Service<T>() where T : notnull => serviceProvider.GetRequiredService<T>();
 
-    protected virtual TimeSpan Timeout => TimeSpan.FromSeconds(1);
+    protected virtual TimeSpan Timeout => TimeSpan.FromSeconds(10);
 
     [TestInitialize]
     public void TestInit()

@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.IntegrationTests.Services;
 
-public abstract class ServiceBase(IServiceProvider serviceProvider) : ITestService
+internal abstract class ServiceBase(IServiceProvider serviceProvider) : IService
 {
     private readonly IServiceProvider serviceProvider = serviceProvider;
 
