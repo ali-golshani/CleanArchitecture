@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations;
+using Framework.Mediator.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,6 +27,8 @@ public static class ServiceCollectionBuilder
 
         Configuration.ConfigureServices(services, configuration);
         services.AddLogging(Configuration.ConfigureLogging);
+
+        services.RegisterAsSelf<IService>();
 
         return services;
     }

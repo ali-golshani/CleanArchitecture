@@ -1,7 +1,7 @@
 ﻿namespace CleanArchitecture.IntegrationTests.Tests;
 
 [TestClass]
-public sealed class RegisterOrderTest : TestBase
+public sealed class OrderTest : TestBase
 {
     [TestMethod]
     public async Task RegisterOrder()

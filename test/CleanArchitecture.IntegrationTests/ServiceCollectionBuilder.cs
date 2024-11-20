@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.IntegrationTests.Services;
 using CleanArchitecture.ServicesConfigurations;
+using Framework.Mediator.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,21 +29,8 @@ public static class ServiceCollectionBuilder
         Configuration.ConfigureServices(services, configuration);
         services.AddLogging(Configuration.ConfigureLogging);
 
-        RegisterTestServices(services);
+        services.RegisterAsSelf<ITestService>();
 
         return services;
-    }
-
-    private static void RegisterTestServices(IServiceCollection services)
-    {
-        services.Scan(scan =>
-        {
-            scan
-                .FromAssemblyOf<ITestService>()
-                .AddClasses(classes => classes.AssignableTo<ITestService>())
-                .AsSelf()
-                .WithTransientLifetime()
-                ;
-        });
     }
 }
