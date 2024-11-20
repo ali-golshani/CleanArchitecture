@@ -4,11 +4,12 @@ using CleanArchitecture.Ordering.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.IntegrationTests.Services;
+
 public abstract class ServiceBase(IServiceProvider serviceProvider) : ITestService
 {
     private readonly IServiceProvider serviceProvider = serviceProvider;
 
-    protected static readonly Actor Actor = new Programmer("golshani", "Ali");
+    protected static readonly Actor Programmer = new Programmer("golshani", "Ali");
 
     protected T Service<T>() where T : notnull => serviceProvider.GetRequiredService<T>();
     protected IQueryService QueryService() => Service<IQueryService>();

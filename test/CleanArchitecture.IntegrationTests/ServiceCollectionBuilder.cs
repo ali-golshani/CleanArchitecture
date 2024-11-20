@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.IntegrationTests.Services;
 using CleanArchitecture.ServicesConfigurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.IntegrationTests;
+﻿namespace CleanArchitecture.IntegrationTests.Tests;
 
 [TestClass]
 public sealed class RegisterOrderTest : TestBase

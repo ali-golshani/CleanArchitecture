@@ -1,12 +1,11 @@
 ﻿using CleanArchitecture.Actors;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.IntegrationTests;
+namespace CleanArchitecture.IntegrationTests.Tests;
 
 [TestClass]
 public abstract class TestBase
 {
-    protected static readonly Actor Programmer = new Programmer("golshani", "Ali");
     private static IServiceProvider RootServiceProvider => AssemblyServiceProvider.RootServiceProvider;
 
     private IServiceScope serviceScope = null!;

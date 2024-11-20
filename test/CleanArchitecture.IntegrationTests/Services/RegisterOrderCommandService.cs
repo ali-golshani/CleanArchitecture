@@ -6,7 +6,7 @@ public class RegisterOrderCommandService(IServiceProvider serviceProvider) : Ser
     {
         var service = CommandService();
 
-        var result = await service.Handle(Actor, new Ordering.Commands.RegisterOrderCommand.Command
+        var result = await service.Handle(Programmer, new Ordering.Commands.RegisterOrderCommand.Command
         {
             OrderId = 1020,
             BrokerId = 5,
