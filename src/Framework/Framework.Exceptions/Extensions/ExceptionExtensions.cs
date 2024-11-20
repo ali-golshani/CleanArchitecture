@@ -21,10 +21,12 @@ public static class ExceptionExtensions
     {
         exp = UnwrapAll(exp);
 
-        var result =
-            exp is BaseSystemException systemException ?
-            systemException :
-            new UnknownException(exp);
+        var result = exp switch
+        {
+            BaseSystemException systemException => systemException,
+            TaskCanceledException or OperationCanceledException => new RequestCanceledException(),
+            _ => new UnknownException(exp),
+        };
 
         return result.Demystify();
     }

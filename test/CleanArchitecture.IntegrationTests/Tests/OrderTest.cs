@@ -1,4 +1,5 @@
-﻿namespace CleanArchitecture.IntegrationTests.Tests;
+﻿
+namespace CleanArchitecture.IntegrationTests.Tests;
 
 [TestClass]
 public sealed class OrderTest : TestBase
@@ -7,7 +8,9 @@ public sealed class OrderTest : TestBase
     public async Task RegisterOrder()
     {
         var service = Service<Services.RegisterOrderCommandService>();
-        var isSuccess = await service.Run();
+        var isSuccess = await service.Run(CancellationToken);
         Assert.IsTrue(isSuccess);
     }
+
+    protected override TimeSpan Timeout => TimeSpan.FromSeconds(5);
 }

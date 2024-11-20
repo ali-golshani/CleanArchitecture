@@ -45,6 +45,14 @@ internal sealed class Handler : IRequestHandler<Query, PaginatedItems<Models.Ord
             set = set.Where(x => x.Status == query.OrderStatus.Value);
         }
 
-        return set.OrderByDescending(x => x.OrderId);
+        switch (query.OrderBy)
+        {
+            case Models.OrderOrderBy.BrokerId:
+                return set.OrderByDescending(x => x.BrokerId);
+
+            case Models.OrderOrderBy.OrderId:
+            default:
+                return set.OrderByDescending(x => x.OrderId);
+        }
     }
 }

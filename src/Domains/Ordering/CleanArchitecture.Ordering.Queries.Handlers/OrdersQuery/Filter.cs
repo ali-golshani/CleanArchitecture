@@ -16,6 +16,9 @@ internal sealed class Filter : IQueryFilter<Query>
             OrderStatus = query.OrderStatus,
             BrokerId = brokerId ?? query.BrokerId,
             CustomerId = customerId ?? query.CustomerId,
+            OrderBy = query.OrderBy,
+            PageIndex = query.PageIndex,
+            PageSize = query.PageSize,
         };
     }
 }

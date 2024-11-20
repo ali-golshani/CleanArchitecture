@@ -9,5 +9,5 @@ public sealed class Order
     public required decimal Price { get; set; }
     public required Commodity Commodity { get; init; }
     public required string TrackingCode { get; init; }
-    public required OrderStatus Status { get; set; }
+    public required OrderStatus Status { get; init; }
 }

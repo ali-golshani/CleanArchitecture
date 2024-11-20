@@ -10,6 +10,7 @@ public class Query :
     public int? BrokerId { get; init; }
     public int? CommodityId { get; init; }
     public OrderStatus? OrderStatus { get; init; }
+    public Models.OrderOrderBy? OrderBy { get; init; }
 
     public int PageIndex { get; init; } = 0; 
     public int PageSize { get; init; } = 10;

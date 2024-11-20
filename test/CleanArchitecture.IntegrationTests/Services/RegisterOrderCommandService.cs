@@ -1,21 +1,32 @@
-﻿namespace CleanArchitecture.IntegrationTests.Services;
+﻿using Framework.Results.Extensions;
+
+namespace CleanArchitecture.IntegrationTests.Services;
 
 public class RegisterOrderCommandService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
-    public virtual async Task<bool> Run()
+    public virtual async Task<bool> Run(CancellationToken cancellationToken)
     {
+        var queryService = QueryService();
         var service = CommandService();
 
-        var result = await service.Handle(Programmer, new Ordering.Commands.RegisterOrderCommand.Command
+        var orders = await queryService.Handle(Programmer, new Ordering.Queries.OrdersQuery.Query
         {
-            OrderId = 1020,
+            OrderBy = Ordering.Queries.Models.OrderOrderBy.OrderId,
+            PageSize = 1
+        }, cancellationToken).ThrowIsFailure();
+
+        var orderId = orders.Items.Count > 0 ? orders.Items.Max(x => x.OrderId) : 1;
+
+        await service.Handle(Programmer, new Ordering.Commands.RegisterOrderCommand.Command
+        {
+            OrderId = orderId + 1,
             BrokerId = 5,
             CommodityId = 12,
             CustomerId = 13,
             Price = 1000,
             Quantity = 10,
-        }, default);
+        }, cancellationToken).ThrowIsFailure();
 
-        return result.IsSuccess;
+        return true;
     }
 }
