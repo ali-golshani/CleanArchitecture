@@ -24,7 +24,7 @@ public static class ExceptionExtensions
         var result = exp switch
         {
             BaseSystemException systemException => systemException,
-            TaskCanceledException or OperationCanceledException => new RequestCanceledException(),
+            TaskCanceledException or OperationCanceledException => new RequestCanceledException(exp),
             _ => new UnknownException(exp),
         };
 
