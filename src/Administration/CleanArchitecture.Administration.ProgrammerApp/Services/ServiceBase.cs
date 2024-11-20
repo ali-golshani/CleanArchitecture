@@ -3,14 +3,14 @@ using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Administration.ProgrammerApp;
+namespace CleanArchitecture.Administration.ProgrammerApp.Services;
 
-public abstract class BasicApp
+public abstract class ServiceBase
 {
     private readonly IServiceProvider serviceProvider;
     protected static readonly Actor Actor = new Programmer("golshani", "Ali");
 
-    protected BasicApp(IServiceProvider serviceProvider)
+    protected ServiceBase(IServiceProvider serviceProvider)
     {
         this.serviceProvider = serviceProvider;
         this.serviceProvider.ResolveActor(Actor);

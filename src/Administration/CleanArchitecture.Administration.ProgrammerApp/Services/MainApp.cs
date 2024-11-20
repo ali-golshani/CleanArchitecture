@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Administration.ProgrammerApp;
+﻿namespace CleanArchitecture.Administration.ProgrammerApp.Services;
 
-public class MainApp(IServiceProvider serviceProvider) : BasicApp(serviceProvider)
+public class MainApp(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {

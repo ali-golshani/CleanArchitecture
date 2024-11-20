@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Administration.DebugApp;
+﻿namespace CleanArchitecture.Administration.DebugApp.Services;
 
 public class RegisterOrderCommandService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {

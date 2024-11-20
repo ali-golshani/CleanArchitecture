@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Configurations;
+﻿using CleanArchitecture.Administration.ProgrammerApp.Services;
+using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations;
 using Framework.Mediator.Extensions;
 using Microsoft.Extensions.Configuration;
@@ -37,7 +38,7 @@ internal static class Program
     private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
         Configuration.ConfigureServices(services, context.Configuration);
-        services.RegisterAsSelf<BasicApp>();
+        services.RegisterAsSelf<ServiceBase>();
 
         services.AddHostedService<MainHostedService>();
     }

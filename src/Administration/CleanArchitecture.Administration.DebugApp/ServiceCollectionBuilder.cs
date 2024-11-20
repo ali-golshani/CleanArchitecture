@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Configurations;
+﻿using CleanArchitecture.Administration.DebugApp.Services;
+using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations;
 using Framework.Mediator.Extensions;
 using Microsoft.Extensions.Configuration;

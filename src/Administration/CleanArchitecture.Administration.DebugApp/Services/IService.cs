@@ -1,3 +1,3 @@
-﻿namespace CleanArchitecture.Administration.DebugApp;
+﻿namespace CleanArchitecture.Administration.DebugApp.Services;
 
 public interface IService { }

@@ -1,8 +1,9 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using CleanArchitecture.Administration.ProgrammerApp.Services;
+using Microsoft.Extensions.Hosting;
 
 namespace CleanArchitecture.Administration.ProgrammerApp;
 
-public class MainHostedService(IServiceProvider serviceProvider) : BasicApp(serviceProvider), IHostedService
+public class MainHostedService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider), IHostedService
 {
     public async Task StartAsync(CancellationToken cancellationToken)
     {
