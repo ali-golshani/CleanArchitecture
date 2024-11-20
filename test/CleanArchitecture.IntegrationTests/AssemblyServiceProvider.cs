@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.IntegrationTests;
 
-internal static class AssemblyServices
+internal static class AssemblyServiceProvider
 {
     public static IServiceProvider RootServiceProvider { get; set; } = null!;
 }

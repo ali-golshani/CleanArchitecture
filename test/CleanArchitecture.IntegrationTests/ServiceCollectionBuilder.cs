@@ -27,6 +27,21 @@ public static class ServiceCollectionBuilder
         Configuration.ConfigureServices(services, configuration);
         services.AddLogging(Configuration.ConfigureLogging);
 
+        RegisterTestServices(services);
+
         return services;
+    }
+
+    private static void RegisterTestServices(IServiceCollection services)
+    {
+        services.Scan(scan =>
+        {
+            scan
+                .FromAssemblyOf<ITestService>()
+                .AddClasses(classes => classes.AssignableTo<ITestService>())
+                .AsSelf()
+                .WithTransientLifetime()
+                ;
+        });
     }
 }

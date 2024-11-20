@@ -9,7 +9,7 @@ public class AssemblyInitializer
     public static void AssemblyInit(TestContext context)
     {
         var services = ServiceCollectionBuilder.Build(out _);
-        AssemblyServices.RootServiceProvider = services.BuildServiceProvider();
+        AssemblyServiceProvider.RootServiceProvider = services.BuildServiceProvider();
     }
 
     [AssemblyCleanup]
