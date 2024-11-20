@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Mediator.Requests;
 using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Commands.RegisterAndApproveOrderCommand;
+namespace CleanArchitecture.ProcessManager.Commands.RegisterAndApproveOrder;
 
 public class Command :
     CommandBase,

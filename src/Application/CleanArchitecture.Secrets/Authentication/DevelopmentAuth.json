@@ -15,7 +15,7 @@
     },
 
     "InternalServices": {
-      "SecurityKey": "qwertyuiopasdfghjklzxcvbnm123456",
+      "SecurityKey": "qwertyuiopasdfghjklzcdebab654321",
       "IntrospectionSchema": null,
       "JwtBearerOptions": {
         "Authority": null,

@@ -1,7 +1,7 @@
 ﻿using Framework.Mediator.Requests;
 using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Commands.RegisterAndApproveOrderCommand;
+namespace CleanArchitecture.ProcessManager.Commands.RegisterAndApproveOrder;
 
 public sealed class Handler : IRequestHandler<Command, Empty>
 {
@@ -44,7 +44,7 @@ public sealed class Handler : IRequestHandler<Command, Empty>
 
             var otherResult = await commandService.Handle(otherCommand, cancellationToken);
 
-            control = false;
+            control = otherResult.IsFailure;
 
             return otherResult;
         }

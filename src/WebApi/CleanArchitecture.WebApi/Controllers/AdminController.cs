@@ -9,20 +9,20 @@ namespace CleanArchitecture.WebApi.Controllers;
 
 public class AdminController : BaseController
 {
-    [HttpGet("actor")]
+    [HttpGet("get-actor")]
     public Results<Ok<Actor>, NotFound> GetActor(IActorResolver actorResolver)
     {
         return Get(actorResolver);
     }
 
-    [HttpGet("default-actor")]
+    [HttpGet("authorize-default-actor")]
     [Authorize(AuthenticationSchemes.DefaultPolicy)]
     public Results<Ok<Actor>, NotFound> GetImeActor(IActorResolver actorResolver)
     {
         return Get(actorResolver);
     }
 
-    [HttpGet("services-actor")]
+    [HttpGet("authorize-services-actor")]
     [Authorize(AuthenticationSchemes.InternalServicesPolicy)]
     public Results<Ok<Actor>, NotFound> GetOnlineActor(IActorResolver actorResolver)
     {
