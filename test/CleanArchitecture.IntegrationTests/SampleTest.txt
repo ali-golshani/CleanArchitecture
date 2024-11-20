@@ -1,6 +1,4 @@
-﻿namespace CleanArchitecture.IntegrationTests;
-
-[TestClass]
+﻿[TestClass]
 public sealed class EmptyTest
 {
     [AssemblyInitialize]
