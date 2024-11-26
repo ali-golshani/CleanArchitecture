@@ -25,70 +25,72 @@ public sealed class Handler : IRequestHandler<Request, Empty>
             Quantity = request.Quantity,
         };
 
+        var emptyCommand = new Ordering.Commands.EmptyTestingCommand.Command
+        {
+            Id = request.OrderId
+        };
+
+        var controlCommand = new Ordering.Commands.ControlOrderStatusCommand.Command
+        {
+            OrderId = request.OrderId,
+        };
+
         var process =
-            commandService.Process(registerOrderCommand)
-            .Follow(_ =>
-            {
-                return new Ordering.Commands.EmptyTestingCommand.Command
-                {
-                    Id = request.OrderId
-                };
-            })
-            .WithCompensator(_ =>
-            {
-                return commandService.Process(new Ordering.Commands.ControlOrderStatusCommand.Command
-                {
-                    OrderId = request.OrderId,
-                });
-            });
+            commandService
+            .Process(registerOrderCommand)
+            .Follow(commandService.Process(emptyCommand))
+            .WithCompensator(commandService.Process(controlCommand));
 
         return await process.Execute(cancellationToken);
+    }
 
-        //var control = false;
+    public async Task<Result<Empty>> HandleB(Request request, CancellationToken cancellationToken)
+    {
+        var control = false;
 
-        //try
-        //{
-        //    var registerOrderCommand = new Ordering.Commands.RegisterOrderCommand.Command
-        //    {
-        //        BrokerId = request.BrokerId,
-        //        CommodityId = request.CommodityId,
-        //        CustomerId = request.CustomerId,
-        //        OrderId = request.OrderId,
-        //        Price = request.Price,
-        //        Quantity = request.Quantity,
-        //    };
+        try
+        {
+            var registerOrderCommand = new Ordering.Commands.RegisterOrderCommand.Command
+            {
+                BrokerId = request.BrokerId,
+                CommodityId = request.CommodityId,
+                CustomerId = request.CustomerId,
+                OrderId = request.OrderId,
+                Price = request.Price,
+                Quantity = request.Quantity,
+            };
 
-        //    var registerResult = await commandService.Handle(registerOrderCommand, cancellationToken);
+            var registerResult = await commandService.Handle(registerOrderCommand, cancellationToken);
 
-        //    if (registerResult.IsFailure)
-        //    {
-        //        return registerResult;
-        //    }
+            if (registerResult.IsFailure)
+            {
+                return registerResult;
+            }
 
-        //    control = true;
+            control = true;
 
-        //    var otherCommand = new Ordering.Commands.EmptyTestingCommand.Command
-        //    {
-        //        Id = request.OrderId
-        //    };
+            var otherCommand = new Ordering.Commands.EmptyTestingCommand.Command
+            {
+                Id = request.OrderId
+            };
 
-        //    var otherResult = await commandService.Handle(otherCommand, cancellationToken);
+            var otherResult = await commandService.Handle(otherCommand, cancellationToken);
 
-        //    control = otherResult.IsFailure;
+            control = otherResult.IsFailure;
 
-        //    return otherResult;
-        //}
-        //finally
-        //{
-        //    if (control)
-        //    {
-        //        var controlCommand = new Ordering.Commands.ControlOrderStatusCommand.Command
-        //        {
-        //            OrderId = request.OrderId,
-        //        };
+            return otherResult;
+        }
+        finally
+        {
+            if (control)
+            {
+                var controlCommand = new Ordering.Commands.ControlOrderStatusCommand.Command
+                {
+                    OrderId = request.OrderId,
+                };
 
-        //        await commandService.Handle(controlCommand, cancellationToken);
-        //    }
-        //}
+                await commandService.Handle(controlCommand, cancellationToken);
+            }
+        }
     }
 }

@@ -3,7 +3,6 @@ using CleanArchitecture.Audit;
 using CleanArchitecture.Authorization;
 using CleanArchitecture.Mediator.Middlewares;
 using FluentValidation;
-using Framework.Mediator.Requests;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -12,8 +11,7 @@ namespace CleanArchitecture.Ordering.Application.UseCases;
 
 internal sealed class CommandUseCase<TRequest, TResponse> :
     CommandUseCaseBase<TRequest, TResponse>,
-    IUseCase<TRequest, TResponse>,
-    IRequestProcessor<TRequest, TResponse>
+    IUseCase<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
     private readonly ExceptionHandlingDecorator<TRequest, TResponse> handlingUseCase;
