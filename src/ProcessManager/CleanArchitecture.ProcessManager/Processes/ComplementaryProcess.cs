@@ -9,6 +9,12 @@ internal sealed class ComplementaryProcess<TResponse> : IProcess<TResponse>
 
     public ComplementaryProcess(
         IProcess<TResponse> mainProcess,
+        IProcess<TResponse> complementaryProcess)
+        : this(mainProcess, _ => complementaryProcess)
+    { }
+
+    public ComplementaryProcess(
+        IProcess<TResponse> mainProcess,
         Func<Result<TResponse>, IProcess<TResponse>> complementaryProcessFactory)
     {
         this.mainProcess = mainProcess;

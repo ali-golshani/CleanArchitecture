@@ -9,6 +9,12 @@ internal sealed class CompensatorProcess<TResponse> : IProcess<TResponse>
 
     public CompensatorProcess(
         IProcess<TResponse> mainProcess,
+        IProcess<TResponse> compensatorProcess)
+        : this(mainProcess, _ => compensatorProcess)
+    { }
+
+    public CompensatorProcess(
+        IProcess<TResponse> mainProcess,
         Func<Result<TResponse>, IProcess<TResponse>> compensatorProcessFactory)
     {
         this.mainProcess = mainProcess;
