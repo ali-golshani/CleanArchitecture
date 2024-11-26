@@ -2,6 +2,7 @@ using CleanArchitecture.Configurations;
 using CleanArchitecture.WebApi.OData;
 using CleanArchitecture.WebApi.Shared.Configs;
 using CleanArchitecture.WebApi.Shared.Cors;
+using CleanArchitecture.WebApi.Shared.Filters;
 using CleanArchitecture.WebApi.Shared.Swagger;
 using CleanArchitecture.WebApi.Shared.Versioning;
 using Framework.WebApi.Middlewares;
@@ -55,7 +56,10 @@ public static class Program
         Authorization.AuthorizationConfigs.Configure(services);
 
         services
-            .AddControllers()
+            .AddControllers(options =>
+            {
+                options.Filters.Add(new ValidateModelStateAttribute());
+            })
             .AddJsonOptions(JsonConfigs.Configure)
             .AddOData();
 
