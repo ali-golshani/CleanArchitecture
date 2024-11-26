@@ -14,6 +14,6 @@ public static class ServiceConfigurations
         services.RegisterAccessVerifiers();
         services.RegisterValidators();
 
-        services.AddTransient<ICommandService, CommandService>();
+        services.AddTransient<IProcessManager, ProcessService>();
     }
 }

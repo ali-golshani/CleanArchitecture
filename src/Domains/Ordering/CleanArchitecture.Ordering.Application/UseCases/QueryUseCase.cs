@@ -10,7 +10,8 @@ namespace CleanArchitecture.Ordering.Application.UseCases;
 
 internal sealed class QueryUseCase<TRequest, TResponse> :
     QueryUseCaseBase<TRequest, TResponse>,
-    IUseCase<TRequest, TResponse>
+    IUseCase<TRequest, TResponse>,
+    IRequestProcessor<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
     public QueryUseCase(

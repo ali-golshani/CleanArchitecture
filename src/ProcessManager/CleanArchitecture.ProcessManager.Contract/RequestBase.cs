@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.ProcessManager;
 
-public abstract class CommandBase : Command
+public abstract class RequestBase : Request
 {
-    private protected CommandBase() { }
+    private protected RequestBase() { }
 }
