@@ -3,18 +3,18 @@ using Framework.Mediator.Requests;
 using Framework.ProcessManager.Extensions;
 using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Requests.RegisterAndApproveOrder;
+namespace CleanArchitecture.ProcessManager.Requests;
 
-public sealed class Handler : IRequestHandler<Request, Empty>
+public sealed class RegisterAndApproveOrderRequestHandler : IRequestHandler<RegisterAndApproveOrderRequest, Empty>
 {
     private readonly Ordering.Commands.ICommandService commandService;
 
-    public Handler(Ordering.Commands.ICommandService commandService)
+    public RegisterAndApproveOrderRequestHandler(Ordering.Commands.ICommandService commandService)
     {
         this.commandService = commandService;
     }
 
-    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> Handle(RegisterAndApproveOrderRequest request, CancellationToken cancellationToken)
     {
         var registerOrderCommand = new Ordering.Commands.RegisterOrderCommand.Command
         {
@@ -45,7 +45,7 @@ public sealed class Handler : IRequestHandler<Request, Empty>
         return await process.Execute(cancellationToken);
     }
 
-    public async Task<Result<Empty>> HandleC(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> HandleC(RegisterAndApproveOrderRequest request, CancellationToken cancellationToken)
     {
         var control = false;
 
