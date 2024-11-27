@@ -2,13 +2,13 @@
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class QueryHandlingUseCase<TRequest, TResponse> :
+public sealed class RequestHandlingUseCase<TRequest, TResponse> :
     IUseCase<TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>
 {
     private readonly IRequestHandler<TRequest, TResponse> handler;
 
-    public QueryHandlingUseCase(IRequestHandler<TRequest, TResponse> handler)
+    public RequestHandlingUseCase(IRequestHandler<TRequest, TResponse> handler)
     {
         this.handler = handler;
     }

@@ -10,7 +10,7 @@ using Microsoft.Extensions.Logging;
 namespace CleanArchitecture.Ordering.Application.UseCases;
 
 internal sealed class CommandUseCase<TRequest, TResponse> :
-    CommandUseCaseBase<TRequest, TResponse>,
+    UseCaseBase<TRequest, TResponse>,
     IUseCase<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {

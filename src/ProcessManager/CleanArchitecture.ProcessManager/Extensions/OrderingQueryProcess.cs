@@ -2,7 +2,7 @@
 using Framework.ProcessManager;
 using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Processes;
+namespace CleanArchitecture.ProcessManager.Extensions;
 
 internal class OrderingQueryProcess<TRequest, TResponse> : IProcess<TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>

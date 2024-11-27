@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.ProcessManager.Processes;
+﻿using CleanArchitecture.ProcessManager.Extensions;
 using Framework.Mediator.Requests;
 using Framework.ProcessManager.Extensions;
 using Framework.Results;

@@ -3,7 +3,7 @@ using CleanArchitecture.Ordering.Queries;
 using Framework.Exceptions;
 using Framework.ProcessManager;
 
-namespace CleanArchitecture.ProcessManager.Processes;
+namespace CleanArchitecture.ProcessManager.Extensions;
 
 internal static class Extensions
 {
