@@ -7,7 +7,6 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddTransient<SampleJobService>();
         services.RegisterJob<SampleJobService>(nameof(SampleJobService), "0/30 * * * * ?");
     }
 }

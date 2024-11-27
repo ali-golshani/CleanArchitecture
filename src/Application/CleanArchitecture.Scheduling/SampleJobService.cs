@@ -27,7 +27,8 @@ public class SampleJobService : IJobService
         var orders = await queryService.Handle(actor, new Ordering.Queries.OrdersQuery.Query
         {
             OrderStatus = OrderStatus.Approved,
-        }, stoppingToken).ThrowIsFailure();
+        }, stoppingToken)
+        .ThrowIsFailure();
 
         var commands = orders.Items.Select(EmptyCommand).ToList();
 

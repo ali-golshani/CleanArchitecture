@@ -1,4 +1,9 @@
 {
+  "Cap": {
+    "FailedRetryCount": 3,
+    "FailedRetryInterval": 90,
+    "ConsumerThreadCount": 5
+  },
   "Cors": {
     "Origins": [
       "https://example.com",

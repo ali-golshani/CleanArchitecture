@@ -18,6 +18,8 @@ public static class ServiceConfigurations
     public static void RegisterJob<TJobService>(this IServiceCollection services, string name, string cronSchedule)
         where TJobService : IJobService
     {
+        services.AddTransient(typeof(TJobService));
+
         services.AddQuartz(q =>
         {
             var jobKey = new JobKey(name);

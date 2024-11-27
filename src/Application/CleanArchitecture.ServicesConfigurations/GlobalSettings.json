@@ -1,7 +1,2 @@
 {
-  "Cap": {
-    "FailedRetryCount": 5,
-    "FailedRetryInterval": 900,
-    "ConsumerThreadCount": 5
-  }
 }

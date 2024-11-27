@@ -1,11 +1,12 @@
 ﻿using CleanArchitecture.ProcessManager.Extensions;
+using CleanArchitecture.ProcessManager.Requests;
 using Framework.Mediator.Requests;
 using Framework.ProcessManager.Extensions;
 using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Requests;
+namespace CleanArchitecture.ProcessManager.Handlers;
 
-public sealed class RegisterAndApproveOrderRequestHandler : IRequestHandler<RegisterAndApproveOrderRequest, Empty>
+internal sealed class RegisterAndApproveOrderRequestHandler : IRequestHandler<RegisterAndApproveOrderRequest, Empty>
 {
     private readonly Ordering.Commands.ICommandService commandService;
 
