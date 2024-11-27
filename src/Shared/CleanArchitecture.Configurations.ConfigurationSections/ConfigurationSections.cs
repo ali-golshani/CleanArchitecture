@@ -7,6 +7,11 @@ public static class ConfigurationSections
         public const string CleanArchitectureDb = "ConnectionString";
     }
 
+    public static class Cap
+    {
+        public const string Options = "Cap";
+    }
+
     public static class Cors
     {
         public const string Origins = "Cors:Origins";

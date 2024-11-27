@@ -36,7 +36,7 @@ internal static class CapConfigs
 
         public static CapOptions From(IConfiguration configuration)
         {
-            var section = configuration.GetSection("Cap");
+            var section = configuration.GetSection(Configurations.ConfigurationSections.Cap.Options);
             var options = section.Get<CapOptions>();
             return options ?? Default;
         }
