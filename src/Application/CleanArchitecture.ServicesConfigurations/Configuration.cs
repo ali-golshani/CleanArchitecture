@@ -25,7 +25,7 @@ public static class Configuration
 
         DbContextConfigs.RegisterDbContexts(services, connectionString);
 
-        CapConfigs.RegisterCap(services, connectionString);
+        CapConfigs.RegisterCap(services, configuration, connectionString);
         MassTransitConfigs.RegisterMassTransitOutboxAndTransport(services, connectionString);
 
         if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.Cap)
