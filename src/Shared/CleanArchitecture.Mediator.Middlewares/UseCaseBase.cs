@@ -3,14 +3,14 @@ using Framework.Mediator.Requests;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public abstract class RequestProcessorBase<TRequest, TResponse>
+public abstract class UseCaseBase<TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>
 {
     public abstract Task<Result<TResponse>> Handle(RequestContext<TRequest> context);
 
     protected readonly IActorResolver actorResolver;
 
-    protected RequestProcessorBase(IActorResolver actorResolver)
+    protected UseCaseBase(IActorResolver actorResolver)
     {
         this.actorResolver = actorResolver;
     }

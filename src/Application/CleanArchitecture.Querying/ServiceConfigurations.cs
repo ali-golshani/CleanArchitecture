@@ -10,11 +10,13 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddTransient(typeof(QueryProcessor<,>));
-        services.AddTransient<IQueryService, QueryService>();
+        services.RegisterValidators();
         services.RegisterRequestFilters();
         services.RegisterRequestHandlers();
         services.RegisterAccessVerifiers();
-        services.RegisterValidators();
+
+        services.AddTransient(typeof(QueryUseCase<,>));
+        services.AddTransient<IQueryService, QueryService>();
+        services.AddTransient(typeof(QueryProcessorPipelineBuilder<,>));
     }
 }
