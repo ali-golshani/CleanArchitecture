@@ -1,7 +1,8 @@
 ﻿using CleanArchitecture.Ordering.Commands;
+using Framework.Mediator.Requests;
 using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Processes;
+namespace CleanArchitecture.ProcessManager.Processors;
 
 internal class OrderingCommandProcessor<TRequest, TResponse> : IRequestProcessor<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>

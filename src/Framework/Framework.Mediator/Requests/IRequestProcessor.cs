@@ -1,9 +1,7 @@
-﻿using Framework.Results;
-
-namespace CleanArchitecture.ProcessManager;
+﻿namespace Framework.Mediator.Requests;
 
 public interface IRequestProcessor<in TRequest, TResponse>
-    where TRequest : Framework.Mediator.Requests.IRequest<TRequest, TResponse>
+    where TRequest : IRequest<TRequest, TResponse>
 {
     Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken);
 }

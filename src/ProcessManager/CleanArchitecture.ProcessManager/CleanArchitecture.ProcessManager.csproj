@@ -8,6 +8,8 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Domains\Ordering\CleanArchitecture.Ordering.Commands.Contract\CleanArchitecture.Ordering.Commands.Contract.csproj" />
+	  <ProjectReference Include="..\..\Domains\Ordering\CleanArchitecture.Ordering.Queries.Contract\CleanArchitecture.Ordering.Queries.Contract.csproj" />
+	  <ProjectReference Include="..\..\Framework\Framework.ProcessManager\Framework.ProcessManager.csproj" />
 	  <ProjectReference Include="..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
 	  <ProjectReference Include="..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
 	  <ProjectReference Include="..\CleanArchitecture.ProcessManager.Contract\CleanArchitecture.ProcessManager.Contract.csproj" />

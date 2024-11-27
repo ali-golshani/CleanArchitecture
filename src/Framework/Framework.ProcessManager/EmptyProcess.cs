@@ -1,6 +1,6 @@
 ﻿using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Processes;
+namespace Framework.ProcessManager;
 
 internal class EmptyProcess<TResponse> : IProcess<TResponse>
 {

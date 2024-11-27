@@ -1,9 +1,10 @@
-﻿using Framework.Results;
+﻿using Framework.Mediator.Requests;
+using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Processes;
+namespace Framework.ProcessManager;
 
-internal class RequestProcess<TRequest, TResponse> : IProcess<TResponse>
-    where TRequest : Framework.Mediator.Requests.IRequest<TRequest, TResponse>
+internal sealed class RequestProcess<TRequest, TResponse> : IProcess<TResponse>
+    where TRequest : IRequest<TRequest, TResponse>
 {
     private readonly TRequest request;
     private readonly IRequestProcessor<TRequest, TResponse> processor;

@@ -1,6 +1,6 @@
 ﻿using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Processes;
+namespace Framework.ProcessManager;
 
 internal sealed class ComplementaryProcess<TResponse> : IProcess<TResponse>
 {
@@ -52,7 +52,7 @@ internal sealed class ComplementaryProcess<TFirstResponse, TResponse> : IProcess
         IProcess<TFirstResponse> mainProcess,
         Func<Result<TFirstResponse>, IProcess<TResponse>> complementaryProcessFactory)
     {
-        this.firstProcess = mainProcess;
+        firstProcess = mainProcess;
         this.complementaryProcessFactory = complementaryProcessFactory;
     }
 

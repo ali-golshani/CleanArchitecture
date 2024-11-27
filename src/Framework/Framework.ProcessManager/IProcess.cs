@@ -1,8 +1,8 @@
 ﻿using Framework.Results;
 
-namespace CleanArchitecture.ProcessManager.Processes;
+namespace Framework.ProcessManager;
 
-internal interface IProcess<TResponse>
+public interface IProcess<TResponse>
 {
     Task<Result<TResponse>> Execute(CancellationToken cancellationToken);
 }

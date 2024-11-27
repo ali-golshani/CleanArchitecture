@@ -1,6 +1,7 @@
 ﻿using Framework.Mediator.Requests;
 using Framework.Results;
 using CleanArchitecture.ProcessManager.Processes;
+using Framework.ProcessManager.Extensions;
 
 namespace CleanArchitecture.ProcessManager.Requests.RegisterAndApproveOrder;
 
