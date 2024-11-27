@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Ordering.Application.UseCases;
+using CleanArchitecture.Ordering.Application.RequestProcessors;
 using Framework.Exceptions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,16 +11,16 @@ internal class QueryService(IServiceProvider serviceProvider) : IQueryService
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        var useCase = serviceProvider.GetRequiredService<QueryUseCase<TRequest, TResponse>>();
+        var processor = serviceProvider.GetRequiredService<QueryProcessor<TRequest, TResponse>>();
         if (query is not TRequest request) throw new ProgrammerException();
-        return useCase.Handle(request, cancellationToken);
+        return processor.Handle(request, cancellationToken);
     }
 
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        var useCase = serviceProvider.GetRequiredService<QueryUseCase<TRequest, TResponse>>();
+        var processor = serviceProvider.GetRequiredService<QueryProcessor<TRequest, TResponse>>();
         if (query is not TRequest request) throw new ProgrammerException();
-        return useCase.Handle(actor, request, cancellationToken);
+        return processor.Handle(actor, request, cancellationToken);
     }
 }

@@ -4,20 +4,20 @@ using Microsoft.Extensions.Logging;
 namespace CleanArchitecture.Mediator.Middlewares;
 
 public sealed class ExceptionHandlingDecorator<TRequest, TResponse> :
-    IUseCase<TRequest, TResponse>
+    IRequestProcessor<TRequest, TResponse>
 {
-    private readonly IUseCase<TRequest, TResponse> next;
+    private readonly IRequestProcessor<TRequest, TResponse> next;
     private readonly ILogger logger;
 
     public ExceptionHandlingDecorator(
-        IUseCase<TRequest, TResponse> next,
+        IRequestProcessor<TRequest, TResponse> next,
         ILogger logger)
     {
         this.next = next;
         this.logger = logger;
     }
 
-    public async Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
         try
         {

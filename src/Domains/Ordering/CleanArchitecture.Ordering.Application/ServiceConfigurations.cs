@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Application.Services;
-using CleanArchitecture.Ordering.Application.UseCases;
+using CleanArchitecture.Ordering.Application.RequestProcessors;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Application;
@@ -12,7 +12,7 @@ public static class ServiceConfigurations
         services.AddTransient<IQueryService, QueryService>();
         services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
 
-        services.AddTransient(typeof(CommandUseCase<,>));
-        services.AddTransient(typeof(QueryUseCase<,>));
+        services.AddTransient(typeof(CommandProcessor<,>));
+        services.AddTransient(typeof(QueryProcessor<,>));
     }
 }

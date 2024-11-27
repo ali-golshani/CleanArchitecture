@@ -10,7 +10,7 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddTransient(typeof(QueryUseCase<,>));
+        services.AddTransient(typeof(QueryProcessor<,>));
         services.AddTransient<IQueryService, QueryService>();
         services.RegisterRequestFilters();
         services.RegisterRequestHandlers();

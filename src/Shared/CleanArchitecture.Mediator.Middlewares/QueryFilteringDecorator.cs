@@ -3,20 +3,20 @@
 namespace CleanArchitecture.Mediator.Middlewares;
 
 public sealed class QueryFilteringDecorator<TRequest, TResponse> :
-    IUseCase<TRequest, TResponse>
+    IRequestProcessor<TRequest, TResponse>
 {
-    private readonly IUseCase<TRequest, TResponse> next;
+    private readonly IRequestProcessor<TRequest, TResponse> next;
     private readonly IQueryFilter<TRequest>[] queryFilters;
 
     public QueryFilteringDecorator(
-        IUseCase<TRequest, TResponse> next,
+        IRequestProcessor<TRequest, TResponse> next,
         IEnumerable<IQueryFilter<TRequest>> queryFilters)
     {
         this.next = next;
         this.queryFilters = queryFilters?.ToArray() ?? [];
     }
 
-    public async Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
         var actor = context.Actor;
         var request = context.Request;
@@ -26,7 +26,7 @@ public sealed class QueryFilteringDecorator<TRequest, TResponse> :
             request = filter.Filter(actor, request);
         }
 
-        context = new UseCaseContext<TRequest>
+        context = new RequestContext<TRequest>
         {
             Actor = actor,
             Request = request,

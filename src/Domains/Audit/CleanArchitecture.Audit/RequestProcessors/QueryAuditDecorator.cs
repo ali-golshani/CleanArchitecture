@@ -4,40 +4,40 @@ using System.Diagnostics;
 
 namespace CleanArchitecture.Audit;
 
-public sealed class CommandAuditDecorator<TRequest, TResponse> :
-    IUseCase<TRequest, TResponse>
-    where TRequest : Command
+public sealed class QueryAuditDecorator<TRequest, TResponse> :
+    IRequestProcessor<TRequest, TResponse>
+    where TRequest : Query
 {
-    private readonly IUseCase<TRequest, TResponse> next;
-    private readonly CommandAuditAgent commandAudit;
-    private readonly string lggingDomain;
+    private readonly IRequestProcessor<TRequest, TResponse> next;
+    private readonly QueryAuditAgent queryAudit;
+    private readonly string loggingDomain;
     private readonly ILogger logger;
 
-    public CommandAuditDecorator(
-        IUseCase<TRequest, TResponse> next,
-        CommandAuditAgent commandAudit,
+    public QueryAuditDecorator(
+        IRequestProcessor<TRequest, TResponse> next,
+        QueryAuditAgent queryAudit,
         string loggingDomain,
         ILogger logger)
     {
         this.next = next;
-        this.commandAudit = commandAudit;
-        lggingDomain = loggingDomain;
+        this.queryAudit = queryAudit;
+        this.loggingDomain = loggingDomain;
         this.logger = logger;
     }
 
-    public async Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
         var actor = context.Actor;
         var request = context.Request;
 
-        var logEntry = request.LogEntry(actor, lggingDomain);
+        var logEntry = request.LogEntry(actor, loggingDomain);
         var timer = new Stopwatch();
         timer.Start();
 
         using var loggingScope = logger.BeginScope(new
         {
-            Domain = lggingDomain,
-            Command = typeof(TRequest).Name,
+            Domain = loggingDomain,
+            Query = typeof(TRequest).Name,
             request.CorrelationId,
             Actor = actor
         });
@@ -49,18 +49,16 @@ public sealed class CommandAuditDecorator<TRequest, TResponse> :
 
             if (result.IsSuccess)
             {
-                var response = result.Value;
-                logEntry.Responsed(responseTime: timer.Elapsed, command: request, response: response);
-                commandAudit.Post(logEntry);
+                logEntry.Succeed(responseTime: timer.Elapsed);
+                queryAudit.Post(logEntry);
             }
             else
             {
                 logEntry.Failed(result.Errors, responseTime: timer.Elapsed);
-                commandAudit.Post(logEntry);
+                queryAudit.Post(logEntry);
             }
 
-
-            logger.LogInformation("{Command}", request);
+            logger.LogInformation("{Query}", request);
 
             return result;
         }
@@ -68,7 +66,7 @@ public sealed class CommandAuditDecorator<TRequest, TResponse> :
         {
             timer.Stop();
             logEntry.Failed(exp, timer.Elapsed);
-            commandAudit.Post(logEntry);
+            queryAudit.Post(logEntry);
 
             throw;
         }

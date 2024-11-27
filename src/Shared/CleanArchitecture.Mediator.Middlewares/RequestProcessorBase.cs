@@ -3,14 +3,14 @@ using Framework.Mediator.Requests;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public abstract class UseCaseBase<TRequest, TResponse>
+public abstract class RequestProcessorBase<TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>
 {
-    public abstract Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context);
+    public abstract Task<Result<TResponse>> Handle(RequestContext<TRequest> context);
 
     protected readonly IActorResolver actorResolver;
 
-    protected UseCaseBase(IActorResolver actorResolver)
+    protected RequestProcessorBase(IActorResolver actorResolver)
     {
         this.actorResolver = actorResolver;
     }
@@ -29,7 +29,7 @@ public abstract class UseCaseBase<TRequest, TResponse>
 
     public async Task<Result<TResponse>> Handle(Actor actor, TRequest request, CancellationToken cancellationToken)
     {
-        var context = new UseCaseContext<TRequest>
+        var context = new RequestContext<TRequest>
         {
             Actor = actor,
             Request = request,

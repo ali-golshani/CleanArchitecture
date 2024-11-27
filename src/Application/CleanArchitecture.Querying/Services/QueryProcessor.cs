@@ -7,39 +7,39 @@ using Framework.Mediator.Requests;
 using Framework.Results;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Ordering.Application.UseCases;
+namespace CleanArchitecture.Querying.Services;
 
-internal sealed class QueryUseCase<TRequest, TResponse> :
-    UseCaseBase<TRequest, TResponse>,
-    IUseCase<TRequest, TResponse>
+internal sealed class QueryProcessor<TRequest, TResponse> :
+    RequestProcessorBase<TRequest, TResponse>,
+    IRequestProcessor<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
-    private const string LoggingDomain = nameof(Ordering);
+    private const string LoggingDomain = nameof(Querying);
 
-    private readonly ExceptionHandlingDecorator<TRequest, TResponse> handlingUseCase;
+    private readonly ExceptionHandlingDecorator<TRequest, TResponse> handlingProcessor;
 
-    public QueryUseCase(
+    public QueryProcessor(
         IActorResolver actorResolver,
         IRequestHandler<TRequest, TResponse> handler,
         QueryAuditAgent queryAudit,
         IEnumerable<IValidator<TRequest>> validators,
         IEnumerable<IAccessVerifier<TRequest>> accessVerifiers,
         IEnumerable<IQueryFilter<TRequest>> queryFilters,
-        ILogger<QueryUseCase<TRequest, TResponse>> logger)
+        ILogger<QueryProcessor<TRequest, TResponse>> logger)
         : base(actorResolver)
     {
-        var queryHandling = new RequestHandlingUseCase<TRequest, TResponse>(handler);
+        var queryHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
         var filtering = new QueryFilteringDecorator<TRequest, TResponse>(queryHandling, queryFilters);
         var authorization = new AuthorizationDecorator<TRequest, TResponse>(filtering, accessVerifiers);
         var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
         var audit = new QueryAuditDecorator<TRequest, TResponse>(validation, queryAudit, LoggingDomain, logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
 
-        handlingUseCase = exceptionHandling;
+        handlingProcessor = exceptionHandling;
     }
 
-    public override async Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context)
+    public override async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        return await handlingUseCase.Handle(context);
+        return await handlingProcessor.Handle(context);
     }
 }

@@ -3,20 +3,20 @@
 namespace CleanArchitecture.Mediator.Middlewares;
 
 public sealed class AuthorizationDecorator<TRequest, TResponse> :
-    IUseCase<TRequest, TResponse>
+    IRequestProcessor<TRequest, TResponse>
 {
-    private readonly IUseCase<TRequest, TResponse> next;
+    private readonly IRequestProcessor<TRequest, TResponse> next;
     private readonly IAccessVerifier<TRequest>[] accessVerifiers;
 
     public AuthorizationDecorator(
-        IUseCase<TRequest, TResponse> next,
+        IRequestProcessor<TRequest, TResponse> next,
         IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers)
     {
         this.next = next;
         this.accessVerifiers = accessVerifiers?.ToArray() ?? [];
     }
 
-    public async Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
         if (!await accessVerifiers.IsAccessible(context.Actor, context.Request))
         {

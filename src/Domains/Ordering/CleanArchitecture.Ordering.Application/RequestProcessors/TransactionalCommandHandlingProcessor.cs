@@ -8,20 +8,21 @@ using Framework.Mediator.Requests;
 using Framework.Persistence.Utilities;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
-namespace CleanArchitecture.Ordering.Application.UseCases;
 
-internal sealed class TransactionalCommandHandlingUseCase<TRequest, TResponse> :
-    IUseCase<TRequest, TResponse>
+namespace CleanArchitecture.Ordering.Application.RequestProcessors;
+
+internal sealed class TransactionalCommandHandlingProcessor<TRequest, TResponse> :
+    IRequestProcessor<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
     private readonly IServiceScopeFactory serviceScopeFactory;
 
-    public TransactionalCommandHandlingUseCase(IServiceScopeFactory serviceScopeFactory)
+    public TransactionalCommandHandlingProcessor(IServiceScopeFactory serviceScopeFactory)
     {
         this.serviceScopeFactory = serviceScopeFactory;
     }
 
-    public async Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
         var actor = context.Actor;
         var request = context.Request;

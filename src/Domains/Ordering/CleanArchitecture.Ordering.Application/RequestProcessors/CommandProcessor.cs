@@ -7,35 +7,35 @@ using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Ordering.Application.UseCases;
+namespace CleanArchitecture.Ordering.Application.RequestProcessors;
 
-internal sealed class CommandUseCase<TRequest, TResponse> :
-    UseCaseBase<TRequest, TResponse>,
-    IUseCase<TRequest, TResponse>
+internal sealed class CommandProcessor<TRequest, TResponse> :
+    RequestProcessorBase<TRequest, TResponse>,
+    IRequestProcessor<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
-    private readonly ExceptionHandlingDecorator<TRequest, TResponse> handlingUseCase;
+    private readonly ExceptionHandlingDecorator<TRequest, TResponse> handlingProcessor;
 
-    public CommandUseCase(
+    public CommandProcessor(
         IActorResolver actorResolver,
         IServiceScopeFactory serviceScopeFactory,
         CommandAuditAgent commandAudit,
         IEnumerable<IValidator<TRequest>>? validators,
         IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers,
-        ILogger<CommandUseCase<TRequest, TResponse>> logger)
+        ILogger<CommandProcessor<TRequest, TResponse>> logger)
         : base(actorResolver)
     {
-        var transactional = new TransactionalCommandHandlingUseCase<TRequest, TResponse>(serviceScopeFactory);
+        var transactional = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
         var authorization = new AuthorizationDecorator<TRequest, TResponse>(transactional, accessVerifiers);
         var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
         var audit = new CommandAuditDecorator<TRequest, TResponse>(validation, commandAudit, nameof(Ordering), logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
 
-        handlingUseCase = exceptionHandling;
+        handlingProcessor = exceptionHandling;
     }
 
-    public override async Task<Result<TResponse>> Handle(UseCaseContext<TRequest> context)
+    public override async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        return await handlingUseCase.Handle(context);
+        return await handlingProcessor.Handle(context);
     }
 }
