@@ -8,8 +8,6 @@ internal sealed class QueryUseCase<TRequest, TResponse> :
     UseCaseBase<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
-    private const string LoggingDomain = nameof(Ordering);
-
     private readonly IRequestProcessor<TRequest, TResponse> processor;
 
     public QueryUseCase(
