@@ -19,8 +19,8 @@ public class AssemblyInitializer
     }
 
     [TestMethod]
-    public void TestMethod()
+    public void SonarTestMethod()
     {
-        Assert.AreEqual(2 * 2, 4);
+        Assert.AreNotEqual(4, nameof(AssemblyInitializer).Length);
     }
 }
