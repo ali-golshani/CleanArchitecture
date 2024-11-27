@@ -36,11 +36,11 @@ public sealed class RegisterAndApproveOrderRequestHandler : IRequestHandler<Regi
             OrderId = request.OrderId,
         };
 
-        var processA = commandService.Process(registerOrderCommand);
-        var processB = commandService.Process(emptyCommand);
-        var processC = commandService.Process(controlCommand);
+        var registerOrderProcess = commandService.Process(registerOrderCommand);
+        var emptyProcess = commandService.Process(emptyCommand);
+        var controlProcess = commandService.Process(controlCommand);
 
-        var process = processA.Follow(processB).WithCompensator(processC);
+        var process = registerOrderProcess.Follow(emptyProcess).WithCompensator(controlProcess);
 
         return await process.Execute(cancellationToken);
     }

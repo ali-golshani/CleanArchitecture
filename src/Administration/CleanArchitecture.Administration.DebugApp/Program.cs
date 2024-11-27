@@ -13,7 +13,7 @@ internal static class Program
 
         using var scope = rootServiceProvider.CreateScope();
         var serviceProvider = scope.ServiceProvider;
-        await serviceProvider.GetRequiredService<RegisterOrderCommandService>().Run();
+        await serviceProvider.GetRequiredService<RegisterAndApproveOrderService>().Run();
 
         Exit();
     }

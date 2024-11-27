@@ -14,6 +14,7 @@ public abstract class ServiceBase(IServiceProvider serviceProvider) : IService
     protected T Service<T>() where T : notnull => serviceProvider.GetRequiredService<T>();
     protected IQueryService QueryService() => Service<IQueryService>();
     protected ICommandService CommandService() => Service<ICommandService>();
+    protected void ResolveActor() => serviceProvider.ResolveActor(Actor);
 
     protected static void Execute(Action action)
     {
