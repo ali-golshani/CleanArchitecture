@@ -1,7 +1,7 @@
-﻿using Framework.Mediator.Requests;
-using Framework.Results;
-using CleanArchitecture.ProcessManager.Processes;
+﻿using CleanArchitecture.ProcessManager.Processes;
+using Framework.Mediator.Requests;
 using Framework.ProcessManager.Extensions;
+using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager.Requests.RegisterAndApproveOrder;
 
@@ -36,16 +36,16 @@ public sealed class Handler : IRequestHandler<Request, Empty>
             OrderId = request.OrderId,
         };
 
-        var process =
-            commandService
-            .Process(registerOrderCommand)
-            .Follow(commandService.Process(emptyCommand))
-            .WithCompensator(commandService.Process(controlCommand));
+        var processA = commandService.Process(registerOrderCommand);
+        var processB = commandService.Process(emptyCommand);
+        var processC = commandService.Process(controlCommand);
+
+        var process = processA.Follow(processB).WithCompensator(processC);
 
         return await process.Execute(cancellationToken);
     }
 
-    public async Task<Result<Empty>> HandleB(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> HandleC(Request request, CancellationToken cancellationToken)
     {
         var control = false;
 
@@ -93,36 +93,5 @@ public sealed class Handler : IRequestHandler<Request, Empty>
                 await commandService.Handle(controlCommand, cancellationToken);
             }
         }
-    }
-
-    public async Task<Result<Empty>> HandleC(Request request, CancellationToken cancellationToken)
-    {
-        var registerOrderCommand = new Ordering.Commands.RegisterOrderCommand.Command
-        {
-            BrokerId = request.BrokerId,
-            CommodityId = request.CommodityId,
-            CustomerId = request.CustomerId,
-            OrderId = request.OrderId,
-            Price = request.Price,
-            Quantity = request.Quantity,
-        };
-
-        var emptyCommand = new Ordering.Commands.EmptyTestingCommand.Command
-        {
-            Id = request.OrderId
-        };
-
-        var controlCommand = new Ordering.Commands.ControlOrderStatusCommand.Command
-        {
-            OrderId = request.OrderId,
-        };
-
-        var processA = commandService.Process(registerOrderCommand);
-        var processB = commandService.Process(emptyCommand);
-        var processC = commandService.Process(controlCommand);
-
-        var process = processA.Follow(processB).WithCompensator(processC);
-
-        return await process.Execute(cancellationToken);
     }
 }
