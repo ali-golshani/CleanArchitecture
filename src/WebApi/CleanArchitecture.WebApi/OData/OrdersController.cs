@@ -17,6 +17,6 @@ public class OrdersController(IQueryService queryService) : ODataController
         return
             queryService
             .Handle(query, cancellationToken)
-            .ToActionResult();
+            .AsActionResult();
     }
 }

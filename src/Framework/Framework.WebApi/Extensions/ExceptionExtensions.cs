@@ -5,7 +5,7 @@ namespace Framework.WebApi.Exceptions;
 
 internal static class ExceptionExtensions
 {
-    public static ProblemDetails ToProblemDetails(this Exception exp)
+    public static ProblemDetails AsProblemDetails(this Exception exp)
     {
         var errors = ErrorMessages.DomainErrorMessages(exp);
 

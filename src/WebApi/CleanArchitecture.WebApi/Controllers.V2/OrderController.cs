@@ -25,7 +25,7 @@ public class OrderController : BaseController
 
         if (result.IsFailure)
         {
-            return result.Errors.ToProblemResult();
+            return result.Errors.AsProblemResult();
         }
         else if (result.Value is null)
         {

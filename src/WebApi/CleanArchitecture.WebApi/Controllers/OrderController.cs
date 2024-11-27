@@ -23,7 +23,7 @@ public class OrderController : BaseController
         return
             queryService
             .Handle(query, cancellationToken)
-            .ToTypedResults();
+            .AsTypedResults();
     }
 
     [HttpGet("{orderId:int}")]
@@ -40,7 +40,7 @@ public class OrderController : BaseController
             queryService
             .Handle(query, cancellationToken)
             .NotFoundIfNull("سفارش", query.OrderId)
-            .ToTypedResults();
+            .AsTypedResults();
     }
 
     /// <summary>
@@ -58,6 +58,6 @@ public class OrderController : BaseController
         return
             commandService
             .Handle(actor, command, cancellationToken)
-            .ToTypedResults();
+            .AsTypedResults();
     }
 }

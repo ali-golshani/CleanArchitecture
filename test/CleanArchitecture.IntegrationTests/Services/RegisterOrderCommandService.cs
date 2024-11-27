@@ -13,7 +13,8 @@ internal class RegisterOrderCommandService(IServiceProvider serviceProvider) : S
         {
             OrderBy = Ordering.Queries.Models.OrderOrderBy.OrderId,
             PageSize = 1
-        }, cancellationToken).ThrowIsFailure();
+        }, cancellationToken)
+        .ThrowIsFailure();
 
         var orderId = orders.Items.Count > 0 ? orders.Items.Max(x => x.OrderId) : 1;
 
@@ -25,7 +26,8 @@ internal class RegisterOrderCommandService(IServiceProvider serviceProvider) : S
             CustomerId = 13,
             Price = 1000,
             Quantity = 10,
-        }, cancellationToken).ThrowIsFailure();
+        }, cancellationToken)
+        .ThrowIsFailure();
 
         return true;
     }

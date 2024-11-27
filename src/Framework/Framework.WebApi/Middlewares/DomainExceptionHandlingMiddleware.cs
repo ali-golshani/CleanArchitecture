@@ -37,7 +37,7 @@ public class DomainExceptionHandlingMiddleware
                 case UserFriendlyException:
                 case BaseSystemException:
                     {
-                        var problem = exp.ToProblemDetails();
+                        var problem = exp.AsProblemDetails();
                         context.Response.Clear();
                         context.Response.StatusCode = problem.Status!.Value;
                         await context.Response.WriteAsJsonAsync(problem);
