@@ -15,8 +15,8 @@ public static class ServiceConfigurations
         services.RegisterRequestHandlers();
         services.RegisterAccessVerifiers();
 
-        services.AddTransient(typeof(QueryUseCase<,>));
+        services.AddTransient(typeof(QueryPipeline<,>));
         services.AddTransient<IQueryService, QueryService>();
-        services.AddTransient(typeof(QueryProcessorPipelineBuilder<,>));
+        services.AddTransient(typeof(QueryPipelineBuilder<,>));
     }
 }

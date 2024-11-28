@@ -7,18 +7,19 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Querying.Services;
 
-internal sealed class QueryProcessorPipelineBuilder<TRequest, TResponse>
+internal sealed class QueryPipelineBuilder<TRequest, TResponse>
+    : IRequestPipelineBuilder<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
     private const string LoggingDomain = nameof(Querying);
 
-    public QueryProcessorPipelineBuilder(
+    public QueryPipelineBuilder(
         IRequestHandler<TRequest, TResponse> handler,
         QueryAuditAgent queryAudit,
         IEnumerable<IValidator<TRequest>> validators,
         IEnumerable<IAccessVerifier<TRequest>> accessVerifiers,
         IEnumerable<IQueryFilter<TRequest>> queryFilters,
-        ILogger<QueryUseCase<TRequest, TResponse>> logger)
+        ILogger<QueryPipeline<TRequest, TResponse>> logger)
     {
         var queryHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
         var filtering = new QueryFilteringDecorator<TRequest, TResponse>(queryHandling, queryFilters);
@@ -27,8 +28,8 @@ internal sealed class QueryProcessorPipelineBuilder<TRequest, TResponse>
         var audit = new QueryAuditDecorator<TRequest, TResponse>(validation, queryAudit, LoggingDomain, logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
 
-        Processor = exceptionHandling;
+        EntryProcessor = exceptionHandling;
     }
 
-    public IRequestProcessor<TRequest, TResponse> Processor { get; }
+    public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }
 }

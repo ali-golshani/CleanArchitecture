@@ -9,7 +9,7 @@ using Framework.Persistence.Utilities;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Ordering.Application.UseCase;
+namespace CleanArchitecture.Ordering.Application.Pipeline;
 
 internal sealed class TransactionalCommandHandlingProcessor<TRequest, TResponse> :
     IRequestProcessor<TRequest, TResponse>

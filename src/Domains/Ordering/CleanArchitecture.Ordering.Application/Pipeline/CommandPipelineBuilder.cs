@@ -5,17 +5,18 @@ using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Ordering.Application.UseCase;
+namespace CleanArchitecture.Ordering.Application.Pipeline;
 
-internal sealed class CommandProcessorPipelineBuilder<TRequest, TResponse>
+internal sealed class CommandPipelineBuilder<TRequest, TResponse>
+    : IRequestPipelineBuilder<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
-    public CommandProcessorPipelineBuilder(
+    public CommandPipelineBuilder(
         IServiceScopeFactory serviceScopeFactory,
         CommandAuditAgent commandAudit,
         IEnumerable<IValidator<TRequest>>? validators,
         IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers,
-        ILogger<CommandUseCase<TRequest, TResponse>> logger)
+        ILogger<CommandPipeline<TRequest, TResponse>> logger)
     {
         var transactional = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
         var authorization = new AuthorizationDecorator<TRequest, TResponse>(transactional, accessVerifiers);
@@ -23,8 +24,8 @@ internal sealed class CommandProcessorPipelineBuilder<TRequest, TResponse>
         var audit = new CommandAuditDecorator<TRequest, TResponse>(validation, commandAudit, nameof(Ordering), logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
 
-        Processor = exceptionHandling;
+        EntryProcessor = exceptionHandling;
     }
 
-    public IRequestProcessor<TRequest, TResponse> Processor { get; }
+    public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }
 }
