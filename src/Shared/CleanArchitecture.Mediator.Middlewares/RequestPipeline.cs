@@ -1,10 +1,8 @@
 ﻿using CleanArchitecture.Actors;
-using Framework.Mediator.Requests;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
 public abstract class RequestPipeline<TRequest, TResponse>
-    where TRequest : IRequest<TRequest, TResponse>
 {
     protected readonly IActorResolver actorResolver;
     protected readonly IRequestProcessor<TRequest, TResponse> processor;
