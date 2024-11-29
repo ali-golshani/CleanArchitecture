@@ -9,7 +9,7 @@ internal abstract class ServiceBase(IServiceProvider serviceProvider) : IService
 {
     private readonly IServiceProvider serviceProvider = serviceProvider;
 
-    protected static readonly Actor Programmer = new Programmer("golshani", "Ali");
+    protected static readonly Actor Programmer = new Programmer("tester", "Test App");
 
     protected T Service<T>() where T : notnull => serviceProvider.GetRequiredService<T>();
     protected IQueryService QueryService() => Service<IQueryService>();
