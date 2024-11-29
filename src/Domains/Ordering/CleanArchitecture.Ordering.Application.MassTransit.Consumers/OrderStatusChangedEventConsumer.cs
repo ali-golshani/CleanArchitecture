@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Ordering.Commands;
+﻿using CleanArchitecture.Mediator;
+using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Commands.IntegrationEvents;
 using CleanArchitecture.Ordering.Queries;
 using MassTransit;
@@ -14,7 +15,8 @@ public class OrderStatusChangedEventConsumer(ICommandService commandService, IQu
         var command = new Commands.EmptyTestingCommand.Command
         {
             Id = context.Message.OrderId,
-        };
+        }
+        .WithCorrelationId(context.Message.CorrelationId);
 
         return Handle(command, context.CancellationToken);
     }

@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Ordering.Commands;
+﻿using CleanArchitecture.Mediator;
+using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Commands.IntegrationEvents;
 using DotNetCore.CAP;
 
@@ -14,7 +15,8 @@ public class OrderStatusChangedEventSubscriber(ICommandService commandService) :
         var command = new Commands.EmptyTestingCommand.Command
         {
             Id = @event.OrderId,
-        };
+        }
+        .WithCorrelationId(@event.CorrelationId);
 
         return Handle(command, cancellationToken);
     }

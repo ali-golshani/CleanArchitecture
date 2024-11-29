@@ -11,7 +11,7 @@ public abstract class Request
     public DateTime RequestTime { get; }
 
     [ReadOnly(true)]
-    public Guid CorrelationId { get; }
+    public Guid CorrelationId { get; private set; }
 
     protected Request()
     {
@@ -21,4 +21,9 @@ public abstract class Request
 
     [ReadOnly(true)]
     public virtual bool? ShouldLog => null;
+
+    internal void SetCorrelationId(Guid? correlationId)
+    {
+        CorrelationId = correlationId ?? CorrelationId;
+    }
 }
