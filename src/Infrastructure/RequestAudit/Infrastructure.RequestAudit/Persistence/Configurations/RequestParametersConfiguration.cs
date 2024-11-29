@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Infrastructure.RequestAudit.Persistence.Mapping;
+namespace Infrastructure.RequestAudit.Persistence.Configurations;
 
 internal static class RequestParametersConfiguration
 {

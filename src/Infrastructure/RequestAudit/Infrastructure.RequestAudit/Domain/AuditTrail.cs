@@ -2,7 +2,7 @@
 
 namespace Infrastructure.RequestAudit.Domain;
 
-public class AuditTrail
+public sealed class AuditTrail
 {
 
 #pragma warning disable

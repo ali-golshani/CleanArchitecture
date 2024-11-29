@@ -13,7 +13,7 @@ internal sealed class RequestPipelineBuilder<TRequest, TResponse>
 
     public RequestPipelineBuilder(
         IRequestHandler<TRequest, TResponse> handler,
-        AuditAgent requestAudit,
+        RequestAuditAgent requestAudit,
         ILogger<RequestPipeline<TRequest, TResponse>> logger)
     {
         var requestHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);

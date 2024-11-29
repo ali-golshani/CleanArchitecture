@@ -10,13 +10,13 @@ public sealed class RequestAuditDecorator<TRequest, TResponse> :
     where TRequest : Request
 {
     private readonly IRequestProcessor<TRequest, TResponse> next;
-    private readonly AuditAgent commandAudit;
+    private readonly RequestAuditAgent commandAudit;
     private readonly string lggingDomain;
     private readonly ILogger logger;
 
     public RequestAuditDecorator(
         IRequestProcessor<TRequest, TResponse> next,
-        AuditAgent commandAudit,
+        RequestAuditAgent commandAudit,
         string loggingDomain,
         ILogger logger)
     {

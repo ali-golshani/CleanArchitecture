@@ -5,9 +5,9 @@ namespace CleanArchitecture.BackgroundServices;
 
 public class RequestAuditService : BackgroundService
 {
-    private readonly AuditAgent commandAuditAgent;
+    private readonly RequestAuditAgent commandAuditAgent;
 
-    public RequestAuditService(AuditAgent commandAuditAgent)
+    public RequestAuditService(RequestAuditAgent commandAuditAgent)
     {
         this.commandAuditAgent = commandAuditAgent;
     }

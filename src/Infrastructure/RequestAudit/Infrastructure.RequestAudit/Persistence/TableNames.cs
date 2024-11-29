@@ -2,5 +2,5 @@
 
 internal static class TableNames
 {
-    public const string RequestAudit = "RequestAudit";
+    public const string RequestAudit = "Requests";
 }

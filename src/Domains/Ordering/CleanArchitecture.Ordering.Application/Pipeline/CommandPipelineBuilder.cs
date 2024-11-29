@@ -13,7 +13,7 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
 {
     public CommandPipelineBuilder(
         IServiceScopeFactory serviceScopeFactory,
-        AuditAgent commandAudit,
+        RequestAuditAgent commandAudit,
         IEnumerable<IValidator<TRequest>>? validators,
         IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers,
         ILogger<CommandPipeline<TRequest, TResponse>> logger)

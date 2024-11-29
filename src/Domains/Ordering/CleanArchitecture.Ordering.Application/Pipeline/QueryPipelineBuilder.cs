@@ -15,7 +15,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
 
     public QueryPipelineBuilder(
         IRequestHandler<TRequest, TResponse> handler,
-        AuditAgent queryAudit,
+        RequestAuditAgent queryAudit,
         IEnumerable<IValidator<TRequest>> validators,
         IEnumerable<IAccessVerifier<TRequest>> accessVerifiers,
         IEnumerable<IQueryFilter<TRequest>> queryFilters,

@@ -1,4 +1,4 @@
-﻿using Infrastructure.RequestAudit.Persistence.Mapping;
+﻿using Infrastructure.RequestAudit.Persistence.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.RequestAudit.Persistence;

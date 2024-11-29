@@ -4,8 +4,8 @@ cd .\src\Domains\Ordering\CleanArchitecture.Ordering.Persistence
 dotnet ef migrations add  Initial --context CleanArchitecture.Ordering.Persistence.OrderingDbContext --startup-project ..\..\..\Administration\CleanArchitecture.Administration.DbMigrationApp
 
 cd ..\..\..\..\
-cd src\Domains\Audit\CleanArchitecture.Audit
-dotnet ef migrations add  Initial --context CleanArchitecture.Audit.Persistence.AuditDbContext --startup-project ..\..\..\Administration\CleanArchitecture.Administration.DbMigrationApp
+cd src\Infrastructure\RequestAudit\Infrastructure.RequestAudit
+dotnet ef migrations add  Initial --context Infrastructure.RequestAudit.Persistence.AuditDbContext --startup-project ..\..\..\Administration\CleanArchitecture.Administration.DbMigrationApp
 
 cd ..\..\..\..\
 cd src\Framework\Framework.MassTransit
