@@ -42,9 +42,9 @@ public static class ConnectionStrings
         {
             default:
             case SecretsConfiguration.Development:
+            case SecretsConfiguration.Staging:
                 return false;
 
-            case SecretsConfiguration.Staging:
             case SecretsConfiguration.Production:
             case SecretsConfiguration.DbMigration:
                 return true;

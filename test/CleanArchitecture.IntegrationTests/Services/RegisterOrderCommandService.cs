@@ -9,16 +9,18 @@ internal class RegisterOrderCommandService(IServiceProvider serviceProvider) : S
         var queryService = QueryService();
         var service = CommandService();
 
-        var orders = await queryService.Handle(Programmer, new Ordering.Queries.OrdersQuery.Query
+        var ordersResult = await queryService.Handle(Programmer, new Ordering.Queries.OrdersQuery.Query
         {
             OrderBy = Ordering.Queries.Models.OrderOrderBy.OrderId,
             PageSize = 1
         }, cancellationToken)
-        .ThrowIsFailure();
+        ;
+
+        var orders = ordersResult.ThrowIsFailure();
 
         var orderId = orders.Items.Count > 0 ? orders.Items.Max(x => x.OrderId) : 1;
 
-        await service.Handle(Programmer, new Ordering.Commands.RegisterOrderCommand.Command
+        var result = await service.Handle(Programmer, new Ordering.Commands.RegisterOrderCommand.Command
         {
             OrderId = orderId + 1,
             BrokerId = 5,
@@ -27,7 +29,9 @@ internal class RegisterOrderCommandService(IServiceProvider serviceProvider) : S
             Price = 1000,
             Quantity = 10,
         }, cancellationToken)
-        .ThrowIsFailure();
+        ;
+        
+        result.ThrowIsFailure();
 
         return true;
     }

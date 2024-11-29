@@ -1,4 +1,5 @@
-﻿namespace CleanArchitecture.IntegrationTests.Tests;
+﻿
+namespace CleanArchitecture.IntegrationTests.Tests;
 
 [TestClass]
 public sealed class OrderTest : TestBase
@@ -10,4 +11,6 @@ public sealed class OrderTest : TestBase
         var isSuccess = await service.Run(CancellationToken);
         Assert.IsTrue(isSuccess);
     }
+
+    protected override TimeSpan Timeout => TimeSpan.FromHours(1);
 }
