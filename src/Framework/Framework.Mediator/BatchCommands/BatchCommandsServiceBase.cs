@@ -25,7 +25,7 @@ public abstract class BatchCommandsServiceBase<TCommand>
 
             if (result.IsFailure)
             {
-                OnError(command, result.Errors, result.CorrelationId);
+                await OnError(command, result.Errors, result.CorrelationId);
 
                 if (!parameters.ContinueOnErrors)
                 {
@@ -35,7 +35,7 @@ public abstract class BatchCommandsServiceBase<TCommand>
         }
         catch (Exception exp)
         {
-            OnError(command, exp);
+            await OnError(command, exp);
 
             if (!parameters.ContinueOnErrors)
             {
@@ -55,6 +55,6 @@ public abstract class BatchCommandsServiceBase<TCommand>
         }
     }
 
-    protected virtual void OnError(TCommand command, Error[] errors, string? correlationId) { }
-    protected virtual void OnError(TCommand command, Exception exp) { }
+    protected virtual ValueTask OnError(TCommand command, Error[] errors, string? correlationId) => ValueTask.CompletedTask;
+    protected virtual ValueTask OnError(TCommand command, Exception exp) => ValueTask.CompletedTask;
 }
