@@ -2,6 +2,7 @@
 using Asp.Versioning.ApiExplorer;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using System.Reflection;
 
 namespace CleanArchitecture.WebApi.Shared.Swagger;
 
@@ -15,6 +16,7 @@ internal class ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider provide
     {
         options.OperationFilter<RequestPropertiesFilter>();
         options.UseInlineDefinitionsForEnums();
+        options.IncludeXmlComments(Assembly.GetEntryAssembly(), true);
 
         foreach (var description in provider.ApiVersionDescriptions)
         {

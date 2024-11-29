@@ -12,6 +12,9 @@ namespace CleanArchitecture.WebApi.Controllers;
 
 public class OrderController : BaseController
 {
+    /// <summary>
+    /// Search Orders
+    /// </summary>
     [HttpGet]
     public
         Task<Results<Ok<PaginatedItems<Order>>, ProblemHttpResult>>
@@ -26,6 +29,9 @@ public class OrderController : BaseController
             .AsTypedResults();
     }
 
+    /// <summary>
+    /// Get Order by Id
+    /// </summary>
     [HttpGet("{orderId:int}")]
     public
         Task<Results<Ok<Order>, ProblemHttpResult>>
