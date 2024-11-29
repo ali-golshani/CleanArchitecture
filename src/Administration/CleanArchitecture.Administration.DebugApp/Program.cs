@@ -11,17 +11,19 @@ internal static class Program
         var services = ServiceCollectionBuilder.Build(out _);
         var rootServiceProvider = services.BuildServiceProvider();
 
+        BackgroundServices.Start(rootServiceProvider);
+
         using var scope = rootServiceProvider.CreateScope();
         var serviceProvider = scope.ServiceProvider;
         await serviceProvider.GetRequiredService<RegisterAndApproveOrderService>().Run();
+
+        await BackgroundServices.Stop();
 
         Exit();
     }
 
     private static void Exit()
     {
-        Console.WriteLine("Please Wait...");
-        Thread.Sleep(1000);
         Console.Write("Press Ctrl + C to exit ...");
     }
 }
