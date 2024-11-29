@@ -19,8 +19,7 @@ internal class CommandService(IServiceProvider serviceProvider) : ICommandServic
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, ICommand<TRequest, TResponse> command, CancellationToken cancellationToken)
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
-        var pipeline = serviceProvider.GetRequiredService<CommandPipeline<TRequest, TResponse>>();
-        if (command is not TRequest request) throw new ProgrammerException();
-        return pipeline.Handle(actor, request, cancellationToken);
+        serviceProvider.ResolveActor(actor);
+        return Handle(command, cancellationToken);
     }
 }

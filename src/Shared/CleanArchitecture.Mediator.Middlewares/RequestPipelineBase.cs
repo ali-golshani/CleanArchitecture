@@ -27,11 +27,6 @@ public abstract class RequestPipelineBase<TRequest, TResponse>
             return ActorNotSpecifiedError.Default;
         }
 
-        return await Handle(actor, request, cancellationToken);
-    }
-
-    public async Task<Result<TResponse>> Handle(Actor actor, TRequest request, CancellationToken cancellationToken)
-    {
         var context = new RequestContext<TRequest>
         {
             Actor = actor,

@@ -18,9 +18,9 @@ internal sealed class RequestPipelineBuilder<TRequest, TResponse>
     {
         var requestHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
         var audit = new RequestAuditDecorator<TRequest, TResponse>(requestHandling, requestAudit, LoggingDomain, logger);
-        var exceptionHandling = new ExceptionTranslationDecorator<TRequest, TResponse>(audit);
+        var exceptionTranslation = new ExceptionTranslationDecorator<TRequest, TResponse>(audit);
 
-        EntryProcessor = exceptionHandling;
+        EntryProcessor = exceptionTranslation;
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }

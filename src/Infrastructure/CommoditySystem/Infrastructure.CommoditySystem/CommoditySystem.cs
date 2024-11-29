@@ -1,26 +1,19 @@
-﻿using Framework.Mediator.Requests;
+﻿using Framework.Exceptions;
+using Framework.Mediator.Requests;
 using Framework.Results;
+using Infrastructure.CommoditySystem.Pipeline;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.CommoditySystem;
 
-internal class CommoditySystem(IRequestMediator requestHandler) : ICommoditySystem
+internal class CommoditySystem(IServiceProvider serviceProvider) : ICommoditySystem
 {
-    private readonly IRequestMediator requestHandler = requestHandler;
+    private readonly IServiceProvider serviceProvider = serviceProvider;
 
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
+    public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        try
-        {
-            return await requestHandler.Send(request, cancellationToken);
-        }
-        catch (CommoditySystemException)
-        {
-            throw;
-        }
-        catch (Exception exp)
-        {
-            throw new CommoditySystemException(exp);
-        }
+        var pipeline = serviceProvider.GetRequiredService<RequestPipeline<TRequest, TResponse>>();
+        return pipeline.Handle(request as TRequest ?? throw new ProgrammerException(), cancellationToken);
     }
 }
