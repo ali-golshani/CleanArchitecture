@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations.Configs;
 using CleanArchitecture.Shared;
+using Infrastructure.RequestAudit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -48,7 +49,7 @@ public static class Configuration
 
         Actors.ServiceConfigurations.RegisterServices(services);
 
-        Audit.ServiceConfigurations.RegisterServices(services);
+        ServiceConfigurations.RegisterServices(services);
 
         Ordering.Domain.Services.ServiceConfigurations.RegisterServices(services);
         Ordering.Persistence.ServiceConfigurations.RegisterServices(services);

@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Audit;
-using CleanArchitecture.Authorization;
+﻿using CleanArchitecture.Authorization;
 using CleanArchitecture.Mediator.Middlewares;
 using FluentValidation;
 using Framework.Mediator.Requests;
 using Microsoft.Extensions.Logging;
+using Infrastructure.RequestAudit;
 
 namespace CleanArchitecture.Ordering.Application.Pipeline;
 
@@ -15,7 +15,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
 
     public QueryPipelineBuilder(
         IRequestHandler<TRequest, TResponse> handler,
-        QueryAuditAgent queryAudit,
+        AuditAgent queryAudit,
         IEnumerable<IValidator<TRequest>> validators,
         IEnumerable<IAccessVerifier<TRequest>> accessVerifiers,
         IEnumerable<IQueryFilter<TRequest>> queryFilters,
@@ -25,7 +25,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
         var filtering = new QueryFilteringDecorator<TRequest, TResponse>(queryHandling, queryFilters);
         var authorization = new AuthorizationDecorator<TRequest, TResponse>(filtering, accessVerifiers);
         var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
-        var audit = new QueryAuditDecorator<TRequest, TResponse>(validation, queryAudit, LoggingDomain, logger);
+        var audit = new RequestAuditDecorator<TRequest, TResponse>(validation, queryAudit, LoggingDomain, logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
 
         EntryProcessor = exceptionHandling;

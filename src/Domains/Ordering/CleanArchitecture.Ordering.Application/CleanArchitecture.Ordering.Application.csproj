@@ -10,9 +10,9 @@
 		<ProjectReference Include="..\..\..\Framework\Framework.Application\Framework.Application.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Loggings\Framework.Loggings.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
+		<ProjectReference Include="..\..\..\Infrastructure\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator.Middlewares\CleanArchitecture.Mediator.Middlewares.csproj" />
-		<ProjectReference Include="..\..\Audit\CleanArchitecture.Audit\CleanArchitecture.Audit.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.Commands.Contract\CleanArchitecture.Ordering.Commands.Contract.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.Persistence\CleanArchitecture.Ordering.Persistence.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.Queries.Contract\CleanArchitecture.Ordering.Queries.Contract.csproj" />

@@ -4,7 +4,7 @@ using CleanArchitecture.Mediator.Middlewares;
 namespace CleanArchitecture.Ordering.Application.Pipeline;
 
 internal sealed class QueryPipeline<TRequest, TResponse> :
-    RequestPipeline<TRequest, TResponse>
+    RequestPipelineBase<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
     public QueryPipeline(

@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.BackgroundServices;
+namespace Infrastructure.RequestAudit;
 
 public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddHostedService<RequestAuditService>();
+        services.AddSingleton<AuditAgent>();
     }
 }

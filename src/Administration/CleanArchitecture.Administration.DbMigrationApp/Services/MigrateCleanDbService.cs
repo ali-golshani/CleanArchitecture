@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Infrastructure.RequestAudit.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Administration.DbMigrationApp;
 
@@ -7,7 +8,7 @@ public class MigrateCleanDbService(IServiceProvider serviceProvider) : ServiceBa
     public void AuditDbContext()
     {
         Console.WriteLine("AuditDbContext ...");
-        using (var db = Service<Audit.Persistence.AuditDbContext>())
+        using (var db = Service<AuditDbContext>())
         {
             var cs = db.Database.GetConnectionString();
             PrintConnectionString(cs);
