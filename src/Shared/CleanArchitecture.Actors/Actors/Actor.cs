@@ -15,6 +15,6 @@ public abstract class Actor
 
     public override string ToString()
     {
-        return $"{Role} ⚊ {Username} ⚊ {DisplayName}";
+        return $"[{Role}] . [{Username}] . [{DisplayName}]";
     }
 }

@@ -12,6 +12,6 @@ public class CustomerActor : Actor
 
     public override string ToString()
     {
-        return $"Customer {CustomerId} ⚊ {Username} ⚊ {DisplayName}";
+        return $"[Customer {CustomerId}] . [{Username}] . [{DisplayName}]";
     }
 }

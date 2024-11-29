@@ -14,6 +14,6 @@ public class BrokerActor : Actor
 
     public override string ToString()
     {
-        return $"Broker {BrokerId} ⚊ {Username} ⚊ {DisplayName}";
+        return $"[Broker {BrokerId}] . [{Username}] . [{DisplayName}]";
     }
 }
