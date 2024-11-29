@@ -1,6 +1,5 @@
 ﻿using Infrastructure.RequestAudit;
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace CleanArchitecture.IntegrationTests;
 
@@ -24,8 +23,9 @@ public class AssemblyInitializer
     }
 
     [AssemblyCleanup]
-    public static void AssemblyCleanup()
+    public static async Task AssemblyCleanup()
     {
+        await Task.Delay(1000);
         cts.Dispose();
         serviceScope.Dispose();
     }
