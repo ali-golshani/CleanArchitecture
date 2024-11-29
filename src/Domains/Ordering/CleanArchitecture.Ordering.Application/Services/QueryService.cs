@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Application.Pipeline;
-using Framework.Exceptions;
+using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,8 +12,7 @@ internal class QueryService(IServiceProvider serviceProvider) : IQueryService
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         var pipeline = serviceProvider.GetRequiredService<QueryPipeline<TRequest, TResponse>>();
-        if (query is not TRequest request) throw new ProgrammerException();
-        return pipeline.Handle(request, cancellationToken);
+        return pipeline.Handle(query.AsRequestType(), cancellationToken);
     }
 
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)

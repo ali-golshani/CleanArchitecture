@@ -1,4 +1,4 @@
-﻿using Framework.Exceptions;
+﻿using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,7 +10,6 @@ internal sealed class QueryService(IServiceProvider serviceProvider) : IQuerySer
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         var pipeline = serviceProvider.GetRequiredService<QueryPipeline<TRequest, TResponse>>();
-        if (query is not TRequest request) throw new ProgrammerException();
-        return pipeline.Handle(request, cancellationToken);
+        return pipeline.Handle(query.AsRequestType(), cancellationToken);
     }
 }

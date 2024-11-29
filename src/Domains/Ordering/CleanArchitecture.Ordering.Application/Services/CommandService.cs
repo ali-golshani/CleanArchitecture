@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Application.Pipeline;
-using Framework.Exceptions;
+using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,8 +12,7 @@ internal class CommandService(IServiceProvider serviceProvider) : ICommandServic
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         var pipeline = serviceProvider.GetRequiredService<CommandPipeline<TRequest, TResponse>>();
-        if (command is not TRequest request) throw new ProgrammerException();
-        return pipeline.Handle(request, cancellationToken);
+        return pipeline.Handle(command.AsRequestType(), cancellationToken);
     }
 
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, ICommand<TRequest, TResponse> command, CancellationToken cancellationToken)

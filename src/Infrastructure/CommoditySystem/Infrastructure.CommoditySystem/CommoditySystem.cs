@@ -1,4 +1,4 @@
-﻿using Framework.Exceptions;
+﻿using Framework.Mediator.Extensions;
 using Framework.Mediator.Requests;
 using Framework.Results;
 using Infrastructure.CommoditySystem.Pipeline;
@@ -14,6 +14,6 @@ internal class CommoditySystem(IServiceProvider serviceProvider) : ICommoditySys
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
         var pipeline = serviceProvider.GetRequiredService<RequestPipeline<TRequest, TResponse>>();
-        return pipeline.Handle(request as TRequest ?? throw new ProgrammerException(), cancellationToken);
+        return pipeline.Handle(request.AsRequestType(), cancellationToken);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Framework.Mediator.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Framework.Mediator.Requests;
 
@@ -15,7 +16,6 @@ internal sealed class RequestMediator : IRequestMediator
         where TRequest : IRequest<TRequest, TResponse>
     {
         var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-        if (request is not TRequest req) throw new ProgrammerException();
-        return handler.Handle(req, cancellationToken);
+        return handler.Handle(request.AsRequestType(), cancellationToken);
     }
 }
