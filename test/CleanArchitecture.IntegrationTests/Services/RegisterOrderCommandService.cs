@@ -30,9 +30,9 @@ internal class RegisterOrderCommandService(IServiceProvider serviceProvider) : S
             Quantity = 10,
         }, cancellationToken)
         ;
-        
-        result.ThrowIsFailure();
 
-        return true;
+        WriteErrors(result);
+
+        return result.IsSuccess;
     }
 }

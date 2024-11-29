@@ -15,15 +15,14 @@ internal abstract class ServiceBase(IServiceProvider serviceProvider) : IService
     protected IQueryService QueryService() => Service<IQueryService>();
     protected ICommandService CommandService() => Service<ICommandService>();
 
-    protected static void Execute(Action action)
+    protected static void WriteErrors(Framework.Results.Result<Framework.Results.Empty> result)
     {
-        try
+        if (result.IsFailure)
         {
-            action();
-        }
-        catch (Exception exp)
-        {
-            Console.WriteLine(exp);
+            foreach (var item in result.Errors)
+            {
+                Console.WriteLine(item.Message);
+            }
         }
     }
 
