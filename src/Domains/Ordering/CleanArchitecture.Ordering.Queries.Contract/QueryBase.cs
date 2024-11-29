@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Mediator;
+﻿using Framework.Mediator.Requests;
 
 namespace CleanArchitecture.Ordering.Queries;
 

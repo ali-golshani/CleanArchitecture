@@ -9,4 +9,9 @@ public class CustomerActor : Actor
     }
 
     public int CustomerId { get; }
+
+    public override string ToString()
+    {
+        return $"Customer {CustomerId} ⚊ {Username} ⚊ {DisplayName}";
+    }
 }

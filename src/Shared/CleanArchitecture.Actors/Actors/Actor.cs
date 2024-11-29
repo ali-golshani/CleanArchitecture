@@ -12,4 +12,9 @@ public abstract class Actor
     public Role Role { get; }
     public string Username { get; }
     public string DisplayName { get; }
+
+    public override string ToString()
+    {
+        return $"{Role} ⚊ {Username} ⚊ {DisplayName}";
+    }
 }

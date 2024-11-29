@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Mediator.BatchCommands;
+﻿using Framework.Mediator.BatchCommands;
 using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Application.Services;

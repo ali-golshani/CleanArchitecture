@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Mediator.Requests;
+﻿using Framework.Mediator.Requests;
 using Infrastructure.RequestAudit.Domain;
 
 namespace Infrastructure.RequestAudit.Extensions;

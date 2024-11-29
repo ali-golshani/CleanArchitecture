@@ -11,4 +11,9 @@ public class BrokerActor : Actor
 
     public int BrokerId { get; }
     public bool? IsClerk { get; }
+
+    public override string ToString()
+    {
+        return $"Broker {BrokerId} ⚊ {Username} ⚊ {DisplayName}";
+    }
 }

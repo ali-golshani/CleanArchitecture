@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Mediator;
+﻿using Framework.Mediator.Extensions;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Commands.IntegrationEvents;
 using CleanArchitecture.Ordering.Queries;

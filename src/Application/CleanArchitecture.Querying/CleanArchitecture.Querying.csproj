@@ -12,6 +12,7 @@
     <ProjectReference Include="..\..\Infrastructure\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
+    <ProjectReference Include="..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
   </ItemGroup>
 

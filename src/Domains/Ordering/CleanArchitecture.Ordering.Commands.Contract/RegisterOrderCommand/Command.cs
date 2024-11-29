@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Mediator.Requests;
+﻿using CleanArchitecture.Mediator;
 using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.RegisterOrderCommand;

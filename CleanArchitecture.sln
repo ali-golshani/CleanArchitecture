@@ -128,8 +128,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Validation", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Mediator.Middlewares", "src\Shared\CleanArchitecture.Mediator.Middlewares\CleanArchitecture.Mediator.Middlewares.csproj", "{E037580B-B461-43C8-994B-6A756F31287E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Configurations.ConfigurationSections", "src\Shared\CleanArchitecture.Configurations.ConfigurationSections\CleanArchitecture.Configurations.ConfigurationSections.csproj", "{27527E33-51B1-4221-AA4F-36039F21C4B6}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Administration.DebugApp", "src\Administration\CleanArchitecture.Administration.DebugApp\CleanArchitecture.Administration.DebugApp.csproj", "{E98308C3-C2C9-47E3-97BF-7CEBA2720A10}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Options", "src\Application\CleanArchitecture.Options\CleanArchitecture.Options.csproj", "{7AFA2EFF-4BC1-4EB5-A8B5-654D81A0DF37}"
@@ -348,10 +346,6 @@ Global
 		{E037580B-B461-43C8-994B-6A756F31287E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E037580B-B461-43C8-994B-6A756F31287E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E037580B-B461-43C8-994B-6A756F31287E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{27527E33-51B1-4221-AA4F-36039F21C4B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{27527E33-51B1-4221-AA4F-36039F21C4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{27527E33-51B1-4221-AA4F-36039F21C4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{27527E33-51B1-4221-AA4F-36039F21C4B6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E98308C3-C2C9-47E3-97BF-7CEBA2720A10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E98308C3-C2C9-47E3-97BF-7CEBA2720A10}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E98308C3-C2C9-47E3-97BF-7CEBA2720A10}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -447,7 +441,6 @@ Global
 		{AB36E42D-EFEE-4CFB-8AB5-C1FD3DE56D6E} = {E4395562-331D-4AB0-ABDD-2DD70CC91C77}
 		{A51D03B5-9326-4505-A645-583A4FE665D6} = {E4395562-331D-4AB0-ABDD-2DD70CC91C77}
 		{E037580B-B461-43C8-994B-6A756F31287E} = {210D67E1-55AA-43B0-B927-947E688FD16F}
-		{27527E33-51B1-4221-AA4F-36039F21C4B6} = {210D67E1-55AA-43B0-B927-947E688FD16F}
 		{E98308C3-C2C9-47E3-97BF-7CEBA2720A10} = {DA373DF4-3114-4D36-A7ED-85C1B87E796F}
 		{7AFA2EFF-4BC1-4EB5-A8B5-654D81A0DF37} = {242B2EF6-21E6-4980-AF1D-65571D115408}
 		{1CA287A5-4FD0-411B-B83E-0D8FCC3B9ADA} = {13BB4F88-3831-48F9-B503-5A6C636D64A8}

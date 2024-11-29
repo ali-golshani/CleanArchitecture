@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
 		<ProjectReference Include="..\..\Framework\Framework.DependencyInjection\Framework.DependencyInjection.csproj" />
 	</ItemGroup>
 

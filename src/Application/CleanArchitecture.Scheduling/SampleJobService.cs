@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Mediator.BatchCommands;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
+using Framework.Mediator.BatchCommands;
 using Framework.Results.Extensions;
 using Framework.Scheduling;
 

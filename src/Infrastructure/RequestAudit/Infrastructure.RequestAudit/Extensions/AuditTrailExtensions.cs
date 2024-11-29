@@ -1,4 +1,5 @@
-﻿using Infrastructure.RequestAudit.Domain;
+﻿using Framework.Mediator.Requests;
+using Infrastructure.RequestAudit.Domain;
 
 namespace Infrastructure.RequestAudit.Extensions;
 
@@ -13,7 +14,7 @@ internal static class AuditTrailExtensions
         return new AuditTrail
         (
             correlationId: request.CorrelationId,
-            actor: ActorSerializer.Serialize(actor),
+            actor: actor?.ToString() ?? Strings.Question,
             domain: domain ?? nameof(CleanArchitecture),
             requestType: request.GetType().FullName ?? Strings.Question,
             request: request.SerializeToJson(),

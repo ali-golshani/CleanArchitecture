@@ -1,9 +1,8 @@
 ﻿using Framework.Results.Exceptions;
 
-namespace CleanArchitecture.Mediator.BatchCommands;
+namespace Framework.Mediator.BatchCommands;
 
 public abstract class BatchCommandsServiceBase<TCommand>
-    where TCommand : Command
 {
     protected abstract Task<Result<Empty>> Handle(TCommand command, CancellationToken cancellationToken);
 
@@ -14,11 +13,11 @@ public abstract class BatchCommandsServiceBase<TCommand>
     {
         foreach (var command in commands)
         {
-            await TryHandle(command, parameters.ContinueOnErrors, cancellationToken);
+            await TryHandle(command, parameters, cancellationToken);
         }
     }
 
-    private async Task TryHandle(TCommand command, bool continueOnErrors, CancellationToken cancellationToken)
+    private async Task TryHandle(TCommand command, BatchCommandHandlingParameters parameters, CancellationToken cancellationToken)
     {
         try
         {
@@ -28,7 +27,7 @@ public abstract class BatchCommandsServiceBase<TCommand>
             {
                 OnError(command, result.Errors, result.CorrelationId);
 
-                if (!continueOnErrors)
+                if (!parameters.ContinueOnErrors)
                 {
                     throw new DomainErrorsException(result.Errors);
                 }
@@ -38,9 +37,20 @@ public abstract class BatchCommandsServiceBase<TCommand>
         {
             OnError(command, exp);
 
-            if (!continueOnErrors)
+            if (!parameters.ContinueOnErrors)
             {
                 throw;
+            }
+            else if (parameters.DelayOnError > TimeSpan.Zero)
+            {
+                await Task.Delay(parameters.DelayOnError.Value, cancellationToken);
+            }
+        }
+        finally
+        {
+            if (parameters.IterationDelay > TimeSpan.Zero)
+            {
+                await Task.Delay(parameters.IterationDelay.Value, cancellationToken);
             }
         }
     }

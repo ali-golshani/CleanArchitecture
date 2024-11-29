@@ -24,7 +24,6 @@
     <ProjectReference Include="..\..\Domains\Ordering\CleanArchitecture.Ordering.Queries.Handlers\CleanArchitecture.Ordering.Queries.Handlers.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />
     <ProjectReference Include="..\..\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
-    <ProjectReference Include="..\..\Shared\CleanArchitecture.Configurations.ConfigurationSections\CleanArchitecture.Configurations.ConfigurationSections.csproj" />
     <ProjectReference Include="..\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Options\CleanArchitecture.Options.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />

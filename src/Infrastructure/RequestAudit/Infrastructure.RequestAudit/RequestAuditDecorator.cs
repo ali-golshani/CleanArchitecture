@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 using Infrastructure.RequestAudit.Extensions;
+using Framework.Mediator.Requests;
 
 namespace Infrastructure.RequestAudit;
 
