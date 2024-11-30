@@ -1,4 +1,5 @@
 using CleanArchitecture.Configurations;
+using CleanArchitecture.WebApi.OData.Configs;
 using CleanArchitecture.WebApi.Shared.Configs;
 using CleanArchitecture.WebApi.Shared.Cors;
 using CleanArchitecture.WebApi.Shared.Filters;
@@ -7,7 +8,7 @@ using CleanArchitecture.WebApi.Shared.Versioning;
 using Framework.WebApi.Middlewares;
 using Hellang.Middleware.ProblemDetails;
 
-namespace CleanArchitecture.WebApi;
+namespace CleanArchitecture.WebApi.OData;
 
 public static class Program
 {
@@ -59,7 +60,8 @@ public static class Program
             {
                 options.Filters.Add(new ValidateModelStateAttribute());
             })
-            .AddJsonOptions(JsonConfigs.Configure);
+            .AddJsonOptions(JsonConfigs.Configure)
+            .AddOData();
 
         services.AddDistributedMemoryCache();
 

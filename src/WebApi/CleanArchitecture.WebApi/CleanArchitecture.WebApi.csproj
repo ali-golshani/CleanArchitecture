@@ -9,13 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Configs\**" />
-    <Content Remove="Configs\**" />
-    <EmbeddedResource Remove="Configs\**" />
-    <None Remove="Configs\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Application\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
     <ProjectReference Include="..\CleanArchitecture.WebApi.Shared\CleanArchitecture.WebApi.Shared.csproj" />
   </ItemGroup>

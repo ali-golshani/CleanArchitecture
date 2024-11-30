@@ -4,7 +4,7 @@ using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.OData.Routing.Controllers;
 
-namespace CleanArchitecture.WebApi.OData;
+namespace CleanArchitecture.WebApi.OData.Controllers;
 
 public class OrdersController(IQueryService queryService) : ODataController
 {
