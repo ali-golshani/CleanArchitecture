@@ -37,7 +37,7 @@ public static class Program
             environment: SystemEnvironment.Environment
         );
 
-        ServicesConfigurations.Configuration.ConfigureServices(services, configuration);
+        ServicesConfigurations.Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
 
         services.AddLogging(builder =>
         {

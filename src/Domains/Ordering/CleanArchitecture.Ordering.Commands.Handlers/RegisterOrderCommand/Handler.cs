@@ -53,6 +53,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             Quantity = request.Quantity,
             Price = request.Price,
             CustomerId = request.CustomerId,
+            BrokerId = request.BrokerId,
             Commodity = new Domain.Commodity(commodity.CommodityId, commodity.CommodityName)
         });
 

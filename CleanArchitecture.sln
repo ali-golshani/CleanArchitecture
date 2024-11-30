@@ -152,6 +152,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionApp", "src\Admini
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.WebApi.OData", "src\WebApi\CleanArchitecture.WebApi.OData\CleanArchitecture.WebApi.OData.csproj", "{554189DA-AB7A-44F7-9BDB-662421FCD433}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.CommoditySystem.Mock", "src\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj", "{D7F9DA33-A6CC-4195-9071-A994B96ABA7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -390,6 +392,10 @@ Global
 		{554189DA-AB7A-44F7-9BDB-662421FCD433}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{554189DA-AB7A-44F7-9BDB-662421FCD433}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{554189DA-AB7A-44F7-9BDB-662421FCD433}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7F9DA33-A6CC-4195-9071-A994B96ABA7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F9DA33-A6CC-4195-9071-A994B96ABA7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F9DA33-A6CC-4195-9071-A994B96ABA7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F9DA33-A6CC-4195-9071-A994B96ABA7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -464,6 +470,7 @@ Global
 		{9B1B6BBC-2001-4F23-A1D8-40C391CF5A62} = {4947F540-F2DF-49B3-ADA7-B9F0C49803A4}
 		{0F0AC36D-DF48-4170-B635-5C9B5BC0F469} = {DA373DF4-3114-4D36-A7ED-85C1B87E796F}
 		{554189DA-AB7A-44F7-9BDB-662421FCD433} = {581E3197-D5BC-4FF6-9FA6-AB81F3C4A5A6}
+		{D7F9DA33-A6CC-4195-9071-A994B96ABA7B} = {51FDF113-0819-4AFA-B6FB-E275F95E99AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A6B9D9F-9E78-4DCF-91D0-51B3C5E404EE}

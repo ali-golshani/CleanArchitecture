@@ -13,7 +13,14 @@ public class Order : CommandAwareEntity
 
 #pragma warning restore CS8618
 
-    public Order(int orderId, int quantity, decimal price, Commodity commodity, string trackingCode)
+    public Order(
+        int orderId,
+        int quantity,
+        decimal price,
+        int customerId,
+        int brokerId,
+        Commodity commodity,
+        string trackingCode)
     {
         new IDomainRule[]
         {
@@ -24,6 +31,8 @@ public class Order : CommandAwareEntity
         OrderId = orderId;
         Quantity = quantity;
         Price = price;
+        CustomerId = customerId;
+        BrokerId = brokerId;
         Commodity = commodity;
         TrackingCode = trackingCode;
 

@@ -26,7 +26,7 @@ public static class ServiceCollectionBuilder
 
         configuration = configurationBuilder.Build();
 
-        Configuration.ConfigureServices(services, configuration);
+        Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
         services.AddLogging(Configuration.ConfigureLogging);
 
         services.RegisterAsSelf<IService>();

@@ -37,7 +37,7 @@ internal static class Program
 
     private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        Configuration.ConfigureServices(services, context.Configuration);
+        Configuration.ConfigureServices(services, context.Configuration, SystemEnvironment.Environment);
         services.RegisterAsSelf<IService>();
         services.AddHostedService<HostedService>();
     }

@@ -56,6 +56,8 @@ internal class RegisterOrderService : IRegisterOrderService
             orderId: request.OrderId,
             quantity: request.Quantity,
             price: request.Price,
+            customerId: request.CustomerId,
+            brokerId: request.BrokerId,
             commodity: request.Commodity,
             trackingCode: trackingCode
         );

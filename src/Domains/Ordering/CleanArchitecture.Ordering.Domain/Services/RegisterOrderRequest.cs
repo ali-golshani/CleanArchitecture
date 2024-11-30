@@ -6,5 +6,6 @@ public sealed class RegisterOrderRequest
     public required int Quantity { get; init; }
     public required decimal Price { get; init; }
     public required int CustomerId { get; init; }
+    public required int BrokerId { get; init; }
     public required Commodity Commodity { get; init; }
 }

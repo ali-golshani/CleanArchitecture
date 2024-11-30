@@ -22,6 +22,7 @@
     <ProjectReference Include="..\..\Domains\Ordering\CleanArchitecture.Ordering.Application\CleanArchitecture.Ordering.Application.csproj" />
     <ProjectReference Include="..\..\Domains\Ordering\CleanArchitecture.Ordering.Commands.Handlers\CleanArchitecture.Ordering.Commands.Handlers.csproj" />
     <ProjectReference Include="..\..\Domains\Ordering\CleanArchitecture.Ordering.Queries.Handlers\CleanArchitecture.Ordering.Queries.Handlers.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />
     <ProjectReference Include="..\..\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
     <ProjectReference Include="..\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj" />

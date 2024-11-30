@@ -20,7 +20,7 @@ public static class Configuration
         configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(environment.SecretsConfiguration));
     }
 
-    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration)
+    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IEnvironment environment)
     {
         var connectionString = configuration.CleanArchitectureConnectionString();
 
@@ -57,7 +57,14 @@ public static class Configuration
         Ordering.Commands.Handlers.ServiceConfigurations.RegisterServices(services);
         Ordering.Application.ServiceConfigurations.RegisterServices(services);
 
-        Infrastructure.CommoditySystem.ServiceConfigurations.RegisterServices(services);
+        if (environment.EnvironmentMode == EnvironmentMode.Staging)
+        {
+            Infrastructure.CommoditySystem.Mock.ServiceConfigurations.RegisterServices(services);
+        }
+        else
+        {
+            Infrastructure.CommoditySystem.ServiceConfigurations.RegisterServices(services);
+        }
 
         ProcessManager.ServiceConfigurations.RegisterServices(services);
         Querying.ServiceConfigurations.RegisterServices(services);
