@@ -15,6 +15,8 @@ internal class ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider provide
     public void Configure(SwaggerGenOptions options)
     {
         options.OperationFilter<RequestPropertiesFilter>();
+        options.OperationFilter<Vernou.Swashbuckle.HttpResultsAdapter.HttpResultsOperationFilter>();
+
         options.UseInlineDefinitionsForEnums();
         options.IncludeXmlComments(Assembly.GetEntryAssembly(), true);
 
