@@ -6,23 +6,33 @@ public sealed class OrderTest : TestBase
     [TestMethod]
     public async Task RegisterValidOrder()
     {
-        var service = Service<Services.RegisterOrderCommandService>();
-        Assert.IsTrue(await service.Valid(CancellationToken));
+        var service = Service<Services.RegisterOrderService>();
+        var customerId = Infrastructure.CommoditySystem.Mock.Data.Customers.ValidValue();
+        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.ValidValue();
+        var result = await service.Register(customerId, commodityId, CancellationToken);
+        WriteErrors(result);
+        Assert.IsTrue(result.IsSuccess);
     }
 
     [TestMethod]
     public async Task RegisterOrderInvalidCommodity()
     {
-        var service = Service<Services.RegisterOrderCommandService>();
-        Assert.IsFalse(await service.InvalidCommodity(CancellationToken));
+        var service = Service<Services.RegisterOrderService>();
+        var customerId = Infrastructure.CommoditySystem.Mock.Data.Customers.ValidValue();
+        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.InvalidValue();
+        var result = await service.Register(customerId, commodityId, CancellationToken);
+        WriteErrors(result);
+        Assert.IsFalse(result.IsSuccess);
     }
 
     [TestMethod]
     public async Task RegisterOrderInvalidCustomer()
     {
-        var service = Service<Services.RegisterOrderCommandService>();
-        Assert.IsFalse(await service.InvalidCustomer(CancellationToken));
+        var service = Service<Services.RegisterOrderService>();
+        var customerId = Infrastructure.CommoditySystem.Mock.Data.Customers.InvalidValue();
+        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.ValidValue();
+        var result = await service.Register(customerId, commodityId, CancellationToken);
+        WriteErrors(result);
+        Assert.IsFalse(result.IsSuccess);
     }
-
-    protected override TimeSpan Timeout => TimeSpan.FromMinutes(1);
 }

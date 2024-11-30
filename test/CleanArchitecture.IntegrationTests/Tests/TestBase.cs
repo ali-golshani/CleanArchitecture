@@ -15,7 +15,7 @@ public abstract class TestBase
     protected CancellationToken CancellationToken => cts.Token;
     protected T Service<T>() where T : notnull => serviceProvider.GetRequiredService<T>();
 
-    protected virtual TimeSpan Timeout => TimeSpan.FromSeconds(10);
+    protected virtual TimeSpan Timeout => TimeSpan.FromSeconds(30);
 
     [TestInitialize]
     public void TestInit()
@@ -37,5 +37,16 @@ public abstract class TestBase
     public void SonarTestMethod()
     {
         Assert.AreNotEqual(5, nameof(TestBase).Length);
+    }
+
+    protected static void WriteErrors(Framework.Results.Result<Framework.Results.Empty> result)
+    {
+        if (result.IsFailure)
+        {
+            foreach (var item in result.Errors)
+            {
+                Console.WriteLine(item.Message);
+            }
+        }
     }
 }
