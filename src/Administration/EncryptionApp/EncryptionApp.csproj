@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net9.0-windows7.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>Security.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Security.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Prism.Wpf" Version="9.0.537" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\Framework\Framework.Security\Framework.Security.csproj" />
+	</ItemGroup>
+
+</Project>

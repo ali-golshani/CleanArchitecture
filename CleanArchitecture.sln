@@ -148,6 +148,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RequestAudit", "RequestAudi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.RequestAudit", "src\Infrastructure\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj", "{9B1B6BBC-2001-4F23-A1D8-40C391CF5A62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EncryptionApp", "src\Administration\EncryptionApp\EncryptionApp.csproj", "{0F0AC36D-DF48-4170-B635-5C9B5BC0F469}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -378,6 +380,10 @@ Global
 		{9B1B6BBC-2001-4F23-A1D8-40C391CF5A62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B1B6BBC-2001-4F23-A1D8-40C391CF5A62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B1B6BBC-2001-4F23-A1D8-40C391CF5A62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F0AC36D-DF48-4170-B635-5C9B5BC0F469}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F0AC36D-DF48-4170-B635-5C9B5BC0F469}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F0AC36D-DF48-4170-B635-5C9B5BC0F469}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F0AC36D-DF48-4170-B635-5C9B5BC0F469}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -450,6 +456,7 @@ Global
 		{EACB7424-17EC-403E-BA37-637F22BAC832} = {E4395562-331D-4AB0-ABDD-2DD70CC91C77}
 		{4947F540-F2DF-49B3-ADA7-B9F0C49803A4} = {E53ED460-6792-407B-94D6-077255B18598}
 		{9B1B6BBC-2001-4F23-A1D8-40C391CF5A62} = {4947F540-F2DF-49B3-ADA7-B9F0C49803A4}
+		{0F0AC36D-DF48-4170-B635-5C9B5BC0F469} = {DA373DF4-3114-4D36-A7ED-85C1B87E796F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A6B9D9F-9E78-4DCF-91D0-51B3C5E404EE}
