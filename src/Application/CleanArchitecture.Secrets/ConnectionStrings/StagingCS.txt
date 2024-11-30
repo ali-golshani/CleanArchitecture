@@ -1,5 +1,1 @@
-{
-	"ConnectionStrings": {
-		"ConnectionString": "Server=.;Database=CleanArchitectureDb;User Id=golshani;Password=Ali_Golshani;TrustServerCertificate=True;"
-	}
-}
+V0kSgpPoDz/gce1RFNKfIwHjS2DvyQxZDPWiWsI7V+lbPK7SBNzgDCoCCtAZHkNPNzavhPUwkkUYc07R5YPpYwKB7NebT5uiHCpQgGRnA/n2kUvg1vVJCH2FtUtLeyQwMP4T1CXMNBQaDVT5dbtezvcSLwAAFJicpn7IMJFkzrK988yF4mujjhHb6XvqeNYCDxQ2S+IQN7cFFKMh4YbIU50bpMA6g8O0UjAqTNlAxQU=
