@@ -16,7 +16,7 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
         RequestAuditAgent commandAudit,
         IEnumerable<IValidator<TRequest>>? validators,
         IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers,
-        ILogger<CommandPipeline<TRequest, TResponse>> logger)
+        ILogger<CommandPipelineBuilder<TRequest, TResponse>> logger)
     {
         var transactional = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
         var authorization = new AuthorizationDecorator<TRequest, TResponse>(transactional, accessVerifiers);

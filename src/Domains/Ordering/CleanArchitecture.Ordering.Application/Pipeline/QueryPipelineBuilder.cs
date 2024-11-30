@@ -19,7 +19,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
         IEnumerable<IValidator<TRequest>> validators,
         IEnumerable<IAccessVerifier<TRequest>> accessVerifiers,
         IEnumerable<IQueryFilter<TRequest>> queryFilters,
-        ILogger<QueryPipeline<TRequest, TResponse>> logger)
+        ILogger<QueryPipelineBuilder<TRequest, TResponse>> logger)
     {
         var queryHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
         var filtering = new QueryFilteringDecorator<TRequest, TResponse>(queryHandling, queryFilters);

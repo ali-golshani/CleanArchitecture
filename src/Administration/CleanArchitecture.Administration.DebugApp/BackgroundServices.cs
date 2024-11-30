@@ -20,7 +20,8 @@ internal static class BackgroundServices
     public static async Task Stop()
     {
         await Task.Delay(1000);
-        cts.Cancel();
+        await cts.CancelAsync();
+        cts.Dispose();
         serviceScope.Dispose();
     }
 }

@@ -14,7 +14,7 @@ internal sealed class RequestPipelineBuilder<TRequest, TResponse>
     public RequestPipelineBuilder(
         IRequestHandler<TRequest, TResponse> handler,
         RequestAuditAgent requestAudit,
-        ILogger<RequestPipeline<TRequest, TResponse>> logger)
+        ILogger<RequestPipelineBuilder<TRequest, TResponse>> logger)
     {
         var requestHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
         var audit = new RequestAuditDecorator<TRequest, TResponse>(requestHandling, requestAudit, LoggingDomain, logger);
