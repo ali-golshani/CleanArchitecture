@@ -12,4 +12,23 @@
     <ProjectReference Include="..\..\src\Application\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="MSTest.Analyzers" Version="3.6.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="MSTest.TestAdapter" Version="3.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="MSTest.TestFramework" Version="3.6.3" />
+  </ItemGroup>
+
 </Project>
