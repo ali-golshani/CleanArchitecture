@@ -8,7 +8,7 @@ public sealed class OrderTest : TestBase
     {
         var service = Service<Services.RegisterOrderService>();
         var customerId = Infrastructure.CommoditySystem.Mock.Data.Customers.ValidValue();
-        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.ValidValue();
+        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.ValidValue().CommodityId;
         var result = await service.Register(customerId, commodityId, CancellationToken);
         WriteErrors(result);
         Assert.IsTrue(result.IsSuccess);
@@ -19,7 +19,7 @@ public sealed class OrderTest : TestBase
     {
         var service = Service<Services.RegisterOrderService>();
         var customerId = Infrastructure.CommoditySystem.Mock.Data.Customers.ValidValue();
-        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.InvalidValue();
+        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.InvalidValue().CommodityId;
         var result = await service.Register(customerId, commodityId, CancellationToken);
         WriteErrors(result);
         Assert.IsFalse(result.IsSuccess);
@@ -30,7 +30,7 @@ public sealed class OrderTest : TestBase
     {
         var service = Service<Services.RegisterOrderService>();
         var customerId = Infrastructure.CommoditySystem.Mock.Data.Customers.InvalidValue();
-        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.ValidValue();
+        var commodityId = Infrastructure.CommoditySystem.Mock.Data.Commodities.ValidValue().CommodityId;
         var result = await service.Register(customerId, commodityId, CancellationToken);
         WriteErrors(result);
         Assert.IsFalse(result.IsSuccess);

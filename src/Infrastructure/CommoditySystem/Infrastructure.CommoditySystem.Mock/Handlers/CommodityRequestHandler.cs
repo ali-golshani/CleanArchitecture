@@ -9,11 +9,13 @@ internal sealed class CommodityRequestHandler : IRequestHandler<CommodityRequest
     {
         await Task.CompletedTask;
 
-        if (!Data.Customers.IsValid(request.CommodityId))
+        if (Data.Commodities.IsValid(request.CommodityId))
+        {
+            return new Commodity(request.CommodityId, request.CommodityId.ToString());
+        }
+        else
         {
             return Result<Commodity?>.Success(null);
         }
-
-        return new Commodity(request.CommodityId, request.CommodityId.ToString());
     }
 }
