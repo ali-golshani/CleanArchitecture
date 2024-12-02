@@ -2,6 +2,9 @@
 
 public static class PersianDateConverter
 {
+    private static readonly TimeSpan Timeout = TimeSpan.FromSeconds(10);
+    private static readonly System.Text.RegularExpressions.RegexOptions RegexOptions = System.Text.RegularExpressions.RegexOptions.CultureInvariant;
+
     public static string? ToPersianDate(this DateTime? date)
     {
         return
@@ -65,9 +68,9 @@ public static class PersianDateConverter
         {
             var pattern = @"^(?<year>\d{4})(?<space>[-,/])(?<month>\d{1,2})(\k<space>)(?<day>\d{1,2})$";
 
-            if (System.Text.RegularExpressions.Regex.IsMatch(persianDate, pattern))
+            if (System.Text.RegularExpressions.Regex.IsMatch(persianDate, pattern, RegexOptions, matchTimeout: Timeout))
             {
-                var regex = new System.Text.RegularExpressions.Regex(pattern);
+                var regex = new System.Text.RegularExpressions.Regex(pattern, RegexOptions, matchTimeout: Timeout);
                 var groups = regex.Match(persianDate).Groups;
                 int year = Convert.ToInt32(groups["year"].Value);
                 int month = Convert.ToInt32(groups["month"].Value);
@@ -99,9 +102,9 @@ public static class PersianDateConverter
         {
             var pattern = @"^(?<year>\d{4})(?<space>[-,/])(?<month>\d{1,2})(\k<space>)(?<day>\d{1,2})$";
 
-            if (System.Text.RegularExpressions.Regex.IsMatch(persianDate, pattern))
+            if (System.Text.RegularExpressions.Regex.IsMatch(persianDate, pattern, RegexOptions, matchTimeout: Timeout))
             {
-                var regex = new System.Text.RegularExpressions.Regex(pattern);
+                var regex = new System.Text.RegularExpressions.Regex(pattern, RegexOptions, matchTimeout: Timeout);
                 var groups = regex.Match(persianDate).Groups;
                 int year = Convert.ToInt32(groups["year"].Value);
 
