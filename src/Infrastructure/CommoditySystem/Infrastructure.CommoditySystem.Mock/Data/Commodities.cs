@@ -12,8 +12,8 @@ public static class Commodities
     {
         var faker = new CommodityFaker();
 
-        validValues = faker.Generate(100).ToArray();
-        invalidValues = faker.Generate(10).ToArray();
+        validValues = [.. faker.Generate(100)];
+        invalidValues = [.. faker.Generate(10)];
     }
 
     public static Commodity ValidValue()
@@ -26,7 +26,12 @@ public static class Commodities
         return invalidValues.PickRandom();
     }
 
-    public static bool IsValid(int commodityId)
+    internal static Commodity? Find(int commodityId)
+    {
+        return validValues.FirstOrDefault(x => x.CommodityId == commodityId);
+    }
+
+    internal static bool IsValid(int commodityId)
     {
         return validValues.Any(x => x.CommodityId == commodityId);
     }

@@ -21,14 +21,13 @@ internal class RegisterOrderService(IServiceProvider serviceProvider) : ServiceB
 
         var orderId = orders.Items.Count > 0 ? orders.Items.Max(x => x.OrderId) : 1;
 
-        return await service.Handle(Programmer, new Ordering.Commands.RegisterOrderCommand.Command
-        {
-            OrderId = orderId + 1,
-            CommodityId = commodityId,
-            CustomerId = customerId,
-            BrokerId = 5,
-            Price = 1000,
-            Quantity = 10,
-        }, cancellationToken);
+        var command = new Fakers.RegisterOrderCommandFaker
+        (
+            orderId: orderId + 1,
+            customerId: customerId,
+            commodityId: commodityId
+        ).Generate();
+
+        return await service.Handle(Programmer, command, cancellationToken);
     }
 }

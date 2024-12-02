@@ -18,7 +18,7 @@ public static class Customers
         return invalidIds.PickRandom();
     }
 
-    public static bool IsValid(int customerId)
+    internal static bool IsValid(int customerId)
     {
         return validIds.Contains(customerId);
     }

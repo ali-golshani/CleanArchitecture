@@ -8,14 +8,6 @@ internal sealed class CommodityRequestHandler : IRequestHandler<CommodityRequest
     public async Task<Result<Commodity?>> Handle(CommodityRequest request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
-
-        if (Data.Commodities.IsValid(request.CommodityId))
-        {
-            return new Commodity(request.CommodityId, request.CommodityId.ToString());
-        }
-        else
-        {
-            return Result<Commodity?>.Success(null);
-        }
+        return Data.Commodities.Find(request.CommodityId);
     }
 }
