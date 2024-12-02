@@ -6,7 +6,11 @@ internal class CommodityFaker : Faker<Commodity>
 {
     public CommodityFaker()
     {
-        RuleFor(x => x.CommodityId, x => x.UniqueIndex);
-        RuleFor(x => x.CommodityName, x => x.Commerce.Product());
+        CustomInstantiator(x =>
+        {
+            var id = x.IndexGlobal;
+            var name = x.Commerce.Product();
+            return new Commodity(id, name);
+        });
     }
 }
