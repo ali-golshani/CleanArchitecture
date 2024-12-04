@@ -1,6 +1,6 @@
 ﻿cd "D:\Ali Golshani\Projects\CleanArchitecture"
 
-cd .\src\Domains\Ordering\CleanArchitecture.Ordering.Persistence
+cd .\src\Modules\Ordering\CleanArchitecture.Ordering.Persistence
 dotnet ef migrations add  Initial --context CleanArchitecture.Ordering.Persistence.OrderingDbContext --startup-project ..\..\..\Administration\CleanArchitecture.Administration.DbMigrationApp
 
 cd ..\..\..\..\
