@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
+    <ProjectReference Include="..\..\Configuration\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
     <ProjectReference Include="..\CleanArchitecture.WebApi.Shared\CleanArchitecture.WebApi.Shared.csproj" />
   </ItemGroup>
 

@@ -9,7 +9,7 @@ public class RegisterAndApproveOrderService(IServiceProvider serviceProvider) : 
         var service = Service<IProcessManager>();
         ResolveActor();
 
-        var result = await service.Handle(new ProcessManager.Requests.RegisterAndApproveOrderRequest
+        var result = await service.Handle(new ProcessManager.RegisterAndApproveOrder.Request
         {
             OrderId = 1212,
             BrokerId = 5,

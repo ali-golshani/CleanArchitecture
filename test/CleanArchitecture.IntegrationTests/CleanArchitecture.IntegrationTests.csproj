@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Application\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
+    <ProjectReference Include="..\..\src\Configuration\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
   </ItemGroup>
 
   <ItemGroup>

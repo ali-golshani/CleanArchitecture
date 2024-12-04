@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Configuration\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
     <ProjectReference Include="..\..\Infrastructure\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
-    <ProjectReference Include="..\..\Shared\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
   </ItemGroup>

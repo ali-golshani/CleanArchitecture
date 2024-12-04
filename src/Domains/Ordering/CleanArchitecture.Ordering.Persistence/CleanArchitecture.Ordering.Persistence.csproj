@@ -7,8 +7,8 @@
   </PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\Configuration\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
-		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.Domain\CleanArchitecture.Ordering.Domain.csproj" />
 	</ItemGroup>
 

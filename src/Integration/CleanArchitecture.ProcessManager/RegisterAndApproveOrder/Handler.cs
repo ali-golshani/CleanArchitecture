@@ -1,21 +1,20 @@
 ﻿using CleanArchitecture.ProcessManager.Extensions;
-using CleanArchitecture.ProcessManager.Requests;
 using Framework.Mediator.Requests;
 using Framework.ProcessManager.Extensions;
 using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager.Handlers;
 
-internal sealed class RegisterAndApproveOrderRequestHandler : IRequestHandler<RegisterAndApproveOrderRequest, Empty>
+internal sealed class Handler : IRequestHandler<RegisterAndApproveOrder.Request, Empty>
 {
     private readonly Ordering.Commands.ICommandService commandService;
 
-    public RegisterAndApproveOrderRequestHandler(Ordering.Commands.ICommandService commandService)
+    public Handler(Ordering.Commands.ICommandService commandService)
     {
         this.commandService = commandService;
     }
 
-    public async Task<Result<Empty>> Handle(RegisterAndApproveOrderRequest request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> Handle(RegisterAndApproveOrder.Request request, CancellationToken cancellationToken)
     {
         var registerOrderCommand = new Ordering.Commands.RegisterOrderCommand.Command
         {
@@ -46,7 +45,7 @@ internal sealed class RegisterAndApproveOrderRequestHandler : IRequestHandler<Re
         return await process.Execute(cancellationToken);
     }
 
-    public async Task<Result<Empty>> HandleC(RegisterAndApproveOrderRequest request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> HandleC(RegisterAndApproveOrder.Request request, CancellationToken cancellationToken)
     {
         var control = false;
 
