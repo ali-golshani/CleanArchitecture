@@ -35,7 +35,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     {
         if (await orderRepository.Exists(request.OrderId))
         {
-            return new DuplicateError("سفارش", request.OrderId);
+            return new DuplicateError(PersianDictionary.OrderDictionary.Order, request.OrderId);
         }
 
         var commodityResult = await GetCommodity(request.CommodityId, cancellationToken);
@@ -89,6 +89,6 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         return await 
             commoditySystem
             .Handle(request, cancellationToken)
-            .NotFoundIfNull("کالا", commodityId);
+            .NotFoundIfNull(PersianDictionary.CommodityDictionary.Commodity, commodityId);
     }
 }

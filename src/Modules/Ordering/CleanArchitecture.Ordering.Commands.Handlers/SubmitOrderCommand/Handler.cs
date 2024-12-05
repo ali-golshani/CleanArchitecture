@@ -30,7 +30,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (order == null)
         {
-            return new NotFoundError("سفارش", request.OrderId);
+            return new NotFoundError(PersianDictionary.OrderDictionary.Order, request.OrderId);
         }
 
         var permission = await new AccessVerifier().IsAccessible(actor, order);
