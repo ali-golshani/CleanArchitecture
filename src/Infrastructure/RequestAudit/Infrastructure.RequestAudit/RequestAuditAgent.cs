@@ -78,8 +78,8 @@ public class RequestAuditAgent : BackgroundServiceAgentBase
         return
             logEntry.ShouldLog == true ||
             !logEntry.IsSuccess ||
-            logEntry.ResponseTime >= GlobalSettings.Audit.QueryResponseTimeThreshold ||
-            GlobalSettings.Audit.LogAllRequests
+            logEntry.ResponseTime >= Settings.QueryResponseTimeThreshold ||
+            Settings.LogAllRequests
         ;
     }
 

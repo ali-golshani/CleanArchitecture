@@ -49,11 +49,11 @@ internal static class FailureMessageExtensions
 
     private static string TrimResponse(string response)
     {
-        if (response.Length <= GlobalSettings.Audit.MaxLengthOfAuditTrailResponse)
+        if (response.Length <= Settings.MaxLengthOfAuditTrailResponse)
         {
             return response;
         }
 
-        return response[..GlobalSettings.Audit.MaxLengthOfAuditTrailResponse];
+        return response[..Settings.MaxLengthOfAuditTrailResponse];
     }
 }
