@@ -12,20 +12,20 @@ namespace CleanArchitecture.Ordering.Commands.RegisterOrderCommand;
 internal sealed class Handler : IRequestHandler<Command, Empty>
 {
     private readonly IOrderRepository orderRepository;
-    private readonly IRegisterOrderService registerOrderService;
+    private readonly IBuildOrderService buildOrderService;
     private readonly ICommoditySystem commoditySystem;
     private readonly IDomainEventPublisher eventPublisher;
     private readonly IIntegrationEventBus integrationEventBus;
 
     public Handler(
         IOrderRepository orderRepository,
-        IRegisterOrderService registerOrderService,
+        IBuildOrderService buildOrderService,
         ICommoditySystem commoditySystem,
         IDomainEventPublisher eventPublisher,
         IIntegrationEventBus integrationEventBus)
     {
         this.orderRepository = orderRepository;
-        this.registerOrderService = registerOrderService;
+        this.buildOrderService = buildOrderService;
         this.commoditySystem = commoditySystem;
         this.eventPublisher = eventPublisher;
         this.integrationEventBus = integrationEventBus;
@@ -47,7 +47,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         var commodity = commodityResult.Value!;
 
-        var orderResult = await registerOrderService.RegisterOrder(new RegisterOrderRequest
+        var orderResult = await buildOrderService.BuildOrder(new BuildOrderRequest
         {
             OrderId = request.OrderId,
             Quantity = request.Quantity,
@@ -62,6 +62,10 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             return orderResult.Errors;
         }
 
+        var order = orderResult.Value!;
+
+        orderRepository.Add(order);
+
         var result = await eventPublisher.Publish(new OrderRegisteredEvent.Event { OrderId = request.OrderId });
 
         if (result.IsFailure)
@@ -72,8 +76,8 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         await integrationEventBus.Post(new IntegrationEvents.OrderStatusChangedEvent
         {
             CorrelationId = request.CorrelationId,
-            OrderId = request.OrderId,
-            OrderStatus = orderResult.Value!.Status
+            OrderId = order.OrderId,
+            OrderStatus = order.Status
         });
 
         return Empty.Value;

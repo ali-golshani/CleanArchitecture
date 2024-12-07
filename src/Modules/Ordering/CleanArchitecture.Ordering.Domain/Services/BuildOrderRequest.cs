@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Ordering.Domain.Services;
 
-public sealed class RegisterOrderRequest
+public sealed class BuildOrderRequest
 {
     public required int OrderId { get; init; }
     public required int Quantity { get; init; }

@@ -7,7 +7,7 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddTransient<IRegisterOrderService, RegisterOrderService>();
+        services.AddTransient<IBuildOrderService, BuildOrderService>();
         services.AddTransient<IOrderTrackingCodeBuilder, OrderTrackingCodeBuilder>();
         services.AddTransient<CustomerCommodityRule>();
     }

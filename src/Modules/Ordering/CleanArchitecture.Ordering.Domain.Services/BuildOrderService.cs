@@ -1,27 +1,23 @@
 ﻿using CleanArchitecture.Ordering.Domain.DomainRules;
-using CleanArchitecture.Ordering.Domain.Repositories;
 using CleanArchitecture.Ordering.Domain.Services.DomainRules;
 using Framework.DomainRules.Extensions;
 
 namespace CleanArchitecture.Ordering.Domain.Services;
 
-internal class RegisterOrderService : IRegisterOrderService
+internal class BuildOrderService : IBuildOrderService
 {
-    private readonly IOrderRepository repository;
     private readonly IOrderTrackingCodeBuilder trackingCodeBuilder;
     private readonly CustomerCommodityRule commodityValidationRule;
 
-    public RegisterOrderService(
-        IOrderRepository repository,
+    public BuildOrderService(
         IOrderTrackingCodeBuilder trackingCodeBuilder,
         CustomerCommodityRule commodityValidationRule)
     {
-        this.repository = repository;
         this.trackingCodeBuilder = trackingCodeBuilder;
         this.commodityValidationRule = commodityValidationRule;
     }
 
-    public async Task<Result<Order>> RegisterOrder(RegisterOrderRequest request)
+    public async Task<Result<Order>> BuildOrder(BuildOrderRequest request)
     {
         var errors = new IDomainRule[]
         {
@@ -61,8 +57,6 @@ internal class RegisterOrderService : IRegisterOrderService
             commodity: request.Commodity,
             trackingCode: trackingCode
         );
-
-        repository.Add(order);
 
         return order;
     }
