@@ -3,9 +3,9 @@ using CleanArchitecture.Authorization;
 
 namespace CleanArchitecture.Querying.OrdersQuery;
 
-internal sealed class Filter : IQueryFilter<Query>
+internal sealed class QueryFilter : IQueryFilter<Query>
 {
-    Query IQueryFilter<Query>.Filter(Actor? actor, Query query)
+    public Query Filter(Actor? actor, Query query)
     {
         var customerId = (actor as CustomerActor)?.CustomerId;
         var brokerId = (actor as BrokerActor)?.BrokerId;

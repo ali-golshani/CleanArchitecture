@@ -15,11 +15,17 @@ internal static class Program
 
         using var scope = rootServiceProvider.CreateScope();
         var serviceProvider = scope.ServiceProvider;
-        await serviceProvider.GetRequiredService<RegisterAndApproveOrderService>().Run();
+
+        await Run(serviceProvider);
 
         await BackgroundServices.Stop();
 
         Exit();
+    }
+
+    private static async Task Run(IServiceProvider serviceProvider)
+    {
+        await serviceProvider.GetRequiredService<QueryingOrdersService>().Run();
     }
 
     private static void Exit()
