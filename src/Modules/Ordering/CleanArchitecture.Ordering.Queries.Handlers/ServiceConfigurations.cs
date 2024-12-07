@@ -11,7 +11,8 @@ public static class ServiceConfigurations
     {
         services.RegisterRequestHandlers();
         services.RegisterAccessVerifiers();
-        services.RegisterRequestFilters();
+        services.RegisterQueryFilters();
+        services.RegisterDataFilters();
         services.RegisterValidators();
     }
 }

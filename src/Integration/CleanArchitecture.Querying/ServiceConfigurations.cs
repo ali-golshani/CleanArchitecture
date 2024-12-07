@@ -11,7 +11,8 @@ public static class ServiceConfigurations
     public static void RegisterServices(IServiceCollection services)
     {
         services.RegisterValidators();
-        services.RegisterRequestFilters();
+        services.RegisterQueryFilters();
+        services.RegisterDataFilters();
         services.RegisterRequestHandlers();
         services.RegisterAccessVerifiers();
 
