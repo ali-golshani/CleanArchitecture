@@ -156,6 +156,16 @@ public static class Extensions
         return new SyncWrapper<T>(validator);
     }
 
+    public static IAsyncDomainRule AsAsync(this IDomainRule validator)
+    {
+        return new AsyncWrapper(validator);
+    }
+
+    public static IAsyncDomainRule<T> AsAsync<T>(this IDomainRule<T> validator)
+    {
+        return new AsyncWrapper<T>(validator);
+    }
+
     public static IDomainRule AsNonGeneric<T>(this IDomainRule<T> validator, T value)
     {
         return new DomainRuleCasting<T>.NonGenericDomainRule(value)
@@ -167,6 +177,22 @@ public static class Extensions
     public static IDomainRule AsNonGeneric<T>(this IDomainRule<T>[] rules, T value)
     {
         return new DomainRuleCasting<T>.NonGenericDomainRule(value)
+        {
+            Validators = rules
+        };
+    }
+
+    public static IAsyncDomainRule AsNonGeneric<T>(this IAsyncDomainRule<T> validator, T value)
+    {
+        return new DomainRuleCasting<T>.AsyncNonGenericDomainRule(value)
+        {
+            Validators = [validator]
+        };
+    }
+
+    public static IAsyncDomainRule AsNonGeneric<T>(this IAsyncDomainRule<T>[] rules, T value)
+    {
+        return new DomainRuleCasting<T>.AsyncNonGenericDomainRule(value)
         {
             Validators = rules
         };
