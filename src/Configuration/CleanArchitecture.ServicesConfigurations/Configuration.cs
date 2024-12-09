@@ -13,7 +13,7 @@ public static class Configuration
     public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment environment)
     {
         configuration.Sources.Clear();
-        GlobalSettingsConfigs.RegisterSettings(configuration);
+        SettingsConfigs.ConfigureSettings(configuration);
         OptionsConfigs.ConfigureOptions(configuration, environment);
         SecretsConfigs.ConfigureSecrets(configuration, environment);
     }

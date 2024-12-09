@@ -2,9 +2,9 @@
 
 namespace CleanArchitecture.ServicesConfigurations.Configs;
 
-internal static class GlobalSettingsConfigs
+internal static class SettingsConfigs
 {
-    public static void RegisterSettings(IConfigurationBuilder configuration)
+    public static void ConfigureSettings(IConfigurationBuilder configuration)
     {
         var path = AppDomain.CurrentDomain.BaseDirectory;
         var configFileName = $"GlobalSettings.json";
