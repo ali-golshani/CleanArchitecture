@@ -1,4 +1,5 @@
-﻿using Infrastructure.CommoditySystem;
+﻿using Framework.DomainRules.Extensions;
+using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Domain.Services.DomainRules;
 
@@ -20,7 +21,14 @@ internal class CustomerCommodityRule(ICommoditySystem commoditySystem) : IAsyncD
             CommodityId = value.CommodityId,
         }, default);
 
-        if (result.IsSuccess)
+        if (result.IsFailure)
+        {
+            foreach (var error in result.Errors)
+            {
+                yield return error.ToClause();
+            }
+        }
+        else
         {
             yield return new Clause
             (
