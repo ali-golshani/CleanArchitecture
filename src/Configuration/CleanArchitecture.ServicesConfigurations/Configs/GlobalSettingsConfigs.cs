@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.ServicesConfigurations.Configs;
 
-internal static class GlobalConfigs
+internal static class GlobalSettingsConfigs
 {
     public static void RegisterSettings(IConfigurationBuilder configuration)
     {

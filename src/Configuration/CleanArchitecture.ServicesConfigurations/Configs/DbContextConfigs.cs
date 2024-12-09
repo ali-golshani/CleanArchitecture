@@ -1,5 +1,4 @@
-﻿using Infrastructure.RequestAudit;
-using Infrastructure.RequestAudit.Persistence;
+﻿using Infrastructure.RequestAudit.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +15,7 @@ internal static class DbContextConfigs
 
         services
             .AddDbContext<AuditDbContext>(optionsBuilder =>
-            SqlConfigs.Configure(optionsBuilder, connectionString, Settings.Persistence.SchemaNames.Audit),
+            SqlConfigs.Configure(optionsBuilder, connectionString, Infrastructure.RequestAudit.Settings.Persistence.SchemaNames.Audit),
             ServiceLifetime.Scoped);
 
         services

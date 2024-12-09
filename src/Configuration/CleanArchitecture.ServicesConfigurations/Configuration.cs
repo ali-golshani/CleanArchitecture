@@ -13,11 +13,9 @@ public static class Configuration
     public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment environment)
     {
         configuration.Sources.Clear();
-        GlobalConfigs.RegisterSettings(configuration);
-        configuration.AddJsonStream(Options.Options.ConfigurationStream(environment.OptionsConfiguration));
-        configuration.AddEnvironmentVariables(Secrets.EnvironmentVariables.EnvironmentVariablesPrefix);
-        configuration.AddJsonStream(Secrets.Authentication.ConfigurationStream(environment.SecretsConfiguration));
-        configuration.AddJsonStream(Secrets.ConnectionStrings.ConfigurationStream(environment.SecretsConfiguration));
+        GlobalSettingsConfigs.RegisterSettings(configuration);
+        OptionsConfigs.ConfigureOptions(configuration, environment);
+        SecretsConfigs.ConfigureSecrets(configuration, environment);
     }
 
     public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IEnvironment environment)

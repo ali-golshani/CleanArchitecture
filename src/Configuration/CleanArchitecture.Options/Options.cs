@@ -10,7 +10,7 @@ public static class Options
         return new MemoryStream(data);
     }
 
-    private static byte[] ConfigurationData(OptionsConfiguration configuration)
+    public static byte[] ConfigurationData(OptionsConfiguration configuration)
     {
         return configuration switch
         {
