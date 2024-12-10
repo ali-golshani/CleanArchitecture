@@ -1,7 +1,7 @@
 ﻿using Framework.Exceptions;
 using Framework.WebApi.Exceptions;
 
-namespace Framework.WebApi.Middlewares;
+namespace CleanArchitecture.WebApi.Shared.Middlewares;
 
 public class DomainExceptionHandlingMiddleware
 {

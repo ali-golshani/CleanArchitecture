@@ -2,15 +2,15 @@
 
 internal class FixedActorProvider : IActorProvider
 {
-    private Actor? user = null;
+    private Actor? actor = null;
 
     public Actor? CurrentActor()
     {
-        return user;
+        return actor;
     }
 
-    public void SetUser(Actor user)
+    public void SetActor(Actor actor)
     {
-        this.user = user;
+        this.actor = actor;
     }
 }

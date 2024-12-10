@@ -6,7 +6,7 @@ public static class ActorExtensions
 {
     public static void ResolveActor(this IServiceProvider serviceProvider, Actor actor)
     {
-        serviceProvider.GetRequiredService<FixedActorProvider>().SetUser(actor);
+        serviceProvider.GetRequiredService<FixedActorProvider>().SetActor(actor);
     }
 
     public static IServiceScope CreateScope(this IServiceScopeFactory serviceScopeFactory, Actor actor)

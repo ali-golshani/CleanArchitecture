@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Framework.WebApi.Exceptions;
 
-internal static class ExceptionExtensions
+public static class ExceptionExtensions
 {
     public static ProblemDetails AsProblemDetails(this Exception exp)
     {

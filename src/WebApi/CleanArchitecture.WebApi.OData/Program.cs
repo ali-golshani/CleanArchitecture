@@ -3,9 +3,9 @@ using CleanArchitecture.WebApi.OData.Configs;
 using CleanArchitecture.WebApi.Shared.Configs;
 using CleanArchitecture.WebApi.Shared.Cors;
 using CleanArchitecture.WebApi.Shared.Filters;
+using CleanArchitecture.WebApi.Shared.Middlewares;
 using CleanArchitecture.WebApi.Shared.Swagger;
 using CleanArchitecture.WebApi.Shared.Versioning;
-using Framework.WebApi.Middlewares;
 using Hellang.Middleware.ProblemDetails;
 
 namespace CleanArchitecture.WebApi.OData;
