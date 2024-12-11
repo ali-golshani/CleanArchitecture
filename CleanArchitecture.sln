@@ -94,7 +94,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3C016221-1
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.IntegrationTests", "test\CleanArchitecture.IntegrationTests\CleanArchitecture.IntegrationTests.csproj", "{E8CA8CEC-15FA-4039-B53E-E08339D3A210}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Administration.HostedApp", "src\Administration\CleanArchitecture.Administration.HostedApp\CleanArchitecture.Administration.HostedApp.csproj", "{ED6DF0D4-CD5D-4FBF-9E71-C6A93D50F4CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Administration.HostedDebugApp", "src\Administration\CleanArchitecture.Administration.HostedDebugApp\CleanArchitecture.Administration.HostedDebugApp.csproj", "{ED6DF0D4-CD5D-4FBF-9E71-C6A93D50F4CA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.ProcessManager", "src\Framework\Framework.ProcessManager\Framework.ProcessManager.csproj", "{EACB7424-17EC-403E-BA37-637F22BAC832}"
 EndProject
