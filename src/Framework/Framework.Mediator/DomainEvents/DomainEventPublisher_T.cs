@@ -22,6 +22,6 @@ internal sealed class DomainEventPublisher<TEvent>
             }
         }
 
-        return Result<Empty>.Success(Empty.Value);
+        return Empty.Value;
     }
 }

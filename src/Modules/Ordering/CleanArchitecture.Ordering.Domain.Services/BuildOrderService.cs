@@ -19,7 +19,25 @@ internal class BuildOrderService : IBuildOrderService
 
     public async Task<Result<Order>> BuildOrder(BuildOrderRequest request)
     {
-        var errors = new IDomainRule[]
+        var policy =
+            Policy.Empty +
+            new OrderPriceRule(request.Price) +
+            new OrderQuantityRule(request.Quantity) +
+            commodityValidationRule
+            .AsNonGeneric(new CustomerCommodityRule.Inquiry
+            {
+                CustomerId = request.CustomerId,
+                CommodityId = request.Commodity.CommodityId,
+            });
+
+        var errors = await policy.Evaluate().Errors().ToListAsync();
+
+        if (errors.Count > 0)
+        {
+            return errors;
+        }
+
+        errors = new IDomainRule[]
         {
             new OrderPriceRule(request.Price),
             new OrderQuantityRule(request.Quantity),
