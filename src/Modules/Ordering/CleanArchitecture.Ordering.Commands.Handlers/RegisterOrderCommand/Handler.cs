@@ -1,10 +1,10 @@
-﻿using CleanArchitecture.Ordering.Domain.Repositories;
+﻿using CleanArchitecture.Ordering.Commands.Errors;
+using CleanArchitecture.Ordering.Domain.Repositories;
 using CleanArchitecture.Ordering.Domain.Services;
 using Framework.Mediator.DomainEvents;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Requests;
 using Framework.Results;
-using Framework.Results.Errors;
 using Framework.Results.Extensions;
 using Infrastructure.CommoditySystem;
 
@@ -36,7 +36,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     {
         if (await orderRepository.Exists(request.OrderId))
         {
-            return new DuplicateError(PersianDictionary.OrderDictionary.Order, request.OrderId);
+            return new DuplicateOrderError(request.OrderId);
         }
 
         var commodityResult = await GetCommodity(request.CommodityId, cancellationToken);

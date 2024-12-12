@@ -1,4 +1,6 @@
-﻿namespace Framework.DomainRules.Extensions;
+﻿using Framework.DomainRules.Wrappers;
+
+namespace Framework.DomainRules.Extensions;
 
 public static class Extensions
 {

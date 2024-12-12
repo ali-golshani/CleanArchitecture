@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Actors;
+using CleanArchitecture.Ordering.Commands.Errors;
 using CleanArchitecture.Ordering.Commands.IntegrationEvents;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator.IntegrationEvents;
@@ -31,7 +32,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (order == null)
         {
-            return new NotFoundError(PersianDictionary.OrderDictionary.Order, request.OrderId);
+            return new OrderNotFoundError(request.OrderId);
         }
 
         var permission = await new AccessVerifier().IsAccessible(actor, order);
