@@ -1,19 +1,19 @@
 ﻿namespace Framework.DomainRules.Policies;
 
-public sealed class Policy
+public sealed class DomainPolicy
 {
     public IDomainRule[] DomainRules { get; }
     public IAsyncDomainRule[] AsyncDomainRules { get; }
 
-    public Policy(params IDomainRule[] domainRules)
+    public DomainPolicy(params IDomainRule[] domainRules)
         : this(domainRules, [])
     { }
 
-    public Policy(params IAsyncDomainRule[] asyncDomainRules)
+    public DomainPolicy(params IAsyncDomainRule[] asyncDomainRules)
         : this([], asyncDomainRules)
     { }
 
-    public Policy(IDomainRule[] domainRules, params IAsyncDomainRule[] asyncDomainRules)
+    public DomainPolicy(IDomainRule[] domainRules, params IAsyncDomainRule[] asyncDomainRules)
     {
         this.DomainRules = domainRules;
         this.AsyncDomainRules = asyncDomainRules;

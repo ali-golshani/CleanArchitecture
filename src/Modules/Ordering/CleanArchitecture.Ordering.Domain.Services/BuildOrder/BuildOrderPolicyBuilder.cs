@@ -5,7 +5,7 @@ using Framework.DomainRules.Policies;
 
 namespace CleanArchitecture.Ordering.Domain.Services;
 
-internal class BuildOrderPolicyBuilder : IPolicyBuilder<BuildOrderRequest>
+internal class BuildOrderPolicyBuilder : IDomainPolicyBuilder<BuildOrderRequest>
 {
     private readonly CustomerCommodityRule customerCommodityRule;
 
@@ -14,7 +14,7 @@ internal class BuildOrderPolicyBuilder : IPolicyBuilder<BuildOrderRequest>
         this.customerCommodityRule = customerCommodityRule;
     }
 
-    public Policy Build(BuildOrderRequest value)
+    public DomainPolicy Build(BuildOrderRequest value)
     {
         var rules = new IDomainRule[]
         {
@@ -32,6 +32,6 @@ internal class BuildOrderPolicyBuilder : IPolicyBuilder<BuildOrderRequest>
             })
         };
 
-        return new Policy(rules, asyncRules);
+        return new DomainPolicy(rules, asyncRules);
     }
 }
