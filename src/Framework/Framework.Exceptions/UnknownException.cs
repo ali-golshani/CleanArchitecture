@@ -2,7 +2,8 @@
 
 public class UnknownException : BaseSystemException
 {
-    public UnknownException(Exception innerException) : base(innerException) { }
+    public UnknownException(Exception innerException) : base(innerException)
+    { }
 
     public override bool ShouldLog => true;
     public override bool IsFatal => true;

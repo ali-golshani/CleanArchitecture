@@ -1,4 +1,6 @@
-﻿namespace Framework.Results.Extensions;
+﻿using Framework.Results.Errors;
+
+namespace Framework.Results.Extensions;
 
 public static class Extensions
 {

@@ -1,4 +1,4 @@
-﻿namespace Framework.Results;
+﻿namespace Framework.Results.Errors;
 
 public class NotFoundError : Error
 {

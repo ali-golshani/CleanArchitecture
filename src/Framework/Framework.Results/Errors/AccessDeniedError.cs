@@ -1,10 +1,6 @@
-﻿namespace Framework.Results;
+﻿namespace Framework.Results.Errors;
 
-public class AccessDeniedError : Error
+public class AccessDeniedError() : Error(ErrorType.Forbidden, ErrorMessages.AccessDenied)
 {
     public static readonly AccessDeniedError Default = new();
-
-    public AccessDeniedError()
-        : base(ErrorType.Forbidden, ErrorMessages.AccessDenied)
-    { }
 }

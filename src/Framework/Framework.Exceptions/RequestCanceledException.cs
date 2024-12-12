@@ -2,7 +2,7 @@
 
 public class RequestCanceledException : BaseSystemException
 {
-    public RequestCanceledException(Exception inner) : base(inner)
+    public RequestCanceledException(Exception innerException) : base(innerException)
     { }
 
     public override bool ShouldLog => true;

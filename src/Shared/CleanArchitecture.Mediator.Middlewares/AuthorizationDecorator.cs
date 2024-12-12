@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Authorization;
+using Framework.Results.Errors;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 

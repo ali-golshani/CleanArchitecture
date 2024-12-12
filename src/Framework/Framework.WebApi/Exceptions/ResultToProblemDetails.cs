@@ -1,4 +1,5 @@
 ﻿using Framework.Results;
+using Framework.Results.Errors;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 

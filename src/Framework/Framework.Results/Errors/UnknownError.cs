@@ -1,10 +1,7 @@
-﻿namespace Framework.Results;
+﻿namespace Framework.Results.Errors;
 
-public class UnknownError : Error
+public class UnknownError(string message = ErrorMessages.UnknownError)
+    : Error(ErrorType.Unexpected, message)
 {
-    public static readonly UnknownError Default = new ();
-
-    public UnknownError(string? message = null)
-        : base(ErrorType.Unexpected, message ?? ErrorMessages.UnknownError)
-    { }
+    public static readonly UnknownError Default = new();
 }

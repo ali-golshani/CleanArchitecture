@@ -4,6 +4,7 @@ using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Requests;
 using Framework.Results;
+using Framework.Results.Errors;
 
 namespace CleanArchitecture.Ordering.Commands.SubmitOrderCommand;
 

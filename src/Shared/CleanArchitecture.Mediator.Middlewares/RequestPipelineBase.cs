@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Actors;
+using Framework.Results.Errors;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
@@ -24,7 +25,7 @@ public abstract class RequestPipelineBase<TRequest, TResponse>
 
         if (actor is null)
         {
-            return UnauthorizionError.Default;
+            return AuthorizionError.Default;
         }
 
         var context = new RequestContext<TRequest>

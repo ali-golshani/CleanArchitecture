@@ -1,4 +1,5 @@
 ﻿using Framework.Exceptions.Extensions;
+using Framework.Results.Errors;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Mediator.Middlewares;
