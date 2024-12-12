@@ -1,11 +1,8 @@
 ﻿namespace Framework.Exceptions;
 
-public class UnknownException : BaseSystemException
+public class UnknownException(Exception innerException)
+    : BaseSystemException(ExceptionMessages.UnknownException, innerException)
 {
-    public UnknownException(Exception innerException) : base(innerException)
-    { }
-
-    public override bool ShouldLog => true;
     public override bool IsFatal => true;
-    public override string Message => "خطای نامشخص";
+    public override bool ShouldLog => true;
 }

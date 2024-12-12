@@ -8,4 +8,16 @@ internal static class ErrorMessages
     public const string NotSupported = "درخواست مورد نظر توسط سیستم پشتیبانی نمی شود";
     public const string OperationCanceled = "عملیات لغو گردید";
     public const string UnknownError = "خطای نامشخص";
+
+    public static string NotFound(string resourceName, object? resourceKey)
+    {
+        if (resourceKey is null)
+        {
+            return $"{resourceName} مورد نظر یافت نشد";
+        }
+        else
+        {
+            return $"{resourceName} با شناسه {resourceKey} یافت نشد";
+        }
+    }
 }

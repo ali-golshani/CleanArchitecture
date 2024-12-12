@@ -1,5 +1,4 @@
 ﻿using Framework.DomainRules.Extensions;
-using Framework.Exceptions.DomainExceptions;
 
 namespace Framework.DomainRules.Exceptions;
 

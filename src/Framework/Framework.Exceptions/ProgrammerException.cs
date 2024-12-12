@@ -1,15 +1,10 @@
 ﻿namespace Framework.Exceptions;
 
-public class ProgrammerException : BaseSystemException
+public class ProgrammerException(string? technicalMessage = null)
+    : BaseSystemException(ExceptionMessages.ProgrammerException)
 {
-    public ProgrammerException(string? technicalMessage = null)
-    {
-        TechnicalMessage = technicalMessage;
-    }
-
-    public string? TechnicalMessage { get; }
+    public string? TechnicalMessage { get; } = technicalMessage;
 
     public override bool IsFatal => true;
     public override bool ShouldLog => true;
-    public override string Message => "خطای پیش بینی نشده";
 }

@@ -2,9 +2,8 @@
 
 internal static class ExceptionMessages
 {
-    public const string InvalidOperation = "عملیات نامعتبر";
-    public const string InvalidRequest = "درخواست نامعتبر";
-    public const string NotImplemented = "درخواست مورد نظر توسط سیستم پیاده سازی نشده است";
-    public const string NotSupported = "درخواست مورد نظر توسط سیستم پشتیبانی نمی شود";
-
+    public const string UnknownException = "خطای نامشخص";
+    public const string ProgrammerException = "خطای پیش بینی نشده";
+    public const string PersistenceException = "خطای پایگاه داده";
+    public const string RequestCanceledException = "عملیات لغو گردید";
 }

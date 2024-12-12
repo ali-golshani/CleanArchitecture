@@ -1,4 +1,6 @@
-﻿namespace Framework.Exceptions.DomainExceptions;
+﻿using Framework.Exceptions;
+
+namespace CleanArchitecture.Exceptions;
 
 public class NotImplementedException(string message = ExceptionMessages.NotImplemented)
     : DomainException(message)

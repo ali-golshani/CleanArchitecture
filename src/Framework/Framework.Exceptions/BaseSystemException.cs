@@ -10,7 +10,6 @@ public abstract class BaseSystemException : Exception
 
     private protected BaseSystemException() { }
     private protected BaseSystemException(string message) : base(message) { }
-    private protected BaseSystemException(Exception innerException) : base(innerException.Message, innerException) { }
     private protected BaseSystemException(string message, Exception innerException) : base(message, innerException) { }
 
     public virtual UserFriendlyException ToUserFriendlyException(bool isRegistered)
