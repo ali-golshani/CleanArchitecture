@@ -24,7 +24,7 @@ public abstract class RequestPipelineBase<TRequest, TResponse>
 
         if (actor is null)
         {
-            return ActorNotSpecifiedError.Default;
+            return UnauthorizionError.Default;
         }
 
         var context = new RequestContext<TRequest>

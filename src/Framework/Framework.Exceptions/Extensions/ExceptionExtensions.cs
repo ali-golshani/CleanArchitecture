@@ -2,7 +2,7 @@
 using System.Runtime.ExceptionServices;
 using System.Text;
 
-namespace Framework.Exceptions;
+namespace Framework.Exceptions.Extensions;
 
 public static class ExceptionExtensions
 {
@@ -19,7 +19,7 @@ public static class ExceptionExtensions
 
     public static BaseSystemException TranslateToSystemException(this Exception exp)
     {
-        exp = UnwrapAll(exp);
+        exp = exp.UnwrapAll();
 
         var result = exp switch
         {

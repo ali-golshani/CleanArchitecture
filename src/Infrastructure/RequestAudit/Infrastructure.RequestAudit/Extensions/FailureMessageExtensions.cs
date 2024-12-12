@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Framework.Exceptions.Extensions;
+using System.Text;
 
 namespace Infrastructure.RequestAudit.Extensions;
 

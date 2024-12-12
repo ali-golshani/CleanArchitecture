@@ -1,4 +1,6 @@
-﻿namespace Framework.DomainRules;
+﻿using Framework.Exceptions.Extensions;
+
+namespace Framework.DomainRules;
 
 internal sealed class SyncWrapper(IAsyncDomainRule rule) : IDomainRule
 {

@@ -1,4 +1,4 @@
-﻿using Framework.Exceptions;
+﻿using Framework.Exceptions.DomainExceptions;
 
 namespace Framework.Results.Exceptions;
 

@@ -1,4 +1,5 @@
 ﻿using Framework.Exceptions;
+using Framework.Exceptions.Extensions;
 
 namespace Framework.WebApi.Exceptions;
 

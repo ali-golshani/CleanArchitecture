@@ -1,11 +1,12 @@
-﻿using CleanArchitecture.Ordering.Domain.Services;
-using Framework.Results;
-using Infrastructure.CommoditySystem;
-using Framework.Results.Extensions;
+﻿using CleanArchitecture.Errors;
 using CleanArchitecture.Ordering.Domain.Repositories;
+using CleanArchitecture.Ordering.Domain.Services;
 using Framework.Mediator.DomainEvents;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Requests;
+using Framework.Results;
+using Framework.Results.Extensions;
+using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Commands.RegisterOrderCommand;
 
@@ -90,7 +91,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             CommodityId = commodityId
         };
 
-        return await 
+        return await
             commoditySystem
             .Handle(request, cancellationToken)
             .NotFoundIfNull(PersianDictionary.CommodityDictionary.Commodity, commodityId);

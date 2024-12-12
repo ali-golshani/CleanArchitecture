@@ -1,13 +1,10 @@
-﻿namespace Framework.Exceptions;
+﻿using Framework.Exceptions.Utilities;
+
+namespace Framework.Exceptions.DomainExceptions;
 
 public class InvalidRequestException : DomainException
 {
     public InvalidRequestException(string? message = null)
-    {
-        SpecialMessage = message;
-    }
-
-    public string? SpecialMessage { get; }
-
-    public override string Message => SpecialMessage ?? "درخواست نامعتبر";
+        : base(message ?? ExceptionMessages.InvalidRequest)
+    { }
 }
