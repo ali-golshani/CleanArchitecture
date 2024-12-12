@@ -1,5 +1,4 @@
-﻿using Bogus;
-using Framework.Test;
+﻿using Framework.Test;
 
 namespace Infrastructure.CommoditySystem.Mock.Data;
 
