@@ -8,7 +8,7 @@ public abstract class BaseSystemException : Exception
 
     public abstract bool ShouldLog { get; }
 
-    public string CorrelationId { get; } = SmallGuid.GetUniqueKey();
+    public string TraceId { get; } = SmallGuid.GetUniqueKey();
 
     private protected BaseSystemException() { }
     private protected BaseSystemException(string message) : base(message) { }
@@ -16,7 +16,7 @@ public abstract class BaseSystemException : Exception
 
     public virtual UserFriendlyException ToUserFriendlyException(bool isRegistered)
     {
-        return new UserFriendlyException(Message, CorrelationId, isRegistered);
+        return new UserFriendlyException(Message, TraceId, isRegistered);
     }
 
     public virtual bool IsFatal => false;
@@ -36,7 +36,7 @@ public abstract class BaseSystemException : Exception
 
     protected virtual IEnumerable<(string Name, string Value)> GetProperties()
     {
-        yield return new(nameof(CorrelationId), CorrelationId);
+        yield return new(nameof(TraceId), TraceId);
 
         var properties = GetType().GetProperties(
             System.Reflection.BindingFlags.Public
