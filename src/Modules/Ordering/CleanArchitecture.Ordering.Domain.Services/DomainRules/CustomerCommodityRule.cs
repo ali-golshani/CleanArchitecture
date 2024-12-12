@@ -3,7 +3,7 @@ using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Domain.Services.DomainRules;
 
-internal class CustomerCommodityRule(ICommoditySystem commoditySystem) : IAsyncDomainRule<CustomerCommodityRule.Inquiry>
+internal class CustomerCommodityRule : IAsyncDomainRule
 {
     public readonly struct Inquiry
     {
@@ -11,14 +11,21 @@ internal class CustomerCommodityRule(ICommoditySystem commoditySystem) : IAsyncD
         public required int CommodityId { get; init; }
     }
 
-    private readonly ICommoditySystem commoditySystem = commoditySystem;
+    private readonly ICommoditySystem commoditySystem;
+    private readonly Inquiry inquiry;
 
-    public async IAsyncEnumerable<Clause> Evaluate(Inquiry value)
+    public CustomerCommodityRule(ICommoditySystem commoditySystem, Inquiry inquiry)
+    {
+        this.commoditySystem = commoditySystem;
+        this.inquiry = inquiry;
+    }
+
+    public async IAsyncEnumerable<Clause> Evaluate()
     {
         var result = await commoditySystem.Handle(new CustomerCommodityValidationRequest
         {
-            CustomerId = value.CustomerId,
-            CommodityId = value.CommodityId,
+            CustomerId = inquiry.CustomerId,
+            CommodityId = inquiry.CommodityId,
         }, default);
 
         if (result.IsFailure)
@@ -34,8 +41,8 @@ internal class CustomerCommodityRule(ICommoditySystem commoditySystem) : IAsyncD
             (
                 result.Value,
                 "ارتباط کالا و مشتری برقرار نیست",
-                (nameof(Inquiry.CustomerId), value.CustomerId),
-                (nameof(Inquiry.CommodityId), value.CommodityId)
+                (nameof(Inquiry.CustomerId), inquiry.CustomerId),
+                (nameof(Inquiry.CommodityId), inquiry.CommodityId)
             );
         }
     }

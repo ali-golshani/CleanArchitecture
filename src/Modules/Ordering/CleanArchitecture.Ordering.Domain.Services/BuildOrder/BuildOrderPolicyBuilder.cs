@@ -1,17 +1,16 @@
 ﻿using CleanArchitecture.Ordering.Domain.DomainRules;
 using CleanArchitecture.Ordering.Domain.Services.DomainRules;
-using Framework.DomainRules.Extensions;
-using Framework.DomainRules.Policies;
+using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Domain.Services;
 
-internal class BuildOrderPolicyBuilder : IDomainPolicyBuilder<BuildOrderRequest>
+internal class BuildOrderPolicyBuilder
 {
-    private readonly CustomerCommodityRule customerCommodityRule;
+    private readonly ICommoditySystem commoditySystem;
 
-    public BuildOrderPolicyBuilder(CustomerCommodityRule customerCommodityRule)
+    public BuildOrderPolicyBuilder(ICommoditySystem commoditySystem)
     {
-        this.customerCommodityRule = customerCommodityRule;
+        this.commoditySystem = commoditySystem;
     }
 
     public DomainPolicy Build(BuildOrderRequest value)
@@ -24,8 +23,7 @@ internal class BuildOrderPolicyBuilder : IDomainPolicyBuilder<BuildOrderRequest>
 
         var asyncRules = new IAsyncDomainRule[]
         {
-            customerCommodityRule
-            .AsNonGeneric(new CustomerCommodityRule.Inquiry
+            new CustomerCommodityRule(commoditySystem, new CustomerCommodityRule.Inquiry
             {
                 CustomerId = value.CustomerId,
                 CommodityId = value.Commodity.CommodityId,

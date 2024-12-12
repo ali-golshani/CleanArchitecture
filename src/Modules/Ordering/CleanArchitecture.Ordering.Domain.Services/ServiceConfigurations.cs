@@ -9,7 +9,6 @@ public static class ServiceConfigurations
     {
         services.AddTransient<IBuildOrderService, BuildOrderService>();
         services.AddTransient<IOrderTrackingCodeBuilder, OrderTrackingCodeBuilder>();
-        services.AddTransient<CustomerCommodityRule>();
         services.AddTransient<BuildOrderPolicyBuilder>();
     }
 }

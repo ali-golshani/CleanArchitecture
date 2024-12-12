@@ -1,4 +1,4 @@
-﻿namespace Framework.DomainRules.Policies;
+﻿namespace Framework.DomainRules;
 
 public sealed class DomainPolicy
 {
@@ -15,8 +15,8 @@ public sealed class DomainPolicy
 
     public DomainPolicy(IDomainRule[] domainRules, params IAsyncDomainRule[] asyncDomainRules)
     {
-        this.DomainRules = domainRules;
-        this.AsyncDomainRules = asyncDomainRules;
+        DomainRules = domainRules;
+        AsyncDomainRules = asyncDomainRules;
     }
 
     public async IAsyncEnumerable<Clause> Evaluate()
