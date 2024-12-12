@@ -2,11 +2,10 @@
 
 internal static class ErrorMessages
 {
-    public const string AccessDenied = "دسترسی غیر مجاز";
+    public const string Forbidden = "دسترسی غیر مجاز";
     public const string Unauthorized = "کاربر درخواست دهنده احراز هویت نشده است";
     public const string OperationCanceled = "عملیات لغو گردید";
-    public const string UnknownError = "خطای نامشخص";
-    public const string Unexpected = "خطای غیرمنتظره";
+    public const string Unexpected = "خطای نامشخص";
     public const string NotSupported = "درخواست مورد نظر توسط سیستم پشتیبانی نمی شود";
     public const string NotImplemented = "درخواست مورد نظر توسط سیستم پیاده سازی نشده است";
     public const string Timeout = "درخواست به دلیل اتمام زمان لغو گردید";

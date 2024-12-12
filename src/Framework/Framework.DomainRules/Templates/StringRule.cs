@@ -1,4 +1,4 @@
-﻿namespace Framework.DomainRules;
+﻿namespace Framework.DomainRules.Templates;
 
 public class StringRule(
     string? value,

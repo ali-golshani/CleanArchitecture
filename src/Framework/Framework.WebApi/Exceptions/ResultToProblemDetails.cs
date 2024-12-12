@@ -73,7 +73,7 @@ internal static class ResultToProblemDetails
 
     private static ProblemDetails ProblemDetails(Error[] errors)
     {
-        var error = errors.Length == 0 ? UnknownError.Default : errors[0];
+        var error = errors.Length == 0 ? UnexpectedError.Default : errors[0];
 
         if (error.Type == ErrorType.Validation)
         {

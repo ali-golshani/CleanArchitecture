@@ -1,4 +1,4 @@
-﻿namespace Framework.DomainRules;
+﻿namespace Framework.DomainRules.Wrappers;
 
 internal sealed class AsyncWrapper(IDomainRule rule) : IAsyncDomainRule
 {

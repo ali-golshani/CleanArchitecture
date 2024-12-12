@@ -2,7 +2,7 @@
 using CleanArchitecture.Ordering.Domain.Services.DomainRules;
 using Infrastructure.CommoditySystem;
 
-namespace CleanArchitecture.Ordering.Domain.Services;
+namespace CleanArchitecture.Ordering.Domain.Services.BuildOrder;
 
 internal class BuildOrderPolicyBuilder
 {

@@ -2,13 +2,8 @@
 
 namespace CleanArchitecture.Exceptions;
 
-public class OperationAlreadyRunningException : DomainException
+public class OperationAlreadyRunningException(string operationName)
+    : DomainException(ExceptionMessages.OperationAlreadyRunning(operationName))
 {
-    public OperationAlreadyRunningException(string operationName)
-        : base(ExceptionMessages.OperationAlreadyRunning(operationName))
-    {
-        OperationName = operationName;
-    }
-
-    public string OperationName { get; }
+    public string OperationName { get; } = operationName;
 }

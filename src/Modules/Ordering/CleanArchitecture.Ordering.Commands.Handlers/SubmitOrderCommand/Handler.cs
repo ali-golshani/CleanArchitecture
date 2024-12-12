@@ -38,7 +38,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (!permission)
         {
-            return AccessDeniedError.Default;
+            return ForbiddenError.Default;
         }
 
         if (order.Submit())

@@ -21,7 +21,7 @@ public sealed class AuthorizationDecorator<TRequest, TResponse> :
     {
         if (!await accessVerifiers.IsAccessible(context.Actor, context.Request))
         {
-            return AccessDeniedError.Default;
+            return ForbiddenError.Default;
         }
 
         return await next.Handle(context);

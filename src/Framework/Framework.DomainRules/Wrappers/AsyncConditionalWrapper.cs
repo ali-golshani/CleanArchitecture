@@ -1,6 +1,6 @@
 ﻿using Framework.DomainRules.Extensions;
 
-namespace Framework.DomainRules;
+namespace Framework.DomainRules.Wrappers;
 
 internal sealed class AsyncConditionalWrapper(bool condition, params IAsyncDomainRule[] validators)
     : IAsyncDomainRule

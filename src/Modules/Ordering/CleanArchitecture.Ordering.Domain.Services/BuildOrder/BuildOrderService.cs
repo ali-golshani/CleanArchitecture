@@ -1,6 +1,6 @@
 ﻿using Framework.DomainRules.Extensions;
 
-namespace CleanArchitecture.Ordering.Domain.Services;
+namespace CleanArchitecture.Ordering.Domain.Services.BuildOrder;
 
 internal class BuildOrderService : IBuildOrderService
 {
