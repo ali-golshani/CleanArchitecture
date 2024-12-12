@@ -25,7 +25,7 @@ public abstract class RequestPipelineBase<TRequest, TResponse>
 
         if (actor is null)
         {
-            return AuthorizionError.Default;
+            return UnauthorizedError.Default;
         }
 
         var context = new RequestContext<TRequest>

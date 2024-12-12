@@ -1,6 +1,4 @@
-﻿using Framework.Results;
-
-namespace CleanArchitecture.Errors;
+﻿namespace Framework.Results.Errors;
 
 public class DuplicateError : Error
 {
