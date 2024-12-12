@@ -11,6 +11,7 @@
 		<ProjectReference Include="..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Errors\CleanArchitecture.Errors.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Exceptions\CleanArchitecture.Exceptions.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
 	</ItemGroup>
 

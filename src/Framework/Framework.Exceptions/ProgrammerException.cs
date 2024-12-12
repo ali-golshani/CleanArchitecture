@@ -9,8 +9,7 @@ public class ProgrammerException : BaseSystemException
 
     public string? TechnicalMessage { get; }
 
-    public override bool ShouldLog => true;
     public override bool IsFatal => true;
-
+    public override bool ShouldLog => true;
     public override string Message => "خطای پیش بینی نشده";
 }

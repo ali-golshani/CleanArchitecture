@@ -1,11 +1,11 @@
-﻿using Framework.Exceptions.Utilities;
-
-namespace Framework.Exceptions.DomainExceptions;
+﻿namespace Framework.Exceptions.DomainExceptions;
 
 public class NotImplementedException : DomainException
 {
-    public NotImplementedException(string? message = null)
-        : base(message ?? ExceptionMessages.NotImplemented)
+    private const string DefaultMessage = "درخواست مورد نظر توسط سیستم پیاده سازی نشده است";
+
+    public NotImplementedException(string message = DefaultMessage)
+        : base(message)
     { }
 
     public override bool ShouldLog => true;

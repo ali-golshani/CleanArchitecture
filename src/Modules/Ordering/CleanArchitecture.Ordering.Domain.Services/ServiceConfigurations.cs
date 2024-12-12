@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Ordering.Domain.Services.DomainRules;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Domain.Services;
 

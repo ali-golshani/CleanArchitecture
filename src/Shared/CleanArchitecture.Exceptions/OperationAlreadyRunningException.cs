@@ -1,4 +1,6 @@
-﻿namespace Framework.Exceptions.DomainExceptions;
+﻿using Framework.Exceptions.DomainExceptions;
+
+namespace CleanArchitecture.Exceptions;
 
 public class OperationAlreadyRunningException : DomainException
 {

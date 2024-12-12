@@ -1,10 +1,10 @@
-﻿using Framework.Exceptions.Utilities;
-
-namespace Framework.Exceptions.DomainExceptions;
+﻿namespace Framework.Exceptions.DomainExceptions;
 
 public class InvalidOperationException : DomainException
 {
-    public InvalidOperationException(string? message = null)
-        : base(message ?? ExceptionMessages.InvalidOperation)
+    private const string DefaultMessage = "عملیات نامعتبر";
+
+    public InvalidOperationException(string message = DefaultMessage)
+        : base(message)
     { }
 }
