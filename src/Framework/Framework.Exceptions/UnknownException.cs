@@ -7,6 +7,5 @@ public class UnknownException : BaseSystemException
 
     public override bool ShouldLog => true;
     public override bool IsFatal => true;
-
     public override string Message => "خطای نامشخص";
 }

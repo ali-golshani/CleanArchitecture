@@ -1,9 +1,7 @@
 ﻿namespace Framework.Exceptions.DomainExceptions;
 
-public class NotSupportedException(string message = NotSupportedException.DefaultMessage)
+public class NotSupportedException(string message = ExceptionMessages.NotSupported)
     : DomainException(message)
 {
-    private const string DefaultMessage = "درخواست مورد نظر توسط سیستم پشتیبانی نمی شود";
-
     public override bool ShouldLog => true;
 }

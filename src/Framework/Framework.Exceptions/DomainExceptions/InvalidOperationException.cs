@@ -1,7 +1,6 @@
 ﻿namespace Framework.Exceptions.DomainExceptions;
 
-public class InvalidOperationException(string message = InvalidOperationException.DefaultMessage)
+public class InvalidOperationException(string message = ExceptionMessages.InvalidOperation)
     : DomainException(message)
 {
-    private const string DefaultMessage = "عملیات نامعتبر";
 }
