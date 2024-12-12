@@ -20,9 +20,4 @@ public class DomainErrorsException : DomainException
     public override string Message { get; }
     public override IReadOnlyCollection<string> Messages { get; }
     public override bool ShouldLog { get; }
-
-    public static implicit operator DomainErrorsException(Error error)
-    {
-        return new(error);
-    }
 }
