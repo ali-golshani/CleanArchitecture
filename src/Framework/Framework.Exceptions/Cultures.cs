@@ -1,4 +1,4 @@
-﻿namespace Framework.Exceptions.Utilities;
+﻿namespace Framework.Exceptions;
 
 public static class Cultures
 {

@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace Framework.Exceptions.Utilities;
+namespace Framework.Exceptions;
 
 public static class SmallGuid
 {

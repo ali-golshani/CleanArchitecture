@@ -1,6 +1,4 @@
-﻿using Framework.Exceptions.Utilities;
-
-namespace Framework.Exceptions;
+﻿namespace Framework.Exceptions;
 
 public abstract class BaseSystemException : Exception
 {
