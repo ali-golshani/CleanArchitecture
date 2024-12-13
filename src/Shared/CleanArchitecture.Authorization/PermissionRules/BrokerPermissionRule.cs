@@ -4,7 +4,7 @@ public class BrokerPermissionRule<T>(int brokerId) : IPermissionRule<T>
 {
     public int BrokerId { get; } = brokerId;
 
-    public ValueTask<bool> IsPermit(Actor? actor, T content)
+    public ValueTask<bool> HasPermission(Actor? actor, T content)
     {
         var result =
             actor is BrokerActor broker &&

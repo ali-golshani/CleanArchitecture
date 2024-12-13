@@ -15,11 +15,11 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
         IServiceScopeFactory serviceScopeFactory,
         RequestAuditAgent commandAudit,
         IEnumerable<IValidator<TRequest>>? validators,
-        IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers,
+        IEnumerable<IAccessControl<TRequest>>? accessControls,
         ILogger<CommandPipelineBuilder<TRequest, TResponse>> logger)
     {
         var transactional = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
-        var authorization = new AuthorizationDecorator<TRequest, TResponse>(transactional, accessVerifiers);
+        var authorization = new AuthorizationDecorator<TRequest, TResponse>(transactional, accessControls);
         var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
         var audit = new RequestAuditDecorator<TRequest, TResponse>(validation, commandAudit, nameof(Ordering), logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);

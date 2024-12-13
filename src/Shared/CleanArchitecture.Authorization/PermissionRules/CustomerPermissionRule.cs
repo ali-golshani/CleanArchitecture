@@ -4,7 +4,7 @@ public class CustomerPermissionRule<T>(int customerId) : IPermissionRule<T>
 {
     public int CustomerId { get; } = customerId;
 
-    public ValueTask<bool> IsPermit(Actor? actor, T content)
+    public ValueTask<bool> HasPermission(Actor? actor, T content)
     {
         var result =
             actor is CustomerActor customer &&

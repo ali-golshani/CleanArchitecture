@@ -4,6 +4,16 @@ namespace Framework.DomainRules.Extensions;
 
 public static class Extensions
 {
+    public static async Task<List<Error>> Errors(this DomainPolicy policy)
+    {
+        var result = new List<Error>();
+        await foreach (var item in policy.Evaluate().Errors())
+        {
+            result.Add(item);
+        }
+        return result;
+    }
+
     #region array validate
 
     public static IEnumerable<Clause> Evaluate(this IEnumerable<IDomainRule> rules)

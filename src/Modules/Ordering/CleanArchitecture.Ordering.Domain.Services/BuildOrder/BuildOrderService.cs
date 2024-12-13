@@ -18,7 +18,7 @@ internal class BuildOrderService : IBuildOrderService
     public async Task<Result<Order>> BuildOrder(BuildOrderRequest request)
     {
         var policy = policyBuilder.Build(request);
-        var errors = await policy.Evaluate().Errors().ToListAsync();
+        var errors = await policy.Errors();
 
         if (errors.Count > 0)
         {

@@ -7,19 +7,19 @@ public sealed class AuthorizationDecorator<TRequest, TResponse> :
     IRequestProcessor<TRequest, TResponse>
 {
     private readonly IRequestProcessor<TRequest, TResponse> next;
-    private readonly IAccessVerifier<TRequest>[] accessVerifiers;
+    private readonly IAccessControl<TRequest>[] accessControls;
 
     public AuthorizationDecorator(
         IRequestProcessor<TRequest, TResponse> next,
-        IEnumerable<IAccessVerifier<TRequest>>? accessVerifiers)
+        IEnumerable<IAccessControl<TRequest>>? accessControls)
     {
         this.next = next;
-        this.accessVerifiers = accessVerifiers?.ToArray() ?? [];
+        this.accessControls = accessControls?.ToArray() ?? [];
     }
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        if (!await accessVerifiers.IsAccessible(context.Actor, context.Request))
+        if (!await accessControls.IsAuthorized(context.Actor, context.Request))
         {
             return ForbiddenError.Default;
         }

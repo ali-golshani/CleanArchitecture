@@ -2,5 +2,5 @@
 
 public interface IPermissionRule<in T>
 {
-    ValueTask<bool> IsPermit(Actor? actor, T content);
+    ValueTask<bool> HasPermission(Actor? actor, T content);
 }

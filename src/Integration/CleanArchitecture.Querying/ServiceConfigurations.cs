@@ -14,7 +14,7 @@ public static class ServiceConfigurations
         services.RegisterQueryFilters();
         services.RegisterDataFilters();
         services.RegisterRequestHandlers();
-        services.RegisterAccessVerifiers();
+        services.RegisterAccessControls();
 
         services.AddTransient(typeof(QueryPipeline<,>));
         services.AddTransient<IQueryService, QueryService>();

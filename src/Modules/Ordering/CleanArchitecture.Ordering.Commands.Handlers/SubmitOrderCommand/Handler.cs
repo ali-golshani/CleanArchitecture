@@ -35,7 +35,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             return new OrderNotFoundError(request.OrderId);
         }
 
-        var permission = await new AccessVerifier().IsAccessible(actor, order);
+        var permission = await new AccessControl().IsAuthorized(actor, order);
 
         if (!permission)
         {

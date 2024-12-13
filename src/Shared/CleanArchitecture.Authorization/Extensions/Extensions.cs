@@ -2,14 +2,14 @@
 
 public static class Extensions
 {
-    public static async ValueTask<bool> IsAccessible<TRequest>(
-        this IEnumerable<IAccessVerifier<TRequest>> verifiers,
+    public static async ValueTask<bool> IsAuthorized<TRequest>(
+        this IEnumerable<IAccessControl<TRequest>> controls,
         Actor? actor,
         TRequest request)
     {
-        foreach (var verifier in verifiers)
+        foreach (var control in controls)
         {
-            if (await verifier.IsMatch(actor) && !await verifier.IsAccessible(actor, request))
+            if (await control.Clause(actor) && !await control.IsAuthorized(actor, request))
             {
                 return false;
             }

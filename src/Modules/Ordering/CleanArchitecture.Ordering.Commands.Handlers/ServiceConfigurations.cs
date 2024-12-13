@@ -11,7 +11,7 @@ public static class ServiceConfigurations
     {
         services.RegisterRequestHandlers();
         services.RegisterDomainEventHandlers();
-        services.RegisterAccessVerifiers();
+        services.RegisterAccessControls();
         services.RegisterValidators();
     }
 }
