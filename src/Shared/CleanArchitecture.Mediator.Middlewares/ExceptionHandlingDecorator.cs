@@ -29,7 +29,7 @@ public sealed class ExceptionHandlingDecorator<TRequest, TResponse> :
             logger.LogError(exp, "{@Request} {@Error}", context.Request, exp);
 
             var systemException = exp.TranslateToSystemException();
-            return new FailureError(systemException.Message);
+            return systemException.Messages.Select(x => new FailureError(x)).ToArray();
         }
     }
 }
