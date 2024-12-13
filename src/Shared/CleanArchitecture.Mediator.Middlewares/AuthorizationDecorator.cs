@@ -19,7 +19,7 @@ public sealed class AuthorizationDecorator<TRequest, TResponse> :
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        if (!await accessControls.IsAuthorized(context.Actor, context.Request))
+        if (!await accessControls.HasPermission(context.Actor, context.Request))
         {
             return ForbiddenError.Default;
         }

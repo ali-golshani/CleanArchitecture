@@ -2,7 +2,7 @@
 
 public static class Extensions
 {
-    public static async ValueTask<bool> IsAuthorized<TRequest>(
+    public static async ValueTask<bool> HasPermission<TRequest>(
         this IEnumerable<IAccessControl<TRequest>> controls,
         Actor? actor,
         TRequest request)
