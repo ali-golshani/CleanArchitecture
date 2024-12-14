@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Domain.Repositories;
-using Framework.Exceptions;
+using Framework.Mediator.Extensions;
 using Framework.Mediator.Requests;
 using Framework.Results;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +17,7 @@ internal sealed class Handler : IRequestHandler<Query, Models.Order?>
 
     public async Task<Result<Models.Order?>> Handle(Query request, CancellationToken cancellationToken)
     {
-        var order = await GetOrder(request as FilteredQuery ?? throw new ProgrammerException());
+        var order = await GetOrder(request.AsRequestType<FilteredQuery>());
         return order?.Convert();
     }
 

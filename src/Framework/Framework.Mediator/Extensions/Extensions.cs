@@ -1,4 +1,5 @@
-﻿using Framework.Mediator.Requests;
+﻿using Framework.Mediator.Exceptions;
+using Framework.Mediator.Requests;
 
 namespace Framework.Mediator.Extensions;
 
@@ -8,7 +9,17 @@ public static class Extensions
     {
         if (request is not TRequest result)
         {
-            throw new ProgrammerException($"Invalid Request Type Casting ({request.GetType()} to {typeof(TRequest)})");
+            throw new UnexpectedRequestTypeException<TRequest>(request);
+        }
+
+        return result;
+    }
+
+    public static TRequest AsRequestType<TRequest>(this Request request)
+    {
+        if (request is not TRequest result)
+        {
+            throw new UnexpectedRequestTypeException<TRequest>(request);
         }
 
         return result;
