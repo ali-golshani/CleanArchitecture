@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.ExceptionServices;
 using System.Text;
 
@@ -6,6 +7,36 @@ namespace Framework.Exceptions.Extensions;
 
 public static class ExceptionExtensions
 {
+    public static string? Properties(this BaseSystemException exception)
+    {
+        try
+        {
+            return NameValueProperties(exception).Select(x => $"({x.Name} , {x.Value})").MultiLineJoin();
+        }
+        catch
+        {
+            return null;
+        }
+    }
+
+    public static IEnumerable<(string Name, string Value)> NameValueProperties(this BaseSystemException exception)
+    {
+        yield return new(nameof(exception.TraceId), exception.TraceId);
+
+        var properties = exception.GetType().GetProperties(
+            BindingFlags.Public
+            | BindingFlags.Instance
+            | BindingFlags.DeclaredOnly);
+
+        foreach (var property in properties)
+        {
+            var name = property.Name;
+            var value = Convert.ToString(property.GetValue(exception), Cultures.Default);
+
+            yield return new(name, value ?? "?");
+        }
+    }
+
     public static string ToStringDemystified(this Exception exception)
     {
         return System.Diagnostics.ExceptionExtensions.ToStringDemystified(exception);

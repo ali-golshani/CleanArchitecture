@@ -1,5 +1,7 @@
-﻿using Framework.Exceptions.Extensions;
+﻿using Framework.Exceptions;
+using Framework.Exceptions.Extensions;
 using Framework.Results.Errors;
+using Framework.Results.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Mediator.Middlewares;
@@ -29,7 +31,16 @@ public sealed class ExceptionHandlingDecorator<TRequest, TResponse> :
             logger.LogError(exp, "{@Request} {@Error}", context.Request, exp);
 
             var systemException = exp.TranslateToSystemException();
-            return systemException.Messages.Select(x => new FailureError(x)).ToArray();
+            return Errors(systemException);
         }
+    }
+
+    private static Error[] Errors(BaseSystemException exception)
+    {
+        return exception switch
+        {
+            DomainErrorsException domainErrorsException => domainErrorsException.Errors,
+            _ => exception.Messages.Select(x => new FailureError(x)).ToArray(),
+        };
     }
 }

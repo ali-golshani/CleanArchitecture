@@ -1,4 +1,5 @@
 ﻿using Framework.Exceptions;
+using Framework.Exceptions.Extensions;
 
 namespace Framework.Results.Exceptions;
 
@@ -11,7 +12,7 @@ public class DomainErrorsException : DomainException
     public DomainErrorsException(bool shouldLog, params Error[] errors)
     {
         Errors = errors;
-        Message = MultiLines(Errors.Select(x => x.Message));
+        Message = Errors.Select(x => x.Message).MultiLineJoin();
         Messages = Errors.Select(x => x.Message).ToList();
         ShouldLog = shouldLog;
     }
