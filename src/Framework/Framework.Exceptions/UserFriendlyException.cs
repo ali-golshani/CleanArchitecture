@@ -4,7 +4,6 @@ public class UserFriendlyException : Exception
 {
     public string? TraceId { get; }
     public bool IsRegistered { get; }
-
     public virtual IReadOnlyCollection<string> Messages => [Message];
 
     internal protected UserFriendlyException(string message, string? traceId = null, bool isRegistered = false)
