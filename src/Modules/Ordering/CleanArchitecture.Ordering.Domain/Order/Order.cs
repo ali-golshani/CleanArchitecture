@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Domain.DomainRules;
+using CleanArchitecture.Ordering.Domain.Exceptions;
 using Framework.Domain;
 using Framework.DomainRules.Extensions;
 
@@ -60,27 +61,23 @@ public class Order : CommandAwareEntity
 
     public bool Submit()
     {
-        if (Status == OrderStatus.Draft)
+        switch (Status)
         {
-            Status = OrderStatus.Submitted;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+            case OrderStatus.Draft:
+                Status = OrderStatus.Submitted;
+                return true;
 
-    public bool Approve()
-    {
-        if (Status == OrderStatus.Submitted)
-        {
-            Status = OrderStatus.Approved;
-            return true;
-        }
-        else
-        {
-            return false;
+            case OrderStatus.Submitted:
+                return false;
+
+            case OrderStatus.Approved:
+                throw new SubmitApprovedOrderException(OrderId);
+
+            case OrderStatus.Canceled:
+                throw new SubmitCanceledOrderException(OrderId);
+
+            default:
+                throw new InvalidOrderStatusException(OrderId);
         }
     }
 }
