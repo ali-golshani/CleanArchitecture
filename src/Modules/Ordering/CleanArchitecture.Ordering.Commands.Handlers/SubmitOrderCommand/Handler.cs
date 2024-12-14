@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Actors;
+using CleanArchitecture.Authorization;
 using CleanArchitecture.Ordering.Commands.Errors;
 using CleanArchitecture.Ordering.Commands.IntegrationEvents;
 using CleanArchitecture.Ordering.Domain.Repositories;
@@ -35,9 +36,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             return new OrderNotFoundError(request.OrderId);
         }
 
-        var permission = await new AccessControl().IsAuthorized(actor, order);
-
-        if (!permission)
+        if (await new AccessControl().IsAccessDenied(actor, order))
         {
             return ForbiddenError.Default;
         }

@@ -2,19 +2,27 @@
 
 public static class Extensions
 {
-    public static async ValueTask<bool> HasPermission<TRequest>(
-        this IEnumerable<IAccessControl<TRequest>> controls,
+    public static async ValueTask<bool> IsAccessDenied<T>(
+        this IAccessControl<T> control,
         Actor? actor,
-        TRequest request)
+        T content)
+    {
+        return await control.Clause(actor) && !await control.IsAuthorized(actor, content);
+    }
+
+    public static async ValueTask<bool> IsAccessDenied<T>(
+        this IEnumerable<IAccessControl<T>> controls,
+        Actor? actor,
+        T content)
     {
         foreach (var control in controls)
         {
-            if (await control.Clause(actor) && !await control.IsAuthorized(actor, request))
+            if (await control.IsAccessDenied(actor, content))
             {
-                return false;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 }
