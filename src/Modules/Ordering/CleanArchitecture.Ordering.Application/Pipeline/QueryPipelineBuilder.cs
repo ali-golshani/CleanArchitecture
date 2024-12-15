@@ -20,7 +20,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
         ExceptionHandlingFilter<TRequest, TResponse> exceptionHandling,
         ILogger<QueryPipelineBuilder<TRequest, TResponse>> logger)
     {
-        var queryHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
+        var processor = new RequestHandlingProcessor<TRequest, TResponse>(handler);
         var audit = new RequestAuditFilter<TRequest, TResponse>(queryAudit, LoggingDomain, logger);
 
         var filters = new IFilter<TRequest, TResponse>[]
@@ -32,7 +32,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
             transforming
         };
 
-        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, queryHandling);
+        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, processor);
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }

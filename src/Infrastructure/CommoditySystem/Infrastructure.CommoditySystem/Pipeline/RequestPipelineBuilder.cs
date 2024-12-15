@@ -16,7 +16,7 @@ internal sealed class RequestPipelineBuilder<TRequest, TResponse>
         RequestAuditAgent requestAudit,
         ILogger<RequestPipelineBuilder<TRequest, TResponse>> logger)
     {
-        var requestHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
+        var processor = new RequestHandlingProcessor<TRequest, TResponse>(handler);
         var audit = new RequestAuditFilter<TRequest, TResponse>(requestAudit, LoggingDomain, logger);
         var exceptionTranslation = new ExceptionTranslationFilter<TRequest, TResponse>();
 
@@ -26,7 +26,7 @@ internal sealed class RequestPipelineBuilder<TRequest, TResponse>
             audit,
         };
 
-        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, requestHandling);
+        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, processor);
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }

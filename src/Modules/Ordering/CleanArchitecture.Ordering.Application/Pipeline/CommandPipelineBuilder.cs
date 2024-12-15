@@ -18,7 +18,7 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
         ExceptionHandlingFilter<TRequest, TResponse> exceptionHandling,
         ILogger<CommandPipelineBuilder<TRequest, TResponse>> logger)
     {
-        var transactional = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
+        var processor = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
         var audit = new RequestAuditFilter<TRequest, TResponse>(commandAudit, nameof(Ordering), logger);
 
         var filters = new IFilter<TRequest, TResponse>[]
@@ -30,7 +30,7 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
             transforming
         };
 
-        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, transactional);
+        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, processor);
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }
