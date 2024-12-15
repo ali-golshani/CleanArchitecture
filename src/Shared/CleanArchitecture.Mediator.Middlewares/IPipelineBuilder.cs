@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Mediator.Middlewares;
 
-public interface IRequestPipelineBuilder<TRequest, TResponse>
+public interface IPipelineBuilder<TRequest, TResponse>
 {
     IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }
 }

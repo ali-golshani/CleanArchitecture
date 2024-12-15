@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Authorization;
+using CleanArchitecture.Mediator.Middlewares.Extensions;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,9 +10,10 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.RegisterRequestHandlers();
         services.RegisterDomainEventHandlers();
+        services.RegisterRequestHandlers();
         services.RegisterAccessControls();
+        services.RegisterTransformers();
         services.RegisterValidators();
     }
 }

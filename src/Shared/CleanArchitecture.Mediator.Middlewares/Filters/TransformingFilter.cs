@@ -2,30 +2,29 @@
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class TransformingDecorator<TRequest, TResponse> :
-    IRequestProcessor<TRequest, TResponse>
+public sealed class TransformingFilter<TRequest, TResponse> :
+    IFilter<TRequest, TResponse>
 {
-    private readonly IRequestProcessor<TRequest, TResponse> next;
     private readonly ITransformer<TRequest>[] requestTransformers;
     private readonly ITransformer<TResponse>[] responseTransformers;
 
-    public TransformingDecorator(
-        IRequestProcessor<TRequest, TResponse> next,
+    public TransformingFilter(
         IEnumerable<ITransformer<TRequest>> requestTransformers,
         IEnumerable<ITransformer<TResponse>> responseTransformers)
     {
-        this.next = next;
         this.requestTransformers = requestTransformers?.ToArray() ?? [];
         this.responseTransformers = responseTransformers?.ToArray() ?? [];
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IPipe<TRequest, TResponse> pipe)
     {
+        var actor = context.Actor;
         var request = context.Request;
+        var cancellationToken = context.CancellationToken;
 
-        foreach (var transformer in requestTransformers.OrderBy(x => x.Order))
+        foreach (var filter in requestTransformers.OrderBy(x => x.Order))
         {
-            var result = await transformer.Transform(request, context.Actor, context.CancellationToken);
+            var result = await filter.Transform(request, actor, cancellationToken);
 
             if (result.IsFailure)
             {
@@ -37,12 +36,12 @@ public sealed class TransformingDecorator<TRequest, TResponse> :
 
         context = new RequestContext<TRequest>
         {
-            Actor = context.Actor,
+            Actor = actor,
             Request = request,
-            CancellationToken = context.CancellationToken
+            CancellationToken = cancellationToken
         };
 
-        var responseResult = await next.Handle(context);
+        var responseResult = await pipe.Send(context);
 
         if (responseResult.IsFailure || responseResult.Value is null)
         {
@@ -51,9 +50,9 @@ public sealed class TransformingDecorator<TRequest, TResponse> :
 
         var response = responseResult.Value;
 
-        foreach (var transformer in responseTransformers.OrderBy(x => x.Order))
+        foreach (var filter in responseTransformers.OrderBy(x => x.Order))
         {
-            var result = await transformer.Transform(response, context.Actor, context.CancellationToken);
+            var result = await filter.Transform(response, actor, cancellationToken);
 
             if (result.IsFailure)
             {

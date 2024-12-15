@@ -8,7 +8,7 @@ public abstract class RequestPipelineBase<TRequest, TResponse>
     protected readonly IActorResolver actorResolver;
     protected readonly IRequestProcessor<TRequest, TResponse> processor;
 
-    protected RequestPipelineBase(IActorResolver actorResolver, IRequestPipelineBuilder<TRequest, TResponse> pipelineBuilder)
+    protected RequestPipelineBase(IActorResolver actorResolver, IPipelineBuilder<TRequest, TResponse> pipelineBuilder)
     {
         this.actorResolver = actorResolver;
         processor = pipelineBuilder.EntryProcessor;

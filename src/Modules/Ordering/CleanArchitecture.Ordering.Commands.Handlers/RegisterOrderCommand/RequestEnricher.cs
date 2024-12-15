@@ -5,7 +5,7 @@ using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Commands.RegisterOrderCommand;
 
-internal sealed class RequestEnricher : EnrichmentTransformer<Command>
+internal sealed class RequestEnricher : EnrichingTransformer<Command>
 {
     private readonly ICommoditySystem commoditySystem;
 
@@ -16,7 +16,7 @@ internal sealed class RequestEnricher : EnrichmentTransformer<Command>
 
     public override int Order { get; } = 1;
 
-    protected override async ValueTask<Result<Command>> Transform(Command value, CancellationToken cancellationToken)
+    protected override async ValueTask<Result<Command>> Enrich(Command value, CancellationToken cancellationToken)
     {
         var commodityResult = await GetCommodity(value.CommodityId, cancellationToken);
 

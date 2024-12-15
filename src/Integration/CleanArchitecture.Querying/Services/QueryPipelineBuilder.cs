@@ -8,7 +8,7 @@ using Infrastructure.RequestAudit;
 namespace CleanArchitecture.Querying.Services;
 
 internal sealed class QueryPipelineBuilder<TRequest, TResponse>
-    : IRequestPipelineBuilder<TRequest, TResponse>
+    : IPipelineBuilder<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
     private const string LoggingDomain = nameof(Querying);
@@ -16,19 +16,25 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
     public QueryPipelineBuilder(
         IRequestHandler<TRequest, TResponse> handler,
         RequestAuditAgent queryAudit,
-        IEnumerable<IValidator<TRequest>> validators,
-        IEnumerable<IAccessControl<TRequest>> accessControls,
-        IEnumerable<IRequestFilter<TRequest>> requestFilters,
+        ValidationFilter<TRequest, TResponse> validation,
+        AuthorizationFilter<TRequest, TResponse> authorization,
+        TransformingFilter<TRequest, TResponse> transforming,
+        ExceptionHandlingFilter<TRequest, TResponse> exceptionHandling,
         ILogger<QueryPipelineBuilder<TRequest, TResponse>> logger)
     {
         var queryHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
-        var requestFiltering = new FilteringDecorator<TRequest, TResponse>(queryHandling, requestFilters);
-        var authorization = new AuthorizationDecorator<TRequest, TResponse>(requestFiltering, accessControls);
-        var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
-        var audit = new RequestAuditDecorator<TRequest, TResponse>(validation, queryAudit, LoggingDomain, logger);
-        var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
+        var audit = new RequestAuditFilter<TRequest, TResponse>(queryAudit, LoggingDomain, logger);
 
-        EntryProcessor = exceptionHandling;
+        var filters = new IFilter<TRequest, TResponse>[]
+        {
+            exceptionHandling,
+            audit,
+            authorization,
+            validation,
+            transforming
+        };
+
+        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, queryHandling);
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }

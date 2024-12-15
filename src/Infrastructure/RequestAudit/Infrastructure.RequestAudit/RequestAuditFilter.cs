@@ -1,33 +1,30 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
+using Framework.Mediator.Requests;
+using Infrastructure.RequestAudit.Extensions;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using Infrastructure.RequestAudit.Extensions;
-using Framework.Mediator.Requests;
 
 namespace Infrastructure.RequestAudit;
 
-public sealed class RequestAuditDecorator<TRequest, TResponse> :
-    IRequestProcessor<TRequest, TResponse>
+public sealed class RequestAuditFilter<TRequest, TResponse> :
+    IFilter<TRequest, TResponse>
     where TRequest : Request
 {
-    private readonly IRequestProcessor<TRequest, TResponse> next;
     private readonly RequestAuditAgent commandAudit;
     private readonly string lggingDomain;
     private readonly ILogger logger;
 
-    public RequestAuditDecorator(
-        IRequestProcessor<TRequest, TResponse> next,
+    public RequestAuditFilter(
         RequestAuditAgent commandAudit,
         string loggingDomain,
         ILogger logger)
     {
-        this.next = next;
         this.commandAudit = commandAudit;
         lggingDomain = loggingDomain;
         this.logger = logger;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IPipe<TRequest, TResponse> pipe)
     {
         var actor = context.Actor;
         var request = context.Request;
@@ -46,7 +43,7 @@ public sealed class RequestAuditDecorator<TRequest, TResponse> :
 
         try
         {
-            var result = await next.Handle(context);
+            var result = await pipe.Send(context);
             timer.Stop();
 
             if (result.IsSuccess)

@@ -6,25 +6,21 @@ using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class ExceptionHandlingDecorator<TRequest, TResponse> :
-    IRequestProcessor<TRequest, TResponse>
+public sealed class ExceptionHandlingFilter<TRequest, TResponse> :
+    IFilter<TRequest, TResponse>
 {
-    private readonly IRequestProcessor<TRequest, TResponse> next;
     private readonly ILogger logger;
 
-    public ExceptionHandlingDecorator(
-        IRequestProcessor<TRequest, TResponse> next,
-        ILogger logger)
+    public ExceptionHandlingFilter(ILogger logger)
     {
-        this.next = next;
         this.logger = logger;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IPipe<TRequest, TResponse> pipe)
     {
         try
         {
-            return await next.Handle(context);
+            return await pipe.Send(context);
         }
         catch (Exception exp)
         {

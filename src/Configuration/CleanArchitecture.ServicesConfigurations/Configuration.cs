@@ -46,6 +46,7 @@ public static class Configuration
         Framework.Mediator.ServiceConfigurations.RegisterServices(services);
 
         Actors.ServiceConfigurations.RegisterServices(services);
+        Mediator.Middlewares.ServiceConfigurations.RegisterServices(services);
 
         ServiceConfigurations.RegisterServices(services);
 

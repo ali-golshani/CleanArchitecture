@@ -1,7 +1,4 @@
-﻿using CleanArchitecture.Authorization;
-using CleanArchitecture.Mediator.Middlewares;
-using CleanArchitecture.Mediator.Middlewares.Transformers;
-using FluentValidation;
+﻿using CleanArchitecture.Mediator.Middlewares;
 using Infrastructure.RequestAudit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,26 +6,31 @@ using Microsoft.Extensions.Logging;
 namespace CleanArchitecture.Ordering.Application.Pipeline;
 
 internal sealed class CommandPipelineBuilder<TRequest, TResponse>
-    : IRequestPipelineBuilder<TRequest, TResponse>
+    : IPipelineBuilder<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
     public CommandPipelineBuilder(
         IServiceScopeFactory serviceScopeFactory,
         RequestAuditAgent commandAudit,
-        IEnumerable<IValidator<TRequest>>? validators,
-        IEnumerable<IAccessControl<TRequest>>? accessControls,
-        IEnumerable<ITransformer<TRequest>> requestTransformers,
-        IEnumerable<ITransformer<TResponse>> responseTransformers,
+        ValidationFilter<TRequest, TResponse> validation,
+        AuthorizationFilter<TRequest, TResponse> authorization,
+        TransformingFilter<TRequest, TResponse> transforming,
+        ExceptionHandlingFilter<TRequest, TResponse> exceptionHandling,
         ILogger<CommandPipelineBuilder<TRequest, TResponse>> logger)
     {
         var transactional = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
-        var transforming = new TransformingDecorator<TRequest, TResponse>(transactional, requestTransformers, responseTransformers);
-        var authorization = new AuthorizationDecorator<TRequest, TResponse>(transforming, accessControls);
-        var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
-        var audit = new RequestAuditDecorator<TRequest, TResponse>(validation, commandAudit, nameof(Ordering), logger);
-        var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
+        var audit = new RequestAuditFilter<TRequest, TResponse>(commandAudit, nameof(Ordering), logger);
 
-        EntryProcessor = exceptionHandling;
+        var filters = new IFilter<TRequest, TResponse>[]
+        {
+            exceptionHandling,
+            audit,
+            authorization,
+            validation,
+            transforming
+        };
+
+        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, transactional);
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }
