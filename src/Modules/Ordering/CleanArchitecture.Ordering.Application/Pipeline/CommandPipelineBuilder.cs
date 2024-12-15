@@ -1,9 +1,10 @@
 ﻿using CleanArchitecture.Authorization;
 using CleanArchitecture.Mediator.Middlewares;
+using CleanArchitecture.Mediator.Middlewares.Transformers;
 using FluentValidation;
+using Infrastructure.RequestAudit;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Infrastructure.RequestAudit;
 
 namespace CleanArchitecture.Ordering.Application.Pipeline;
 
@@ -16,10 +17,13 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
         RequestAuditAgent commandAudit,
         IEnumerable<IValidator<TRequest>>? validators,
         IEnumerable<IAccessControl<TRequest>>? accessControls,
+        IEnumerable<ITransformer<TRequest>> requestTransformers,
+        IEnumerable<ITransformer<TResponse>> responseTransformers,
         ILogger<CommandPipelineBuilder<TRequest, TResponse>> logger)
     {
         var transactional = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
-        var authorization = new AuthorizationDecorator<TRequest, TResponse>(transactional, accessControls);
+        var transforming = new TransformingDecorator<TRequest, TResponse>(transactional, requestTransformers, responseTransformers);
+        var authorization = new AuthorizationDecorator<TRequest, TResponse>(transforming, accessControls);
         var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
         var audit = new RequestAuditDecorator<TRequest, TResponse>(validation, commandAudit, nameof(Ordering), logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);

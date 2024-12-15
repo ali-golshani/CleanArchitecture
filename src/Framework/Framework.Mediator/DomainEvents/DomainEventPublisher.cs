@@ -11,12 +11,12 @@ internal sealed class DomainEventPublisher : IDomainEventPublisher
         this.serviceProvider = serviceProvider;
     }
 
-    public Task<Result<Empty>> Publish<TEvent>(TEvent @event)
+    public Task<Result<Empty>> Publish<TEvent>(TEvent @event, CancellationToken cancellationToken)
         where TEvent : IDomainEvent
     {
         return
             serviceProvider
             .GetRequiredService<DomainEventPublisher<TEvent>>()
-            .Publish(@event);
+            .Publish(@event, cancellationToken);
     }
 }

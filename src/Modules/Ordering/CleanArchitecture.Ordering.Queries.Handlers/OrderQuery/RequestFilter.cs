@@ -1,18 +1,20 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Authorization;
+using CleanArchitecture.Mediator.Middlewares.Transformers;
 
 namespace CleanArchitecture.Ordering.Queries.OrderQuery;
 
-internal sealed class QueryFilter : IQueryFilter<Query>
+internal sealed class RequestFilter : FilteringTransformer<Query>
 {
-    public Query Filter(Actor? actor, Query query)
+    public override int Order { get; } = 1;
+
+    protected override Query Transform(Query value, Actor actor)
     {
         var customerId = (actor as CustomerActor)?.CustomerId;
         var brokerId = (actor as BrokerActor)?.BrokerId;
 
         return new FilteredQuery
         {
-            OrderId = query.OrderId,
+            OrderId = value.OrderId,
             CustomerId = customerId,
             BrokerId = brokerId
         };

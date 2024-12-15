@@ -10,11 +10,11 @@ internal sealed class DomainEventPublisher<TEvent>
         this.handlers = handlers;
     }
 
-    public async Task<Result<Empty>> Publish(TEvent @event)
+    public async Task<Result<Empty>> Publish(TEvent @event, CancellationToken cancellationToken)
     {
         foreach (var handler in handlers)
         {
-            var result = await handler.Handle(@event);
+            var result = await handler.Handle(@event, cancellationToken);
 
             if (result.IsFailure)
             {

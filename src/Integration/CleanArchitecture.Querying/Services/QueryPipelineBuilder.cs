@@ -18,12 +18,12 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
         RequestAuditAgent queryAudit,
         IEnumerable<IValidator<TRequest>> validators,
         IEnumerable<IAccessControl<TRequest>> accessControls,
-        IEnumerable<IQueryFilter<TRequest>> queryFilters,
+        IEnumerable<IRequestFilter<TRequest>> requestFilters,
         ILogger<QueryPipelineBuilder<TRequest, TResponse>> logger)
     {
         var queryHandling = new RequestHandlingProcessor<TRequest, TResponse>(handler);
-        var queryFiltering = new QueryFilteringDecorator<TRequest, TResponse>(queryHandling, queryFilters);
-        var authorization = new AuthorizationDecorator<TRequest, TResponse>(queryFiltering, accessControls);
+        var requestFiltering = new FilteringDecorator<TRequest, TResponse>(queryHandling, requestFilters);
+        var authorization = new AuthorizationDecorator<TRequest, TResponse>(requestFiltering, accessControls);
         var validation = new ValidationDecorator<TRequest, TResponse>(authorization, validators);
         var audit = new RequestAuditDecorator<TRequest, TResponse>(validation, queryAudit, LoggingDomain, logger);
         var exceptionHandling = new ExceptionHandlingDecorator<TRequest, TResponse>(audit, logger);
