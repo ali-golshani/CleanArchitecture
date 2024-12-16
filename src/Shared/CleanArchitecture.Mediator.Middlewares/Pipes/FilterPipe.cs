@@ -3,16 +3,16 @@
 internal class FilterPipe<TRequest, TResponse> : IRequestProcessor<TRequest, TResponse>
 {
     private readonly IMiddleware<TRequest, TResponse> filter;
-    private readonly IRequestProcessor<TRequest, TResponse> filterPipe;
+    private readonly IRequestProcessor<TRequest, TResponse> pipe;
 
-    public FilterPipe(IMiddleware<TRequest, TResponse> filter, IRequestProcessor<TRequest, TResponse> filterPipe)
+    public FilterPipe(IMiddleware<TRequest, TResponse> filter, IRequestProcessor<TRequest, TResponse> pipe)
     {
         this.filter = filter;
-        this.filterPipe = filterPipe;
+        this.pipe = pipe;
     }
 
     public Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        return filter.Handle(context, filterPipe);
+        return filter.Handle(context, pipe);
     }
 }
