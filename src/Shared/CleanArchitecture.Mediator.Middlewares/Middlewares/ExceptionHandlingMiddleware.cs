@@ -11,7 +11,7 @@ public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
 {
     private readonly ILogger logger;
 
-    public ExceptionHandlingMiddleware(ILogger logger)
+    public ExceptionHandlingMiddleware(ILogger<ExceptionHandlingMiddleware<TRequest, TResponse>> logger)
     {
         this.logger = logger;
     }

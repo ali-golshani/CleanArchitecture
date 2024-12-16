@@ -9,7 +9,9 @@ public sealed class RequestAuditMiddlewareBuilder
     private readonly RequestAuditAgent commandAudit;
     private readonly ILogger logger;
 
-    public RequestAuditMiddlewareBuilder(RequestAuditAgent commandAudit, ILogger logger)
+    public RequestAuditMiddlewareBuilder(
+        RequestAuditAgent commandAudit,
+        ILogger<RequestAuditMiddlewareBuilder> logger)
     {
         this.commandAudit = commandAudit;
         this.logger = logger;
