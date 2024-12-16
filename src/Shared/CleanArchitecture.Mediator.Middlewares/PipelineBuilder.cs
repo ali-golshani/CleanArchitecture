@@ -8,13 +8,13 @@ public static class PipelineBuilder
         IRequestProcessor<TRequest, TResponse> processor,
         params IMiddleware<TRequest, TResponse>[] filters)
     {
-        IRequestProcessor<TRequest, TResponse> result = new LastPipe<TRequest, TResponse>(processor);
+        IRequestProcessor<TRequest, TResponse> pipe = new LastPipe<TRequest, TResponse>(processor);
 
         foreach (var filter in filters.Reverse())
         {
-            result = new FilterPipe<TRequest, TResponse>(filter, result);
+            pipe = new FilterPipe<TRequest, TResponse>(filter, pipe);
         }
 
-        return result;
+        return pipe;
     }
 }

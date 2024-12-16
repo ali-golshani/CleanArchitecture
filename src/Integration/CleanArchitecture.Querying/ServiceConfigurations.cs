@@ -17,8 +17,9 @@ public static class ServiceConfigurations
         services.RegisterRequestHandlers();
         services.RegisterAccessControls();
 
-        services.AddTransient(typeof(QueryPipeline<,>));
         services.AddTransient<IQueryService, QueryService>();
+
+        services.AddTransient(typeof(QueryPipeline<,>));
         services.AddTransient(typeof(QueryPipelineBuilder<,>));
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
     }
