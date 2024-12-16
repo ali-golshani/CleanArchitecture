@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Mediator.Middlewares;
 
-namespace CleanArchitecture.Querying.Services;
+namespace CleanArchitecture.Querying.Pipeline;
 
 internal sealed class QueryPipeline<TRequest, TResponse> :
     RequestPipelineBase<TRequest, TResponse>

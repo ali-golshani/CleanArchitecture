@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
 
-namespace CleanArchitecture.Querying.Services;
+namespace CleanArchitecture.Querying.Pipeline;
 
 internal sealed class QueryPipelineBuilder<TRequest, TResponse>
     : IPipelineBuilder<TRequest, TResponse>

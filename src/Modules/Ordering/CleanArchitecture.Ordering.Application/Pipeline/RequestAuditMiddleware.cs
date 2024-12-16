@@ -9,10 +9,10 @@ internal sealed class RequestAuditMiddleware<TRequest, TResponse>
     where TRequest : Request
 {
     public RequestAuditMiddleware(
-        RequestAuditAgent commandAudit,
+        RequestAuditAgent requestAudit,
         ILogger<RequestAuditMiddleware<TRequest, TResponse>> logger)
-        : base(commandAudit, logger)
+        : base(requestAudit, logger)
     { }
 
-    protected override string LggingDomain => nameof(Ordering);
+    protected override string LggingDomain { get; } = nameof(Ordering);
 }

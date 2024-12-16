@@ -2,17 +2,17 @@
 using Infrastructure.RequestAudit;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Querying.Services;
+namespace CleanArchitecture.Querying.Pipeline;
 
 internal sealed class RequestAuditMiddleware<TRequest, TResponse>
     : RequestAuditMiddlewareBase<TRequest, TResponse>
     where TRequest : Request
 {
     public RequestAuditMiddleware(
-        RequestAuditAgent commandAudit,
+        RequestAuditAgent requestAudit,
         ILogger<RequestAuditMiddleware<TRequest, TResponse>> logger)
-        : base(commandAudit, logger)
+        : base(requestAudit, logger)
     { }
 
-    protected override string LggingDomain => nameof(Querying);
+    protected override string LggingDomain { get; } = nameof(Querying);
 }

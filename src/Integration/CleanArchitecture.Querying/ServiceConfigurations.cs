@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Authorization;
 using CleanArchitecture.Mediator.Middlewares.Extensions;
+using CleanArchitecture.Querying.Pipeline;
 using CleanArchitecture.Querying.Services;
 using Framework.Mediator.Extensions;
 using Framework.Validation;

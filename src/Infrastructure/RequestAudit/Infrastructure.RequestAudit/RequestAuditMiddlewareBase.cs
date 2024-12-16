@@ -11,12 +11,12 @@ public abstract class RequestAuditMiddlewareBase<TRequest, TResponse> : IMiddlew
 {
     protected abstract string LggingDomain { get; }
 
-    private readonly RequestAuditAgent commandAudit;
+    private readonly RequestAuditAgent requestAudit;
     private readonly ILogger logger;
 
-    protected RequestAuditMiddlewareBase(RequestAuditAgent commandAudit, ILogger logger)
+    protected RequestAuditMiddlewareBase(RequestAuditAgent requestAudit, ILogger logger)
     {
-        this.commandAudit = commandAudit;
+        this.requestAudit = requestAudit;
         this.logger = logger;
     }
 
@@ -46,12 +46,12 @@ public abstract class RequestAuditMiddlewareBase<TRequest, TResponse> : IMiddlew
             {
                 var response = result.Value;
                 logEntry.Responsed(responseTime: timer.Elapsed, request: request, response: response);
-                commandAudit.Post(logEntry);
+                requestAudit.Post(logEntry);
             }
             else
             {
                 logEntry.Failed(result.Errors, responseTime: timer.Elapsed);
-                commandAudit.Post(logEntry);
+                requestAudit.Post(logEntry);
             }
 
 
@@ -63,7 +63,7 @@ public abstract class RequestAuditMiddlewareBase<TRequest, TResponse> : IMiddlew
         {
             timer.Stop();
             logEntry.Failed(exp, timer.Elapsed);
-            commandAudit.Post(logEntry);
+            requestAudit.Post(logEntry);
 
             throw;
         }
