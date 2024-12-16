@@ -25,8 +25,6 @@ internal sealed class Handler(EmptyDbContext db) : IRequestHandler<Query, IQuery
             result = result.Where(x => x.BrokerId == request.BrokerId.Value);
         }
 
-        result = result.OrderByDescending(x => x.OrderId);
-
         return Result<IQueryable<Order>>.Success(result);
     }
 
