@@ -13,7 +13,7 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
         RequestAuditMiddlewareBuilder auditFilterBuilder,
         ValidationMiddleware<TRequest, TResponse> validation,
         AuthorizationMiddleware<TRequest, TResponse> authorization,
-        TransformingMiddleware<TRequest, TResponse> transforming,
+        FilteringMiddleware<TRequest, TResponse> filtering,
         ExceptionHandlingMiddleware<TRequest, TResponse> exceptionHandling)
     {
         var processor = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
@@ -26,7 +26,7 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
             audit,
             authorization,
             validation,
-            transforming
+            filtering
         };
 
         EntryProcessor = PipelineBuilder.EntryProcessor(middlewares, processor);

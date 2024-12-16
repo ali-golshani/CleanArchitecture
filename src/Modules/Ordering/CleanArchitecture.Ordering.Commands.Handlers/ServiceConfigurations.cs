@@ -13,7 +13,7 @@ public static class ServiceConfigurations
         services.RegisterDomainEventHandlers();
         services.RegisterRequestHandlers();
         services.RegisterAccessControls();
-        services.RegisterTransformers();
+        services.RegisterFilters();
         services.RegisterValidators();
     }
 }

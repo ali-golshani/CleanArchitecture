@@ -14,7 +14,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
         RequestAuditMiddlewareBuilder auditFilterBuilder,
         ValidationMiddleware<TRequest, TResponse> validation,
         AuthorizationMiddleware<TRequest, TResponse> authorization,
-        TransformingMiddleware<TRequest, TResponse> transforming,
+        FilteringMiddleware<TRequest, TResponse> filtering,
         ExceptionHandlingMiddleware<TRequest, TResponse> exceptionHandling)
     {
         var processor = new RequestHandlingProcessor<TRequest, TResponse>(handler);
@@ -27,7 +27,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
             audit,
             authorization,
             validation,
-            transforming
+            filtering
         };
 
         EntryProcessor = PipelineBuilder.EntryProcessor(middlewares, processor);

@@ -12,7 +12,7 @@ public static class ServiceConfigurations
     {
         services.RegisterRequestHandlers();
         services.RegisterAccessControls();
-        services.RegisterTransformers();
+        services.RegisterFilters();
         services.RegisterValidators();
     }
 }

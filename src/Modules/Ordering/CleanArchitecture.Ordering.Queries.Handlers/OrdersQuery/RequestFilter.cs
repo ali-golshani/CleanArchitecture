@@ -1,26 +1,26 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Mediator.Middlewares.Transformers;
+using CleanArchitecture.Mediator.Middlewares;
+using CleanArchitecture.Ordering.Queries.Models;
+using Framework.Queries;
 
 namespace CleanArchitecture.Ordering.Queries.OrdersQuery;
 
-internal sealed class RequestFilter : FilteringTransformer<Query>
+internal sealed class RequestFilter : IFilter<Query, PaginatedItems<Order>>
 {
-    public override int Order { get; } = 1;
-
-    protected override Query Filter(Query value, Actor actor)
+    public Query Filter(Query request, Actor actor)
     {
         var customerId = (actor as CustomerActor)?.CustomerId;
         var brokerId = (actor as BrokerActor)?.BrokerId;
 
         return new Query
         {
-            CommodityId = value.CommodityId,
-            OrderStatus = value.OrderStatus,
-            BrokerId = brokerId ?? value.BrokerId,
-            CustomerId = customerId ?? value.CustomerId,
-            OrderBy = value.OrderBy,
-            PageIndex = value.PageIndex,
-            PageSize = value.PageSize,
+            CommodityId = request.CommodityId,
+            OrderStatus = request.OrderStatus,
+            BrokerId = brokerId ?? request.BrokerId,
+            CustomerId = customerId ?? request.CustomerId,
+            OrderBy = request.OrderBy,
+            PageIndex = request.PageIndex,
+            PageSize = request.PageSize,
         };
     }
 }

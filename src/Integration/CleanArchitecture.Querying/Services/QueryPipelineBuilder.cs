@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
 using Framework.Mediator.Requests;
 using Infrastructure.RequestAudit;
-using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Querying.Services;
 
@@ -14,9 +13,8 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
         RequestAuditMiddlewareBuilder auditFilterBuilder,
         ValidationMiddleware<TRequest, TResponse> validation,
         AuthorizationMiddleware<TRequest, TResponse> authorization,
-        TransformingMiddleware<TRequest, TResponse> transforming,
-        ExceptionHandlingMiddleware<TRequest, TResponse> exceptionHandling,
-        ILogger<QueryPipelineBuilder<TRequest, TResponse>> logger)
+        FilteringMiddleware<TRequest, TResponse> filtering,
+        ExceptionHandlingMiddleware<TRequest, TResponse> exceptionHandling)
     {
         var processor = new RequestHandlingProcessor<TRequest, TResponse>(handler);
 
@@ -28,7 +26,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
             audit,
             authorization,
             validation,
-            transforming
+            filtering
         };
 
         EntryProcessor = PipelineBuilder.EntryProcessor(middlewares, processor);

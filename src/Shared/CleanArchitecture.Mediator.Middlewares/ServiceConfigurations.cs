@@ -8,7 +8,7 @@ public static class ServiceConfigurations
     {
         services.AddTransient(typeof(AuthorizationMiddleware<,>));
         services.AddTransient(typeof(ExceptionHandlingMiddleware<,>));
-        services.AddTransient(typeof(TransformingMiddleware<,>));
+        services.AddTransient(typeof(FilteringMiddleware<,>));
         services.AddTransient(typeof(ValidationMiddleware<,>));
     }
 }
