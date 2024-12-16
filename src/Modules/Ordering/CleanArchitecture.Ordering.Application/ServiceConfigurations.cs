@@ -16,5 +16,7 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(CommandPipeline<,>));
         services.AddTransient(typeof(QueryPipelineBuilder<,>));
         services.AddTransient(typeof(CommandPipelineBuilder<,>));
+        services.AddTransient(typeof(RequestAuditMiddleware<,>));
+        services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
     }
 }

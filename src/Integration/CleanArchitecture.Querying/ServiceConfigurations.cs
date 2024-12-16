@@ -19,5 +19,6 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(QueryPipeline<,>));
         services.AddTransient<IQueryService, QueryService>();
         services.AddTransient(typeof(QueryPipelineBuilder<,>));
+        services.AddTransient(typeof(RequestAuditMiddleware<,>));
     }
 }

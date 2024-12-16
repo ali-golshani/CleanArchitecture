@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.RequestAudit;
 
-public class RequestAuditAgent : BackgroundServiceAgentBase
+public sealed class RequestAuditAgent : BackgroundServiceAgentBase
 {
     private readonly IServiceScopeFactory serviceScopeFactory;
     private readonly System.Threading.Channels.Channel<AuditTrail> logChannel;
@@ -19,7 +19,7 @@ public class RequestAuditAgent : BackgroundServiceAgentBase
 
     protected override bool IsEnable => true;
 
-    protected virtual TimeSpan[] RetryDelays =>
+    private static TimeSpan[] RetryDelays =>
     [
             TimeSpan.FromSeconds(10),
             TimeSpan.FromSeconds(30),
