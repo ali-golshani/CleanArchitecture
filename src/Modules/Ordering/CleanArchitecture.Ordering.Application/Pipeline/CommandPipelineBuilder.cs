@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
 using Infrastructure.RequestAudit;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.Ordering.Application.Pipeline;
 
@@ -11,17 +10,17 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
 {
     public CommandPipelineBuilder(
         IServiceScopeFactory serviceScopeFactory,
-        RequestAuditAgent commandAudit,
-        ValidationFilter<TRequest, TResponse> validation,
-        AuthorizationFilter<TRequest, TResponse> authorization,
-        TransformingFilter<TRequest, TResponse> transforming,
-        ExceptionHandlingFilter<TRequest, TResponse> exceptionHandling,
-        ILogger<CommandPipelineBuilder<TRequest, TResponse>> logger)
+        RequestAuditMiddlewareBuilder auditFilterBuilder,
+        ValidationMiddleware<TRequest, TResponse> validation,
+        AuthorizationMiddleware<TRequest, TResponse> authorization,
+        TransformingMiddleware<TRequest, TResponse> transforming,
+        ExceptionHandlingMiddleware<TRequest, TResponse> exceptionHandling)
     {
         var processor = new TransactionalCommandHandlingProcessor<TRequest, TResponse>(serviceScopeFactory);
-        var audit = new RequestAuditFilter<TRequest, TResponse>(commandAudit, nameof(Ordering), logger);
 
-        var filters = new IFilter<TRequest, TResponse>[]
+        var audit = auditFilterBuilder.Build<TRequest, TResponse>(nameof(Ordering));
+
+        var middlewares = new IMiddleware<TRequest, TResponse>[]
         {
             exceptionHandling,
             audit,
@@ -30,7 +29,7 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
             transforming
         };
 
-        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, processor);
+        EntryProcessor = PipelineBuilder.EntryProcessor(middlewares, processor);
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }

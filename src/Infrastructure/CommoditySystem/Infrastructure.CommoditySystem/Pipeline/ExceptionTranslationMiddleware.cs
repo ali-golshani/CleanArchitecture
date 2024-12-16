@@ -3,14 +3,14 @@ using Framework.Results;
 
 namespace Infrastructure.CommoditySystem.Pipeline;
 
-public sealed class ExceptionTranslationFilter<TRequest, TResponse> :
-    IFilter<TRequest, TResponse>
+public sealed class ExceptionTranslationMiddleware<TRequest, TResponse> :
+    IMiddleware<TRequest, TResponse>
 {
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IPipe<TRequest, TResponse> pipe)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
     {
         try
         {
-            return await pipe.Send(context);
+            return await next.Handle(context);
         }
         catch (CommoditySystemException)
         {

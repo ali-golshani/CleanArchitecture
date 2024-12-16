@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Mediator.Middlewares.Pipes;
 
-internal class LastPipe<TRequest, TResponse> : IPipe<TRequest, TResponse>
+internal class LastPipe<TRequest, TResponse> : IRequestProcessor<TRequest, TResponse>
 {
     private readonly IRequestProcessor<TRequest, TResponse> processor;
 
@@ -9,7 +9,7 @@ internal class LastPipe<TRequest, TResponse> : IPipe<TRequest, TResponse>
         this.processor = processor;
     }
 
-    public Task<Result<TResponse>> Send(RequestContext<TRequest> context)
+    public Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
         return processor.Handle(context);
     }

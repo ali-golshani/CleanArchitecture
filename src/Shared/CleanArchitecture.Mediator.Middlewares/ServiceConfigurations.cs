@@ -6,9 +6,9 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddTransient(typeof(AuthorizationFilter<,>));
-        services.AddTransient(typeof(ExceptionHandlingFilter<,>));
-        services.AddTransient(typeof(TransformingFilter<,>));
-        services.AddTransient(typeof(ValidationFilter<,>));
+        services.AddTransient(typeof(AuthorizationMiddleware<,>));
+        services.AddTransient(typeof(ExceptionHandlingMiddleware<,>));
+        services.AddTransient(typeof(TransformingMiddleware<,>));
+        services.AddTransient(typeof(ValidationMiddleware<,>));
     }
 }

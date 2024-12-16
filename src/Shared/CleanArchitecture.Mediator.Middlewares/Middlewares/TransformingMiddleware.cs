@@ -2,13 +2,13 @@
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class TransformingFilter<TRequest, TResponse> :
-    IFilter<TRequest, TResponse>
+public sealed class TransformingMiddleware<TRequest, TResponse> :
+    IMiddleware<TRequest, TResponse>
 {
     private readonly ITransformer<TRequest>[] requestTransformers;
     private readonly ITransformer<TResponse>[] responseTransformers;
 
-    public TransformingFilter(
+    public TransformingMiddleware(
         IEnumerable<ITransformer<TRequest>> requestTransformers,
         IEnumerable<ITransformer<TResponse>> responseTransformers)
     {
@@ -16,7 +16,7 @@ public sealed class TransformingFilter<TRequest, TResponse> :
         this.responseTransformers = responseTransformers?.ToArray() ?? [];
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IPipe<TRequest, TResponse> pipe)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
     {
         var actor = context.Actor;
         var request = context.Request;
@@ -41,7 +41,7 @@ public sealed class TransformingFilter<TRequest, TResponse> :
             CancellationToken = cancellationToken
         };
 
-        var responseResult = await pipe.Send(context);
+        var responseResult = await next.Handle(context);
 
         if (responseResult.IsFailure || responseResult.Value is null)
         {

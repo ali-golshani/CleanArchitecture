@@ -1,17 +1,17 @@
 ﻿namespace CleanArchitecture.Mediator.Middlewares.Pipes;
 
-internal class FilterPipe<TRequest, TResponse> : IPipe<TRequest, TResponse>
+internal class FilterPipe<TRequest, TResponse> : IRequestProcessor<TRequest, TResponse>
 {
-    private readonly IFilter<TRequest, TResponse> filter;
-    private readonly IPipe<TRequest, TResponse> filterPipe;
+    private readonly IMiddleware<TRequest, TResponse> filter;
+    private readonly IRequestProcessor<TRequest, TResponse> filterPipe;
 
-    public FilterPipe(IFilter<TRequest, TResponse> filter, IPipe<TRequest, TResponse> filterPipe)
+    public FilterPipe(IMiddleware<TRequest, TResponse> filter, IRequestProcessor<TRequest, TResponse> filterPipe)
     {
         this.filter = filter;
         this.filterPipe = filterPipe;
     }
 
-    public Task<Result<TResponse>> Send(RequestContext<TRequest> context)
+    public Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
         return filter.Handle(context, filterPipe);
     }

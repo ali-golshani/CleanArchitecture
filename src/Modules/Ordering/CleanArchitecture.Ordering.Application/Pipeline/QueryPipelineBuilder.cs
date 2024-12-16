@@ -9,21 +9,19 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
     : IPipelineBuilder<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
-    private const string LoggingDomain = nameof(Ordering);
-
     public QueryPipelineBuilder(
         IRequestHandler<TRequest, TResponse> handler,
-        RequestAuditAgent queryAudit,
-        ValidationFilter<TRequest, TResponse> validation,
-        AuthorizationFilter<TRequest, TResponse> authorization,
-        TransformingFilter<TRequest, TResponse> transforming,
-        ExceptionHandlingFilter<TRequest, TResponse> exceptionHandling,
-        ILogger<QueryPipelineBuilder<TRequest, TResponse>> logger)
+        RequestAuditMiddlewareBuilder auditFilterBuilder,
+        ValidationMiddleware<TRequest, TResponse> validation,
+        AuthorizationMiddleware<TRequest, TResponse> authorization,
+        TransformingMiddleware<TRequest, TResponse> transforming,
+        ExceptionHandlingMiddleware<TRequest, TResponse> exceptionHandling)
     {
         var processor = new RequestHandlingProcessor<TRequest, TResponse>(handler);
-        var audit = new RequestAuditFilter<TRequest, TResponse>(queryAudit, LoggingDomain, logger);
 
-        var filters = new IFilter<TRequest, TResponse>[]
+        var audit = auditFilterBuilder.Build<TRequest, TResponse>(nameof(Ordering));
+
+        var middlewares = new IMiddleware<TRequest, TResponse>[]
         {
             exceptionHandling,
             audit,
@@ -32,7 +30,7 @@ internal sealed class QueryPipelineBuilder<TRequest, TResponse>
             transforming
         };
 
-        EntryProcessor = new Pipeline<TRequest, TResponse>(filters, processor);
+        EntryProcessor = PipelineBuilder.EntryProcessor(middlewares, processor);
     }
 
     public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }

@@ -6,15 +6,15 @@ using System.Diagnostics;
 
 namespace Infrastructure.RequestAudit;
 
-public sealed class RequestAuditFilter<TRequest, TResponse> :
-    IFilter<TRequest, TResponse>
+internal sealed class RequestAuditMiddleware<TRequest, TResponse> :
+    IMiddleware<TRequest, TResponse>
     where TRequest : Request
 {
     private readonly RequestAuditAgent commandAudit;
     private readonly string lggingDomain;
     private readonly ILogger logger;
 
-    public RequestAuditFilter(
+    public RequestAuditMiddleware(
         RequestAuditAgent commandAudit,
         string loggingDomain,
         ILogger logger)
@@ -24,7 +24,7 @@ public sealed class RequestAuditFilter<TRequest, TResponse> :
         this.logger = logger;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IPipe<TRequest, TResponse> pipe)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
     {
         var actor = context.Actor;
         var request = context.Request;
@@ -43,7 +43,7 @@ public sealed class RequestAuditFilter<TRequest, TResponse> :
 
         try
         {
-            var result = await pipe.Send(context);
+            var result = await next.Handle(context);
             timer.Stop();
 
             if (result.IsSuccess)

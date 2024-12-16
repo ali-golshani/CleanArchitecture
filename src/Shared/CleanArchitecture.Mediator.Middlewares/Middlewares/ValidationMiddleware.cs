@@ -3,17 +3,17 @@ using Framework.Validation;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class ValidationFilter<TRequest, TResponse> :
-    IFilter<TRequest, TResponse>
+public sealed class ValidationMiddleware<TRequest, TResponse> :
+    IMiddleware<TRequest, TResponse>
 {
     private readonly IValidator<TRequest>[] validators;
 
-    public ValidationFilter(IEnumerable<IValidator<TRequest>>? validators)
+    public ValidationMiddleware(IEnumerable<IValidator<TRequest>>? validators)
     {
         this.validators = validators?.ToArray() ?? [];
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IPipe<TRequest, TResponse> pipe)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
     {
         var validationResult = await validators.ValidateAsync(context.Request);
         var errors = validationResult.Errors();
@@ -23,6 +23,6 @@ public sealed class ValidationFilter<TRequest, TResponse> :
             return errors;
         }
 
-        return await pipe.Send(context);
+        return await next.Handle(context);
     }
 }
