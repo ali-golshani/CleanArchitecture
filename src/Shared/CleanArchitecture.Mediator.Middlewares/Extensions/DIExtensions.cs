@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using CleanArchitecture.Authorization;
 
 namespace CleanArchitecture.Mediator.Middlewares.Extensions;
 

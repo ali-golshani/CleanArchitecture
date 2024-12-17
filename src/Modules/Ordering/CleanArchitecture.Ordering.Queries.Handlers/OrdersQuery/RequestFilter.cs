@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Actors;
+using CleanArchitecture.Authorization;
 using CleanArchitecture.Mediator.Middlewares;
 using CleanArchitecture.Ordering.Queries.Models;
 using Framework.Queries;

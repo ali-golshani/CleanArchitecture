@@ -1,6 +1,4 @@
-﻿using CleanArchitecture.Actors;
-
-namespace CleanArchitecture.Mediator.Middlewares;
+﻿namespace CleanArchitecture.Authorization;
 
 public interface IFilter<TRequest, TResponse>
 {

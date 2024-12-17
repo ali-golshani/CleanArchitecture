@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Mediator.Middlewares;
+﻿using CleanArchitecture.Authorization;
+
+namespace CleanArchitecture.Mediator.Middlewares;
 
 public sealed class FilteringMiddleware<TRequest, TResponse> :
     IMiddleware<TRequest, TResponse>
