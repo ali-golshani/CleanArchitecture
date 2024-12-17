@@ -9,8 +9,11 @@ internal static class OptionsConfigs
     {
         var directory = AppDomain.CurrentDomain.BaseDirectory;
         var filePath = Path.Combine(directory, "GlobalOptions.json");
-        var bytes = Options.Options.ConfigurationData(environment.OptionsConfiguration);
-        File.WriteAllBytes(filePath, bytes);
+        if (!File.Exists(filePath))
+        {
+            var bytes = Options.Options.ConfigurationData(environment.OptionsConfiguration);
+            File.WriteAllBytes(filePath, bytes);
+        }
         configuration.AddJsonFile(filePath, optional: false, reloadOnChange: true);
     }
 }
