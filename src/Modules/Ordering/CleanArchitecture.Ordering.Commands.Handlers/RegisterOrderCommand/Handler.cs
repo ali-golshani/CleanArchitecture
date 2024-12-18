@@ -93,7 +93,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         return await
             commoditySystem
             .Handle(request, cancellationToken)
-            .NotFoundIfNull(PersianDictionary.CommodityDictionary.Commodity, commodityId);
+            .NotFoundIfNull(new CommodityNotFoundError(commodityId));
     }
 
     private Task<Result<Domain.Order>> BuildOrder(Command request, Commodity commodity)

@@ -45,6 +45,29 @@ public static class Extensions
         return result.NotFoundIfNull(resourceName, resourceKey);
     }
 
+    public static Result<T> NotFoundIfNull<T>(this Result<T?> result, NotFoundError notFound)
+        where T : class
+    {
+        if (result.IsFailure)
+        {
+            return result.Errors;
+        }
+
+        if (result.Value == null)
+        {
+            return notFound;
+        }
+
+        return result.Value;
+    }
+
+    public static async Task<Result<T>> NotFoundIfNull<T>(this Task<Result<T?>> resultTask, NotFoundError notFound)
+        where T : class
+    {
+        var result = await resultTask;
+        return result.NotFoundIfNull(notFound);
+    }
+
     public static Result<Empty> AsEmptyResult<T>(Result<T> result)
     {
         if (result.IsSuccess)
