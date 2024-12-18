@@ -60,10 +60,9 @@ public class OrderController : BaseController
         Ordering.Commands.RegisterOrderCommand.Command command,
         CancellationToken cancellationToken)
     {
-        var actor = new Programmer("golshani", "Ali Golshani");
         return
             commandService
-            .Handle(actor, command, cancellationToken)
+            .Handle(command, cancellationToken)
             .AsTypedResults();
     }
 }
