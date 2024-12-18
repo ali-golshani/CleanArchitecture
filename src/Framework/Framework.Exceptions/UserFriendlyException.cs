@@ -6,14 +6,14 @@ public class UserFriendlyException : Exception
     public bool IsRegistered { get; }
     public virtual IReadOnlyCollection<string> Messages => [Message];
 
-    internal protected UserFriendlyException(string message, string? traceId = null, bool isRegistered = false)
+    protected internal UserFriendlyException(string message, string? traceId = null, bool isRegistered = false)
         : base(message)
     {
         TraceId = traceId;
         IsRegistered = isRegistered;
     }
 
-    internal protected UserFriendlyException(Exception innerException, string message, string? traceId = null, bool isRegistered = false)
+    protected internal UserFriendlyException(Exception innerException, string message, string? traceId = null, bool isRegistered = false)
         : base(message, innerException)
     {
         TraceId = traceId;
