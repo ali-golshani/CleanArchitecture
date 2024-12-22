@@ -25,7 +25,7 @@ internal static class Program
 
     private static async Task Run(IServiceProvider serviceProvider)
     {
-        await serviceProvider.GetRequiredService<QueryOrder>().Run();
+        await serviceProvider.GetRequiredService<RegisterOrderCommandService>().Run();
     }
 
     private static void Exit()
