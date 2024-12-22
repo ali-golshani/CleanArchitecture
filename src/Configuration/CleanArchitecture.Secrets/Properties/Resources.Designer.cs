@@ -70,12 +70,29 @@ namespace CleanArchitecture.Secrets.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to {
+        ///  &quot;Authentication&quot;: {
+        ///
+        ///    &quot;Default&quot;: {
+        ///      &quot;SecurityKey&quot;: &quot;qwertyuiopasdfghjklzxcvbnm123456&quot;,
+        ///      &quot;IntrospectionSchema&quot;: null,
+        ///      &quot;JwtBearerOptions&quot;: {
+        ///        &quot;Authority&quot;: null,
+        ///        &quot;Audience&quot;: &quot;www.example.com&quot;,
+        ///        &quot;ClaimsIssuer&quot;: &quot;Online JWT Builder&quot;,
+        ///        &quot;SaveToken&quot;: true,
+        ///        &quot;RequireHttpsMetadata&quot;: true,
+        ///        &quot;IncludeErrorDetails&quot;: true
+        ///      }
+        ///    },
+        ///
+        ///    &quot;InternalServices&quot;: {
+        ///      &quot;SecurityKey&quot;: &quot;qwertyuiopasdfghjklzcdebab654321&quot;,
+        ///      &quot;Introspection [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static byte[] DevelopmentAuth {
+        internal static string DevelopmentAuth {
             get {
-                object obj = ResourceManager.GetObject("DevelopmentAuth", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("DevelopmentAuth", resourceCulture);
             }
         }
         

@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.Secrets.Exceptions;
 
 namespace CleanArchitecture.Secrets;
 
@@ -6,39 +7,36 @@ public static class Authentication
 {
     public static MemoryStream ConfigurationStream(SecretsConfiguration configuration)
     {
-        switch (configuration)
+        var text = ConfigurationString(configuration);
+        if (ShouldDecrypt(configuration))
         {
-            case SecretsConfiguration.Production:
-                return ProductionStream();
-
-            case SecretsConfiguration.Staging:
-                return StagingStream();
-
-            case SecretsConfiguration.DbMigration:
-            case SecretsConfiguration.Development:
-            default:
-                return DevelopmentStream();
+            text = EnvironmentVariables.TryDecrypt(text);
         }
-    }
-
-    private static MemoryStream DevelopmentStream()
-    {
-        var data = Properties.Resources.DevelopmentAuth;
-        return new MemoryStream(data);
-    }
-
-    private static MemoryStream ProductionStream()
-    {
-        var text = Properties.Resources.ProductionAuth;
-        text = EnvironmentVariables.TryDecrypt(text);
         return ToStream(text);
     }
 
-    private static MemoryStream StagingStream()
+    private static string ConfigurationString(SecretsConfiguration configuration)
     {
-        var text = Properties.Resources.StagingAuth;
-        text = EnvironmentVariables.TryDecrypt(text);
-        return ToStream(text);
+        return configuration switch
+        {
+            SecretsConfiguration.Staging => Properties.Resources.StagingAuth,
+            SecretsConfiguration.Production => Properties.Resources.ProductionAuth,
+            SecretsConfiguration.DbMigration => Properties.Resources.DevelopmentAuth,
+            SecretsConfiguration.Development => Properties.Resources.DevelopmentAuth,
+            _ => throw new InvalidSecretsConfigurationException(configuration),
+        };
+    }
+
+    private static bool ShouldDecrypt(SecretsConfiguration onfiguration)
+    {
+        return onfiguration switch
+        {
+            SecretsConfiguration.Staging => true,
+            SecretsConfiguration.Production => true,
+            SecretsConfiguration.DbMigration => true,
+            SecretsConfiguration.Development => false,
+            _ => false,
+        };
     }
 
     private static MemoryStream ToStream(string text)

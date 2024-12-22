@@ -122,7 +122,7 @@
     <value>..\ConnectionStrings\DbMigrationCS.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="DevelopmentAuth" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Authentication\DevelopmentAuth.json;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>..\Authentication\DevelopmentAuth.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
   <data name="DevelopmentCS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\ConnectionStrings\DevelopmentCS.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>

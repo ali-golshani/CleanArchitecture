@@ -17,38 +17,26 @@ public static class ConnectionStrings
 
     private static string ConfigurationString(SecretsConfiguration configuration)
     {
-        switch (configuration)
+        return configuration switch
         {
-            default:
-                throw new InvalidSecretsConfigurationException(configuration);
-
-            case SecretsConfiguration.Development:
-                return Properties.Resources.DevelopmentCS;
-
-            case SecretsConfiguration.Staging:
-                return Properties.Resources.StagingCS;
-
-            case SecretsConfiguration.Production:
-                return Properties.Resources.ProductionCS;
-
-            case SecretsConfiguration.DbMigration:
-                return Properties.Resources.DbMigrationCS;
-        }
+            SecretsConfiguration.Staging => Properties.Resources.StagingCS,
+            SecretsConfiguration.Production => Properties.Resources.ProductionCS,
+            SecretsConfiguration.DbMigration => Properties.Resources.DbMigrationCS,
+            SecretsConfiguration.Development => Properties.Resources.DevelopmentCS,
+            _ => throw new InvalidSecretsConfigurationException(configuration),
+        };
     }
 
     private static bool ShouldDecrypt(SecretsConfiguration onfiguration)
     {
-        switch (onfiguration)
+        return onfiguration switch
         {
-            default:
-            case SecretsConfiguration.Development:
-                return false;
-
-            case SecretsConfiguration.Staging:
-            case SecretsConfiguration.Production:
-            case SecretsConfiguration.DbMigration:
-                return true;
-        }
+            SecretsConfiguration.Staging => true,
+            SecretsConfiguration.Production => true,
+            SecretsConfiguration.DbMigration => true,
+            SecretsConfiguration.Development => false,
+            _ => false,
+        };
     }
 
     private static MemoryStream ToStream(string text)
