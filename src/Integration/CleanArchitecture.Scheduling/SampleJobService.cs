@@ -12,7 +12,7 @@ public class SampleJobService : IJobService
     private readonly IQueryService queryService;
     private readonly IBatchCommandsService<Ordering.Commands.EmptyTestingCommand.Command> batchCommandsService;
 
-    private static readonly Actor actor = new InternalServiceActor(nameof(SampleJobService));
+    private static readonly Actor Actor = new InternalServiceActor(nameof(SampleJobService));
 
     public SampleJobService(
         IQueryService queryService,
@@ -24,7 +24,7 @@ public class SampleJobService : IJobService
 
     public async Task Execute(CancellationToken stoppingToken)
     {
-        var orders = await queryService.Handle(actor, new Ordering.Queries.OrdersQuery.Query
+        var orders = await queryService.Handle(Actor, new Ordering.Queries.OrdersQuery.Query
         {
             OrderStatus = OrderStatus.Approved,
         }, stoppingToken)

@@ -72,15 +72,13 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         return await
             GetCommodity(request.CommodityId, cancellationToken)
             .ContinueOnSuccess(commodity =>
-            {
-                return
-                    BuildOrder(request, commodity)
-                    .ContinueOnSuccess(order =>
-                    {
-                        orderRepository.Add(order);
-                        return OnOrderRegistered(order, request.CorrelationId, cancellationToken);
-                    });
-            });
+                BuildOrder(request, commodity)
+                .ContinueOnSuccess(order =>
+                {
+                    orderRepository.Add(order);
+                    return OnOrderRegistered(order, request.CorrelationId, cancellationToken);
+                })
+            );
     }
 
     private async Task<Result<Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
