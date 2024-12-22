@@ -11,7 +11,6 @@
     <ProjectReference Include="..\..\..\Framework\Framework.Utilities\Framework.Utilities.csproj" />
     <ProjectReference Include="..\..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
-    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator.Middlewares\CleanArchitecture.Mediator.Middlewares.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Ordering.Commands.Contract\CleanArchitecture.Ordering.Commands.Contract.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Ordering.Domain.Services\CleanArchitecture.Ordering.Domain.Services.csproj" />
   </ItemGroup>

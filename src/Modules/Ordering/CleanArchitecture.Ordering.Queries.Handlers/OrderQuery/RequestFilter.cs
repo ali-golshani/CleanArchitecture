@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
-using CleanArchitecture.Mediator.Middlewares;
 using CleanArchitecture.Ordering.Queries.Models;
 
 namespace CleanArchitecture.Ordering.Queries.OrderQuery;

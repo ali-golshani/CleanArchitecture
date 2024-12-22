@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Authorization;
-using CleanArchitecture.Mediator.Middlewares.Extensions;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;

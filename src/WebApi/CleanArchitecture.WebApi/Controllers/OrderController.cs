@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Ordering.Commands;
+﻿using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using CleanArchitecture.Ordering.Queries.Models;
 using Framework.Queries;
