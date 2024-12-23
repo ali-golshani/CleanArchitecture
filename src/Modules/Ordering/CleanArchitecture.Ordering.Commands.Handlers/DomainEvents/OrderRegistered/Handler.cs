@@ -1,7 +1,7 @@
 ﻿using Framework.Mediator.DomainEvents;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Commands.OrderRegisteredEvent;
+namespace CleanArchitecture.Ordering.Commands.DomainEvents.OrderRegistered;
 
 internal sealed class Handler : IDomainEventHandler<Event>
 {

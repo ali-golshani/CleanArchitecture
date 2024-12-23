@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Ordering.Commands.Errors;
+﻿using CleanArchitecture.Ordering.Commands.DomainEvents.OrderRegistered;
+using CleanArchitecture.Ordering.Commands.Errors;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using CleanArchitecture.Ordering.Domain.Services;
 using Framework.Mediator.DomainEvents;
@@ -114,7 +115,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     {
         var result = await eventPublisher.Publish
         (
-            new OrderRegisteredEvent.Event { OrderId = order.OrderId },
+            new Event { OrderId = order.OrderId },
             cancellationToken
         );
 

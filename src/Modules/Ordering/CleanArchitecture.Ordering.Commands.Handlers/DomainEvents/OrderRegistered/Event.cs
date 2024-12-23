@@ -1,6 +1,6 @@
 ﻿using Framework.Mediator.DomainEvents;
 
-namespace CleanArchitecture.Ordering.Commands.OrderRegisteredEvent;
+namespace CleanArchitecture.Ordering.Commands.DomainEvents.OrderRegistered;
 
 internal sealed class Event : IDomainEvent
 {
