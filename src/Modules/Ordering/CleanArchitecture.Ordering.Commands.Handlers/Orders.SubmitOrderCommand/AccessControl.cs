@@ -2,7 +2,7 @@
 using CleanArchitecture.Authorization;
 using CleanArchitecture.Ordering.Domain.Orders;
 
-namespace CleanArchitecture.Ordering.Commands.SubmitOrderCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.SubmitOrderCommand;
 
 internal sealed class AccessControl : AccessControlByPermissionRules<Order>
 {

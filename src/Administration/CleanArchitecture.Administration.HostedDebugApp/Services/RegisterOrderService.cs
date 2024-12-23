@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Administration.HostedApp.Services;
+﻿using CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
+
+namespace CleanArchitecture.Administration.HostedApp.Services;
 
 internal class RegisterOrderService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
@@ -6,7 +8,7 @@ internal class RegisterOrderService(IServiceProvider serviceProvider) : ServiceB
     {
         var service = CommandService();
 
-        var result = await service.Handle(new Ordering.Commands.RegisterOrderCommand.Command
+        var result = await service.Handle(new Command
         {
             OrderId = 1,
             BrokerId = 1,

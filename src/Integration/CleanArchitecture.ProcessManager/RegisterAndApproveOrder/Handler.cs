@@ -2,6 +2,7 @@
 using Framework.Mediator.Requests;
 using Framework.ProcessManager.Extensions;
 using Framework.Results;
+using Command = CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand.Command;
 
 namespace CleanArchitecture.ProcessManager.Handlers;
 
@@ -16,7 +17,7 @@ internal sealed class Handler : IRequestHandler<RegisterAndApproveOrder.Request,
 
     public async Task<Result<Empty>> Handle(RegisterAndApproveOrder.Request request, CancellationToken cancellationToken)
     {
-        var registerOrderCommand = new Ordering.Commands.RegisterOrderCommand.Command
+        var registerOrderCommand = new Command
         {
             BrokerId = request.BrokerId,
             CommodityId = request.CommodityId,
@@ -31,7 +32,7 @@ internal sealed class Handler : IRequestHandler<RegisterAndApproveOrder.Request,
             Id = request.OrderId
         };
 
-        var controlCommand = new Ordering.Commands.ControlOrderStatusCommand.Command
+        var controlCommand = new Ordering.Commands.Orders.ControlOrderStatusCommand.Command
         {
             OrderId = request.OrderId,
         };
@@ -51,7 +52,7 @@ internal sealed class Handler : IRequestHandler<RegisterAndApproveOrder.Request,
 
         try
         {
-            var registerOrderCommand = new Ordering.Commands.RegisterOrderCommand.Command
+            var registerOrderCommand = new Command
             {
                 BrokerId = request.BrokerId,
                 CommodityId = request.CommodityId,
@@ -85,7 +86,7 @@ internal sealed class Handler : IRequestHandler<RegisterAndApproveOrder.Request,
         {
             if (control)
             {
-                var controlCommand = new Ordering.Commands.ControlOrderStatusCommand.Command
+                var controlCommand = new Ordering.Commands.Orders.ControlOrderStatusCommand.Command
                 {
                     OrderId = request.OrderId,
                 };

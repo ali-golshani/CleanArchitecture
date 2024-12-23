@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Administration.DebugApp.Services;
+﻿using CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
+
+namespace CleanArchitecture.Administration.DebugApp.Services;
 
 public class RegisterOrderCommandService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
@@ -6,7 +8,7 @@ public class RegisterOrderCommandService(IServiceProvider serviceProvider) : Ser
     {
         var service = CommandService();
 
-        var result = await service.Handle(Actor, new Ordering.Commands.RegisterOrderCommand.Command
+        var result = await service.Handle(Actor, new Command
         {
             OrderId = 101,
             BrokerId = 5,

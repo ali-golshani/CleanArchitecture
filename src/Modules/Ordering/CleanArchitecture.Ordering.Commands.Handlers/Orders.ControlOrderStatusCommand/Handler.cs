@@ -1,7 +1,7 @@
 ﻿using Framework.Mediator.Requests;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Commands.ControlOrderStatusCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.ControlOrderStatusCommand;
 
 internal sealed class Handler : IRequestHandler<Command, Empty>
 {

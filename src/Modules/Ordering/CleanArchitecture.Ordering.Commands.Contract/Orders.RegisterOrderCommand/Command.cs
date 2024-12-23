@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Mediator;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Commands.RegisterOrderCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
 
 public class Command :
     CommandBase,

@@ -8,7 +8,7 @@ using Framework.Mediator.Requests;
 using Framework.Results;
 using Framework.Results.Errors;
 
-namespace CleanArchitecture.Ordering.Commands.SubmitOrderCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.SubmitOrderCommand;
 
 internal sealed class Handler : IRequestHandler<Command, Empty>
 {

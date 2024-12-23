@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace CleanArchitecture.Ordering.Commands.RegisterOrderCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
 
 internal sealed class Validator : AbstractValidator<Command>
 {

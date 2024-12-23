@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Commands;
+using CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
 using CleanArchitecture.Ordering.Queries;
 using CleanArchitecture.Ordering.Queries.Models;
 using Framework.Queries;
@@ -56,7 +57,7 @@ public class OrderController : BaseController
         Task<Results<NoContent, ProblemHttpResult>>
         Add(
         ICommandService commandService,
-        Ordering.Commands.RegisterOrderCommand.Command command,
+        Command command,
         CancellationToken cancellationToken)
     {
         return
