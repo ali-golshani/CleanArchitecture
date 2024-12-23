@@ -1,4 +1,4 @@
-﻿namespace Framework.Domain.Abstractions;
+﻿namespace Framework.Specifications;
 
 public interface IAsyncSpecification<in T>
 {
