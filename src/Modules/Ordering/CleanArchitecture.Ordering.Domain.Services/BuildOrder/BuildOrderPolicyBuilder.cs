@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Ordering.Domain.DomainRules;
+﻿using CleanArchitecture.Ordering.Domain.Orders.DomainRules;
 using CleanArchitecture.Ordering.Domain.Services.DomainRules;
 using Infrastructure.CommoditySystem;
 

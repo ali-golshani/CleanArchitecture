@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Ordering.Domain.DomainRules;
-using CleanArchitecture.Ordering.Domain.Exceptions;
+﻿using CleanArchitecture.Ordering.Domain.Exceptions;
+using CleanArchitecture.Ordering.Domain.Orders.DomainRules;
 using Framework.Domain;
 using Framework.DomainRules.Extensions;
 
-namespace CleanArchitecture.Ordering.Domain;
+namespace CleanArchitecture.Ordering.Domain.Orders;
 
-public class Order : CommandAwareEntity
+public sealed class Order : CommandAwareEntity
 {
 
 #pragma warning disable CS8618
@@ -14,28 +14,21 @@ public class Order : CommandAwareEntity
 
 #pragma warning restore CS8618
 
-    public Order(
-        int orderId,
-        int quantity,
-        decimal price,
-        int customerId,
-        int brokerId,
-        Commodity commodity,
-        string trackingCode)
+    public Order(OrderCreationParameters parameters)
     {
         new IDomainRule[]
         {
-            new OrderPriceRule(price),
-            new OrderQuantityRule(quantity)
+            new OrderPriceRule(parameters.Price),
+            new OrderQuantityRule(parameters.Quantity)
         }.Evaluate().Throw();
 
-        OrderId = orderId;
-        Quantity = quantity;
-        Price = price;
-        CustomerId = customerId;
-        BrokerId = brokerId;
-        Commodity = commodity;
-        TrackingCode = trackingCode;
+        OrderId = parameters.OrderId;
+        Quantity = parameters.Quantity;
+        Price = parameters.Price;
+        CustomerId = parameters.CustomerId;
+        BrokerId = parameters.BrokerId;
+        Commodity = parameters.Commodity;
+        TrackingCode = parameters.TrackingCode;
 
         Status = OrderStatus.Draft;
     }
@@ -51,10 +44,7 @@ public class Order : CommandAwareEntity
 
     public void UpdatePrice(decimal price)
     {
-        new IDomainRule[]
-        {
-            new OrderPriceRule(price),
-        }.Evaluate().Throw();
+        new OrderPriceRule(price).Evaluate().Throw();
 
         Price = price;
     }

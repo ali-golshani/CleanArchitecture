@@ -1,17 +1,18 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
+using CleanArchitecture.Ordering.Domain.Orders;
 
 namespace CleanArchitecture.Ordering.Commands.SubmitOrderCommand;
 
-internal sealed class AccessControl : AccessControlByPermissionRules<Domain.Order>
+internal sealed class AccessControl : AccessControlByPermissionRules<Order>
 {
-    protected override IPermissionRule<Domain.Order>[] PermissionRules(Domain.Order content)
+    protected override IPermissionRule<Order>[] PermissionRules(Order content)
     {
         return
         [
-            new RolesPermissionRule<Domain.Order>(Role.Programmer),
-            new CustomerPermissionRule<Domain.Order>(content.CustomerId),
-            new BrokerPermissionRule<Domain.Order>(content.BrokerId),
+            new RolesPermissionRule<Order>(Role.Programmer),
+            new CustomerPermissionRule<Order>(content.CustomerId),
+            new BrokerPermissionRule<Order>(content.BrokerId),
         ];
     }
 }

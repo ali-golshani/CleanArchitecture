@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Ordering.Domain;
+﻿using CleanArchitecture.Ordering.Domain.Orders;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

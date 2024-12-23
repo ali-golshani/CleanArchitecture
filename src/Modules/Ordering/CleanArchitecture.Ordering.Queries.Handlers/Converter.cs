@@ -2,7 +2,7 @@
 
 internal static class Converter
 {
-    public static Models.Order Convert(this Domain.Order order)
+    public static Models.Order Convert(this Domain.Orders.Order order)
     {
         return new Models.Order
         {

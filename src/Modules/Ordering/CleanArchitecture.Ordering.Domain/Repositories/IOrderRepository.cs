@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Ordering.Domain.Repositories;
+﻿using CleanArchitecture.Ordering.Domain.Orders;
+
+namespace CleanArchitecture.Ordering.Domain.Repositories;
 
 public interface IOrderRepository
 {

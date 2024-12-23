@@ -9,6 +9,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Framework\Framework.DomainRules\Framework.DomainRules.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Specifications\Framework.Specifications.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Exceptions\CleanArchitecture.Exceptions.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />

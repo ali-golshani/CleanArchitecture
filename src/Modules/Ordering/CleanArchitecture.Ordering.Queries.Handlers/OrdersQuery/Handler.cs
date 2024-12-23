@@ -21,9 +21,9 @@ internal sealed class Handler : IRequestHandler<Query, PaginatedItems<Models.Ord
         return await orders.Materialize(x => x.Convert(), request.PageIndex, request.PageSize);
     }
 
-    private IQueryable<Domain.Order> SelectOrders(Query query)
+    private IQueryable<Domain.Orders.Order> SelectOrders(Query query)
     {
-        IQueryable<Domain.Order> set = db.QuerySet<Domain.Order>();
+        IQueryable<Domain.Orders.Order> set = db.QuerySet<Domain.Orders.Order>();
 
         if (query.CustomerId is not null)
         {

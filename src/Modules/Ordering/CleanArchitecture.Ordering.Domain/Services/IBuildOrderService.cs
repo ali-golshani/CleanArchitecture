@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Ordering.Domain.Services;
+﻿using CleanArchitecture.Ordering.Domain.Orders;
+
+namespace CleanArchitecture.Ordering.Domain.Services;
 
 public interface IBuildOrderService
 {

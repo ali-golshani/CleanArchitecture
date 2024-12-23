@@ -21,9 +21,9 @@ internal sealed class Handler : IRequestHandler<Query, Models.Order?>
         return order?.Convert();
     }
 
-    private async Task<Domain.Order?> GetOrder(FilteredQuery query)
+    private async Task<Domain.Orders.Order?> GetOrder(FilteredQuery query)
     {
-        IQueryable<Domain.Order> set = db.QuerySet<Domain.Order>();
+        IQueryable<Domain.Orders.Order> set = db.QuerySet<Domain.Orders.Order>();
 
         if (query.CustomerId is not null)
         {

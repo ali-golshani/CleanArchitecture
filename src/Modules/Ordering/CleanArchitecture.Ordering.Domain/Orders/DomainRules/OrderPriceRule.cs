@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Ordering.Domain.DomainRules;
+﻿namespace CleanArchitecture.Ordering.Domain.Orders.DomainRules;
 
 public class OrderPriceRule(decimal price) : IDomainRule
 {

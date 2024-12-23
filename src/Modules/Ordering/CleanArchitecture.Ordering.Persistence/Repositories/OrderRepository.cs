@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using CleanArchitecture.Ordering.Domain.Orders;
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Ordering.Persistence.Repositories;
 
@@ -11,22 +12,22 @@ internal class OrderRepository : Domain.Repositories.IOrderRepository
         this.db = db;
     }
 
-    public void Add(Domain.Order order)
+    public void Add(Order order)
     {
-        db.Set<Domain.Order>().Add(order);
+        db.Set<Order>().Add(order);
     }
 
     public async Task<bool> Exists(int orderId)
     {
         return await
-            db.Set<Domain.Order>()
+            db.Set<Order>()
             .AnyAsync(x => x.OrderId == orderId);
     }
 
-    public async Task<Domain.Order?> FindOrder(int orderId)
+    public async Task<Order?> FindOrder(int orderId)
     {
         return await
-            db.Set<Domain.Order>()
+            db.Set<Order>()
             .FirstOrDefaultAsync(x => x.OrderId == orderId);
     }
 }

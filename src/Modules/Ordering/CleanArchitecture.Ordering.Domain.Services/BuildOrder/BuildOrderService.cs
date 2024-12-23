@@ -1,4 +1,5 @@
-﻿using Framework.DomainRules.Extensions;
+﻿using CleanArchitecture.Ordering.Domain.Orders;
+using Framework.DomainRules.Extensions;
 
 namespace CleanArchitecture.Ordering.Domain.Services.BuildOrder;
 
@@ -27,17 +28,17 @@ internal class BuildOrderService : IBuildOrderService
 
         var trackingCode = trackingCodeBuilder.Build();
 
-        var order = new Order
-        (
-            orderId: request.OrderId,
-            quantity: request.Quantity,
-            price: request.Price,
-            customerId: request.CustomerId,
-            brokerId: request.BrokerId,
-            commodity: request.Commodity,
-            trackingCode: trackingCode
-        );
+        var parameters = new OrderCreationParameters
+        {
+            OrderId = request.OrderId,
+            Quantity = request.Quantity,
+            Price = request.Price,
+            CustomerId = request.CustomerId,
+            BrokerId = request.BrokerId,
+            Commodity = request.Commodity,
+            TrackingCode = trackingCode
+        };
 
-        return order;
+        return new Order(parameters);
     }
 }

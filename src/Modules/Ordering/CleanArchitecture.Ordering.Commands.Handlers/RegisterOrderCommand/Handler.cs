@@ -94,7 +94,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             .NotFoundIfNull(new CommodityNotFoundError(commodityId));
     }
 
-    private Task<Result<Domain.Order>> BuildOrder(Command request, Commodity commodity)
+    private Task<Result<Domain.Orders.Order>> BuildOrder(Command request, Commodity commodity)
     {
         return buildOrderService.BuildOrder(new BuildOrderRequest
         {
@@ -103,12 +103,12 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             Price = request.Price,
             CustomerId = request.CustomerId,
             BrokerId = request.BrokerId,
-            Commodity = new Domain.Commodity(commodity.CommodityId, commodity.CommodityName)
+            Commodity = new Domain.Orders.Commodity(commodity.CommodityId, commodity.CommodityName)
         });
     }
 
     private async Task<Result<Empty>> OnOrderRegistered(
-        Domain.Order order,
+        Domain.Orders.Order order,
         Guid? correlationId,
         CancellationToken cancellationToken)
     {
