@@ -4,7 +4,7 @@ using Framework.Persistence.Extensions;
 using Framework.Queries;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Queries.OrdersQuery;
+namespace CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
 
 internal sealed class Handler : IRequestHandler<Query, PaginatedItems<Models.Order>>
 {

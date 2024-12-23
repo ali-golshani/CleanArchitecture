@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
+using CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
 using Framework.Mediator.BatchCommands;
 using Framework.Results.Extensions;
 using Framework.Scheduling;
@@ -24,7 +25,7 @@ public class SampleJobService : IJobService
 
     public async Task Execute(CancellationToken stoppingToken)
     {
-        var orders = await queryService.Handle(Actor, new Ordering.Queries.OrdersQuery.Query
+        var orders = await queryService.Handle(Actor, new Query
         {
             OrderStatus = OrderStatus.Approved,
         }, stoppingToken)

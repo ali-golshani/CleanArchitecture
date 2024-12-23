@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Administration.DebugApp.Services;
+﻿using CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
+
+namespace CleanArchitecture.Administration.DebugApp.Services;
 
 public class QueryOrder(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
@@ -8,7 +10,7 @@ public class QueryOrder(IServiceProvider serviceProvider) : ServiceBase(serviceP
 
         ResolveActor();
 
-        var result = await service.Handle(new Ordering.Queries.OrderQuery.Query
+        var result = await service.Handle(new Query
         {
             OrderId = 14
         }, default);

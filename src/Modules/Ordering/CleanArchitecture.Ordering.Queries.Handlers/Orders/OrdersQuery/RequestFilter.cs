@@ -3,7 +3,7 @@ using CleanArchitecture.Authorization;
 using CleanArchitecture.Ordering.Queries.Models;
 using Framework.Queries;
 
-namespace CleanArchitecture.Ordering.Queries.OrdersQuery;
+namespace CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
 
 internal sealed class RequestFilter : IFilter<Query, PaginatedItems<Order>>
 {

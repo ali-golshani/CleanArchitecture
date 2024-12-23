@@ -52,7 +52,7 @@ public static class Configuration
 
         Ordering.Domain.Services.ServiceConfigurations.RegisterServices(services);
         Ordering.Persistence.ServiceConfigurations.RegisterServices(services);
-        Ordering.Queries.Handlers.ServiceConfigurations.RegisterServices(services);
+        Ordering.Queries.ServiceConfigurations.RegisterServices(services);
         Ordering.Commands.ServiceConfigurations.RegisterServices(services);
         Ordering.Application.ServiceConfigurations.RegisterServices(services);
 

@@ -4,7 +4,7 @@ using Framework.Mediator.Requests;
 using Framework.Results;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Ordering.Queries.OrderQuery;
+namespace CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
 
 internal sealed class Handler : IRequestHandler<Query, Models.Order?>
 {

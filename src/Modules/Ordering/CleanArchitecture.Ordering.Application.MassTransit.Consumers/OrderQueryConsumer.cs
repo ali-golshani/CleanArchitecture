@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
-using CleanArchitecture.Ordering.Queries.OrderQuery;
+using CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
 using MassTransit;
 
 namespace CleanArchitecture.Ordering.Application.MassTransit.Consumers;

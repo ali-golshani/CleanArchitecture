@@ -1,4 +1,5 @@
-﻿using Framework.Results;
+﻿using CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
+using Framework.Results;
 using Framework.Results.Extensions;
 
 namespace CleanArchitecture.IntegrationTests.Services;
@@ -10,7 +11,7 @@ internal class RegisterOrderService(IServiceProvider serviceProvider) : ServiceB
         var queryService = QueryService();
         var service = CommandService();
 
-        var ordersResult = await queryService.Handle(Programmer, new Ordering.Queries.OrdersQuery.Query
+        var ordersResult = await queryService.Handle(Programmer, new Query
         {
             OrderBy = Ordering.Queries.Models.OrderOrderBy.OrderId,
             PageSize = 1

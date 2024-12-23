@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Ordering.Queries.OrdersQuery;
+﻿namespace CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
 
 public class Query :
     QueryBase,

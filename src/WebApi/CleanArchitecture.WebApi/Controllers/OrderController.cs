@@ -2,6 +2,7 @@
 using CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
 using CleanArchitecture.Ordering.Queries;
 using CleanArchitecture.Ordering.Queries.Models;
+using CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
 using Framework.Queries;
 using Framework.Results.Extensions;
 using Framework.WebApi.Extensions;
@@ -20,7 +21,7 @@ public class OrderController : BaseController
         Task<Results<Ok<PaginatedItems<Order>>, ProblemHttpResult>>
         Get(
         IQueryService queryService,
-        [FromQuery] Ordering.Queries.OrdersQuery.Query query,
+        [FromQuery] Query query,
         CancellationToken cancellationToken)
     {
         return
@@ -37,7 +38,7 @@ public class OrderController : BaseController
         Task<Results<Ok<Order>, ProblemHttpResult>>
         Get(IQueryService queryService, int orderId, CancellationToken cancellationToken)
     {
-        var query = new Ordering.Queries.OrderQuery.Query
+        var query = new Ordering.Queries.Orders.OrderQuery.Query
         {
             OrderId = orderId,
         };

@@ -1,6 +1,7 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Ordering.Queries;
 using CleanArchitecture.Ordering.Queries.Models;
+using CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
 using CleanArchitecture.WebApi.Shared.Versioning;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -16,7 +17,7 @@ public class OrderController : BaseController
         Task<Results<Ok<Order>, NotFound, ProblemHttpResult>>
         Get(IQueryService queryService, int orderId, CancellationToken cancellationToken)
     {
-        var query = new Ordering.Queries.OrderQuery.Query
+        var query = new Query
         {
             OrderId = orderId,
         };

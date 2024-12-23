@@ -3,7 +3,7 @@ using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Ordering.Queries.Handlers;
+namespace CleanArchitecture.Ordering.Queries;
 
 public static class ServiceConfigurations
 {

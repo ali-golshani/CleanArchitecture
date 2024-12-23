@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Mediator;
 
-namespace CleanArchitecture.Ordering.Queries.OrderQuery;
+namespace CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
 
 public class Query :
     QueryBase,
