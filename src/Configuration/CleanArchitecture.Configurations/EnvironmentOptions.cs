@@ -42,5 +42,5 @@ internal class EnvironmentOptions : IEnvironment
 
     public EnvironmentMode EnvironmentMode { get; }
     public OptionsConfiguration OptionsConfiguration { get; }
-    public SecretsConfiguration SecretsConfiguration { get; set; }
+    public SecretsConfiguration SecretsConfiguration { get; }
 }
