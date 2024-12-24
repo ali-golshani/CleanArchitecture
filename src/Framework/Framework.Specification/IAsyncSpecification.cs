@@ -1,4 +1,4 @@
-﻿namespace Framework.Specifications;
+﻿namespace Framework.Specification;
 
 public interface IAsyncSpecification<in T>
 {

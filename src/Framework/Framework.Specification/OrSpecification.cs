@@ -1,4 +1,4 @@
-﻿namespace Framework.Specifications;
+﻿namespace Framework.Specification;
 
 public class OrSpecification<T>(ISpecification<T> left, ISpecification<T> right) : Specification<T>
 {

@@ -1,4 +1,4 @@
-﻿namespace Framework.Specifications;
+﻿namespace Framework.Specification;
 
 public abstract class Specification<T> : ISpecification<T>
 {

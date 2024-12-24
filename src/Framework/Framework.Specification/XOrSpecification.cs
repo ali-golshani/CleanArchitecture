@@ -1,4 +1,4 @@
-﻿namespace Framework.Specifications;
+﻿namespace Framework.Specification;
 
 public class XOrSpecification<T>(ISpecification<T> left, ISpecification<T> right) : Specification<T>
 {

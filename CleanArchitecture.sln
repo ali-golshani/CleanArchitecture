@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CleanArchitecture.Shared", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Persistence", "src\Framework\Framework.Persistence\Framework.Persistence.csproj", "{BEA60A5E-84F4-4120-BD28-A1D09F04DE87}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Loggings", "src\Framework\Framework.Loggings\Framework.Loggings.csproj", "{0AC35F4F-7B34-4DFB-975F-13C11F4D5C9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Logging", "src\Framework\Framework.Logging\Framework.Logging.csproj", "{0AC35F4F-7B34-4DFB-975F-13C11F4D5C9B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Framework.Scheduling", "src\Framework\Framework.Scheduling\Framework.Scheduling.csproj", "{8D7967C9-B774-493B-B3C5-DF711F31326C}"
 EndProject
@@ -156,7 +156,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ordering", "Ordering", "{55
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Exceptions", "src\Shared\CleanArchitecture.Exceptions\CleanArchitecture.Exceptions.csproj", "{3EF539D1-8049-4363-9734-712489475427}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Specifications", "src\Framework\Framework.Specifications\Framework.Specifications.csproj", "{B35129A9-4CEC-4316-83AD-ADE85151AFB5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Specification", "src\Framework\Framework.Specification\Framework.Specification.csproj", "{B35129A9-4CEC-4316-83AD-ADE85151AFB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

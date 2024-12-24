@@ -13,7 +13,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Framework.Exceptions\Framework.Exceptions.csproj" />
-		<ProjectReference Include="..\Framework.Loggings\Framework.Loggings.csproj" />
+		<ProjectReference Include="..\Framework.Logging\Framework.Logging.csproj" />
 	</ItemGroup>
 
 </Project>
