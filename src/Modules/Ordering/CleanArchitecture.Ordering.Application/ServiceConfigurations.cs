@@ -37,7 +37,6 @@ public static class ServiceConfigurations
             typeof(ValidationMiddleware<,>),
             typeof(FilteringMiddleware<,>),
         ];
-
     }
 
     private static Type[] CommandMiddlewares()
