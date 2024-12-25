@@ -3,27 +3,12 @@
 namespace CleanArchitecture.Querying.Pipeline;
 
 internal sealed class QueryPipelineBuilder<TRequest, TResponse>
-    : IPipelineBuilder<TRequest, TResponse>
+    : RequestPipelineBuilderBase<TRequest, TResponse>
     where TRequest : QueryBase, IQuery<TRequest, TResponse>
 {
     public QueryPipelineBuilder(
-        RequestHandlingProcessor<TRequest, TResponse> processor,
-        ExceptionHandlingMiddleware<TRequest, TResponse> exceptionHandling,
-        RequestAuditMiddleware<TRequest, TResponse> audit,
-        AuthorizationMiddleware<TRequest, TResponse> authorization,
-        ValidationMiddleware<TRequest, TResponse> validation,
-        FilteringMiddleware<TRequest, TResponse> filtering)
-    {
-        EntryProcessor = PipelineBuilder.EntryProcessor
-        (
-            processor,
-            exceptionHandling,
-            audit,
-            authorization,
-            validation,
-            filtering
-        );
-    }
-
-    public IRequestProcessor<TRequest, TResponse> EntryProcessor { get; }
+        IServiceProvider serviceProvider,
+        RequestHandlingProcessor<TRequest, TResponse> processor)
+        : base(serviceProvider, processor, Pipelines.Query)
+    { }
 }
