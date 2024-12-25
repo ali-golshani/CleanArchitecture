@@ -44,5 +44,6 @@ public static class ServiceConfigurations
         services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(RequestAuditMiddleware<,>));
         services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(AuthorizationMiddleware<,>));
         services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(ValidationMiddleware<,>));
+        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(OrderRequestMiddleware<,>));
     }
 }
