@@ -1,7 +1,9 @@
-﻿using CleanArchitecture.Ordering.Application.Services;
+﻿using CleanArchitecture.Mediator.Middlewares;
+using CleanArchitecture.Mediator.Middlewares.Extensions;
 using CleanArchitecture.Ordering.Application.Pipeline;
+using CleanArchitecture.Ordering.Application.Services;
+using CleanArchitecture.Shared;
 using Microsoft.Extensions.DependencyInjection;
-using CleanArchitecture.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Application;
 
@@ -21,29 +23,32 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
         services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
 
-        RegisterQueryMiddlewares(services);
-        RegisterCommandMiddlewares(services);
+        services.RegisterPipelineMiddlewares(Pipelines.OrderingQuery, QueryMiddlewares());
+        services.RegisterPipelineMiddlewares(Pipelines.OrderingCommand, CommandMiddlewares());
     }
 
-    private static void RegisterQueryMiddlewares(IServiceCollection services)
+    private static Type[] QueryMiddlewares()
     {
-        var name = Pipelines.Query;
+        return
+        [
+            typeof(ExceptionHandlingMiddleware<,>),
+            typeof(RequestAuditMiddleware<,>),
+            typeof(AuthorizationMiddleware<,>),
+            typeof(ValidationMiddleware<,>),
+            typeof(FilteringMiddleware<,>),
+        ];
 
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(ExceptionHandlingMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(RequestAuditMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(AuthorizationMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(ValidationMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(FilteringMiddleware<,>));
     }
 
-    private static void RegisterCommandMiddlewares(IServiceCollection services)
+    private static Type[] CommandMiddlewares()
     {
-        var name = Pipelines.Command;
-
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(ExceptionHandlingMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(RequestAuditMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(AuthorizationMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(ValidationMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(OrderRequestMiddleware<,>));
+        return
+        [
+            typeof(ExceptionHandlingMiddleware<,>),
+            typeof(RequestAuditMiddleware<,>),
+            typeof(AuthorizationMiddleware<,>),
+            typeof(ValidationMiddleware<,>),
+            typeof(OrderRequestMiddleware<,>),
+        ];
     }
 }

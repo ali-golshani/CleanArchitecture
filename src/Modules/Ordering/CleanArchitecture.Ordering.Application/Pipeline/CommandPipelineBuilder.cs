@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
+using CleanArchitecture.Shared;
 
 namespace CleanArchitecture.Ordering.Application.Pipeline;
 
@@ -9,6 +10,6 @@ internal sealed class CommandPipelineBuilder<TRequest, TResponse>
     public CommandPipelineBuilder(
         IServiceProvider serviceProvider,
         TransactionalCommandHandlingProcessor<TRequest, TResponse> processor)
-        : base(serviceProvider, processor, Pipelines.Command)
+        : base(serviceProvider, processor, Pipelines.OrderingCommand)
     { }
 }

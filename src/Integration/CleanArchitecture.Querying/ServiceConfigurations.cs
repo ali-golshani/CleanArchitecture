@@ -1,7 +1,9 @@
 ﻿using CleanArchitecture.Authorization;
 using CleanArchitecture.Mediator.Middlewares;
+using CleanArchitecture.Mediator.Middlewares.Extensions;
 using CleanArchitecture.Querying.Pipeline;
 using CleanArchitecture.Querying.Services;
+using CleanArchitecture.Shared;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,17 +25,18 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(QueryPipelineBuilder<,>));
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
 
-        RegisterQueryMiddlewares(services);
+        services.RegisterPipelineMiddlewares(Pipelines.Querying, QueryingMiddlewares());
     }
 
-    private static void RegisterQueryMiddlewares(IServiceCollection services)
+    private static Type[] QueryingMiddlewares()
     {
-        var name = Pipelines.Query;
-
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(ExceptionHandlingMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(RequestAuditMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(AuthorizationMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(ValidationMiddleware<,>));
-        services.AddKeyedTransient(typeof(IMiddleware<,>), name, typeof(FilteringMiddleware<,>));
+        return
+        [
+            typeof(ExceptionHandlingMiddleware<,>),
+            typeof(RequestAuditMiddleware<,>),
+            typeof(AuthorizationMiddleware<,>),
+            typeof(ValidationMiddleware<,>),
+            typeof(FilteringMiddleware<,>),
+        ];
     }
 }
