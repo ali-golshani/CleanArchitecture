@@ -4,10 +4,10 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<RootNamespace>Framework.Mediator</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Framework.Exceptions\Framework.Exceptions.csproj" />
 	  <ProjectReference Include="..\Framework.Results.Abstractions\Framework.Results.Abstractions.csproj" />
 	</ItemGroup>
 

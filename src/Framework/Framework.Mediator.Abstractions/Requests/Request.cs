@@ -14,7 +14,7 @@ public abstract class Request
 
     public virtual bool? ShouldLog => null;
 
-    internal void SetCorrelationId(Guid? correlationId)
+    public void SetCorrelationId(Guid? correlationId)
     {
         if (correlationId != null)
         {
