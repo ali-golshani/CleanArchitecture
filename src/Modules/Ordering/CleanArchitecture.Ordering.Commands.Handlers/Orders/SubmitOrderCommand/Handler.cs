@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
 using CleanArchitecture.Ordering.Commands.Errors;
-using CleanArchitecture.Ordering.Commands.IntegrationEvents;
+using CleanArchitecture.Ordering.IntegrationEvents;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Requests;

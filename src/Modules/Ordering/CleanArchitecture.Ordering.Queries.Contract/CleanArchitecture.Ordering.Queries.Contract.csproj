@@ -12,6 +12,7 @@
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Queries.Requests\CleanArchitecture.Ordering.Queries.Requests.csproj" />
   </ItemGroup>
 
 </Project>

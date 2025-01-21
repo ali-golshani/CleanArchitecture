@@ -1,6 +1,6 @@
 ﻿using Framework.Mediator.IntegrationEvents;
 
-namespace CleanArchitecture.Ordering.Commands.IntegrationEvents;
+namespace CleanArchitecture.Ordering.IntegrationEvents;
 
 public class OrderStatusChangedEvent : IIntegrationEvent
 {

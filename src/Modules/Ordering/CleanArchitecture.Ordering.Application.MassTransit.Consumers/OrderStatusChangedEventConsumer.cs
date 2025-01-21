@@ -1,8 +1,8 @@
 ﻿using Framework.Mediator.Extensions;
 using CleanArchitecture.Ordering.Commands;
-using CleanArchitecture.Ordering.Commands.IntegrationEvents;
 using CleanArchitecture.Ordering.Queries;
 using MassTransit;
+using CleanArchitecture.Ordering.IntegrationEvents;
 
 namespace CleanArchitecture.Ordering.Application.MassTransit.Consumers;
 

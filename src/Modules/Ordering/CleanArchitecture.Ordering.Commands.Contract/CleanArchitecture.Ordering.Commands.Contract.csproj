@@ -9,8 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
-    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
-    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Commands.Requests\CleanArchitecture.Ordering.Commands.Requests.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.IntegrationEvents\CleanArchitecture.Ordering.IntegrationEvents.csproj" />
   </ItemGroup>
 
 </Project>
