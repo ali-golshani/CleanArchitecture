@@ -7,6 +7,12 @@ namespace Framework.WebApi.Extensions;
 
 public static class ResultExtensions
 {
+    public static async Task<NoContent> AsNoContent(this Task task)
+    {
+        await task;
+        return TypedResults.NoContent();
+    }
+
     public static Results<Ok<T>, NotFound> AsOkOrNotFound<T>(this T? value)
     {
         if (value is null)
@@ -17,6 +23,11 @@ public static class ResultExtensions
         {
             return TypedResults.Ok(value);
         }
+    }
+
+    public static async Task<Results<Ok<T>, NotFound>> AsOkOrNotFound<T>(this Task<T?> valueTask)
+    {
+        return (await valueTask).AsOkOrNotFound();
     }
 
     public static ProblemHttpResult AsProblemResult(this Error[] errors)
