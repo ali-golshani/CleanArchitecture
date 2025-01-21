@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
     <ProjectReference Include="..\..\..\Framework\Framework.Test\Framework.Test.csproj" />
     <ProjectReference Include="..\Infrastructure.CommoditySystem.Contract\Infrastructure.CommoditySystem.Contract.csproj" />
   </ItemGroup>

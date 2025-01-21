@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Framework\Framework.Cap\Framework.Cap.csproj" />
+    <ProjectReference Include="..\..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
     <ProjectReference Include="..\..\..\Framework\Framework.Results\Framework.Results.csproj" />
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />

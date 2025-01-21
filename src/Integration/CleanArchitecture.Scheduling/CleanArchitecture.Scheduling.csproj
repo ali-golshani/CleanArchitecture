@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Framework.Results\Framework.Results.csproj" />
     <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Commands.Contract\CleanArchitecture.Ordering.Commands.Contract.csproj" />
     <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Queries.Contract\CleanArchitecture.Ordering.Queries.Contract.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Scheduling\Framework.Scheduling.csproj" />
