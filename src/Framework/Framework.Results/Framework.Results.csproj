@@ -8,7 +8,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Framework.Exceptions\Framework.Exceptions.csproj" />
-	  <ProjectReference Include="..\Framework.Results.Abstractions\Framework.Results.Abstractions.csproj" />
+	  <ProjectReference Include="..\Framework.Results.Models\Framework.Results.Models.csproj" />
 	</ItemGroup>
 
 </Project>

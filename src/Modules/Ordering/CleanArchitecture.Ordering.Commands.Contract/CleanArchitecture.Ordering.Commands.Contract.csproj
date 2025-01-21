@@ -9,7 +9,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.Ordering.Commands.Requests\CleanArchitecture.Ordering.Commands.Requests.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Commands.Models\CleanArchitecture.Ordering.Commands.Models.csproj" />
     <ProjectReference Include="..\CleanArchitecture.Ordering.IntegrationEvents\CleanArchitecture.Ordering.IntegrationEvents.csproj" />
   </ItemGroup>
 

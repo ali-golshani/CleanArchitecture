@@ -9,7 +9,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Framework\Framework.DependencyInjection\Framework.DependencyInjection.csproj" />
 		<ProjectReference Include="..\..\Framework\Framework.Results\Framework.Results.csproj" />
-		<ProjectReference Include="..\Framework.Mediator.Abstractions\Framework.Mediator.Abstractions.csproj" />
+		<ProjectReference Include="..\Framework.Mediator.Models\Framework.Mediator.Models.csproj" />
 	</ItemGroup>
 
 </Project>

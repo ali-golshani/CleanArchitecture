@@ -158,15 +158,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Exception
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Specification", "src\Framework\Framework.Specification\Framework.Specification.csproj", "{B35129A9-4CEC-4316-83AD-ADE85151AFB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Mediator.Abstractions", "src\Framework\Framework.Mediator.Abstractions\Framework.Mediator.Abstractions.csproj", "{1DDA15FC-E7D3-4B7B-87E2-A1EBB52244FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Mediator.Models", "src\Framework\Framework.Mediator.Models\Framework.Mediator.Models.csproj", "{1DDA15FC-E7D3-4B7B-87E2-A1EBB52244FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Results.Abstractions", "src\Framework\Framework.Results.Abstractions\Framework.Results.Abstractions.csproj", "{4FEA6A06-FD4E-43FA-8690-421398C2F9D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.Results.Models", "src\Framework\Framework.Results.Models\Framework.Results.Models.csproj", "{4FEA6A06-FD4E-43FA-8690-421398C2F9D7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.IntegrationEvents", "src\Modules\Ordering\CleanArchitecture.Ordering.IntegrationEvents\CleanArchitecture.Ordering.IntegrationEvents.csproj", "{799C1997-8C16-47BC-B968-CC9D2DEB6064}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.Commands.Requests", "src\Modules\Ordering\CleanArchitecture.Ordering.Commands.Requests\CleanArchitecture.Ordering.Commands.Requests.csproj", "{E7643EC1-BE4E-44A0-A769-989AF34306BD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.Commands.Models", "src\Modules\Ordering\CleanArchitecture.Ordering.Commands.Models\CleanArchitecture.Ordering.Commands.Models.csproj", "{E7643EC1-BE4E-44A0-A769-989AF34306BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.Queries.Requests", "src\Modules\Ordering\CleanArchitecture.Ordering.Queries.Requests\CleanArchitecture.Ordering.Queries.Requests.csproj", "{37B63D8B-5969-4074-AA06-7B116835FAA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.Queries.Models", "src\Modules\Ordering\CleanArchitecture.Ordering.Queries.Models\CleanArchitecture.Ordering.Queries.Models.csproj", "{37B63D8B-5969-4074-AA06-7B116835FAA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

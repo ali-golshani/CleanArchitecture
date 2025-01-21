@@ -8,7 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Framework\Framework.Mediator.Abstractions\Framework.Mediator.Abstractions.csproj" />
+	  <ProjectReference Include="..\..\Framework\Framework.Mediator.Models\Framework.Mediator.Models.csproj" />
 	</ItemGroup>
 
 </Project>
