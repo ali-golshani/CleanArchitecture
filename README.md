@@ -1,2 +1,2 @@
 # CleanArchitecture
-Clean Architecture
+Modular Monolith & Clean Architecture
