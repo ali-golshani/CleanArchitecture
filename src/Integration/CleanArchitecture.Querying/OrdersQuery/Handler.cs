@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Querying.Persistence;
-using Framework.Mediator.Requests;
+using Framework.Mediator;
 using Framework.Results;
 using Microsoft.EntityFrameworkCore;
 

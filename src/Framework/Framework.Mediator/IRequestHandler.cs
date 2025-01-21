@@ -1,6 +1,4 @@
-﻿using Framework.Results;
-
-namespace Framework.Mediator.Requests;
+﻿namespace Framework.Mediator;
 
 public interface IRequestHandler<in TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>

@@ -1,4 +1,4 @@
-﻿using Framework.Mediator.Requests;
+﻿using Framework.Mediator;
 using Infrastructure.RequestAudit.Domain;
 
 namespace Infrastructure.RequestAudit.Extensions;

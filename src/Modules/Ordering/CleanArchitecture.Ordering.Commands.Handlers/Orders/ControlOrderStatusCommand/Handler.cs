@@ -1,4 +1,4 @@
-﻿using Framework.Mediator.Requests;
+﻿using Framework.Mediator;
 using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.ControlOrderStatusCommand;

@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
-using Framework.Mediator.Requests;
+using Framework.Mediator;
 using Infrastructure.RequestAudit.Extensions;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;

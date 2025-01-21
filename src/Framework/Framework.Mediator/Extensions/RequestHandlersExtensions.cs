@@ -1,5 +1,4 @@
-﻿using Framework.Mediator.Requests;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Framework.Mediator.Extensions;

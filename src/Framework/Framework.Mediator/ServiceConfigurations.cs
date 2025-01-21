@@ -1,6 +1,5 @@
 ﻿using Framework.Mediator.DomainEvents;
 using Framework.Mediator.IntegrationEvents;
-using Framework.Mediator.Requests;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Framework.Mediator;

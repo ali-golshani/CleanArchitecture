@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.ProcessManager.Extensions;
-using Framework.Mediator.Requests;
+using Framework.Mediator;
 using Framework.ProcessManager.Extensions;
 using Framework.Results;
 using Command = CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand.Command;

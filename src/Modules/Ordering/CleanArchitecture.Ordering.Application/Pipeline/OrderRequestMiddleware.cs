@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Mediator;
 using CleanArchitecture.Mediator.Middlewares;
-using Framework.Mediator.Requests;
+using Framework.Mediator;
 using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Application.Pipeline;

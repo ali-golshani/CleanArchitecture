@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Domain.Repositories;
-using Framework.Mediator.Requests;
+using Framework.Mediator;
 using Framework.Persistence.Extensions;
 using Framework.Queries;
 using Framework.Results;

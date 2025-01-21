@@ -1,4 +1,4 @@
-﻿namespace Framework.Mediator.Requests;
+﻿namespace Framework.Mediator;
 
 public abstract class Query : Request
 {

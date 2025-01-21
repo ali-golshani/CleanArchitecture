@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
-using Framework.Mediator.Requests;
+using Framework.Mediator;
 
 namespace Infrastructure.CommoditySystem.Pipeline;
 

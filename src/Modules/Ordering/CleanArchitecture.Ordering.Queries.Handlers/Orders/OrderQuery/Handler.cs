@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Ordering.Domain.Repositories;
+using Framework.Mediator;
 using Framework.Mediator.Extensions;
-using Framework.Mediator.Requests;
 using Framework.Results;
 using Microsoft.EntityFrameworkCore;
 

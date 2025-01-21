@@ -1,7 +1,7 @@
 ﻿using Framework.Mediator.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Framework.Mediator.Requests;
+namespace Framework.Mediator;
 
 internal sealed class RequestMediator : IRequestMediator
 {

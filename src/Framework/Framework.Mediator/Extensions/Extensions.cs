@@ -1,5 +1,4 @@
 ﻿using Framework.Mediator.Exceptions;
-using Framework.Mediator.Requests;
 
 namespace Framework.Mediator.Extensions;
 

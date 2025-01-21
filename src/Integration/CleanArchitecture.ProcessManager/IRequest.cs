@@ -1,4 +1,4 @@
 ﻿namespace CleanArchitecture.ProcessManager;
 
-public interface IRequest<TRequest, TResponse> : Framework.Mediator.Requests.IRequest<TRequest, TResponse>
+public interface IRequest<TRequest, TResponse> : Framework.Mediator.IRequest<TRequest, TResponse>
 { }
