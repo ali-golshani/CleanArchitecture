@@ -1,33 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Update="GlobalSettings.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Update="GlobalSettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="9.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.Cap.Subscribers\CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
-    <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.MassTransit.Consumers\CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />
-    <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application\CleanArchitecture.Ordering.Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />
-    <ProjectReference Include="..\..\Integration\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj" />
-    <ProjectReference Include="..\..\Configuration\CleanArchitecture.Options\CleanArchitecture.Options.csproj" />
-    <ProjectReference Include="..\..\Integration\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
-    <ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
-    <ProjectReference Include="..\..\Integration\CleanArchitecture.Scheduling\CleanArchitecture.Scheduling.csproj" />
-    <ProjectReference Include="..\..\Configuration\CleanArchitecture.Secrets\CleanArchitecture.Secrets.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application\CleanArchitecture.Ordering.Application.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.Cap.Subscribers\CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.MassTransit.Consumers\CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />
+		<ProjectReference Include="..\..\Integration\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj" />
+		<ProjectReference Include="..\..\Integration\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
+		<ProjectReference Include="..\..\Integration\CleanArchitecture.Scheduling\CleanArchitecture.Scheduling.csproj" />
+		<ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
+		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Options\CleanArchitecture.Options.csproj" />
+		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Secrets\CleanArchitecture.Secrets.csproj" />
+	</ItemGroup>
 
 </Project>

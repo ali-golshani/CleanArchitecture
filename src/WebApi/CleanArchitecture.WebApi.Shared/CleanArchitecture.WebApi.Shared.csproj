@@ -23,7 +23,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Configuration\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.DomainRules\Framework.DomainRules.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.Results\Framework.Results.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
