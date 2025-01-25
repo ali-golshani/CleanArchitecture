@@ -3,10 +3,7 @@ using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
 
-public class Command :
-    CommandBase,
-    IOrderRequest,
-    ICommand<Command, Empty>
+public class Command : CommandBase, IOrderRequest, ICommand<Command, Empty>
 {
     public override string RequestTitle => "Register Order";
 

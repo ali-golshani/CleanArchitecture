@@ -1,18 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Framework\Framework.MassTransit\Framework.MassTransit.csproj" />
-    <ProjectReference Include="..\..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
-    <ProjectReference Include="..\..\..\Framework\Framework.Results\Framework.Results.csproj" />
-    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.Ordering.Commands.Contract\CleanArchitecture.Ordering.Commands.Contract.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.Ordering.Queries.Contract\CleanArchitecture.Ordering.Queries.Contract.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Framework\Framework.MassTransit\Framework.MassTransit.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Results\Framework.Results.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Commands\CleanArchitecture.Ordering.Commands.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Queries\CleanArchitecture.Ordering.Queries.csproj" />
+	</ItemGroup>
 
 </Project>

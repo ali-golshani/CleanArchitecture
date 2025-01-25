@@ -3,10 +3,7 @@ using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.SubmitOrderCommand;
 
-public class Command :
-    CommandBase,
-    IOrderRequest,
-    ICommand<Command, Empty>
+public class Command : CommandBase, IOrderRequest, ICommand<Command, Empty>
 {
     public override string RequestTitle => "Submit Order";
 

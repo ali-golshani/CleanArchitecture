@@ -20,8 +20,6 @@
     <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.Cap.Subscribers\CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
     <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.MassTransit.Consumers\CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />
     <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application\CleanArchitecture.Ordering.Application.csproj" />
-    <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Commands.Handlers\CleanArchitecture.Ordering.Commands.Handlers.csproj" />
-    <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Queries.Handlers\CleanArchitecture.Ordering.Queries.Handlers.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj" />
     <ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />
     <ProjectReference Include="..\..\Integration\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj" />
