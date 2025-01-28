@@ -33,7 +33,7 @@ public static class Authentication
         {
             SecretsConfiguration.Staging => true,
             SecretsConfiguration.Production => true,
-            SecretsConfiguration.DbMigration => true,
+            SecretsConfiguration.DbMigration => false,
             SecretsConfiguration.Development => false,
             _ => false,
         };
