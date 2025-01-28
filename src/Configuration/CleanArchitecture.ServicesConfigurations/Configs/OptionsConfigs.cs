@@ -8,12 +8,14 @@ internal static class OptionsConfigs
     public static void ConfigureOptions(IConfigurationBuilder configuration, IEnvironment environment)
     {
         var directory = AppDomain.CurrentDomain.BaseDirectory;
-        var filePath = Path.Combine(directory, "GlobalOptions.json");
-        if (!File.Exists(filePath))
-        {
-            var bytes = Options.Options.ConfigurationData(environment.OptionsConfiguration);
-            File.WriteAllBytes(filePath, bytes);
-        }
+        var fileName = Options.Options.ConfigurationFile(environment.OptionsConfiguration);
+        var filePath = Path.Combine(directory, fileName);
         configuration.AddJsonFile(filePath, optional: false, reloadOnChange: true);
+
+        //foreach (var deleteFileName in Options.Options.DeleteConfigurationFiles(environment.OptionsConfiguration))
+        //{
+        //    var deleteFilePath = Path.Combine(directory, deleteFileName);
+        //    File.Delete(deleteFilePath);
+        //}
     }
 }

@@ -4,20 +4,21 @@ namespace CleanArchitecture.Options;
 
 public static class Options
 {
-    public static Stream ConfigurationStream(OptionsConfiguration configuration)
+    public static string ConfigurationFile(OptionsConfiguration configuration)
     {
-        var data = ConfigurationData(configuration);
-        return new MemoryStream(data);
+        return Path.Combine("Options", $"Options.{configuration}.json");
     }
 
-    public static byte[] ConfigurationData(OptionsConfiguration configuration)
+    public static string[] DeleteConfigurationFiles(OptionsConfiguration configuration)
     {
-        return configuration switch
-        {
-            OptionsConfiguration.Production => Properties.Resources.Production,
-            OptionsConfiguration.Staging => Properties.Resources.Staging,
-            OptionsConfiguration.DbMigration => Properties.Resources.DbMigration,
-            _ => Properties.Resources.Development,
-        };
+        OptionsConfiguration[] configurations =
+        [
+            OptionsConfiguration.Development,
+            OptionsConfiguration.Production,
+            OptionsConfiguration.Staging,
+            OptionsConfiguration.DbMigration,
+        ];
+
+        return configurations.Where(x => x != configuration).Select(ConfigurationFile).ToArray();
     }
 }
