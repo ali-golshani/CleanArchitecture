@@ -11,16 +11,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="Options\Options.DbMigration.json">
+	  <None Update="Options.DbMigration.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Options\Options.Development.json">
+	  <None Update="Options.Development.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Options\Options.Production.json">
+	  <None Update="Options.Production.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
-	  <None Update="Options\Options.Staging.json">
+	  <None Update="Options.Staging.json">
 	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 	  </None>
 	</ItemGroup>

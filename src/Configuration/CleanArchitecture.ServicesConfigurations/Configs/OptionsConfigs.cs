@@ -11,11 +11,5 @@ internal static class OptionsConfigs
         var fileName = Options.Options.ConfigurationFile(environment.OptionsConfiguration);
         var filePath = Path.Combine(directory, fileName);
         configuration.AddJsonFile(filePath, optional: false, reloadOnChange: true);
-
-        //foreach (var deleteFileName in Options.Options.DeleteConfigurationFiles(environment.OptionsConfiguration))
-        //{
-        //    var deleteFilePath = Path.Combine(directory, deleteFileName);
-        //    File.Delete(deleteFilePath);
-        //}
     }
 }
