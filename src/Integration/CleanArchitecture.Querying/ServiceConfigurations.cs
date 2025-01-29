@@ -1,9 +1,7 @@
 ﻿using CleanArchitecture.Authorization;
-using CleanArchitecture.Mediator.Middlewares;
 using CleanArchitecture.Mediator.Middlewares.Extensions;
 using CleanArchitecture.Querying.Pipeline;
 using CleanArchitecture.Querying.Services;
-using CleanArchitecture.Shared;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,18 +23,6 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(QueryPipelineBuilder<,>));
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
 
-        services.RegisterPipelineMiddlewares(Pipelines.Querying, QueryingMiddlewares());
-    }
-
-    private static Type[] QueryingMiddlewares()
-    {
-        return
-        [
-            typeof(ExceptionHandlingMiddleware<,>),
-            typeof(RequestAuditMiddleware<,>),
-            typeof(AuthorizationMiddleware<,>),
-            typeof(ValidationMiddleware<,>),
-            typeof(FilteringMiddleware<,>),
-        ];
+        services.RegisterPipelineMiddlewares(QueryPipelineConfiguration.PipelineName, QueryPipelineConfiguration.Middlewares());
     }
 }

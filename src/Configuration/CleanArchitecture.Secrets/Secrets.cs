@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Configurations;
-using CleanArchitecture.Secrets.Exceptions;
 
 namespace CleanArchitecture.Secrets;
 

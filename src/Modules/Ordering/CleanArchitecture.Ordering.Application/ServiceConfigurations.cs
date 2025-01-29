@@ -1,8 +1,6 @@
-﻿using CleanArchitecture.Mediator.Middlewares;
-using CleanArchitecture.Mediator.Middlewares.Extensions;
+﻿using CleanArchitecture.Mediator.Middlewares.Extensions;
 using CleanArchitecture.Ordering.Application.Pipeline;
 using CleanArchitecture.Ordering.Application.Services;
-using CleanArchitecture.Shared;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Application;
@@ -23,31 +21,7 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
         services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
 
-        services.RegisterPipelineMiddlewares(Pipelines.OrderingQuery, QueryMiddlewares());
-        services.RegisterPipelineMiddlewares(Pipelines.OrderingCommand, CommandMiddlewares());
-    }
-
-    private static Type[] QueryMiddlewares()
-    {
-        return
-        [
-            typeof(ExceptionHandlingMiddleware<,>),
-            typeof(RequestAuditMiddleware<,>),
-            typeof(AuthorizationMiddleware<,>),
-            typeof(ValidationMiddleware<,>),
-            typeof(FilteringMiddleware<,>),
-        ];
-    }
-
-    private static Type[] CommandMiddlewares()
-    {
-        return
-        [
-            typeof(ExceptionHandlingMiddleware<,>),
-            typeof(RequestAuditMiddleware<,>),
-            typeof(AuthorizationMiddleware<,>),
-            typeof(ValidationMiddleware<,>),
-            typeof(OrderRequestMiddleware<,>),
-        ];
+        services.RegisterPipelineMiddlewares(QueryPipelineConfiguration.PipelineName, QueryPipelineConfiguration.Middlewares());
+        services.RegisterPipelineMiddlewares(CommandPipelineConfiguration.PipelineName, CommandPipelineConfiguration.Middlewares());
     }
 }
