@@ -7,14 +7,24 @@ internal static class Secrets
 {
     public static MemoryStream AuthenticationStream(SecretsConfiguration configuration)
     {
-        var fileName = AuthenticationFileName(configuration);
+        var fileName = FileName(configuration);
         return ConfigurationStream(fileName);
+
+        static string FileName(SecretsConfiguration configuration)
+        {
+            return $"Authentication.{configuration}.json";
+        }
     }
 
     public static MemoryStream ConnectionStringsStream(SecretsConfiguration configuration)
     {
-        var fileName = ConnectionStringsFileName(configuration);
+        var fileName = FileName(configuration);
         return ConfigurationStream(fileName);
+
+        static string FileName(SecretsConfiguration configuration)
+        {
+            return $"ConnectionStrings.{configuration}.json";
+        }
     }
 
     private static MemoryStream ConfigurationStream(string fileName)
@@ -32,30 +42,6 @@ internal static class Secrets
     {
         var directory = AppDomain.CurrentDomain.BaseDirectory;
         return Path.Combine(directory, "Secrets", fileName);
-    }
-
-    private static string AuthenticationFileName(SecretsConfiguration configuration)
-    {
-        return configuration switch
-        {
-            SecretsConfiguration.Staging => "Authentication.Staging.txt",
-            SecretsConfiguration.Production => "Authentication.Production.txt",
-            SecretsConfiguration.Development => "Authentication.Development.json",
-            SecretsConfiguration.DbMigration => "Authentication.DbMigration.json",
-            _ => throw new InvalidSecretsConfigurationException(configuration),
-        };
-    }
-
-    private static string ConnectionStringsFileName(SecretsConfiguration configuration)
-    {
-        return configuration switch
-        {
-            SecretsConfiguration.Staging => "ConnectionStrings.Staging.txt",
-            SecretsConfiguration.Production => "ConnectionStrings.Production.txt",
-            SecretsConfiguration.Development => "ConnectionStrings.Development.json",
-            SecretsConfiguration.DbMigration => "ConnectionStrings.DbMigration.txt",
-            _ => throw new InvalidSecretsConfigurationException(configuration),
-        };
     }
 
     private static bool ShouldDecrypt(string fileContent)
