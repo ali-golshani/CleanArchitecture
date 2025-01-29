@@ -3,7 +3,7 @@ using CleanArchitecture.Secrets.Exceptions;
 
 namespace CleanArchitecture.Secrets;
 
-internal class ConnectionStrings : Secrets
+internal class ConnectionStrings : SecretsBase
 {
     public static readonly ConnectionStrings Instance = new();
 

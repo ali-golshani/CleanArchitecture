@@ -3,7 +3,7 @@ using CleanArchitecture.Secrets.Exceptions;
 
 namespace CleanArchitecture.Secrets;
 
-internal abstract class Secrets
+internal abstract class SecretsBase
 {
     protected abstract bool ShouldDecrypt(SecretsConfiguration onfiguration);
     protected abstract string ConfigurationFileName(SecretsConfiguration configuration);

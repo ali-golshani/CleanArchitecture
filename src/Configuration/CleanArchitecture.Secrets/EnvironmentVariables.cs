@@ -3,7 +3,7 @@ using Framework.Security.Encryption;
 
 namespace CleanArchitecture.Secrets;
 
-public static class EnvironmentVariables
+internal static class EnvironmentVariables
 {
     public const string EnvironmentVariablesPrefix = "CleanArchitecture";
     private const string EnvironmentVariablesEncryptionKey = "CleanArchitecture.EKey";

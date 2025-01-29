@@ -3,7 +3,7 @@ using CleanArchitecture.Secrets.Exceptions;
 
 namespace CleanArchitecture.Secrets;
 
-internal class Authentication : Secrets
+internal class Authentication : SecretsBase
 {
     public static readonly Authentication Instance = new();
 
