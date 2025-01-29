@@ -3,31 +3,24 @@ using CleanArchitecture.Secrets.Exceptions;
 
 namespace CleanArchitecture.Secrets;
 
-public static class Authentication
+internal class Authentication : Secrets
 {
-    public static MemoryStream ConfigurationStream(SecretsConfiguration configuration)
-    {
-        var text = ConfigurationString(configuration);
-        if (ShouldDecrypt(configuration))
-        {
-            text = EnvironmentVariables.TryDecrypt(text);
-        }
-        return ToStream(text);
-    }
+    public static readonly Authentication Instance = new();
 
-    private static string ConfigurationString(SecretsConfiguration configuration)
+    protected override string ConfigurationFileName(SecretsConfiguration configuration)
     {
         return configuration switch
         {
-            SecretsConfiguration.Staging => Properties.Resources.StagingAuth,
-            SecretsConfiguration.Production => Properties.Resources.ProductionAuth,
-            SecretsConfiguration.DbMigration => Properties.Resources.DevelopmentAuth,
-            SecretsConfiguration.Development => Properties.Resources.DevelopmentAuth,
+            SecretsConfiguration.Staging => "Authentication.Staging.txt",
+            SecretsConfiguration.Production => "Authentication.Production.txt",
+            SecretsConfiguration.Development => "Authentication.Development.json",
+            SecretsConfiguration.DbMigration => "Authentication.DbMigration.json",
             _ => throw new InvalidSecretsConfigurationException(configuration),
         };
+
     }
 
-    private static bool ShouldDecrypt(SecretsConfiguration onfiguration)
+    protected override bool ShouldDecrypt(SecretsConfiguration onfiguration)
     {
         return onfiguration switch
         {
@@ -37,15 +30,5 @@ public static class Authentication
             SecretsConfiguration.Development => false,
             _ => false,
         };
-    }
-
-    private static MemoryStream ToStream(string text)
-    {
-        var stream = new MemoryStream();
-        var writer = new StreamWriter(stream);
-        writer.Write(text);
-        writer.Flush();
-        stream.Position = 0;
-        return stream;
     }
 }
