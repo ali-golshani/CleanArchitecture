@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Mediator.Middlewares.Extensions;
-using CleanArchitecture.Ordering.Application.Pipeline;
+using CleanArchitecture.Ordering.Application.Pipelines;
 using CleanArchitecture.Ordering.Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 

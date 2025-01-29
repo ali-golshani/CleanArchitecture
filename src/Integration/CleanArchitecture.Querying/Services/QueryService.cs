@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Querying.Pipeline;
+﻿using CleanArchitecture.Querying.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;

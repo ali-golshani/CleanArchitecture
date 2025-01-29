@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Ordering.Application.Pipeline;
+using CleanArchitecture.Ordering.Application.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;

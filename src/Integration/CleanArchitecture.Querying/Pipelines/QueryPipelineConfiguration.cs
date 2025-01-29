@@ -1,10 +1,10 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
 
-namespace CleanArchitecture.Ordering.Application.Pipeline;
+namespace CleanArchitecture.Querying.Pipelines;
 
-internal static class CommandPipelineConfiguration
+internal static class QueryPipelineConfiguration
 {
-    public const string PipelineName = "OrderingCommandPipeline";
+    public const string PipelineName = "QueryingPipeline";
 
     public static Type[] Middlewares()
     {
@@ -14,7 +14,7 @@ internal static class CommandPipelineConfiguration
             typeof(RequestAuditMiddleware<,>),
             typeof(AuthorizationMiddleware<,>),
             typeof(ValidationMiddleware<,>),
-            typeof(OrderRequestMiddleware<,>),
+            typeof(FilteringMiddleware<,>),
         ];
     }
 }

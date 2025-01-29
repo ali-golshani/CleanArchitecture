@@ -3,7 +3,7 @@ using CleanArchitecture.Mediator.Middlewares;
 using Framework.Mediator;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Application.Pipeline;
+namespace CleanArchitecture.Ordering.Application.Pipelines;
 
 internal sealed class OrderRequestMiddleware<TRequest, TResponse>
     : IMiddleware<TRequest, TResponse>

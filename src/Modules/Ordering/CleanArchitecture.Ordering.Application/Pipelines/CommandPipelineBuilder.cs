@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
 
-namespace CleanArchitecture.Ordering.Application.Pipeline;
+namespace CleanArchitecture.Ordering.Application.Pipelines;
 
 internal sealed class CommandPipelineBuilder<TRequest, TResponse>
     : RequestPipelineBuilderBase<TRequest, TResponse>
