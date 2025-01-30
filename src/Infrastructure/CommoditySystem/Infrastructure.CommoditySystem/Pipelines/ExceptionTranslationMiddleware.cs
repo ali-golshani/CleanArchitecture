@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
 using Framework.Results;
 
-namespace Infrastructure.CommoditySystem.Pipeline;
+namespace Infrastructure.CommoditySystem.Pipelines;
 
 public sealed class ExceptionTranslationMiddleware<TRequest, TResponse> :
     IMiddleware<TRequest, TResponse>

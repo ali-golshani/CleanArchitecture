@@ -1,5 +1,5 @@
 ﻿using Framework.Mediator.Extensions;
-using Infrastructure.CommoditySystem.Pipeline;
+using Infrastructure.CommoditySystem.Pipelines;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.CommoditySystem;

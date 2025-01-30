@@ -2,7 +2,7 @@
 using Infrastructure.RequestAudit;
 using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.CommoditySystem.Pipeline;
+namespace Infrastructure.CommoditySystem.Pipelines;
 
 internal sealed class RequestAuditMiddleware<TRequest, TResponse>
     : RequestAuditMiddlewareBase<TRequest, TResponse>

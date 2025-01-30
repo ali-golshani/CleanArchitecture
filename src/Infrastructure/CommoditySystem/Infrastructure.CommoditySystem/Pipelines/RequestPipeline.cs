@@ -2,7 +2,7 @@
 using CleanArchitecture.Mediator.Middlewares;
 using Framework.Mediator;
 
-namespace Infrastructure.CommoditySystem.Pipeline;
+namespace Infrastructure.CommoditySystem.Pipelines;
 
 internal sealed class RequestPipeline<TRequest, TResponse> :
     RequestPipelineBase<TRequest, TResponse>
