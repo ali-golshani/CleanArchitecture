@@ -16,14 +16,14 @@ public class AdminController : BaseController
     }
 
     [HttpGet("authorize-default-actor")]
-    [Authorize(AuthenticationSchemes.DefaultPolicy)]
+    [Authorize(AuthenticationSchemes.SchemaAPolicy)]
     public Results<Ok<Actor>, NotFound> GetImeActor(IActorResolver actorResolver)
     {
         return Get(actorResolver);
     }
 
     [HttpGet("authorize-services-actor")]
-    [Authorize(AuthenticationSchemes.InternalServicesPolicy)]
+    [Authorize(AuthenticationSchemes.SchemaBPolicy)]
     public Results<Ok<Actor>, NotFound> GetOnlineActor(IActorResolver actorResolver)
     {
         return Get(actorResolver);

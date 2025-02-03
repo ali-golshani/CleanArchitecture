@@ -2,17 +2,17 @@
 
 public static class AuthenticationSchemes
 {
-    public const string Default = "Default";
-    public const string InternalServices = "InternalServices";
+    public const string SchemaA = "SchemaA";
+    public const string SchemaB = "SchemaB";
 
-    public const string DefaultPolicy = "DefaultAuthenticationScheme";
-    public const string InternalServicesPolicy = "InternalServicesAuthenticationScheme";
+    public const string SchemaAPolicy = "AuthenticationSchemeA";
+    public const string SchemaBPolicy = "AuthenticationSchemeB";
 
     public sealed record Schema(string Name, string Policy);
 
     public static readonly Schema[] Schemas =
     [
-        new(Default, DefaultPolicy),
-        new(InternalServices, InternalServicesPolicy),
+        new(SchemaA, SchemaAPolicy),
+        new(SchemaB, SchemaBPolicy),
     ];
 }

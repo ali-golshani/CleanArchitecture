@@ -9,8 +9,8 @@ internal static class AuthenticationConfigs
     {
         var authenticationBuilder = services.AddAuthentication(options =>
         {
-            options.DefaultAuthenticateScheme = AuthenticationSchemes.Default;
-            options.DefaultChallengeScheme = AuthenticationSchemes.Default;
+            options.DefaultAuthenticateScheme = AuthenticationSchemes.SchemaA;
+            options.DefaultChallengeScheme = AuthenticationSchemes.SchemaA;
         });
 
         foreach (var schema in AuthenticationSchemes.Schemas.Select(x => x.Name))
