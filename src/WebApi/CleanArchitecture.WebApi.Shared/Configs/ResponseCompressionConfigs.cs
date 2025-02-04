@@ -4,7 +4,7 @@ namespace CleanArchitecture.WebApi.Shared.Configs;
 
 public static class ResponseCompressionConfigs
 {
-    public static void Configure(this IServiceCollection services)
+    public static void Configure(IServiceCollection services)
     {
         services.AddResponseCompression(options =>
         {

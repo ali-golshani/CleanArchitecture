@@ -13,7 +13,7 @@ public static class RateLimiterConfigs
         QueueLimit = 10,
     };
 
-    public static void Configure(this IServiceCollection services, FixedWindowRateLimiterOptions options)
+    public static void Configure(IServiceCollection services, FixedWindowRateLimiterOptions options)
     {
         services.AddRateLimiter(rateLimiterOptions =>
         {

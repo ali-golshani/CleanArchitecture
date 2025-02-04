@@ -2,7 +2,7 @@
 
 public static class VersioningConfigs
 {
-    public static void Configure(this IServiceCollection services)
+    public static void Configure(IServiceCollection services)
     {
         services.AddApiVersioning().AddApiExplorer();
         services.ConfigureOptions<ConfigureApiVersioningOptions>();

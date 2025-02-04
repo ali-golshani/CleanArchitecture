@@ -2,7 +2,7 @@
 
 public static class CorsConfigs
 {
-    public static void Configure(this IServiceCollection services)
+    public static void Configure(IServiceCollection services)
     {
         services.AddCors();
         services.ConfigureOptions<ConfigureCorsOptions>();
