@@ -14,8 +14,8 @@ public static class Configuration
     {
         configuration.Sources.Clear();
         SettingsConfigs.ConfigureSettings(configuration);
-        Options.Configs.Configure(configuration, environment);
-        Secrets.Configs.Configure(configuration, environment);
+        Options.OptionsConfigs.Configure(configuration, environment);
+        Secrets.SecretsConfigs.Configure(configuration, environment);
     }
 
     public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IEnvironment environment)
