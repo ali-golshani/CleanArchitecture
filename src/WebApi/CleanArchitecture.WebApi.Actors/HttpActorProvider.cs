@@ -23,9 +23,9 @@ internal class HttpActorProvider : IActorProvider
             return actor;
         }
 
-        actorResolved = true;
         var user = httpContextAccessor?.HttpContext?.User;
         actor = ResolveActor(user);
+        actorResolved = true;
         return actor;
     }
 
@@ -36,7 +36,7 @@ internal class HttpActorProvider : IActorProvider
             return null;
         }
 
-        var actors = ClaimsActorResolver.Actors(user).ToList();
+        var actors = ClaimsPrincipalExtensions.Actors(user).ToList();
 
         if (actors.Count == 0)
         {

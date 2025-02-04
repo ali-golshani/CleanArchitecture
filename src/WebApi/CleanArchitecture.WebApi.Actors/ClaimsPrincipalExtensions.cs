@@ -1,23 +1,23 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.WebApi.Actors.UserActorResolvers;
+using CleanArchitecture.WebApi.Actors.ActorResolvers;
 using System.Security.Claims;
 
 namespace CleanArchitecture.WebApi.Actors;
 
-internal static class ClaimsActorResolver
+internal static class ClaimsPrincipalExtensions
 {
     private const string Question = "?";
 
     public static IEnumerable<Actor> Actors(ClaimsPrincipal user)
     {
-        var query = ClaimsUser(user);
+        var query = User(user);
 
         if (query is null)
         {
             yield break;
         }
 
-        var resolvers = new IUserActorResolver[]
+        var resolvers = new ActorResolverBase[]
         {
             new ProgrammerResolver(),
             new SupervisorActorResolver(),
@@ -34,7 +34,7 @@ internal static class ClaimsActorResolver
         }
     }
 
-    private static ClaimsUser? ClaimsUser(ClaimsPrincipal user)
+    private static User? User(ClaimsPrincipal user)
     {
         if (user?.Identity?.IsAuthenticated != true)
         {
@@ -61,7 +61,7 @@ internal static class ClaimsActorResolver
             .FindFirst(x => MatchClaimType(x, ClaimTypes.DisplayName))
             ?.Value ?? Question;
 
-        return new ClaimsUser(user, roles, username, displayName);
+        return new User(user, roles, username, displayName);
     }
 
     private static bool MatchClaimType(Claim x, string claimType)

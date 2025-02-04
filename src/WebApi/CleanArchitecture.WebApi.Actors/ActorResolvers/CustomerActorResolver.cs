@@ -1,11 +1,11 @@
 ﻿using CleanArchitecture.Actors;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Actors.UserActorResolvers;
+namespace CleanArchitecture.WebApi.Actors.ActorResolvers;
 
-internal sealed class CustomerActorResolver : IUserActorResolver
+internal sealed class CustomerActorResolver : ActorResolverBase
 {
-    public IEnumerable<Actor> GetActors(ClaimsUser user)
+    public override IEnumerable<Actor> GetActors(User user)
     {
         string username = user.Username;
         string displayName = user.DisplayName;
