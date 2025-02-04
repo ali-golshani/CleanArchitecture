@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Authorization.Actors.UserActorResolvers;
+namespace CleanArchitecture.WebApi.Actors.UserActorResolvers;
 
 internal sealed class CustomerActorResolver : IUserActorResolver
 {

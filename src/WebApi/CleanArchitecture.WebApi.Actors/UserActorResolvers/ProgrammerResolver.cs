@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 
-namespace CleanArchitecture.WebApi.Authorization.Actors.UserActorResolvers;
+namespace CleanArchitecture.WebApi.Actors.UserActorResolvers;
 
 internal sealed class ProgrammerResolver : IUserActorResolver
 {

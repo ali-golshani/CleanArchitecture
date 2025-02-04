@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Configurations;
-using CleanArchitecture.WebApi.Authorization.Actors;
+using CleanArchitecture.WebApi.Actors;
 using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;

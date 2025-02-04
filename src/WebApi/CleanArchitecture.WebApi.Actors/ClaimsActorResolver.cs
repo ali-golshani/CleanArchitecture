@@ -1,8 +1,8 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.WebApi.Authorization.Actors.UserActorResolvers;
+using CleanArchitecture.WebApi.Actors.UserActorResolvers;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Authorization.Actors;
+namespace CleanArchitecture.WebApi.Actors;
 
 internal static class ClaimsActorResolver
 {

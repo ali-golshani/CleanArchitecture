@@ -54,6 +54,7 @@ public static class Program
 
         Authentication.AuthenticationConfigs.Configure(configuration, services);
         Authorization.AuthorizationConfigs.Configure(services);
+        Actors.ServiceConfigurations.RegisterServices(services);
 
         services
             .AddControllers(options =>
