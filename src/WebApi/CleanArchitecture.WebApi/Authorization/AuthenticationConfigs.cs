@@ -5,7 +5,7 @@ internal static class AuthorizationConfigs
     public static void Configure(IServiceCollection services)
     {
         services.AddAuthorization();
-        Shared.Configs.AuthorizationConfigs.Configure(services);
+        ServiceConfigurations.RegisterServices(services);
         services.ConfigureOptions<ConfigureAuthorizationOptions>();
     }
 }

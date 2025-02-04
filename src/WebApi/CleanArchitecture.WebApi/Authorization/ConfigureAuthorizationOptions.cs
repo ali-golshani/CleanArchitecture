@@ -8,7 +8,7 @@ internal class ConfigureAuthorizationOptions : IConfigureOptions<AuthorizationOp
 {
     public void Configure(AuthorizationOptions options)
     {
-        Shared.Configs.AuthorizationConfigs.RegisterAuthorizationPolicies(options);
+        PolicyConfigs.RegisterAuthorizationPolicies(options, typeof(Program).Assembly);
 
         foreach (var schema in AuthenticationSchemes.Schemas)
         {

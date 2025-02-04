@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Shared.Actors;
+namespace CleanArchitecture.WebApi.Authorization.Actors;
 
 internal class HttpActorProvider : IActorProvider
 {

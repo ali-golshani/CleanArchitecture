@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.WebApi.Shared.Authorization.Scopes;
+﻿namespace CleanArchitecture.WebApi.Authorization.Policies.Scopes;
 
 [Flags]
 public enum Scopes : long

@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.WebApi.OData.Authentication;
+﻿using CleanArchitecture.WebApi.Authorization;
+using CleanArchitecture.WebApi.OData.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
@@ -8,7 +9,7 @@ internal class ConfigureAuthorizationOptions : IConfigureOptions<AuthorizationOp
 {
     public void Configure(AuthorizationOptions options)
     {
-        Shared.Configs.AuthorizationConfigs.RegisterAuthorizationPolicies(options);
+        PolicyConfigs.RegisterAuthorizationPolicies(options, typeof(Program).Assembly);
 
         foreach (var schema in AuthenticationSchemes.Schemas)
         {

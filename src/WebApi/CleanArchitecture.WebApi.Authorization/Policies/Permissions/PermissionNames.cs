@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.WebApi.Shared.Authorization.Permissions;
+﻿namespace CleanArchitecture.WebApi.Authorization.Policies.Permissions;
 
 internal static class PermissionNames
 {

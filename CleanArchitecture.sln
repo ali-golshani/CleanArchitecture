@@ -154,6 +154,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.Queries", "src\Modules\Ordering\CleanArchitecture.Ordering.Queries\CleanArchitecture.Ordering.Queries.csproj", "{BEFBAF27-7253-4CE8-A41D-9E12E4E3AEC7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.WebApi.Authorization", "src\WebApi\CleanArchitecture.WebApi.Authorization\CleanArchitecture.WebApi.Authorization.csproj", "{8AFC5833-4142-4C07-B700-62E5511877A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -396,6 +398,10 @@ Global
 		{BEFBAF27-7253-4CE8-A41D-9E12E4E3AEC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEFBAF27-7253-4CE8-A41D-9E12E4E3AEC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEFBAF27-7253-4CE8-A41D-9E12E4E3AEC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AFC5833-4142-4C07-B700-62E5511877A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AFC5833-4142-4C07-B700-62E5511877A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AFC5833-4142-4C07-B700-62E5511877A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AFC5833-4142-4C07-B700-62E5511877A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -471,6 +477,7 @@ Global
 		{B35129A9-4CEC-4316-83AD-ADE85151AFB5} = {E4395562-331D-4AB0-ABDD-2DD70CC91C77}
 		{6435D151-FDA3-42B5-821B-D03422F58B40} = {55FA89C7-CAF1-4D86-9BCD-87C776041011}
 		{BEFBAF27-7253-4CE8-A41D-9E12E4E3AEC7} = {55FA89C7-CAF1-4D86-9BCD-87C776041011}
+		{8AFC5833-4142-4C07-B700-62E5511877A6} = {581E3197-D5BC-4FF6-9FA6-AB81F3C4A5A6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A6B9D9F-9E78-4DCF-91D0-51B3C5E404EE}

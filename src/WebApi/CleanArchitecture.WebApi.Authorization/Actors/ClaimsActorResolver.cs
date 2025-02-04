@@ -1,11 +1,13 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.WebApi.Shared.Actors.UserActorResolvers;
+using CleanArchitecture.WebApi.Authorization.Actors.UserActorResolvers;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Shared.Actors;
+namespace CleanArchitecture.WebApi.Authorization.Actors;
 
 internal static class ClaimsActorResolver
 {
+    private const string Question = "?";
+
     public static IEnumerable<Actor> Actors(ClaimsPrincipal user)
     {
         var query = ClaimsUser(user);
@@ -51,13 +53,13 @@ internal static class ClaimsActorResolver
             username =
                 user
                 .FindFirst(x => MatchClaimType(x, ClaimTypes.Username))
-                ?.Value ?? Strings.Question;
+                ?.Value ?? Question;
         }
 
         string displayName =
             user
             .FindFirst(x => MatchClaimType(x, ClaimTypes.DisplayName))
-            ?.Value ?? Strings.Question;
+            ?.Value ?? Question;
 
         return new ClaimsUser(user, roles, username, displayName);
     }

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.WebApi.Shared.Actors;
+﻿namespace CleanArchitecture.WebApi.Authorization.Actors;
 
 public static class ClaimTypes
 {

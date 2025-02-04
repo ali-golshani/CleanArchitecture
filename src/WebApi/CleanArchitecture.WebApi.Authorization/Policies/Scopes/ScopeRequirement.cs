@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace CleanArchitecture.WebApi.Shared.Authorization.Scopes;
+namespace CleanArchitecture.WebApi.Authorization.Policies.Scopes;
 
 internal class ScopeRequirement(Scopes scopes) : IAuthorizationRequirement
 {

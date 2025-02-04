@@ -28,6 +28,7 @@
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.WebApi.Authorization\CleanArchitecture.WebApi.Authorization.csproj" />
   </ItemGroup>
 
 </Project>

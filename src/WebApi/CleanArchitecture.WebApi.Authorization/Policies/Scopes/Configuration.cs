@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.Reflection;
 
-namespace CleanArchitecture.WebApi.Shared.Authorization.Scopes;
+namespace CleanArchitecture.WebApi.Authorization.Policies.Scopes;
 
 internal static class Configuration
 {

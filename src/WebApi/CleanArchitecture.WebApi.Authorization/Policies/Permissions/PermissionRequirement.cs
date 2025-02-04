@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace CleanArchitecture.WebApi.Shared.Authorization.Permissions;
+namespace CleanArchitecture.WebApi.Authorization.Policies.Permissions;
 
 internal class PermissionRequirement(Permission permission) : IAuthorizationRequirement
 {

@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.WebApi.Authorization.Actors;
 using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -50,8 +51,8 @@ public sealed class JwtBearerAuthenticationSettings
 
         options.TokenValidationParameters.ValidIssuer = options.ClaimsIssuer;
         options.TokenValidationParameters.ValidAudience = options.Audience;
-        options.TokenValidationParameters.RoleClaimType = Actors.ClaimTypes.Role;
-        options.TokenValidationParameters.NameClaimType = Actors.ClaimTypes.Username;
+        options.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
+        options.TokenValidationParameters.NameClaimType = ClaimTypes.Username;
 
         if (!string.IsNullOrEmpty(SecurityKey))
         {
@@ -66,7 +67,7 @@ public sealed class JwtBearerAuthenticationSettings
         var section = settingsSection.GetSection(sectionPath);
         section.Bind(options);
 
-        options.RoleClaimType = Actors.ClaimTypes.Role;
-        options.NameClaimType = Actors.ClaimTypes.Username;
+        options.RoleClaimType = ClaimTypes.Role;
+        options.NameClaimType = ClaimTypes.Username;
     }
 }

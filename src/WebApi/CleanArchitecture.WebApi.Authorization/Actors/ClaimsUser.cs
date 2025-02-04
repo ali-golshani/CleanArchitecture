@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Shared.Actors;
+namespace CleanArchitecture.WebApi.Authorization.Actors;
 
 internal record class ClaimsUser(ClaimsPrincipal Principal, List<Claim> Roles, string Username, string DisplayName)
 {
