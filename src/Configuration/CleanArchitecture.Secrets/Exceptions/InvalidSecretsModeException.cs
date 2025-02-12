@@ -2,9 +2,9 @@
 
 namespace CleanArchitecture.Secrets.Exceptions;
 
-public class InvalidSecretsConfigurationException : Exception
+public class InvalidSecretsModeException : Exception
 {
-    public InvalidSecretsConfigurationException(SecretsMode secretsMode)
+    public InvalidSecretsModeException(SecretsMode secretsMode)
     {
         SecretsMode = secretsMode;
     }
