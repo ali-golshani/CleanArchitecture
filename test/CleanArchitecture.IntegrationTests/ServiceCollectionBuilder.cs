@@ -13,7 +13,7 @@ public static class ServiceCollectionBuilder
 
     public static IServiceCollection Build(out IConfiguration configuration)
     {
-        SystemEnvironment.SetStagingEnvironment();
+        SystemEnvironment.SetAsStagingEnvironment();
 
         var configurationBuilder = new ConfigurationBuilder();
         var services = new ServiceCollection();

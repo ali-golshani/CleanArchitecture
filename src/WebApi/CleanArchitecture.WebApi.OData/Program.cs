@@ -24,11 +24,11 @@ public static class Program
 
         if (isProduction)
         {
-            SystemEnvironment.SetProductionEnvironment();
+            SystemEnvironment.SetAsProductionEnvironment();
         }
         else if (isStaging)
         {
-            SystemEnvironment.SetStagingEnvironment();
+            SystemEnvironment.SetAsStagingEnvironment();
         }
 
         ServicesConfigurations.Configuration.ConfigureAppConfiguration

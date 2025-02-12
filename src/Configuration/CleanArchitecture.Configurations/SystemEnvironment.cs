@@ -4,17 +4,17 @@ public static class SystemEnvironment
 {
     private static EnvironmentOptions environment = EnvironmentOptions.Development;
 
-    public static void SetProductionEnvironment()
+    public static void SetAsProductionEnvironment()
     {
         environment = EnvironmentOptions.Production;
     }
 
-    public static void SetStagingEnvironment()
+    public static void SetAsStagingEnvironment()
     {
         environment = EnvironmentOptions.Staging;
     }
 
-    public static void SetDbMigrationEnvironment()
+    public static void SetAsDbMigrationEnvironment()
     {
         environment = EnvironmentOptions.DbMigration;
     }
