@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Configurations;
 
-public enum OptionsConfiguration
+public enum SecretsMode
 {
     Development = 0,
     Production = 1,

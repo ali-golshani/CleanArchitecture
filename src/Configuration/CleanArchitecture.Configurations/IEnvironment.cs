@@ -3,6 +3,6 @@
 public interface IEnvironment
 {
     EnvironmentMode EnvironmentMode { get; }
-    OptionsConfiguration OptionsConfiguration { get; }
-    SecretsConfiguration SecretsConfiguration { get; }
+    OptionsMode OptionsMode { get; }
+    SecretsMode SecretsMode { get; }
 }

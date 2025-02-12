@@ -5,7 +5,7 @@ internal static class AuthorizationConfigs
     public static void Configure(IServiceCollection services)
     {
         services.AddAuthorization();
-        WebApi.Authorization.ServiceConfigurations.RegisterServices(services);
+        WebApi.Authorization.PolicyConfigs.RegisterServices(services);
         services.ConfigureOptions<ConfigureAuthorizationOptions>();
     }
 }

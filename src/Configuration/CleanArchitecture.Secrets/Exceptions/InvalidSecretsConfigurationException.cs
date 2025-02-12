@@ -4,18 +4,18 @@ namespace CleanArchitecture.Secrets.Exceptions;
 
 public class InvalidSecretsConfigurationException : Exception
 {
-    public InvalidSecretsConfigurationException(SecretsConfiguration secretsConfiguration)
+    public InvalidSecretsConfigurationException(SecretsMode secretsMode)
     {
-        SecretsConfiguration = secretsConfiguration;
+        SecretsMode = secretsMode;
     }
 
-    public SecretsConfiguration SecretsConfiguration { get; }
+    public SecretsMode SecretsMode { get; }
 
     public override string Message
     {
         get
         {
-            return $"Secrets Configuration value ({(int)SecretsConfiguration}) is not valid";
+            return $"Secrets Mode value ({(int)SecretsMode}) is not valid";
         }
     }
 }

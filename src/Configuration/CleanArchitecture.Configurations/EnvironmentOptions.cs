@@ -5,42 +5,42 @@ internal class EnvironmentOptions : IEnvironment
     public static readonly EnvironmentOptions Development = new EnvironmentOptions
     (
         environmentMode: EnvironmentMode.Development,
-        optionsConfiguration: OptionsConfiguration.Development,
-        secretsConfiguration: SecretsConfiguration.Development
+        optionsMode: OptionsMode.Development,
+        secretsMode: SecretsMode.Development
     );
 
     public static readonly EnvironmentOptions Staging = new EnvironmentOptions
     (
         environmentMode: EnvironmentMode.Staging,
-        optionsConfiguration: OptionsConfiguration.Staging,
-        secretsConfiguration: SecretsConfiguration.Staging
+        optionsMode: OptionsMode.Staging,
+        secretsMode: SecretsMode.Staging
     );
 
     public static readonly EnvironmentOptions Production = new EnvironmentOptions
     (
         environmentMode: EnvironmentMode.Production,
-        optionsConfiguration: OptionsConfiguration.Production,
-        secretsConfiguration: SecretsConfiguration.Production
+        optionsMode: OptionsMode.Production,
+        secretsMode: SecretsMode.Production
     );
 
     public static readonly EnvironmentOptions DbMigration = new EnvironmentOptions
     (
         environmentMode: EnvironmentMode.Development,
-        optionsConfiguration: OptionsConfiguration.DbMigration,
-        secretsConfiguration: SecretsConfiguration.DbMigration
+        optionsMode: OptionsMode.DbMigration,
+        secretsMode: SecretsMode.DbMigration
     );
 
     private EnvironmentOptions(
         EnvironmentMode environmentMode,
-        OptionsConfiguration optionsConfiguration,
-        SecretsConfiguration secretsConfiguration)
+        OptionsMode optionsMode,
+        SecretsMode secretsMode)
     {
         EnvironmentMode = environmentMode;
-        OptionsConfiguration = optionsConfiguration;
-        SecretsConfiguration = secretsConfiguration;
+        OptionsMode = optionsMode;
+        SecretsMode = secretsMode;
     }
 
     public EnvironmentMode EnvironmentMode { get; }
-    public OptionsConfiguration OptionsConfiguration { get; }
-    public SecretsConfiguration SecretsConfiguration { get; }
+    public OptionsMode OptionsMode { get; }
+    public SecretsMode SecretsMode { get; }
 }

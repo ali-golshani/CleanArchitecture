@@ -4,25 +4,25 @@ namespace CleanArchitecture.Secrets;
 
 internal static class Secrets
 {
-    public static MemoryStream AuthenticationStream(SecretsConfiguration configuration)
+    public static MemoryStream AuthenticationStream(SecretsMode mode)
     {
-        var fileName = FileName(configuration);
+        var fileName = FileName(mode);
         return ConfigurationStream(fileName);
 
-        static string FileName(SecretsConfiguration configuration)
+        static string FileName(SecretsMode mode)
         {
-            return $"Authentication.{configuration}.json";
+            return $"Authentication.{mode}.json";
         }
     }
 
-    public static MemoryStream ConnectionStringsStream(SecretsConfiguration configuration)
+    public static MemoryStream ConnectionStringsStream(SecretsMode mode)
     {
-        var fileName = FileName(configuration);
+        var fileName = FileName(mode);
         return ConfigurationStream(fileName);
 
-        static string FileName(SecretsConfiguration configuration)
+        static string FileName(SecretsMode mode)
         {
-            return $"ConnectionStrings.{configuration}.json";
+            return $"ConnectionStrings.{mode}.json";
         }
     }
 
