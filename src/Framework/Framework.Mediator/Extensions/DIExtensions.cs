@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Framework.Mediator.Middlewares;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Framework.Mediator.Extensions;
@@ -20,4 +21,14 @@ public static class DIExtensions
         });
     }
 
+    public static void RegisterPipelineMiddlewares(
+        this IServiceCollection services,
+        string pipelineName,
+        params Type[] middlewares)
+    {
+        foreach (var type in middlewares)
+        {
+            services.AddKeyedTransient(typeof(IMiddleware<,>), pipelineName, type);
+        }
+    }
 }

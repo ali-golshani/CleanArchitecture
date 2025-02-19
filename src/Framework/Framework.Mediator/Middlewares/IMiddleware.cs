@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Mediator.Middlewares;
+﻿namespace Framework.Mediator.Middlewares;
 
 public interface IMiddleware<TRequest, TResponse>
 {

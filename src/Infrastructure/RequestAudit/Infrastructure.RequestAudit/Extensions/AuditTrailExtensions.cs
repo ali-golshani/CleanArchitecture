@@ -7,7 +7,7 @@ internal static class AuditTrailExtensions
 {
     public static AuditTrail LogEntry(
         this Request request,
-        Actor actor,
+        Actor? actor,
         string? domain = null,
         bool? shouldLog = null)
     {

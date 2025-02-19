@@ -10,7 +10,6 @@ public static class ServiceConfigurations
     {
         services.RegisterRequestHandlers();
         services.AddTransient(typeof(RequestPipeline<,>));
-        services.AddTransient(typeof(RequestPipelineBuilder<,>));
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
         services.AddTransient(typeof(ExceptionTranslationMiddleware<,>));
         services.AddScoped<ICommoditySystem, CommoditySystem>();

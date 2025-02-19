@@ -1,5 +1,6 @@
 ﻿using Framework.Exceptions;
 using Framework.Exceptions.Extensions;
+using Framework.Mediator.Middlewares;
 using Framework.Results.Errors;
 using Framework.Results.Exceptions;
 using Microsoft.Extensions.Logging;

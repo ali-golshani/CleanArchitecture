@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Mediator.Middlewares;
+﻿using Framework.Mediator.Middlewares;
 using Framework.Results;
 
 namespace Infrastructure.CommoditySystem.Pipelines;

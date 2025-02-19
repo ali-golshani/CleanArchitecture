@@ -1,5 +1,5 @@
-﻿using CleanArchitecture.Mediator.Middlewares;
-using Framework.Mediator;
+﻿using Framework.Mediator;
+using Framework.Mediator.Middlewares;
 using Infrastructure.RequestAudit.Extensions;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -11,19 +11,24 @@ public abstract class RequestAuditMiddlewareBase<TRequest, TResponse> : IMiddlew
 {
     protected abstract string LggingDomain { get; }
 
+    private readonly IActorResolver actorResolver;
     private readonly RequestAuditAgent requestAudit;
     private readonly ILogger logger;
 
-    protected RequestAuditMiddlewareBase(RequestAuditAgent requestAudit, ILogger logger)
+    protected RequestAuditMiddlewareBase(
+        IActorResolver actorResolver,
+        RequestAuditAgent requestAudit,
+        ILogger logger)
     {
+        this.actorResolver = actorResolver;
         this.requestAudit = requestAudit;
         this.logger = logger;
     }
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
     {
-        var actor = context.Actor;
         var request = context.Request;
+        var actor = actorResolver.Actor;
 
         var logEntry = request.LogEntry(actor, LggingDomain);
         var timer = new Stopwatch();

@@ -1,14 +1,12 @@
-﻿using Framework.Mediator;
+﻿namespace Framework.Mediator.Middlewares;
 
-namespace CleanArchitecture.Mediator.Middlewares;
-
-public sealed class RequestHandlingProcessor<TRequest, TResponse> :
+internal sealed class RequestHandlerPipe<TRequest, TResponse> :
     IRequestProcessor<TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>
 {
     private readonly IRequestHandler<TRequest, TResponse> handler;
 
-    public RequestHandlingProcessor(IRequestHandler<TRequest, TResponse> handler)
+    public RequestHandlerPipe(IRequestHandler<TRequest, TResponse> handler)
     {
         this.handler = handler;
     }

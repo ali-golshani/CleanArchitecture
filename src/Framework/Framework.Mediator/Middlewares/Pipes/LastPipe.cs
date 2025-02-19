@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Mediator.Middlewares.Pipes;
+﻿namespace Framework.Mediator.Middlewares.Pipes;
 
 internal class LastPipe<TRequest, TResponse> : IRequestProcessor<TRequest, TResponse>
 {

@@ -1,4 +1,5 @@
-﻿using Framework.Mediator;
+﻿using CleanArchitecture.Actors;
+using Framework.Mediator;
 using Infrastructure.RequestAudit;
 using Microsoft.Extensions.Logging;
 
@@ -9,9 +10,10 @@ internal sealed class RequestAuditMiddleware<TRequest, TResponse>
     where TRequest : Request
 {
     public RequestAuditMiddleware(
+        IActorResolver actorResolver,
         RequestAuditAgent requestAudit,
         ILogger<RequestAuditMiddleware<TRequest, TResponse>> logger)
-        : base(requestAudit, logger)
+        : base(actorResolver, requestAudit, logger)
     { }
 
     protected override string LggingDomain { get; } = nameof(Ordering);

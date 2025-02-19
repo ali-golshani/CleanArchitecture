@@ -1,10 +1,10 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Mediator.Middlewares;
 using CleanArchitecture.Ordering.Application.Utilities;
 using CleanArchitecture.Ordering.Persistence;
 using Framework.Application;
 using Framework.Mediator;
 using Framework.Mediator.IntegrationEvents;
+using Framework.Mediator.Middlewares;
 using Framework.Persistence.Utilities;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,19 +15,23 @@ internal sealed class TransactionalCommandHandlingProcessor<TRequest, TResponse>
     IRequestProcessor<TRequest, TResponse>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
+    private readonly IActorResolver actorResolver;
     private readonly IServiceScopeFactory serviceScopeFactory;
 
-    public TransactionalCommandHandlingProcessor(IServiceScopeFactory serviceScopeFactory)
+    public TransactionalCommandHandlingProcessor(
+        IActorResolver actorResolver,
+        IServiceScopeFactory serviceScopeFactory)
     {
+        this.actorResolver = actorResolver;
         this.serviceScopeFactory = serviceScopeFactory;
     }
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        var actor = context.Actor;
         var request = context.Request;
         var cancellationToken = context.CancellationToken;
 
+        var actor = actorResolver.Actor;
         using var scope = serviceScopeFactory.CreateScope(actor);
 
         await using var db = scope.ServiceProvider.GetRequiredService<OrderingDbContext>();

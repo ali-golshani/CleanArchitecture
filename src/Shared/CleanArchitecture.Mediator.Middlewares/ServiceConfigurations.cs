@@ -10,6 +10,5 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(ExceptionHandlingMiddleware<,>));
         services.AddTransient(typeof(FilteringMiddleware<,>));
         services.AddTransient(typeof(ValidationMiddleware<,>));
-        services.AddTransient(typeof(RequestHandlingProcessor<,>));
     }
 }

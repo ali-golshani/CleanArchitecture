@@ -9,10 +9,13 @@ public static class ActorExtensions
         serviceProvider.GetRequiredService<FixedActorProvider>().SetActor(actor);
     }
 
-    public static IServiceScope CreateScope(this IServiceScopeFactory serviceScopeFactory, Actor actor)
+    public static IServiceScope CreateScope(this IServiceScopeFactory serviceScopeFactory, Actor? actor)
     {
         var scope = serviceScopeFactory.CreateScope();
-        scope.ServiceProvider.ResolveActor(actor);
+        if (actor is not null)
+        {
+            scope.ServiceProvider.ResolveActor(actor);
+        }
         return scope;
     }
 }
