@@ -3,9 +3,9 @@ using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Application.Pipelines;
 
-internal class QueryPipelineConfiguration : IKeyedPipelineConfiguration
+internal sealed class QueryPipelineConfiguration : IKeyedPipelineConfiguration
 {
-    public static string PipelineName => "OrderingQueryPipeline";
+    public static string PipelineName { get; } = "OrderingQueryPipeline";
 
     public static Type[] Middlewares()
     {
