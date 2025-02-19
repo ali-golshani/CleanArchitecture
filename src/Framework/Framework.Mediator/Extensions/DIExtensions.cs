@@ -21,14 +21,12 @@ public static class DIExtensions
         });
     }
 
-    public static void RegisterKeyedPipelineMiddlewares(
-        this IServiceCollection services,
-        string pipelineName,
-        params Type[] middlewares)
+    public static void RegisterMiddlewares<TPipelineConfiguration>(this IServiceCollection services)
+        where TPipelineConfiguration : IKeyedPipelineConfiguration
     {
-        foreach (var type in middlewares)
+        foreach (var type in TPipelineConfiguration.Middlewares())
         {
-            services.AddKeyedTransient(typeof(IMiddleware<,>), pipelineName, type);
+            services.AddKeyedTransient(typeof(IMiddleware<,>), TPipelineConfiguration.PipelineName, type);
         }
     }
 }

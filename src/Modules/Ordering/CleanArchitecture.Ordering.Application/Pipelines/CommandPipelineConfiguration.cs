@@ -1,10 +1,11 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
+using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Application.Pipelines;
 
-internal static class CommandPipelineConfiguration
+internal class CommandPipelineConfiguration : IKeyedPipelineConfiguration
 {
-    public const string PipelineName = "OrderingCommandPipeline";
+    public static string PipelineName => "OrderingCommandPipeline";
 
     public static Type[] Middlewares()
     {
