@@ -19,7 +19,7 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
         services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
 
-        services.RegisterPipelineMiddlewares(QueryPipelineConfiguration.PipelineName, QueryPipelineConfiguration.Middlewares());
-        services.RegisterPipelineMiddlewares(CommandPipelineConfiguration.PipelineName, CommandPipelineConfiguration.Middlewares());
+        services.RegisterKeyedPipelineMiddlewares(QueryPipelineConfiguration.PipelineName, QueryPipelineConfiguration.Middlewares());
+        services.RegisterKeyedPipelineMiddlewares(CommandPipelineConfiguration.PipelineName, CommandPipelineConfiguration.Middlewares());
     }
 }

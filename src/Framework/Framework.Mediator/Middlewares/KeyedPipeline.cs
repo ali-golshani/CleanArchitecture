@@ -4,11 +4,11 @@ public abstract class KeyedPipeline<TRequest, TResponse>
     : IPipeline<TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>
 {
-    protected readonly IRequestProcessor<TRequest, TResponse> processor;
+    protected readonly IRequestProcessor<TRequest, TResponse> entryProcessor;
 
     protected KeyedPipeline(IServiceProvider serviceProvider, string pipelineName)
     {
-        processor = PipelineBuilder.EntryProcessor<TRequest, TResponse>(serviceProvider, pipelineName);
+        entryProcessor = PipelineBuilder.EntryProcessor<TRequest, TResponse>(serviceProvider, pipelineName);
     }
 
     protected KeyedPipeline(
@@ -16,7 +16,7 @@ public abstract class KeyedPipeline<TRequest, TResponse>
         IRequestProcessor<TRequest, TResponse> processor,
         string pipelineName)
     {
-        this.processor = PipelineBuilder.EntryProcessor(serviceProvider, processor, pipelineName);
+        this.entryProcessor = PipelineBuilder.EntryProcessor(serviceProvider, processor, pipelineName);
     }
 
     public Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken)
@@ -27,6 +27,6 @@ public abstract class KeyedPipeline<TRequest, TResponse>
             CancellationToken = cancellationToken,
         };
 
-        return processor.Handle(context);
+        return entryProcessor.Handle(context);
     }
 }

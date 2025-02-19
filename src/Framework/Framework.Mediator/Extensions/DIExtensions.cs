@@ -21,7 +21,7 @@ public static class DIExtensions
         });
     }
 
-    public static void RegisterPipelineMiddlewares(
+    public static void RegisterKeyedPipelineMiddlewares(
         this IServiceCollection services,
         string pipelineName,
         params Type[] middlewares)

@@ -2,7 +2,7 @@
 
 public abstract class Actor
 {
-    protected Actor(Role role, string username, string displayName)
+    private protected Actor(Role role, string username, string displayName)
     {
         Role = role;
         Username = username;
