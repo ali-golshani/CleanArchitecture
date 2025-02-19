@@ -57,11 +57,6 @@ internal static class PipelineBuilder
         var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
         var processor = new RequestHandlerPipe<TRequest, TResponse>(handler);
 
-        var middlewares =
-            serviceProvider
-            .GetKeyedServices<IMiddleware<TRequest, TResponse>>(pipelineName)
-            .ToArray();
-
-        return EntryProcessor(processor, middlewares);
+        return EntryProcessor(serviceProvider, processor, pipelineName);
     }
 }

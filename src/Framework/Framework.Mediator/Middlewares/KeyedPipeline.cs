@@ -16,7 +16,7 @@ public abstract class KeyedPipeline<TRequest, TResponse>
         IRequestProcessor<TRequest, TResponse> processor,
         string pipelineName)
     {
-        this.entryProcessor = PipelineBuilder.EntryProcessor(serviceProvider, processor, pipelineName);
+        entryProcessor = PipelineBuilder.EntryProcessor(serviceProvider, processor, pipelineName);
     }
 
     public Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken)
