@@ -1,0 +1,29 @@
+﻿//using Framework.Mediator.Extensions;
+//using Framework.Mediator.Middlewares;
+//using Microsoft.Extensions.DependencyInjection;
+
+//namespace Framework.Mediator;
+
+//public interface IMediator
+//{
+//    Task<Result<TResponse>> Send<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
+//        where TRequest : IRequest<TRequest, TResponse>;
+//}
+
+//internal sealed class Mediator : IMediator
+//{
+//    private readonly IServiceProvider serviceProvider;
+
+//    public Mediator(IServiceProvider serviceProvider)
+//    {
+//        this.serviceProvider = serviceProvider;
+//    }
+
+//    public Task<Result<TResponse>> Send<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
+//        where TRequest : IRequest<TRequest, TResponse>
+//    {
+//        var pipelines = serviceProvider.GetRequiredService<IEnumerable<IPipeline<TRequest, TResponse>>>();
+//        var pipeline = pipelines.First();
+//        return pipeline.Handle(request.AsRequestType(), cancellationToken);
+//    }
+//}
