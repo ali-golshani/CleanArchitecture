@@ -25,14 +25,7 @@ internal static class PipelineBuilder
     where TRequest : IRequest<TRequest, TResponse>
     {
         var processor = new RequestHandlerPipe<TRequest, TResponse>(handler);
-        IRequestProcessor<TRequest, TResponse> pipe = new LastPipe<TRequest, TResponse>(processor);
-
-        foreach (var filter in middlewares.Reverse())
-        {
-            pipe = new FilterPipe<TRequest, TResponse>(filter, pipe);
-        }
-
-        return pipe;
+        return EntryProcessor(processor, middlewares);
     }
 
     internal static IRequestProcessor<TRequest, TResponse> EntryProcessor<TRequest, TResponse>(

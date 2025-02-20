@@ -33,14 +33,15 @@ internal sealed class TransactionalCommandHandlingProcessor<TRequest, TResponse>
 
         var actor = actorResolver.Actor;
         using var scope = serviceScopeFactory.CreateScope(actor);
+        var serviceProvider = scope.ServiceProvider;
 
-        await using var db = scope.ServiceProvider.GetRequiredService<OrderingDbContext>();
-        var eventOutbox = scope.ServiceProvider.GetRequiredService<IIntegrationEventOutbox>();
-        var eventBus = scope.ServiceProvider.GetRequiredService<IIntegrationEventBus>();
+        await using var db = serviceProvider.GetRequiredService<OrderingDbContext>();
+        var eventOutbox = serviceProvider.GetRequiredService<IIntegrationEventOutbox>();
+        var eventBus = serviceProvider.GetRequiredService<IIntegrationEventBus>();
 
         using var transaction = await eventOutbox.BeginTransaction(db, cancellationToken);
 
-        var handler = scope.ServiceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
+        var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
         var result = await handler.Handle(request, cancellationToken);
 
         if (result.IsFailure)
