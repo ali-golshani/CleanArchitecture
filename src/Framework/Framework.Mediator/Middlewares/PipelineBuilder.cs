@@ -9,7 +9,7 @@ internal static class PipelineBuilder
         IRequestProcessor<TRequest, TResponse> processor,
         params IMiddleware<TRequest, TResponse>[] middlewares)
     {
-        IRequestProcessor<TRequest, TResponse> pipe = new LastPipe<TRequest, TResponse>(processor);
+        var pipe = processor;
 
         foreach (var filter in middlewares.Reverse())
         {
@@ -24,7 +24,7 @@ internal static class PipelineBuilder
         params IMiddleware<TRequest, TResponse>[] middlewares)
     where TRequest : IRequest<TRequest, TResponse>
     {
-        var processor = new RequestHandlerPipe<TRequest, TResponse>(handler);
+        var processor = new LastPipe<TRequest, TResponse>(handler);
         return EntryProcessor(processor, middlewares);
     }
 
@@ -48,8 +48,7 @@ internal static class PipelineBuilder
     where TRequest : IRequest<TRequest, TResponse>
     {
         var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-        var processor = new RequestHandlerPipe<TRequest, TResponse>(handler);
-
+        var processor = new LastPipe<TRequest, TResponse>(handler);
         return EntryProcessor(serviceProvider, processor, pipelineName);
     }
 }

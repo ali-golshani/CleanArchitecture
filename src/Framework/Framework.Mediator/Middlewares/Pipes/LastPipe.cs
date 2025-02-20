@@ -1,16 +1,18 @@
-﻿namespace Framework.Mediator.Middlewares.Pipes;
+﻿namespace Framework.Mediator.Middlewares;
 
-internal class LastPipe<TRequest, TResponse> : IRequestProcessor<TRequest, TResponse>
+internal sealed class LastPipe<TRequest, TResponse> :
+    IRequestProcessor<TRequest, TResponse>
+    where TRequest : IRequest<TRequest, TResponse>
 {
-    private readonly IRequestProcessor<TRequest, TResponse> processor;
+    private readonly IRequestHandler<TRequest, TResponse> handler;
 
-    public LastPipe(IRequestProcessor<TRequest, TResponse> processor)
+    public LastPipe(IRequestHandler<TRequest, TResponse> handler)
     {
-        this.processor = processor;
+        this.handler = handler;
     }
 
     public Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        return processor.Handle(context);
+        return handler.Handle(context.Request, context.CancellationToken);
     }
 }

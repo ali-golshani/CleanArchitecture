@@ -39,10 +39,7 @@ public static class Program
 
         ServicesConfigurations.Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
 
-        services.AddLogging(builder =>
-        {
-            ServicesConfigurations.Configuration.ConfigureLogging(builder);
-        });
+        services.AddLogging(ServicesConfigurations.Configuration.ConfigureLogging);
 
         VersioningConfigs.Configure(services);
         CorsConfigs.Configure(services);
