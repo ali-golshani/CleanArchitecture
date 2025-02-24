@@ -11,6 +11,5 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(DomainEventPublisher<>));
         services.AddTransient<IDomainEventPublisher, DomainEventPublisher>();
         services.AddScoped<IIntegrationEventBus, IntegrationEventBus>();
-        services.AddTransient<IRequestHandler, RequestHandler>();
     }
 }
