@@ -3,14 +3,9 @@ using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager;
 
-internal class ProcessService : IProcessManager
+internal class ProcessService(IServiceProvider serviceProvider) : IProcessManager
 {
-    private readonly IServiceProvider serviceProvider;
-
-    public ProcessService(IServiceProvider serviceProvider)
-    {
-        this.serviceProvider = serviceProvider;
-    }
+    private readonly IServiceProvider serviceProvider = serviceProvider;
 
     public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> command, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
