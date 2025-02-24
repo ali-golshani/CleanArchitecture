@@ -1,4 +1,5 @@
-﻿using Framework.Mediator.Middlewares;
+﻿using Framework.Mediator.DomainEvents;
+using Framework.Mediator.Middlewares;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -42,6 +43,31 @@ public static class DIExtensions
             scan
                 .FromAssemblies(assemblies)
                 .AddClasses(classes => classes.AssignableTo(typeof(IRequestHandler<,>)))
+                .AsImplementedInterfaces()
+                .WithTransientLifetime()
+                ;
+        });
+    }
+
+    public static void RegisterAllDomainEventHandlers(this IServiceCollection services)
+    {
+        var assemblies = AllAssemblies();
+        services.RegisterDomainEventHandlers(assemblies);
+    }
+
+    public static void RegisterDomainEventHandlers(this IServiceCollection services)
+    {
+        var assembly = Assembly.GetCallingAssembly();
+        services.RegisterDomainEventHandlers(assembly);
+    }
+
+    public static void RegisterDomainEventHandlers(this IServiceCollection services, params Assembly[] assemblies)
+    {
+        services.Scan(scan =>
+        {
+            scan
+                .FromAssemblies(assemblies)
+                .AddClasses(classes => classes.AssignableTo(typeof(IDomainEventHandler<>)))
                 .AsImplementedInterfaces()
                 .WithTransientLifetime()
                 ;
