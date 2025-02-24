@@ -1,23 +1,9 @@
-﻿using Framework.Mediator.DomainEvents;
-using Framework.Mediator.Exceptions;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Framework.Mediator.Exceptions;
 
 namespace Framework.Mediator.Extensions;
 
 public static class Extensions
 {
-    public static IRequestHandler<TRequest, TResponse> RequestHandler<TRequest, TResponse>(this IServiceProvider serviceProvider)
-        where TRequest : IRequest<TRequest, TResponse>
-    {
-        return serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-    }
-
-    public static IDomainEventHandler<TEvent> DomainEventHandler<TEvent>(this IServiceProvider serviceProvider)
-        where TEvent : IDomainEvent
-    {
-        return serviceProvider.GetRequiredService<IDomainEventHandler<TEvent>>();
-    }
-
     public static TRequest AsRequestType<TRequest, TResponse>(this IRequest<TRequest, TResponse> request)
     {
         if (request is not TRequest result)
