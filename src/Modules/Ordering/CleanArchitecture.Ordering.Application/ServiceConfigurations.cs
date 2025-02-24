@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Ordering.Application.Pipelines;
 using CleanArchitecture.Ordering.Application.Services;
 using Framework.Mediator.Extensions;
+using Framework.Mediator.Middlewares;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Application;
@@ -14,12 +15,14 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
 
         services.AddTransient(typeof(QueryPipeline<,>));
+        services.RegisterMiddlewares<QueryPipelineConfiguration>();
+        services.AddTransient(typeof(IPipeline<,>), typeof(QueryPipeline<,>));
+
         services.AddTransient(typeof(CommandPipeline<,>));
+        services.RegisterMiddlewares<CommandPipelineConfiguration>();
+        services.AddTransient(typeof(IPipeline<,>), typeof(CommandPipeline<,>));
 
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
         services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
-
-        services.RegisterMiddlewares<QueryPipelineConfiguration>();
-        services.RegisterMiddlewares<CommandPipelineConfiguration>();
     }
 }

@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
+using Framework.Mediator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.IntegrationTests.Services;
@@ -12,8 +13,11 @@ internal abstract class ServiceBase(IServiceProvider serviceProvider) : IService
     protected static readonly Actor Programmer = new Programmer("tester", "Test App");
 
     protected T Service<T>() where T : notnull => serviceProvider.GetRequiredService<T>();
+    protected IMediator Mediator() => Service<IMediator>();
     protected IQueryService QueryService() => Service<IQueryService>();
     protected ICommandService CommandService() => Service<ICommandService>();
+
+    protected void ResolveActor() => serviceProvider.ResolveActor(Programmer);
 
     protected static void WriteErrors(Framework.Results.Result<Framework.Results.Empty> result)
     {
