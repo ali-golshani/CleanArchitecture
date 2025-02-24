@@ -5,9 +5,9 @@ namespace CleanArchitecture.ProcessManager;
 
 internal class ProcessService : IProcessManager
 {
-    private readonly IRequestMediator requestHandler;
+    private readonly IRequestHandler requestHandler;
 
-    public ProcessService(IRequestMediator requestHandler)
+    public ProcessService(IRequestHandler requestHandler)
     {
         this.requestHandler = requestHandler;
     }
@@ -15,6 +15,6 @@ internal class ProcessService : IProcessManager
     public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> command, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        return await requestHandler.Send(command, cancellationToken);
+        return await requestHandler.Handle(command, cancellationToken);
     }
 }

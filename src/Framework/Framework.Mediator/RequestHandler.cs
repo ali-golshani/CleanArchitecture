@@ -3,16 +3,16 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Framework.Mediator;
 
-internal sealed class RequestMediator : IRequestMediator
+internal sealed class RequestHandler : IRequestHandler
 {
     private readonly IServiceProvider serviceProvider;
 
-    public RequestMediator(IServiceProvider serviceProvider)
+    public RequestHandler(IServiceProvider serviceProvider)
     {
         this.serviceProvider = serviceProvider;
     }
 
-    public Task<Result<TResponse>> Send<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
+    public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : IRequest<TRequest, TResponse>
     {
         var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();

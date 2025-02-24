@@ -3,13 +3,13 @@ using Framework.Results;
 
 namespace Infrastructure.CommoditySystem.Mock;
 
-internal class CommoditySystem(IRequestMediator requestMediator) : ICommoditySystem
+internal class CommoditySystem(IRequestHandler requestHandler) : ICommoditySystem
 {
-    private readonly IRequestMediator requestMediator = requestMediator;
+    private readonly IRequestHandler requestHandler = requestHandler;
 
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        return requestMediator.Send(request, cancellationToken);
+        return requestHandler.Handle(request, cancellationToken);
     }
 }
