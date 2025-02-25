@@ -9,6 +9,9 @@ public static class DIExtensions
 {
     private static Assembly[] AllAssemblies() => AppDomain.CurrentDomain.GetAssemblies();
 
+    /// <summary>
+    /// Register All types derived from 'TBase' as Self with Transient-Lifetime
+    /// </summary>
     public static void RegisterAsSelf<TBase>(this IServiceCollection services)
     {
         var assembly = Assembly.GetCallingAssembly();
