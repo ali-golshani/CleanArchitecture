@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.IntegrationTests.Services;
 using CleanArchitecture.ServicesConfigurations;
-using Framework.Mediator.Extensions;
+using Framework.DependencyInjection.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

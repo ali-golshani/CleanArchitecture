@@ -16,12 +16,13 @@ internal sealed class Mediator(IServiceProvider serviceProvider) : IMediator
 
         if (pipelines.Count == 0)
         {
-            throw new RequestPipelineIsNotRegisteredException<TRequest>();
+            throw new MissingRequestPipelineException<TRequest>();
         }
 
         if (pipelines.Count > 1)
         {
-            throw new MultipleRequestPipelinesAreRegisteredException<TRequest>();
+            var pipelineTypes = pipelines.Select(x => x.GetType()).ToArray();
+            throw new DuplicateRequestPipelineException<TRequest>(pipelineTypes);
         }
 
         var pipeline = pipelines[0];
