@@ -32,7 +32,7 @@ public static class DIExtensions
         {
             scan
                 .FromAssemblies(assemblies)
-                .AddClasses(classes => classes.AssignableTo(interfaceType))
+                .AddClasses(classes => classes.AssignableTo(interfaceType), publicOnly: false)
                 .AsImplementedInterfaces()
                 .WithTransientLifetime()
                 ;
