@@ -10,24 +10,24 @@ namespace CleanArchitecture.WebApi.Shared.Authentication;
 public sealed class JwtBearerAuthenticationSettings
 {
     public string? SecurityKey { get; set; }
-    public string? IntrospectionSchema { get; set; }
+    public string? IntrospectionScheme { get; set; }
 
-    private bool IsReferenceToken => !string.IsNullOrEmpty(IntrospectionSchema);
+    private bool IsReferenceToken => !string.IsNullOrEmpty(IntrospectionScheme);
 
     public void Configure(
         IConfigurationSection configurationSection,
         AuthenticationBuilder builder,
-        string authenticationSchema)
+        string authenticationScheme)
     {
         if (IsReferenceToken)
         {
             builder
-            .AddJwtBearer(authenticationSchema, options =>
+            .AddJwtBearer(authenticationScheme, options =>
             {
                 Configure(configurationSection, options);
-                options.ForwardDefaultSelector = _ => IntrospectionSchema!;
+                options.ForwardDefaultSelector = _ => IntrospectionScheme!;
             })
-            .AddOAuth2Introspection(IntrospectionSchema, options =>
+            .AddOAuth2Introspection(IntrospectionScheme, options =>
             {
                 Configure(configurationSection, options);
             });
@@ -35,7 +35,7 @@ public sealed class JwtBearerAuthenticationSettings
         else
         {
             builder
-            .AddJwtBearer(authenticationSchema, options =>
+            .AddJwtBearer(authenticationScheme, options =>
             {
                 Configure(configurationSection, options);
             });

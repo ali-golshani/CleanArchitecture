@@ -22,9 +22,9 @@ public static class ConfigurationSections
         public const string JwtBearerOptions = "JwtBearerOptions";
         public const string OAuth2IntrospectionOptions = "OAuth2IntrospectionOptions";
 
-        public static string Schema(string schema)
+        public static string Scheme(string scheme)
         {
-            return $"Authentication:{schema}";
+            return $"Authentication:{scheme}";
         }
     }
 }

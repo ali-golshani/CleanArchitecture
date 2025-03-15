@@ -6,17 +6,17 @@ internal static class AuthenticationConfigs
     {
         var authenticationBuilder = services.AddAuthentication(options =>
         {
-            options.DefaultAuthenticateScheme = AuthenticationSchemes.SchemaA;
-            options.DefaultChallengeScheme = AuthenticationSchemes.SchemaA;
+            options.DefaultAuthenticateScheme = AuthenticationSchemes.SchemeA;
+            options.DefaultChallengeScheme = AuthenticationSchemes.SchemeA;
         });
 
-        foreach (var schema in AuthenticationSchemes.Schemas.Select(x => x.Name))
+        foreach (var scheme in AuthenticationSchemes.Schemes.Select(x => x.Name))
         {
-            Shared.Authentication.AuthenticationSchemaConfigs.Configure
+            Shared.Authentication.AuthenticationSchemeConfigs.Configure
             (
                 configuration,
                 authenticationBuilder,
-                schema
+                scheme
             );
         }
     }
