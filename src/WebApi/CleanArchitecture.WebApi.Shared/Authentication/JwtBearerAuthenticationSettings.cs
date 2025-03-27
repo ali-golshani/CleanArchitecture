@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Configurations;
-using CleanArchitecture.WebApi.Actors;
 using IdentityModel.AspNetCore.OAuth2Introspection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,24 +10,24 @@ namespace CleanArchitecture.WebApi.Shared.Authentication;
 public sealed class JwtBearerAuthenticationSettings
 {
     public string? SecurityKey { get; set; }
-    public string? IntrospectionSchema { get; set; }
+    public string? IntrospectionScheme { get; set; }
 
-    private bool IsReferenceToken => !string.IsNullOrEmpty(IntrospectionSchema);
+    private bool IsReferenceToken => !string.IsNullOrEmpty(IntrospectionScheme);
 
     public void Configure(
         IConfigurationSection configurationSection,
         AuthenticationBuilder builder,
-        string authenticationSchema)
+        string authenticationScheme)
     {
         if (IsReferenceToken)
         {
             builder
-            .AddJwtBearer(authenticationSchema, options =>
+            .AddJwtBearer(authenticationScheme, options =>
             {
                 Configure(configurationSection, options);
-                options.ForwardDefaultSelector = _ => IntrospectionSchema!;
+                options.ForwardDefaultSelector = _ => IntrospectionScheme!;
             })
-            .AddOAuth2Introspection(IntrospectionSchema, options =>
+            .AddOAuth2Introspection(IntrospectionScheme, options =>
             {
                 Configure(configurationSection, options);
             });
@@ -36,7 +35,7 @@ public sealed class JwtBearerAuthenticationSettings
         else
         {
             builder
-            .AddJwtBearer(authenticationSchema, options =>
+            .AddJwtBearer(authenticationScheme, options =>
             {
                 Configure(configurationSection, options);
             });
@@ -48,11 +47,6 @@ public sealed class JwtBearerAuthenticationSettings
         var sectionPath = ConfigurationSections.Authentication.JwtBearerOptions;
         var section = settingsSection.GetSection(sectionPath);
         section.Bind(options);
-
-        options.TokenValidationParameters.ValidIssuer = options.ClaimsIssuer;
-        options.TokenValidationParameters.ValidAudience = options.Audience;
-        options.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
-        options.TokenValidationParameters.NameClaimType = ClaimTypes.Username;
 
         if (!string.IsNullOrEmpty(SecurityKey))
         {
@@ -66,8 +60,5 @@ public sealed class JwtBearerAuthenticationSettings
         var sectionPath = ConfigurationSections.Authentication.OAuth2IntrospectionOptions;
         var section = settingsSection.GetSection(sectionPath);
         section.Bind(options);
-
-        options.RoleClaimType = ClaimTypes.Role;
-        options.NameClaimType = ClaimTypes.Username;
     }
 }

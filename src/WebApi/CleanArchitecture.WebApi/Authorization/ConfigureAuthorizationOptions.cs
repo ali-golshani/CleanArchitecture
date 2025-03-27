@@ -10,12 +10,12 @@ internal class ConfigureAuthorizationOptions : IConfigureOptions<AuthorizationOp
     {
         PolicyConfigs.RegisterAuthorizationPolicies(options, typeof(Program).Assembly);
 
-        foreach (var schema in AuthenticationSchemes.Schemas)
+        foreach (var scheme in AuthenticationSchemes.Schemes)
         {
-            options.AddPolicy(schema.Policy, builder =>
+            options.AddPolicy(scheme.Policy, builder =>
             {
                 builder.RequireAuthenticatedUser();
-                builder.AddAuthenticationSchemes(schema.Name);
+                builder.AddAuthenticationSchemes(scheme.Name);
             });
         }
     }

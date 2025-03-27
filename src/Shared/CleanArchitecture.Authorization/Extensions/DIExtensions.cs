@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Framework.DependencyInjection.Extensions;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace CleanArchitecture.Authorization;
@@ -21,15 +22,7 @@ public static class DIExtensions
 
     public static void RegisterAccessControls(this IServiceCollection services, params Assembly[] assemblies)
     {
-        services.Scan(scan =>
-        {
-            scan
-                .FromAssemblies(assemblies)
-                .AddClasses(classes => classes.AssignableTo(typeof(IAccessControl<>)))
-                .AsImplementedInterfaces()
-                .WithTransientLifetime()
-                ;
-        });
+        services.RegisterAsImplementedInterfaces(typeof(IAccessControl<>), assemblies);
     }
 
     public static void RegisterAllFilters(this IServiceCollection services)
@@ -46,14 +39,6 @@ public static class DIExtensions
 
     public static void RegisterFilters(this IServiceCollection services, params Assembly[] assemblies)
     {
-        services.Scan(scan =>
-        {
-            scan
-                .FromAssemblies(assemblies)
-                .AddClasses(classes => classes.AssignableTo(typeof(IFilter<,>)))
-                .AsImplementedInterfaces()
-                .WithTransientLifetime()
-                ;
-        });
+        services.RegisterAsImplementedInterfaces(typeof(IFilter<,>), assemblies);
     }
 }

@@ -14,6 +14,7 @@ internal class ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider provide
 
     public void Configure(SwaggerGenOptions options)
     {
+        options.SchemaFilter<EnumSchemaFilter>();
         options.OperationFilter<RequestPropertiesFilter>();
         options.OperationFilter<Vernou.Swashbuckle.HttpResultsAdapter.HttpResultsOperationFilter>();
 

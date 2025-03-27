@@ -3,18 +3,18 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace CleanArchitecture.WebApi.Shared.Authentication;
 
-public static class AuthenticationSchemaConfigs
+public static class AuthenticationSchemeConfigs
 {
     public static void Configure(
         IConfiguration configuration,
         AuthenticationBuilder builder,
-        string schema)
+        string scheme)
     {
-        string sectionPath = ConfigurationSections.Authentication.Schema(schema);
+        string sectionPath = ConfigurationSections.Authentication.Scheme(scheme);
         var section = configuration.GetRequiredSection(sectionPath);
 
         var settings = new JwtBearerAuthenticationSettings();
         section.Bind(settings);
-        settings.Configure(section, builder, schema);
+        settings.Configure(section, builder, scheme);
     }
 }
