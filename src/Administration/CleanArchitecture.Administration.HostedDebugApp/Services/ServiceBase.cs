@@ -3,7 +3,7 @@ using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Administration.HostedApp.Services;
+namespace CleanArchitecture.Administration.HostedDebugApp.Services;
 
 internal abstract class ServiceBase : IService
 {

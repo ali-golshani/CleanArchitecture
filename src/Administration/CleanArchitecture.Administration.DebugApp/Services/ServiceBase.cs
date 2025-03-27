@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Administration.DebugApp.Services;
 
-public abstract class ServiceBase(IServiceProvider serviceProvider) : IService
+internal abstract class ServiceBase(IServiceProvider serviceProvider) : IService
 {
     private readonly IServiceProvider serviceProvider = serviceProvider;
 

@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Administration.DebugApp.Services;
 
-public class RegisterAndApproveOrderService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {

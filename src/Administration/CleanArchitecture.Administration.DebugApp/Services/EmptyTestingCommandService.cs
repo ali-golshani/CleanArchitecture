@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Administration.DebugApp.Services;
 
-public class EmptyTestingCommandService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal class EmptyTestingCommandService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {

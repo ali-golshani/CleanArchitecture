@@ -1,3 +1,3 @@
-﻿namespace CleanArchitecture.Administration.HostedApp.Services;
+﻿namespace CleanArchitecture.Administration.HostedDebugApp.Services;
 
 internal interface IService { }

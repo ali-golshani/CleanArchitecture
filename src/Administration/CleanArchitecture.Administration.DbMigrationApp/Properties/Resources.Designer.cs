@@ -63,9 +63,9 @@ namespace CleanArchitecture.Administration.DbMigrationApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Server=.;Database=CleanArchitectureDb;User Id=golshani;Password=Ali_Golshani;TrustServerCertificate=True;.
         /// </summary>
-        internal static string LocalConnectionString {
+        internal static string DotnetEfMigrationsConnectionString {
             get {
-                return ResourceManager.GetString("LocalConnectionString", resourceCulture);
+                return ResourceManager.GetString("DotnetEfMigrationsConnectionString", resourceCulture);
             }
         }
     }

@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Administration.DebugApp.Services;
 
-public class QueryingOrdersService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal class QueryingOrdersService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {

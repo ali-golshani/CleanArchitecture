@@ -1,6 +1,6 @@
 ﻿using CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
 
-namespace CleanArchitecture.Administration.HostedApp.Services;
+namespace CleanArchitecture.Administration.HostedDebugApp.Services;
 
 internal class RegisterOrderService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {

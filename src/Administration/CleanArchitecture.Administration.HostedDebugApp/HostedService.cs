@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Administration.HostedApp.Services;
+﻿using CleanArchitecture.Administration.HostedDebugApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace CleanArchitecture.Administration.HostedApp;
+namespace CleanArchitecture.Administration.HostedDebugApp;
 
 internal class HostedService(IServiceScopeFactory serviceScopeFactory) : IHostedService
 {

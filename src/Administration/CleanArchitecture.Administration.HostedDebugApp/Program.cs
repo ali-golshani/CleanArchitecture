@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Administration.HostedApp.Services;
+﻿using CleanArchitecture.Administration.HostedDebugApp.Services;
 using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations;
 using Framework.DependencyInjection.Extensions;
@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace CleanArchitecture.Administration.HostedApp;
+namespace CleanArchitecture.Administration.HostedDebugApp;
 
 internal static class Program
 {
