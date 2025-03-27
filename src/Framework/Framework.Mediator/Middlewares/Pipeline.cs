@@ -10,7 +10,7 @@ public abstract class Pipeline<TRequest, TResponse>
         IRequestProcessor<TRequest, TResponse> processor,
         params IMiddleware<TRequest, TResponse>[] middlewares)
     {
-        this.entryProcessor = PipelineBuilder.EntryProcessor(processor, middlewares);
+        entryProcessor = PipelineBuilder.EntryProcessor(processor, middlewares);
     }
 
     protected Pipeline(
