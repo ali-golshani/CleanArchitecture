@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Administration.DbMigrationApp;
+namespace CleanArchitecture.Administration.DbMigrationApp.Services;
 
 public abstract class ServiceBase(IServiceProvider serviceProvider)
 {

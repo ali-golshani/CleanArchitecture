@@ -1,10 +1,10 @@
 ﻿using DotNetCore.CAP.Persistence;
 
-namespace CleanArchitecture.Administration.DbMigrationApp;
+namespace CleanArchitecture.Administration.DbMigrationApp.Services;
 
-public class CapMigrateDbService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+public class CapDbMigrationService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
-    public void CapSql()
+    public void Migrate()
     {
         Console.WriteLine("CapSql ...");
         Service<IStorageInitializer>().InitializeAsync(default).Wait();

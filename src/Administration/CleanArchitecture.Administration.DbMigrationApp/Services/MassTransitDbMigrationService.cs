@@ -1,11 +1,11 @@
 ﻿using MassTransit.SqlTransport;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Administration.DbMigrationApp;
+namespace CleanArchitecture.Administration.DbMigrationApp.Services;
 
-public class MassTransitMigrateDbService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+public class MassTransitDbMigrationService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
-    public void MassTransitDbContext()
+    public void Migrate()
     {
         Console.WriteLine("MassTransitDbContext ...");
         using (var db = Service<Framework.MassTransit.MassTransitDbContext>())
@@ -17,7 +17,7 @@ public class MassTransitMigrateDbService(IServiceProvider serviceProvider) : Ser
         Console.WriteLine("Migration Finished .");
     }
 
-    public void MassTransitSqlTransport()
+    public void MigrateSqlTransport()
     {
         Console.WriteLine("MassTransitSqlTransport ...");
         Service<SqlTransportMigrationHostedService>().StartAsync(default).Wait();

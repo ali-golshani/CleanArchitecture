@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CleanArchitecture.Administration.DbMigrationApp.Services;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Administration.DbMigrationApp;
 
@@ -20,23 +21,26 @@ internal static class Program
     {
         try
         {
-            var migrateDbApp = new MigrateCleanDbService(serviceProvider);
-            var massTransitMigrateDbApp = new MassTransitMigrateDbService(serviceProvider);
-            var capMigrateDbApp = new CapMigrateDbService(serviceProvider);
+            var auditDb = new AuditDbMigrationService(serviceProvider);
+            var orderingDb = new OrderingDbMigrationService(serviceProvider);
+            var massTransitDb = new MassTransitDbMigrationService(serviceProvider);
+            var capDb = new CapDbMigrationService(serviceProvider);
 
-            migrateDbApp.AuditDbContext();
-            Console.WriteLine();
-            migrateDbApp.OrderingDbContext();
-
-            Console.WriteLine();
-
-            massTransitMigrateDbApp.MassTransitDbContext();
-            Console.WriteLine();
-            massTransitMigrateDbApp.MassTransitSqlTransport();
+            auditDb.Migrate();
 
             Console.WriteLine();
 
-            capMigrateDbApp.CapSql();
+            orderingDb.Migrate();
+
+            Console.WriteLine();
+
+            massTransitDb.Migrate();
+            Console.WriteLine();
+            massTransitDb.MigrateSqlTransport();
+
+            Console.WriteLine();
+
+            capDb.Migrate();
         }
         catch (Exception exp)
         {
