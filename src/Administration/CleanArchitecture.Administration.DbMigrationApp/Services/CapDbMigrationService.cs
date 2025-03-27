@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Administration.DbMigrationApp.Services;
 
-public class CapDbMigrationService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal sealed class CapDbMigrationService(IServiceProvider serviceProvider) : DbMigrationServiceBase(serviceProvider)
 {
     public void Migrate()
     {

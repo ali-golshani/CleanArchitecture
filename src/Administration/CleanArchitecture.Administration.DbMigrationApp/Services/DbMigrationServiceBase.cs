@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Administration.DbMigrationApp.Services;
 
-public abstract class ServiceBase(IServiceProvider serviceProvider)
+internal abstract class DbMigrationServiceBase(IServiceProvider serviceProvider)
 {
     protected readonly IServiceProvider serviceProvider = serviceProvider;
 

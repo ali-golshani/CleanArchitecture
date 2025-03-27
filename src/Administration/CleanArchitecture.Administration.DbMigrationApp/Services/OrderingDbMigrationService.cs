@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Administration.DbMigrationApp.Services;
 
-public class OrderingDbMigrationService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal sealed class OrderingDbMigrationService(IServiceProvider serviceProvider) : DbMigrationServiceBase(serviceProvider)
 {
     public void Migrate()
     {
