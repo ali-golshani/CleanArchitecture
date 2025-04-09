@@ -6,19 +6,17 @@ using System.Diagnostics;
 
 namespace Infrastructure.RequestAudit;
 
-public abstract class RequestAuditMiddlewareBase<TRequest, TResponse> : IMiddleware<TRequest, TResponse>
+public class RequestAuditMiddleware<TRequest, TResponse> : IMiddleware<TRequest, TResponse>
     where TRequest : Request
 {
-    protected abstract string LggingDomain { get; }
-
     private readonly IActorResolver actorResolver;
     private readonly RequestAuditAgent requestAudit;
     private readonly ILogger logger;
 
-    protected RequestAuditMiddlewareBase(
+    public RequestAuditMiddleware(
         IActorResolver actorResolver,
         RequestAuditAgent requestAudit,
-        ILogger logger)
+        ILogger<RequestAuditMiddleware<TRequest, TResponse>> logger)
     {
         this.actorResolver = actorResolver;
         this.requestAudit = requestAudit;
@@ -30,13 +28,13 @@ public abstract class RequestAuditMiddlewareBase<TRequest, TResponse> : IMiddlew
         var request = context.Request;
         var actor = actorResolver.Actor;
 
-        var logEntry = request.LogEntry(actor, LggingDomain);
+        var logEntry = request.LogEntry(actor, request.LggingDomain);
         var timer = new Stopwatch();
         timer.Start();
 
         using var loggingScope = logger.BeginScope(new
         {
-            Domain = LggingDomain,
+            Domain = request.LggingDomain,
             Command = typeof(TRequest).Name,
             request.CorrelationId,
             Actor = actor

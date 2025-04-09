@@ -22,7 +22,5 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(QueryPipeline<,>));
         services.RegisterMiddlewares<QueryPipelineConfiguration>();
         services.AddTransient(typeof(IPipeline<,>), typeof(QueryPipeline<,>));
-
-        services.AddTransient(typeof(RequestAuditMiddleware<,>));
     }
 }

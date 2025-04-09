@@ -14,7 +14,6 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(RequestPipeline<,>));
         services.AddTransient(typeof(IPipeline<,>), typeof(RequestPipeline<,>));
 
-        services.AddTransient(typeof(RequestAuditMiddleware<,>));
         services.AddTransient(typeof(ExceptionTranslationMiddleware<,>));
 
         services.AddScoped<ICommoditySystem, CommoditySystem>();

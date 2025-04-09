@@ -22,7 +22,6 @@ public static class ServiceConfigurations
         services.RegisterMiddlewares<CommandPipelineConfiguration>();
         services.AddTransient(typeof(IPipeline<,>), typeof(CommandPipeline<,>));
 
-        services.AddTransient(typeof(RequestAuditMiddleware<,>));
         services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
     }
 }

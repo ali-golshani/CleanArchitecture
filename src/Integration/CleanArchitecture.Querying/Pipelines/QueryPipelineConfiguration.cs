@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
 using Framework.Mediator.Middlewares;
+using Infrastructure.RequestAudit;
 
 namespace CleanArchitecture.Querying.Pipelines;
 
