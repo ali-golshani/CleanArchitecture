@@ -2,5 +2,6 @@
 
 public enum Permission
 {
+    None = 0,
     ReadOrders = 1,
 }

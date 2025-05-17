@@ -21,8 +21,8 @@ internal class ScopeAuthorizationHandler : AuthorizationHandler<ScopeRequirement
         {
             if ((scope & scopes) == scope)
             {
-                var scopeName = Configuration.ScopeName(scope);
-                if (context.User.HasClaim(type: Configuration.ClaimType, value: scopeName))
+                var scopeName = ScopeNames.ScopeName(scope);
+                if (context.User.HasClaim(type: ScopeNames.ClaimType, value: scopeName))
                 {
                     context.Succeed(requirement);
                     break;

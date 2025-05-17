@@ -8,9 +8,9 @@ internal class PermissionAuthorizationHandler : AuthorizationHandler<PermissionR
         AuthorizationHandlerContext context,
         PermissionRequirement requirement)
     {
-        var permissionName = Configuration.PermissionName(requirement.Permission);
+        var permissionName = PermissionNames.PermissionName(requirement.Permission);
 
-        if (context.User.HasClaim(type: Configuration.ClaimType, value: permissionName))
+        if (context.User.HasClaim(type: PermissionNames.ClaimType, value: permissionName))
         {
             context.Succeed(requirement);
         }
