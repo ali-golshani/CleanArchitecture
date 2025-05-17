@@ -9,7 +9,7 @@ internal static class Configuration
 
     public static string PolicyName(Scopes scopes)
     {
-        return $"ScopePolicy-{(int)scopes}";
+        return $"ScopePolicy-{(long)scopes}";
     }
 
     public static string ScopeName(Scopes scopes)
