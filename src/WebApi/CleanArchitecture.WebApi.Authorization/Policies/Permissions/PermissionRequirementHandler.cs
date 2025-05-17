@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.WebApi.Authorization.Policies.Permissions;
 
-internal class PermissionAuthorizationHandler : AuthorizationHandler<PermissionRequirement>
+internal class PermissionRequirementHandler : AuthorizationHandler<PermissionRequirement>
 {
     protected override Task HandleRequirementAsync(
         AuthorizationHandlerContext context,

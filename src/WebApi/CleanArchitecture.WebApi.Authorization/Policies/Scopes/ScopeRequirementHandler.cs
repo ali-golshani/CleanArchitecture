@@ -2,11 +2,11 @@
 
 namespace CleanArchitecture.WebApi.Authorization.Policies.Scopes;
 
-internal class ScopeAuthorizationHandler : AuthorizationHandler<ScopeRequirement>
+internal class ScopeRequirementHandler : AuthorizationHandler<ScopeRequirement>
 {
     private readonly Scopes[] allScopes;
 
-    public ScopeAuthorizationHandler()
+    public ScopeRequirementHandler()
     {
         allScopes = Enum.GetValues<Scopes>();
     }

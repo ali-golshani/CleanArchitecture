@@ -9,8 +9,8 @@ public static class PolicyConfigs
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddSingleton<IAuthorizationHandler, ScopeAuthorizationHandler>();
-        services.AddSingleton<IAuthorizationHandler, PermissionAuthorizationHandler>();
+        services.AddSingleton<IAuthorizationHandler, ScopeRequirementHandler>();
+        services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
 
         services.AddSingleton<IAuthorizationPolicyProvider, ScopeAuthorizationPolicyProvider>();
         services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
