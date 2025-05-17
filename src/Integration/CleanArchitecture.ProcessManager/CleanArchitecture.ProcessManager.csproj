@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Framework\Framework.ProcessManager\Framework.ProcessManager.csproj" />
 	  <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Commands\CleanArchitecture.Ordering.Commands.csproj" />
 	  <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Queries\CleanArchitecture.Ordering.Queries.csproj" />
 	  <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator.Middlewares\CleanArchitecture.Mediator.Middlewares.csproj" />

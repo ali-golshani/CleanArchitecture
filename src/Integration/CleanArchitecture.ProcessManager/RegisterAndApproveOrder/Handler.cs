@@ -1,12 +1,9 @@
-﻿using CleanArchitecture.ProcessManager.Extensions;
-using Framework.Mediator;
-using Framework.ProcessManager.Extensions;
+﻿using Framework.Mediator;
 using Framework.Results;
-using Command = CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand.Command;
 
-namespace CleanArchitecture.ProcessManager.Handlers;
+namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
-internal sealed class Handler : IRequestHandler<RegisterAndApproveOrder.Request, Empty>
+internal sealed class Handler : IRequestHandler<Request, Empty>
 {
     private readonly Ordering.Commands.ICommandService commandService;
 
@@ -15,44 +12,13 @@ internal sealed class Handler : IRequestHandler<RegisterAndApproveOrder.Request,
         this.commandService = commandService;
     }
 
-    public async Task<Result<Empty>> Handle(RegisterAndApproveOrder.Request request, CancellationToken cancellationToken)
-    {
-        var registerOrderCommand = new Command
-        {
-            BrokerId = request.BrokerId,
-            CommodityId = request.CommodityId,
-            CustomerId = request.CustomerId,
-            OrderId = request.OrderId,
-            Price = request.Price,
-            Quantity = request.Quantity,
-        };
-
-        var emptyCommand = new Ordering.Commands.EmptyTestingCommand.Command
-        {
-            Id = request.OrderId
-        };
-
-        var controlCommand = new Ordering.Commands.Orders.ControlOrderStatusCommand.Command
-        {
-            OrderId = request.OrderId,
-        };
-
-        var registerOrderProcess = commandService.Process(registerOrderCommand);
-        var emptyProcess = commandService.Process(emptyCommand);
-        var controlProcess = commandService.Process(controlCommand);
-
-        var process = registerOrderProcess.Follow(emptyProcess).WithCompensator(controlProcess);
-
-        return await process.Execute(cancellationToken);
-    }
-
-    public async Task<Result<Empty>> HandleC(RegisterAndApproveOrder.Request request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
     {
         var control = false;
 
         try
         {
-            var registerOrderCommand = new Command
+            var registerOrderCommand = new Ordering.Commands.Orders.RegisterOrderCommand.Command
             {
                 BrokerId = request.BrokerId,
                 CommodityId = request.CommodityId,
