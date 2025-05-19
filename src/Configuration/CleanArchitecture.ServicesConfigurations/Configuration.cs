@@ -50,6 +50,7 @@ public static class Configuration
 
         ServiceConfigurations.RegisterServices(services);
 
+        Authorization.ServiceConfigurations.RegisterServices(services);
         Ordering.Domain.Services.ServiceConfigurations.RegisterServices(services);
         Ordering.Persistence.ServiceConfigurations.RegisterServices(services);
         Ordering.Queries.ServiceConfigurations.RegisterServices(services);

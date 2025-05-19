@@ -1,10 +1,10 @@
 ﻿namespace CleanArchitecture.Authorization;
 
-public abstract class AccessControlByPermissionRules<T> : IAccessControl<T>
+public abstract class AccessControlByPermissionRules<T> : AccessControlBase<T>
 {
     protected abstract IPermissionRule<T>[] PermissionRules(T content);
 
-    public virtual async ValueTask<bool> IsAuthorized(Actor? actor, T content)
+    protected override async ValueTask<bool> IsAuthorized(Actor? actor, T content)
     {
         foreach (var rule in PermissionRules(content))
         {
@@ -16,6 +16,4 @@ public abstract class AccessControlByPermissionRules<T> : IAccessControl<T>
 
         return false;
     }
-
-    public virtual ValueTask<bool> Clause(Actor? actor) => ValueTask.FromResult(true);
 }

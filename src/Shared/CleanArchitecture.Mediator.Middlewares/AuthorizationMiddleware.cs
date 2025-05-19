@@ -9,14 +9,14 @@ public sealed class AuthorizationMiddleware<TRequest, TResponse> :
     IMiddleware<TRequest, TResponse>
 {
     private readonly IActorResolver actorResolver;
-    private readonly IAccessControl<TRequest>[] accessControls;
+    private readonly AccessResolver<TRequest> accessResolver;
 
     public AuthorizationMiddleware(
         IActorResolver actorResolver,
-        IEnumerable<IAccessControl<TRequest>>? accessControls)
+        AccessResolver<TRequest> accessResolver)
     {
         this.actorResolver = actorResolver;
-        this.accessControls = accessControls?.ToArray() ?? [];
+        this.accessResolver = accessResolver;
     }
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
@@ -28,7 +28,9 @@ public sealed class AuthorizationMiddleware<TRequest, TResponse> :
             return UnauthorizedError.Default;
         }
 
-        if (await accessControls.IsAccessDenied(actor, context.Request))
+        var accessLevel = await accessResolver.AccessLevel(actor, context.Request);
+
+        if (accessLevel == AccessLevel.Denied)
         {
             return ForbiddenError.Default;
         }

@@ -7,22 +7,6 @@ public static class Extensions
         Actor? actor,
         T content)
     {
-        return await control.Clause(actor) && !await control.IsAuthorized(actor, content);
-    }
-
-    public static async ValueTask<bool> IsAccessDenied<T>(
-        this IEnumerable<IAccessControl<T>> controls,
-        Actor? actor,
-        T content)
-    {
-        foreach (var control in controls)
-        {
-            if (await control.IsAccessDenied(actor, content))
-            {
-                return true;
-            }
-        }
-
-        return false;
+        return await control.AccessLevel(actor, content) == AccessLevel.Denied;
     }
 }
