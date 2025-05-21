@@ -6,7 +6,7 @@ namespace CleanArchitecture.Querying.Pipelines;
 
 internal static class QueryPipeline
 {
-    internal sealed class Pipeline<TRequest, TResponse> :
+    public sealed class Pipeline<TRequest, TResponse> :
         KeyedPipeline<TRequest, TResponse>
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
@@ -15,7 +15,7 @@ internal static class QueryPipeline
         { }
     }
 
-    internal sealed class Configuration : IKeyedPipelineConfiguration
+    public sealed class Configuration : IKeyedPipelineConfiguration
     {
         public static string PipelineName { get; } = "QueryingPipeline";
 
