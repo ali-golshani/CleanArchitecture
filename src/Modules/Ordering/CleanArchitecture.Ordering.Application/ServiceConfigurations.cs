@@ -14,13 +14,13 @@ public static class ServiceConfigurations
         services.AddTransient<ICommandService, CommandService>();
         services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
 
-        services.AddTransient(typeof(QueryPipeline<,>));
-        services.RegisterMiddlewares<QueryPipelineConfiguration>();
-        services.AddTransient(typeof(IPipeline<,>), typeof(QueryPipeline<,>));
+        services.AddTransient(typeof(QueryPipeline.Pipeline<,>));
+        services.RegisterMiddlewares<QueryPipeline.Configuration>();
+        services.AddTransient(typeof(IPipeline<,>), typeof(QueryPipeline.Pipeline<,>));
 
-        services.AddTransient(typeof(CommandPipeline<,>));
-        services.RegisterMiddlewares<CommandPipelineConfiguration>();
-        services.AddTransient(typeof(IPipeline<,>), typeof(CommandPipeline<,>));
+        services.AddTransient(typeof(CommandPipeline.Pipeline<,>));
+        services.RegisterMiddlewares<CommandPipeline.Configuration>();
+        services.AddTransient(typeof(IPipeline<,>), typeof(CommandPipeline.Pipeline<,>));
 
         services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
     }
