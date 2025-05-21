@@ -2,6 +2,7 @@
 
 namespace CleanArchitecture.WebApi.Shared.OData;
 
+[AttributeUsage(AttributeTargets.Method, AllowMultiple = false, Inherited = true)]
 public class EnableODataQueryAttribute : EnableQueryAttribute
 {
     public EnableODataQueryAttribute()

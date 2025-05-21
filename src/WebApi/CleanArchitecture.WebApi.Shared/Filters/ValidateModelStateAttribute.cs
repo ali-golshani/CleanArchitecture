@@ -2,6 +2,7 @@
 
 namespace CleanArchitecture.WebApi.Shared.Filters;
 
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
 public class ValidateModelStateAttribute : ActionFilterAttribute
 {
     public override void OnActionExecuting(ActionExecutingContext context)

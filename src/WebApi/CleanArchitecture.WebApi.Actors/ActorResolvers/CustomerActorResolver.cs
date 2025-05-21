@@ -3,9 +3,9 @@ using System.Security.Claims;
 
 namespace CleanArchitecture.WebApi.Actors.ActorResolvers;
 
-internal sealed class CustomerActorResolver : ActorResolverBase
+internal sealed class CustomerActorResolver : IUserActorsResolver
 {
-    public override IEnumerable<Actor> GetActors(User user)
+    public IEnumerable<Actor> GetActors(User user)
     {
         string username = user.Username;
         string displayName = user.DisplayName;

@@ -2,9 +2,9 @@
 
 namespace CleanArchitecture.WebApi.Actors.ActorResolvers;
 
-internal sealed class SupervisorActorResolver : ActorResolverBase
+internal sealed class SupervisorActorResolver : IUserActorsResolver
 {
-    public override IEnumerable<Actor> GetActors(User user)
+    public IEnumerable<Actor> GetActors(User user)
     {
         string username = user.Username;
         string displayName = user.DisplayName;

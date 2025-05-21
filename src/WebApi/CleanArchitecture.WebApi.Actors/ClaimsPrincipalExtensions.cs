@@ -17,7 +17,7 @@ internal static class ClaimsPrincipalExtensions
             yield break;
         }
 
-        var resolvers = new ActorResolverBase[]
+        var resolvers = new IUserActorsResolver[]
         {
             new ProgrammerResolver(),
             new SupervisorActorResolver(),
