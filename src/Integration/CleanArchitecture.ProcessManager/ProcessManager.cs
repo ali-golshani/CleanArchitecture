@@ -12,7 +12,7 @@ internal class ProcessManager(IServiceProvider serviceProvider) : IProcessManage
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        var pipeline = serviceProvider.GetRequiredService<RequestPipeline<TRequest, TResponse>>();
+        var pipeline = serviceProvider.GetRequiredService<RequestPipeline.Pipeline<TRequest, TResponse>>();
         return pipeline.Handle(request.AsRequestType(), cancellationToken);
     }
 }

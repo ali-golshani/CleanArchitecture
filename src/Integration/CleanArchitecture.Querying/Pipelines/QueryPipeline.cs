@@ -1,12 +1,34 @@
-﻿using Framework.Mediator.Middlewares;
+﻿using CleanArchitecture.Mediator.Middlewares;
+using Framework.Mediator.Middlewares;
+using Infrastructure.RequestAudit;
 
 namespace CleanArchitecture.Querying.Pipelines;
 
-internal sealed class QueryPipeline<TRequest, TResponse> :
-    KeyedPipeline<TRequest, TResponse>
-    where TRequest : QueryBase, IQuery<TRequest, TResponse>
+internal static class QueryPipeline
 {
-    public QueryPipeline(IServiceProvider serviceProvider)
-        : base(serviceProvider, QueryPipelineConfiguration.PipelineName)
-    { }
+    internal sealed class Pipeline<TRequest, TResponse> :
+        KeyedPipeline<TRequest, TResponse>
+        where TRequest : QueryBase, IQuery<TRequest, TResponse>
+    {
+        public Pipeline(IServiceProvider serviceProvider)
+            : base(serviceProvider, Configuration.PipelineName)
+        { }
+    }
+
+    internal sealed class Configuration : IKeyedPipelineConfiguration
+    {
+        public static string PipelineName { get; } = "QueryingPipeline";
+
+        public static Type[] Middlewares()
+        {
+            return
+            [
+                typeof(ExceptionHandlingMiddleware<,>),
+                typeof(RequestAuditMiddleware<,>),
+                typeof(AuthorizationMiddleware<,>),
+                typeof(ValidationMiddleware<,>),
+                typeof(FilteringMiddleware<,>),
+            ];
+        }
+    }
 }

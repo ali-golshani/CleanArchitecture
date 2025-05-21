@@ -1,12 +1,30 @@
-﻿using Framework.Mediator.Middlewares;
+﻿using CleanArchitecture.Mediator.Middlewares;
+using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.ProcessManager.Pipelines;
 
-internal sealed class RequestPipeline<TRequest, TResponse> :
-    KeyedPipeline<TRequest, TResponse>
-    where TRequest : RequestBase, IRequest<TRequest, TResponse>
+internal static class RequestPipeline
 {
-    public RequestPipeline(IServiceProvider serviceProvider)
-        : base(serviceProvider, RequestPipelineConfiguration.PipelineName)
-    { }
+    internal sealed class Pipeline<TRequest, TResponse> :
+        KeyedPipeline<TRequest, TResponse>
+        where TRequest : RequestBase, IRequest<TRequest, TResponse>
+    {
+        public Pipeline(IServiceProvider serviceProvider)
+            : base(serviceProvider, Configuration.PipelineName)
+        { }
+    }
+
+    internal sealed class Configuration : IKeyedPipelineConfiguration
+    {
+        public static string PipelineName { get; } = "ProcessManagerPipeline";
+
+        public static Type[] Middlewares()
+        {
+            return
+            [
+                typeof(ExceptionHandlingMiddleware<,>),
+                typeof(ValidationMiddleware<,>),
+            ];
+        }
+    }
 }
