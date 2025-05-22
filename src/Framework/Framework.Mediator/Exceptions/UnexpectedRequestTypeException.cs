@@ -1,6 +1,6 @@
 ﻿namespace Framework.Mediator.Exceptions;
 
-public class UnexpectedRequestTypeException<TRequest> : ProgrammerException
+public sealed class UnexpectedRequestTypeException<TRequest> : ProgrammerException
 {
     public UnexpectedRequestTypeException(object request)
         : base(ExceptionMessage(typeof(TRequest), request.GetType()))
