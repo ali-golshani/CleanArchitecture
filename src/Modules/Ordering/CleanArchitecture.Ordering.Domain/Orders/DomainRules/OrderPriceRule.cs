@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Ordering.Domain.Orders.DomainRules;
 
-public class OrderPriceRule(decimal price) : IDomainRule
+public sealed class OrderPriceRule(decimal price) : IDomainRule
 {
     public decimal Price { get; } = price;
 

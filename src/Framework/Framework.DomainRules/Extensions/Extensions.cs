@@ -4,7 +4,7 @@ namespace Framework.DomainRules.Extensions;
 
 public static class Extensions
 {
-    public static async Task<List<Error>> Errors(this DomainPolicy policy)
+    public static async Task<List<Error>> Errors(this BusinessPolicy policy)
     {
         var result = new List<Error>();
         await foreach (var item in policy.Evaluate().Errors())
@@ -21,11 +21,11 @@ public static class Extensions
         return rules.SelectMany(x => x.Evaluate());
     }
 
-    public static async IAsyncEnumerable<Clause> Evaluate(this IEnumerable<IAsyncDomainRule> rules)
+    public static async IAsyncEnumerable<Clause> Evaluate(this IEnumerable<IBusinessRule> rules)
     {
-        foreach (var validator in rules)
+        foreach (var rule in rules)
         {
-            await foreach (var clause in validator.Evaluate())
+            await foreach (var clause in rule.Evaluate())
             {
                 yield return clause;
             }
@@ -36,59 +36,49 @@ public static class Extensions
 
     #region where
 
-    public static IDomainRule Where(this IDomainRule validator, bool condition)
+    public static IDomainRule Where(this IDomainRule rule, bool condition)
     {
-        return new ConditionalWrapper(condition, validator);
+        return new ConditionalDomainRuleWrapper(condition, rule);
     }
 
-    public static IDomainRule Where<TConditions>(this IDomainRule validator, TConditions conditions, Func<TConditions, bool> predicate)
+    public static IDomainRule Where<TConditions>(this IDomainRule rule, TConditions conditions, Func<TConditions, bool> predicate)
     {
-        return new ConditionalWrapper(predicate(conditions), validator);
+        return new ConditionalDomainRuleWrapper(predicate(conditions), rule);
     }
 
     public static IDomainRule Where(this IDomainRule[] rules, bool condition)
     {
-        return new ConditionalWrapper(condition, rules);
+        return new ConditionalDomainRuleWrapper(condition, rules);
     }
 
     public static IDomainRule Where<TConditions>(this IDomainRule[] rules, TConditions conditions, Func<TConditions, bool> predicate)
     {
-        return new ConditionalWrapper(predicate(conditions), rules);
+        return new ConditionalDomainRuleWrapper(predicate(conditions), rules);
     }
 
     #endregion
 
     #region async where
 
-    public static IAsyncDomainRule Where(this IAsyncDomainRule validator, bool condition)
+    public static IBusinessRule Where(this IBusinessRule rule, bool condition)
     {
-        return new AsyncConditionalWrapper(condition, validator);
+        return new ConditionalBusinessRuleWrapper(condition, rule);
     }
 
-    public static IAsyncDomainRule Where<TConditions>(this IAsyncDomainRule validator, TConditions conditions, Func<TConditions, bool> predicate)
+    public static IBusinessRule Where<TConditions>(this IBusinessRule rule, TConditions conditions, Func<TConditions, bool> predicate)
     {
-        return new AsyncConditionalWrapper(predicate(conditions), validator);
+        return new ConditionalBusinessRuleWrapper(predicate(conditions), rule);
     }
 
-    public static IAsyncDomainRule Where(this IAsyncDomainRule[] rules, bool condition)
+    public static IBusinessRule Where(this IBusinessRule[] rules, bool condition)
     {
-        return new AsyncConditionalWrapper(condition, rules);
+        return new ConditionalBusinessRuleWrapper(condition, rules);
     }
 
-    public static IAsyncDomainRule Where<TConditions>(this IAsyncDomainRule[] rules, TConditions conditions, Func<TConditions, bool> predicate)
+    public static IBusinessRule Where<TConditions>(this IBusinessRule[] rules, TConditions conditions, Func<TConditions, bool> predicate)
     {
-        return new AsyncConditionalWrapper(predicate(conditions), rules);
+        return new ConditionalBusinessRuleWrapper(predicate(conditions), rules);
     }
 
     #endregion
-
-    public static IDomainRule AsSync(this IAsyncDomainRule validator)
-    {
-        return new SyncWrapper(validator);
-    }
-
-    public static IAsyncDomainRule AsAsync(this IDomainRule validator)
-    {
-        return new AsyncWrapper(validator);
-    }
 }

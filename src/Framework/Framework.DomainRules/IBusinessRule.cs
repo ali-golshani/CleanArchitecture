@@ -1,6 +1,6 @@
 ﻿namespace Framework.DomainRules;
 
-public interface IAsyncDomainRule
+public interface IBusinessRule
 {
     IAsyncEnumerable<Clause> Evaluate();
 }

@@ -1,6 +1,6 @@
 ﻿namespace Framework.DomainRules.Templates;
 
-public class StringRule(
+public sealed class StringRule(
     string? value,
     string source,
     bool acceptEmptyValue = false,

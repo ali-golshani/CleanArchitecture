@@ -2,17 +2,17 @@
 
 namespace Framework.DomainRules.Wrappers;
 
-internal sealed class AsyncConditionalWrapper(bool condition, params IAsyncDomainRule[] validators)
-    : IAsyncDomainRule
+internal sealed class ConditionalBusinessRuleWrapper(bool condition, params IBusinessRule[] rules)
+    : IBusinessRule
 {
     public bool Condition { get; } = condition;
-    public IAsyncDomainRule[] Validators { get; } = validators;
+    public IBusinessRule[] Rules { get; } = rules;
 
     public async IAsyncEnumerable<Clause> Evaluate()
     {
         if (Condition)
         {
-            await foreach (var item in Validators.Evaluate())
+            await foreach (var item in Rules.Evaluate())
             {
                 yield return item;
             }

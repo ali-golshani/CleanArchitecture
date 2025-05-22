@@ -3,7 +3,7 @@ using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Domain.Services.DomainRules;
 
-internal class CustomerCommodityRule : IAsyncDomainRule
+internal class CustomerCommodityRule : IBusinessRule
 {
     public readonly struct Inquiry
     {

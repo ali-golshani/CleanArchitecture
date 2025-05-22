@@ -4,24 +4,19 @@ using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Domain.Services.BuildOrder;
 
-internal class BuildOrderPolicyBuilder
+internal sealed class BuildOrderPolicyBuilder(ICommoditySystem commoditySystem)
 {
-    private readonly ICommoditySystem commoditySystem;
+    private readonly ICommoditySystem commoditySystem = commoditySystem;
 
-    public BuildOrderPolicyBuilder(ICommoditySystem commoditySystem)
+    public BusinessPolicy Build(BuildOrderRequest value)
     {
-        this.commoditySystem = commoditySystem;
-    }
-
-    public DomainPolicy Build(BuildOrderRequest value)
-    {
-        var rules = new IDomainRule[]
+        var domainRules = new IDomainRule[]
         {
             new OrderPriceRule(value.Price),
             new OrderQuantityRule(value.Quantity)
         };
 
-        var asyncRules = new IAsyncDomainRule[]
+        var businessRules = new IBusinessRule[]
         {
             new CustomerCommodityRule(commoditySystem, new CustomerCommodityRule.Inquiry
             {
@@ -30,6 +25,6 @@ internal class BuildOrderPolicyBuilder
             })
         };
 
-        return new DomainPolicy(rules, asyncRules);
+        return new BusinessPolicy(domainRules, businessRules);
     }
 }

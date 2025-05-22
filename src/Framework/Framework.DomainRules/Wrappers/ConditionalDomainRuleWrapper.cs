@@ -2,16 +2,16 @@
 
 namespace Framework.DomainRules.Wrappers;
 
-internal sealed class ConditionalWrapper(bool condition, params IDomainRule[] validators) : IDomainRule
+internal sealed class ConditionalDomainRuleWrapper(bool condition, params IDomainRule[] rules) : IDomainRule
 {
     public bool Condition { get; } = condition;
-    public IDomainRule[] Validators { get; } = validators;
+    public IDomainRule[] Rules { get; } = rules;
 
     public IEnumerable<Clause> Evaluate()
     {
         if (Condition)
         {
-            return Validators.Evaluate();
+            return Rules.Evaluate();
         }
         else
         {

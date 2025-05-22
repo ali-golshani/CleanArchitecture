@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Ordering.Domain.Orders.DomainRules;
 
-public class OrderQuantityRule(int quantity) : IDomainRule
+public sealed class OrderQuantityRule(int quantity) : IDomainRule
 {
     public int Quantity { get; } = quantity;
 

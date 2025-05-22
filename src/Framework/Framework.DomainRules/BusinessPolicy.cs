@@ -1,22 +1,22 @@
 ﻿namespace Framework.DomainRules;
 
-public sealed class DomainPolicy
+public sealed class BusinessPolicy
 {
     public IDomainRule[] DomainRules { get; }
-    public IAsyncDomainRule[] AsyncDomainRules { get; }
+    public IBusinessRule[] BusinessRules { get; }
 
-    public DomainPolicy(params IDomainRule[] domainRules)
+    public BusinessPolicy(params IDomainRule[] domainRules)
         : this(domainRules, [])
     { }
 
-    public DomainPolicy(params IAsyncDomainRule[] asyncDomainRules)
-        : this([], asyncDomainRules)
+    public BusinessPolicy(params IBusinessRule[] businessRules)
+        : this([], businessRules)
     { }
 
-    public DomainPolicy(IDomainRule[] domainRules, params IAsyncDomainRule[] asyncDomainRules)
+    public BusinessPolicy(IDomainRule[] domainRules, params IBusinessRule[] businessRules)
     {
         DomainRules = domainRules;
-        AsyncDomainRules = asyncDomainRules;
+        BusinessRules = businessRules;
     }
 
     public async IAsyncEnumerable<Clause> Evaluate()
@@ -29,7 +29,7 @@ public sealed class DomainPolicy
             }
         }
 
-        foreach (var rule in AsyncDomainRules)
+        foreach (var rule in BusinessRules)
         {
             await foreach (var clause in rule.Evaluate())
             {
