@@ -1,11 +1,11 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Ordering.Application.Utilities;
 using CleanArchitecture.Ordering.Persistence;
 using Framework.Application;
+using Framework.Application.Extensions;
 using Framework.Mediator;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
-using Framework.Persistence.Utilities;
+using Framework.Persistence.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -49,11 +49,10 @@ internal sealed class TransactionalCommandHandlingProcessor<TRequest, TResponse>
             return result;
         }
 
-        CommandCorrelationIdUtility.LinkCommandCorrelationIds(db, request.CorrelationId);
+        db.LinkCommandCorrelationIds(request.CorrelationId);
 
         await db.SaveChangesAsync(cancellationToken);
-
-        await IntegrationEventsPublisher.PublishEvents(eventOutbox, eventBus, cancellationToken);
+        await eventOutbox.PublishEvents(eventBus, cancellationToken);
 
         transaction.Commit();
 
