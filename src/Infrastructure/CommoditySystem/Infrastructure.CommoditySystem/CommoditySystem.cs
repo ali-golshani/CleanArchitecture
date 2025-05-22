@@ -2,7 +2,6 @@
 using Framework.Mediator.Extensions;
 using Framework.Results;
 using Infrastructure.CommoditySystem.Pipelines;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.CommoditySystem;
 
@@ -13,7 +12,6 @@ internal class CommoditySystem(IServiceProvider serviceProvider) : ICommoditySys
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        var pipeline = serviceProvider.GetRequiredService<RequestPipeline<TRequest, TResponse>>();
-        return pipeline.Handle(request.AsRequestType(), cancellationToken);
+        return serviceProvider.SendToPipeline<TRequest, TResponse, RequestPipeline<TRequest, TResponse>>(request, cancellationToken);
     }
 }

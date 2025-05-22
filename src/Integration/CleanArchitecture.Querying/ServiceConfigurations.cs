@@ -2,7 +2,6 @@
 using CleanArchitecture.Querying.Pipelines;
 using CleanArchitecture.Querying.Services;
 using Framework.Mediator.Extensions;
-using Framework.Mediator.Middlewares;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,6 +20,5 @@ public static class ServiceConfigurations
 
         services.AddTransient(typeof(QueryPipeline.Pipeline<,>));
         services.RegisterMiddlewares<QueryPipeline.Configuration>();
-        services.AddTransient(typeof(IPipeline<,>), typeof(QueryPipeline.Pipeline<,>));
     }
 }

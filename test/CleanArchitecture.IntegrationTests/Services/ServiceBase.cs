@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
-using Framework.Mediator;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.IntegrationTests.Services;
