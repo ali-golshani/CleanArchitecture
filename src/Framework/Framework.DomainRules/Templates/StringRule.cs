@@ -12,7 +12,7 @@ public sealed class StringRule(
     public int? MinLength { get; } = minLength;
     public int? MaxLength { get; } = maxLength;
 
-    protected string Source { get; } = source;
+    public string Source { get; } = source;
     public bool AcceptEmptyValue { get; } = acceptEmptyValue;
 
     public IEnumerable<Clause> Evaluate()

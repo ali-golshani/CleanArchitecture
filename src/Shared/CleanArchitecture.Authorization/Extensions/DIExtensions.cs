@@ -6,39 +6,23 @@ namespace CleanArchitecture.Authorization;
 
 public static class DIExtensions
 {
-    private static Assembly[] AllAssemblies() => AppDomain.CurrentDomain.GetAssemblies();
-
-    public static void RegisterAllAccessControls(this IServiceCollection services)
-    {
-        var assemblies = AllAssemblies();
-        RegisterAccessControls(services, assemblies);
-    }
-
     public static void RegisterAccessControls(this IServiceCollection services)
     {
-        var assembly = Assembly.GetCallingAssembly();
-        RegisterAccessControls(services, assembly);
+        services.RegisterAccessControls(Assembly.GetCallingAssembly());
     }
 
-    public static void RegisterAccessControls(this IServiceCollection services, params Assembly[] assemblies)
+    public static void RegisterAccessControls(this IServiceCollection services, Assembly assembly)
     {
-        services.RegisterAsImplementedInterfaces(typeof(IAccessControl<>), assemblies);
-    }
-
-    public static void RegisterAllFilters(this IServiceCollection services)
-    {
-        var assemblies = AllAssemblies();
-        services.RegisterFilters(assemblies);
+        services.RegisterAsImplementedInterfaces(typeof(IAccessControl<>), assembly);
     }
 
     public static void RegisterFilters(this IServiceCollection services)
     {
-        var assembly = Assembly.GetCallingAssembly();
-        services.RegisterFilters(assembly);
+        services.RegisterFilters(Assembly.GetCallingAssembly());
     }
 
-    public static void RegisterFilters(this IServiceCollection services, params Assembly[] assemblies)
+    public static void RegisterFilters(this IServiceCollection services, Assembly assembly)
     {
-        services.RegisterAsImplementedInterfaces(typeof(IFilter<,>), assemblies);
+        services.RegisterAsImplementedInterfaces(typeof(IFilter<,>), assembly);
     }
 }

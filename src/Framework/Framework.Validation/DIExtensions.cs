@@ -8,13 +8,12 @@ public static class DIExtensions
 {
     public static void RegisterValidators(this IServiceCollection services)
     {
-        var assembly = Assembly.GetCallingAssembly();
-        services.RegisterValidators(assembly);
+        services.RegisterValidators(Assembly.GetCallingAssembly());
     }
 
-    public static void RegisterValidators(this IServiceCollection services, params Assembly[] assemblies)
+    public static void RegisterValidators(this IServiceCollection services, Assembly assembly)
     {
-        services.RegisterAsImplementedInterfaces(typeof(FluentValidation.IValidator<>), assemblies);
+        services.RegisterAsImplementedInterfaces(typeof(FluentValidation.IValidator<>), assembly);
     }
 
 }

@@ -1,9 +1,9 @@
 ﻿namespace Framework.DomainRules;
 
-public sealed class BusinessPolicy
+public sealed class BusinessPolicy(IDomainRule[] domainRules, params IBusinessRule[] businessRules)
 {
-    public IDomainRule[] DomainRules { get; }
-    public IBusinessRule[] BusinessRules { get; }
+    public IDomainRule[] DomainRules { get; } = domainRules;
+    public IBusinessRule[] BusinessRules { get; } = businessRules;
 
     public BusinessPolicy(params IDomainRule[] domainRules)
         : this(domainRules, [])
@@ -12,12 +12,6 @@ public sealed class BusinessPolicy
     public BusinessPolicy(params IBusinessRule[] businessRules)
         : this([], businessRules)
     { }
-
-    public BusinessPolicy(IDomainRule[] domainRules, params IBusinessRule[] businessRules)
-    {
-        DomainRules = domainRules;
-        BusinessRules = businessRules;
-    }
 
     public async IAsyncEnumerable<Clause> Evaluate()
     {

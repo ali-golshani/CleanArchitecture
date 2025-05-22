@@ -29,7 +29,7 @@ public static class ServiceCollectionBuilder
         Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
         services.AddLogging(Configuration.ConfigureLogging);
 
-        services.RegisterAsSelf<IService>();
+        services.RegisterAsSelf<IService>(typeof(Program).Assembly);
 
         return services;
     }

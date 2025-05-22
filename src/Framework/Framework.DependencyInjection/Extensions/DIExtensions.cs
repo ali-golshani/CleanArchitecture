@@ -8,10 +8,10 @@ public static class DIExtensions
     /// <summary>
     /// Register All types derived from 'TBase' as Self with Transient-Lifetime
     /// </summary>
-    public static void RegisterAsSelf<TBase>(this IServiceCollection services)
+    public static void RegisterAsSelf<TBase>(
+        this IServiceCollection services,
+        Assembly assembly)
     {
-        var assembly = Assembly.GetCallingAssembly();
-
         services.Scan(scan =>
         {
             scan
@@ -26,12 +26,12 @@ public static class DIExtensions
     public static void RegisterAsImplementedInterfaces(
         this IServiceCollection services,
         Type interfaceType,
-        params Assembly[] assemblies)
+        Assembly assembly)
     {
         services.Scan(scan =>
         {
             scan
-                .FromAssemblies(assemblies)
+                .FromAssemblies(assembly)
                 .AddClasses(classes => classes.AssignableTo(interfaceType), publicOnly: false)
                 .AsImplementedInterfaces()
                 .WithTransientLifetime()

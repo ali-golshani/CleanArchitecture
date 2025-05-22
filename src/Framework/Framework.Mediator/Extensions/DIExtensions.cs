@@ -8,40 +8,24 @@ namespace Framework.Mediator.Extensions;
 
 public static class DIExtensions
 {
-    private static Assembly[] AllAssemblies() => AppDomain.CurrentDomain.GetAssemblies();
-
-    public static void RegisterAllRequestHandlers(this IServiceCollection services)
-    {
-        var assemblies = AllAssemblies();
-        services.RegisterRequestHandlers(assemblies);
-    }
-
     public static void RegisterRequestHandlers(this IServiceCollection services)
     {
-        var assembly = Assembly.GetCallingAssembly();
-        services.RegisterRequestHandlers(assembly);
+        services.RegisterRequestHandlers(Assembly.GetCallingAssembly());
     }
 
-    public static void RegisterRequestHandlers(this IServiceCollection services, params Assembly[] assemblies)
+    public static void RegisterRequestHandlers(this IServiceCollection services, Assembly assembly)
     {
-        services.RegisterAsImplementedInterfaces(typeof(IRequestHandler<,>), assemblies);
-    }
-
-    public static void RegisterAllDomainEventHandlers(this IServiceCollection services)
-    {
-        var assemblies = AllAssemblies();
-        services.RegisterDomainEventHandlers(assemblies);
+        services.RegisterAsImplementedInterfaces(typeof(IRequestHandler<,>), assembly);
     }
 
     public static void RegisterDomainEventHandlers(this IServiceCollection services)
     {
-        var assembly = Assembly.GetCallingAssembly();
-        services.RegisterDomainEventHandlers(assembly);
+        services.RegisterDomainEventHandlers(Assembly.GetCallingAssembly());
     }
 
-    public static void RegisterDomainEventHandlers(this IServiceCollection services, params Assembly[] assemblies)
+    public static void RegisterDomainEventHandlers(this IServiceCollection services, Assembly assembly)
     {
-        services.RegisterAsImplementedInterfaces(typeof(IDomainEventHandler<>), assemblies);
+        services.RegisterAsImplementedInterfaces(typeof(IDomainEventHandler<>), assembly);
     }
 
     public static void RegisterMiddlewares<TPipelineConfiguration>(this IServiceCollection services)
