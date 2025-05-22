@@ -13,7 +13,6 @@ internal abstract class ServiceBase(IServiceProvider serviceProvider) : IService
     protected static readonly Actor Programmer = new Programmer("tester", "Test App");
 
     protected T Service<T>() where T : notnull => serviceProvider.GetRequiredService<T>();
-    protected IMediator Mediator() => Service<IMediator>();
     protected IQueryService QueryService() => Service<IQueryService>();
     protected ICommandService CommandService() => Service<ICommandService>();
 

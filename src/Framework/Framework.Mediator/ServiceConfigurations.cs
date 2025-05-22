@@ -8,7 +8,6 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddScoped<IMediator, Mediator>();
         services.AddTransient(typeof(DomainEventPublisher<>));
         services.AddScoped<IIntegrationEventBus, IntegrationEventBus>();
         services.AddTransient<IDomainEventPublisher, DomainEventPublisher>();
