@@ -6,5 +6,5 @@ public abstract class QueryBase : Query
 {
     private protected QueryBase() { }
 
-    public override string LggingDomain => nameof(Querying);
+    public override string LoggingDomain => nameof(Querying);
 }

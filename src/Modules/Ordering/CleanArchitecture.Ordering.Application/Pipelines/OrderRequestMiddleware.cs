@@ -5,8 +5,8 @@ using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Application.Pipelines;
 
-internal sealed class OrderRequestMiddleware<TRequest, TResponse>
-    : IMiddleware<TRequest, TResponse>
+internal sealed class OrderRequestMiddleware<TRequest, TResponse> :
+    IMiddleware<TRequest, TResponse>
     where TRequest : Request, IOrderRequest
 {
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)

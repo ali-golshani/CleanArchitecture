@@ -28,13 +28,13 @@ public class RequestAuditMiddleware<TRequest, TResponse> : IMiddleware<TRequest,
         var request = context.Request;
         var actor = actorResolver.Actor;
 
-        var logEntry = request.LogEntry(actor, request.LggingDomain);
+        var logEntry = request.LogEntry(actor, request.LoggingDomain);
         var timer = new Stopwatch();
         timer.Start();
 
         using var loggingScope = logger.BeginScope(new
         {
-            Domain = request.LggingDomain,
+            Domain = request.LoggingDomain,
             Command = typeof(TRequest).Name,
             request.CorrelationId,
             Actor = actor

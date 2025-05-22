@@ -6,5 +6,5 @@ public abstract class RequestBase : Request
 {
     private protected RequestBase() { }
 
-    public override string LggingDomain => nameof(ProcessManager);
+    public override string LoggingDomain => nameof(ProcessManager);
 }

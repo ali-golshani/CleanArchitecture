@@ -2,7 +2,7 @@
 
 public abstract class Request
 {
-    public abstract string LggingDomain { get; }
+    public abstract string LoggingDomain { get; }
     public abstract string RequestTitle { get; }
     public DateTime RequestTime { get; }
     public Guid CorrelationId { get; private set; }

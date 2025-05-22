@@ -6,8 +6,6 @@ namespace CleanArchitecture.ProcessManager;
 
 internal class ProcessManager(IServiceProvider serviceProvider) : IProcessManager
 {
-    private readonly IServiceProvider serviceProvider = serviceProvider;
-
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {

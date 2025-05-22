@@ -5,7 +5,7 @@ public abstract class PeriodicRequestCapturingStrategyBase<T> : IDisposable
     protected abstract void Evaluate(T? value);
     protected abstract void Disposing();
 
-    private readonly object sync = new object();
+    private readonly Lock sync = new Lock();
     private readonly Queue<T?> queue;
     private bool disposed;
     private DateTime lastEvaluationTime;

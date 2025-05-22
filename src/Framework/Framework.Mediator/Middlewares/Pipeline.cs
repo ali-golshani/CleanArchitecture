@@ -1,7 +1,6 @@
 ﻿namespace Framework.Mediator.Middlewares;
 
-public abstract class Pipeline<TRequest, TResponse>
-    : IPipeline<TRequest, TResponse>
+public abstract class Pipeline<TRequest, TResponse> : IPipeline<TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>
 {
     protected readonly IRequestProcessor<TRequest, TResponse> entryProcessor;

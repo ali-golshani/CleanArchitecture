@@ -6,8 +6,7 @@ namespace CleanArchitecture.Ordering.Application.Pipelines;
 
 internal static class CommandPipeline
 {
-    public sealed class Pipeline<TRequest, TResponse> :
-        KeyedPipeline<TRequest, TResponse>
+    public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, TResponse>
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         public Pipeline(

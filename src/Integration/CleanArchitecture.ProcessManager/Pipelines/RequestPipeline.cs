@@ -5,8 +5,7 @@ namespace CleanArchitecture.ProcessManager.Pipelines;
 
 internal static class RequestPipeline
 {
-    public sealed class Pipeline<TRequest, TResponse> :
-        KeyedPipeline<TRequest, TResponse>
+    public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, TResponse>
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
         public Pipeline(IServiceProvider serviceProvider)

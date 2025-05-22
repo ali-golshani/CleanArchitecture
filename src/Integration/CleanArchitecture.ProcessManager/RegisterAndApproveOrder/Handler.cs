@@ -3,14 +3,9 @@ using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
-internal sealed class Handler : IRequestHandler<Request, Empty>
+internal sealed class Handler(Ordering.Commands.ICommandService commandService) : IRequestHandler<Request, Empty>
 {
-    private readonly Ordering.Commands.ICommandService commandService;
-
-    public Handler(Ordering.Commands.ICommandService commandService)
-    {
-        this.commandService = commandService;
-    }
+    private readonly Ordering.Commands.ICommandService commandService = commandService;
 
     public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
     {

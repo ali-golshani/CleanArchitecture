@@ -6,5 +6,5 @@ public abstract class CommandBase : Command
 {
     private protected CommandBase() { }
 
-    public override string LggingDomain => nameof(Ordering);
+    public override string LoggingDomain => nameof(Ordering);
 }

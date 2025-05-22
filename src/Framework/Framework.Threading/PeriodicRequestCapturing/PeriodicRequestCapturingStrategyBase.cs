@@ -6,7 +6,7 @@ public abstract class PeriodicRequestCapturingStrategyBase : IDisposable
     protected abstract void Disposing();
 
     private bool disposed;
-    private volatile bool signalled;
+    private volatile bool signaled;
     private DateTime lastEvaluationTime;
 
     protected PeriodicRequestCapturingStrategyBase(
@@ -17,7 +17,7 @@ public abstract class PeriodicRequestCapturingStrategyBase : IDisposable
         MaxIntervalTime = maxIntervalTime ?? TimeSpan.MaxValue;
 
         disposed = false;
-        signalled = false;
+        signaled = false;
         lastEvaluationTime = Time;
     }
 
@@ -26,7 +26,7 @@ public abstract class PeriodicRequestCapturingStrategyBase : IDisposable
 
     public void Signal()
     {
-        signalled = true;
+        signaled = true;
     }
 
     public void Dispose()
@@ -56,7 +56,7 @@ public abstract class PeriodicRequestCapturingStrategyBase : IDisposable
     {
         var elapsed = Time - lastEvaluationTime;
 
-        if (elapsed >= MaxIntervalTime || elapsed >= MinIntervalTime && signalled)
+        if (elapsed >= MaxIntervalTime || elapsed >= MinIntervalTime && signaled)
         {
             Evaluating();
         }
@@ -64,7 +64,7 @@ public abstract class PeriodicRequestCapturingStrategyBase : IDisposable
 
     private void Evaluating()
     {
-        signalled = false;
+        signaled = false;
         lastEvaluationTime = Time;
         Evaluate();
     }
