@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Querying.Persistence;
 using Framework.Mediator;
 using Framework.Results;
+using Framework.Results.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Querying.OrdersQuery;
@@ -13,19 +14,19 @@ internal sealed class Handler(EmptyDbContext db) : IRequestHandler<Query, IQuery
     {
         await Task.CompletedTask;
 
-        IQueryable<Order> result = db.Database.SqlQueryRaw<Order>(SqlQuery);
+        IQueryable<Order> orders = db.Database.SqlQueryRaw<Order>(SqlQuery);
 
         if (request.CustomerId != null)
         {
-            result = result.Where(x => x.CustomerId == request.CustomerId.Value);
+            orders = orders.Where(x => x.CustomerId == request.CustomerId.Value);
         }
 
         if (request.BrokerId != null)
         {
-            result = result.Where(x => x.BrokerId == request.BrokerId.Value);
+            orders = orders.Where(x => x.BrokerId == request.BrokerId.Value);
         }
 
-        return Result<IQueryable<Order>>.Success(result);
+        return orders.AsResult();
     }
 
     private static string SqlQuery => Properties.Resources.OrdersSqlView;

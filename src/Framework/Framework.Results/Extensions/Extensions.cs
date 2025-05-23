@@ -4,6 +4,11 @@ namespace Framework.Results.Extensions;
 
 public static class Extensions
 {
+    public static Result<T> AsResult<T>(this T value)
+    {
+        return Result<T>.Success(value);
+    }
+
     public static T ThrowIsFailure<T>(this Result<T> result)
     {
         if (result.IsFailure)

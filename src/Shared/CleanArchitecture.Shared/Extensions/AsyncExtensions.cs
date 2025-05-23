@@ -4,7 +4,7 @@ public static class AsyncExtensions
 {
     public static async IAsyncEnumerable<T> EmptyAsyncEnumerable<T>()
     {
-        await Task.CompletedTask.ConfigureAwait(false);
+        await ValueTask.CompletedTask.ConfigureAwait(false);
         yield break;
     }
 
