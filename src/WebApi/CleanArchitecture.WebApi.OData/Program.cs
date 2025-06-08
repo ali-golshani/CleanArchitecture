@@ -46,7 +46,6 @@ public static class Program
         RateLimiterConfigs.Configure(services, RateLimiterConfigs.Fixed);
         SwaggerConfigs.Configure(services);
         ResponseCompressionConfigs.Configure(services);
-        FluentValidationConfigs.Configure(services);
         ProblemDetailsConfigs.Configure(services, isDevelopment);
 
         Authentication.AuthenticationConfigs.Configure(configuration, services);
