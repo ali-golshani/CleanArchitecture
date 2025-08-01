@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Domain.Orders.DomainRules;
-using CleanArchitecture.Ordering.Domain.Services.DomainRules;
+using CleanArchitecture.Ordering.Domain.Services.BusinessRules;
 using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Domain.Services.BuildOrder;

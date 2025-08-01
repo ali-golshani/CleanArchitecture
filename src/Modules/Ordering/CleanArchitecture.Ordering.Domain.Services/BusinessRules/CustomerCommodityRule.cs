@@ -1,7 +1,7 @@
 ﻿using Framework.DomainRules.Extensions;
 using Infrastructure.CommoditySystem;
 
-namespace CleanArchitecture.Ordering.Domain.Services.DomainRules;
+namespace CleanArchitecture.Ordering.Domain.Services.BusinessRules;
 
 internal class CustomerCommodityRule : IBusinessRule
 {
