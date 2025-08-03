@@ -20,5 +20,6 @@ public static class ServiceConfigurations
         services.RegisterMiddlewares<CommandPipeline.Configuration>();
 
         services.AddTransient(typeof(TransactionalCommandHandlingProcessor<,>));
+        services.AddTransient(typeof(TransactionalCommandHandler<,>));
     }
 }

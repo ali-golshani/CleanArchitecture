@@ -1,11 +1,5 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Ordering.Persistence;
-using Framework.Application;
-using Framework.Application.Extensions;
-using Framework.Mediator;
-using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
-using Framework.Persistence.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -28,34 +22,11 @@ internal sealed class TransactionalCommandHandlingProcessor<TRequest, TResponse>
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
-
         var actor = actorResolver.Actor;
         using var scope = serviceScopeFactory.CreateScope(actor);
         var serviceProvider = scope.ServiceProvider;
 
-        await using var db = serviceProvider.GetRequiredService<OrderingDbContext>();
-        var eventOutbox = serviceProvider.GetRequiredService<IIntegrationEventOutbox>();
-        var eventBus = serviceProvider.GetRequiredService<IIntegrationEventBus>();
-
-        using var transaction = await eventOutbox.BeginTransaction(db, cancellationToken);
-
-        var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-        var result = await handler.Handle(request, cancellationToken);
-
-        if (result.IsFailure)
-        {
-            return result;
-        }
-
-        db.LinkCommandCorrelationIds(request.CorrelationId);
-
-        await db.SaveChangesAsync(cancellationToken);
-        await eventOutbox.PublishEvents(eventBus, cancellationToken);
-
-        transaction.Commit();
-
-        return result;
+        var handler = serviceProvider.GetRequiredService<TransactionalCommandHandler<TRequest, TResponse>>();
+        return await handler.Handle(context.Request, context.CancellationToken);
     }
 }
