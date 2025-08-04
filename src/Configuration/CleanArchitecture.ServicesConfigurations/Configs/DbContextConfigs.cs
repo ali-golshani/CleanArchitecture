@@ -1,4 +1,5 @@
-﻿using Infrastructure.RequestAudit.Persistence;
+﻿using Framework.Persistence.Interceptors;
+using Infrastructure.RequestAudit.Persistence;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,9 +9,14 @@ internal static class DbContextConfigs
 {
     public static void RegisterDbContexts(this IServiceCollection services, string connectionString)
     {
+        services.AddScoped<CorrelationIdInterceptor>();
+
         services
-            .AddDbContext<Ordering.Persistence.OrderingDbContext>(optionsBuilder =>
-            SqlConfigs.Configure(optionsBuilder, connectionString, Ordering.Persistence.Settings.SchemaNames.Ordering),
+            .AddDbContext<Ordering.Persistence.OrderingDbContext>((sp, optionsBuilder) =>
+            {
+                SqlConfigs.Configure(optionsBuilder, connectionString, Ordering.Persistence.Settings.SchemaNames.Ordering);
+                optionsBuilder.AddInterceptors(sp.GetRequiredService<CorrelationIdInterceptor>());
+            },
             ServiceLifetime.Scoped);
 
         services

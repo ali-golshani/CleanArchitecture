@@ -3,7 +3,6 @@ using Framework.Application;
 using Framework.Application.Extensions;
 using Framework.Mediator;
 using Framework.Mediator.IntegrationEvents;
-using Framework.Persistence.Extensions;
 using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Application.Pipelines;
@@ -37,8 +36,6 @@ internal sealed class TransactionalCommandHandler<TRequest, TResponse>
         {
             return result;
         }
-
-        db.LinkCommandCorrelationIds(request.CorrelationId);
 
         await db.SaveChangesAsync(cancellationToken);
         await eventOutbox.PublishEvents(eventBus, cancellationToken);

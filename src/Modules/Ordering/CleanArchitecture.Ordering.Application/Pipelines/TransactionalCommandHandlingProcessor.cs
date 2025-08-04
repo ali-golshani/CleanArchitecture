@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Actors;
+using Framework.Application.Extensions;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,8 @@ internal sealed class TransactionalCommandHandlingProcessor<TRequest, TResponse>
         var actor = actorResolver.Actor;
         using var scope = serviceScopeFactory.CreateScope(actor);
         var serviceProvider = scope.ServiceProvider;
+
+        serviceProvider.SetRequestContextAccessor(context.Request);
 
         var handler = serviceProvider.GetRequiredService<TransactionalCommandHandler<TRequest, TResponse>>();
         return await handler.Handle(context.Request, context.CancellationToken);
