@@ -12,11 +12,10 @@ internal class CommandService(IServiceProvider serviceProvider) : ICommandServic
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         var scope = serviceProvider.CreateScopeWithPreservedActor();
-        var localServiceProvider = scope.ServiceProvider;
+        var scopedServiceProvider = scope.ServiceProvider;
 
-        localServiceProvider.SetRequestContextAccessor(command.AsRequestType());
-
-        return localServiceProvider.SendToPipeline<TRequest, TResponse, CommandPipeline.Pipeline<TRequest, TResponse>>(command, cancellationToken);
+        scopedServiceProvider.SetRequestContextAccessor(command.AsRequestType());
+        return scopedServiceProvider.SendToPipeline<TRequest, TResponse, CommandPipeline.Pipeline<TRequest, TResponse>>(command, cancellationToken);
     }
 
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, ICommand<TRequest, TResponse> command, CancellationToken cancellationToken)

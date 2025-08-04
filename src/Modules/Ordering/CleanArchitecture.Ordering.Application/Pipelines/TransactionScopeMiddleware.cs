@@ -30,6 +30,7 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
         var cancellationToken = context.CancellationToken;
 
         using var transaction = await eventOutbox.BeginTransaction(db, cancellationToken);
+
         var result = await next.Handle(context);
 
         if (result.IsFailure)

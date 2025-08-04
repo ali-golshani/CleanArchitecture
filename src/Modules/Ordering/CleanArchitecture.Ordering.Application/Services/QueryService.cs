@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Application.Pipelines;
+using Framework.Application.Extensions;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 
@@ -10,6 +11,7 @@ internal class QueryService(IServiceProvider serviceProvider) : IQueryService
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
+        serviceProvider.SetRequestContextAccessor(query.AsRequestType());
         return serviceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
     }
 
