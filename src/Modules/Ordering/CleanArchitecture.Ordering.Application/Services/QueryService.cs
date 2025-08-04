@@ -6,7 +6,7 @@ using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Application.Services;
 
-internal class QueryService(IServiceProvider serviceProvider) : IQueryService
+internal sealed class QueryService(IServiceProvider serviceProvider) : IQueryService
 {
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>

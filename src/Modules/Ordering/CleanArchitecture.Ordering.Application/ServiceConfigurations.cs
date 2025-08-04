@@ -9,6 +9,8 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
+        services.AddScoped<ContextPreservingScopeFactory>();
+
         services.AddTransient<IQueryService, QueryService>();
         services.AddTransient<ICommandService, CommandService>();
         services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
