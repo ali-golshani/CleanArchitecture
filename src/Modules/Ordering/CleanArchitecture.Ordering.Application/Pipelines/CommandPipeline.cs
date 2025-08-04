@@ -9,10 +9,8 @@ internal static class CommandPipeline
     public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, TResponse>
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
-        public Pipeline(
-            IServiceProvider serviceProvider,
-            TransactionalCommandHandlingProcessor<TRequest, TResponse> processor)
-            : base(serviceProvider, processor, Configuration.PipelineName)
+        public Pipeline(IServiceProvider serviceProvider)
+            : base(serviceProvider, Configuration.PipelineName)
         { }
     }
 
@@ -28,6 +26,7 @@ internal static class CommandPipeline
                 typeof(RequestAuditMiddleware<,>),
                 typeof(AuthorizationMiddleware<,>),
                 typeof(ValidationMiddleware<,>),
+                typeof(TransactionScopeMiddleware<,>),
                 typeof(OrderRequestMiddleware<,>),
             ];
         }
