@@ -18,7 +18,7 @@ public sealed class StringRule(
     public IEnumerable<Clause> Evaluate()
     {
         yield return new Clause(
-            isTrue: IsValid(),
+            isValid: IsValid(),
             statement: Statement(),
             sources: new ClauseSource(Source, Value));
     }

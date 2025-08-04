@@ -2,23 +2,22 @@
 
 namespace Framework.DomainRules;
 
-public sealed class Clause(bool isTrue, string statement, params ClauseSource[] sources)
+public sealed class Clause(ClauseResult result, string statement, params ClauseSource[] sources)
 {
     public static Clause InvalidClause(string statement, params ClauseSource[] sources)
     {
-        return new Clause(false, statement, sources);
+        return new Clause(ClauseResult.Invalid, statement, sources);
     }
 
-    public static Clause Reverse(bool isFalse, string statement, params ClauseSource[] sources)
-    {
-        return new Clause(!isFalse, statement, sources);
-    }
+    public Clause(bool isValid, string statement, params ClauseSource[] sources)
+        : this(isValid ? ClauseResult.Valid : ClauseResult.Invalid, statement, sources)
+    { }
 
-    public bool IsTrue { get; } = isTrue;
+    public ClauseResult Result { get; } = result;
     public string Statement { get; } = statement;
     public ClauseSource[] Sources { get; } = sources;
 
-    public bool IsFalse => !IsTrue;
+    public bool IsInvalid => Result == ClauseResult.Invalid;
 
     public override string ToString()
     {

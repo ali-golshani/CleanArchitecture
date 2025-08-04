@@ -8,7 +8,7 @@ public static class ClauseExtensions
     {
         return
             clauses
-            .Where(x => x.IsFalse)
+            .Where(x => x.IsInvalid)
             .Select(ToError);
     }
 
@@ -16,7 +16,7 @@ public static class ClauseExtensions
     {
         await foreach (var clause in clauses)
         {
-            if (clause.IsFalse)
+            if (clause.IsInvalid)
             {
                 yield return ToError(clause);
             }
@@ -40,7 +40,7 @@ public static class ClauseExtensions
 
     public static void Throw(this IEnumerable<Clause> clauses)
     {
-        var brokenRules = clauses.Where(x => !x.IsTrue).ToList();
+        var brokenRules = clauses.Where(x => x.IsInvalid).ToList();
 
         if (brokenRules.Count > 0)
         {
@@ -54,7 +54,7 @@ public static class ClauseExtensions
 
         await foreach (var clause in clauses)
         {
-            if (!clause.IsTrue)
+            if (clause.IsInvalid)
             {
                 brokenRules.Add(clause);
             }
