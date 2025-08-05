@@ -1,4 +1,4 @@
-﻿namespace Framework.Persistence.Interceptors;
+﻿namespace Framework.Domain;
 
 public interface IRequestContextAccessor
 {

@@ -1,4 +1,5 @@
-﻿using Framework.Persistence.Extensions;
+﻿using Framework.Domain;
+using Framework.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Framework.Persistence.Interceptors;

@@ -1,5 +1,4 @@
-﻿using Framework.Application.Requests;
-using Framework.Mediator;
+﻿using Framework.Mediator;
 using Framework.Mediator.IntegrationEvents;
 using Microsoft.Extensions.DependencyInjection;
 

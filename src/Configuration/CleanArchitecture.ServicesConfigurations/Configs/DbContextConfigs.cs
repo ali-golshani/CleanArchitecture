@@ -9,8 +9,6 @@ internal static class DbContextConfigs
 {
     public static void RegisterDbContexts(this IServiceCollection services, string connectionString)
     {
-        services.AddScoped<CorrelationIdInterceptor>();
-
         services
             .AddDbContext<Ordering.Persistence.OrderingDbContext>((sp, optionsBuilder) =>
             {

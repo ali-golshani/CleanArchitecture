@@ -1,4 +1,4 @@
-﻿using Framework.Application.Requests;
+﻿using Framework.Domain;
 using Framework.Persistence.Interceptors;
 using Microsoft.Extensions.DependencyInjection;
 

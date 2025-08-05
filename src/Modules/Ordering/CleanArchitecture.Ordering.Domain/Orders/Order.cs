@@ -16,11 +16,11 @@ public sealed class Order : CommandAwareEntity
 
     public Order(OrderCreationParameters parameters)
     {
-        new IDomainRule[]
-        {
+        new DomainPolicy
+        (
             new OrderPriceRule(parameters.Price),
             new OrderQuantityRule(parameters.Quantity)
-        }.Evaluate().Throw();
+        ).Evaluate().Throw();
 
         OrderId = parameters.OrderId;
         Quantity = parameters.Quantity;

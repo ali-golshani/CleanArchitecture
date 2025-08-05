@@ -43,6 +43,7 @@ public static class Configuration
         Framework.Scheduling.ServiceConfigurations.RegisterServices(services);
         Framework.Scheduling.ServiceConfigurations.RegisterHostedServices(services);
         Framework.Mediator.ServiceConfigurations.RegisterServices(services);
+        Framework.Persistence.ServiceConfigurations.RegisterServices(services);
         Framework.Application.ServiceConfigurations.RegisterServices(services);
 
         Actors.ServiceConfigurations.RegisterServices(services);
