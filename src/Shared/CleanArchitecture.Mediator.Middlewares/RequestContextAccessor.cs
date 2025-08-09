@@ -3,7 +3,7 @@ using Framework.Mediator;
 
 namespace Framework.Application;
 
-internal sealed class RequestContextAccessor : IRequestContextAccessor
+public sealed class RequestContextAccessor : IRequestContextAccessor
 {
     public Guid? CorrelationId { get; private set; }
 

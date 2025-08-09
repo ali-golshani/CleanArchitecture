@@ -22,6 +22,7 @@ internal static class QueryPipeline
         {
             return
             [
+                typeof(RequestContextMiddleware<,>),
                 typeof(ExceptionHandlingMiddleware<,>),
                 typeof(RequestAuditMiddleware<,>),
                 typeof(AuthorizationMiddleware<,>),

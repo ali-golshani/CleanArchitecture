@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Logging\Framework.Logging.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.Validation\Framework.Validation.csproj" />

@@ -1,6 +1,4 @@
-﻿using Framework.Mediator;
-using Framework.Mediator.IntegrationEvents;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Framework.Mediator.IntegrationEvents;
 
 namespace Framework.Application.Extensions;
 
@@ -20,11 +18,5 @@ public static class Extensions
         {
             await eventsOutbox.Publish(group.ToList(), group.Key, cancellationToken);
         }
-    }
-
-    public static void SetRequestContextAccessor(this IServiceProvider serviceProvider, Request request)
-    {
-        var contextAccessor = serviceProvider.GetRequiredService<RequestContextAccessor>();
-        contextAccessor.SetContext(request);
     }
 }

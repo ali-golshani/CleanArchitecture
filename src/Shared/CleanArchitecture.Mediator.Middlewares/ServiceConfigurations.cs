@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Framework.Application;
+using Framework.Domain;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
@@ -10,5 +12,9 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(ExceptionHandlingMiddleware<,>));
         services.AddTransient(typeof(FilteringMiddleware<,>));
         services.AddTransient(typeof(ValidationMiddleware<,>));
+        services.AddTransient(typeof(RequestContextMiddleware<,>));
+
+        services.AddScoped<RequestContextAccessor>();
+        services.AddScoped<IRequestContextAccessor>(sp => sp.GetRequiredService<RequestContextAccessor>());
     }
 }

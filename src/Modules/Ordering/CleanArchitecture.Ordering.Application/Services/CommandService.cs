@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Application.Pipelines;
-using Framework.Application.Extensions;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 
@@ -28,7 +27,6 @@ internal sealed class CommandService(ContextPreservingScopeFactory scopeFactory)
         CancellationToken cancellationToken)
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
-        serviceProvider.SetRequestContextAccessor(command.AsRequestType());
         return serviceProvider.SendToPipeline<TRequest, TResponse, CommandPipeline.Pipeline<TRequest, TResponse>>(command, cancellationToken);
     }
 }
