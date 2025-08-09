@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Actors;
+﻿using CleanArchitecture.Actors.ActorProviders;
+
+namespace CleanArchitecture.Actors;
 
 internal class ActorResolver : IActorResolver
 {

@@ -5,7 +5,7 @@ using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Application.Services;
 
-internal sealed class CommandService(ContextPreservingScopeFactory scopeFactory) : ICommandService
+internal sealed class CommandService(ActorPreservingScopeFactory scopeFactory) : ICommandService
 {
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken)
         where TRequest : CommandBase, ICommand<TRequest, TResponse>

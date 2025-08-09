@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Actors;
+﻿namespace CleanArchitecture.Actors.ActorProviders;
 
-internal class FixedActorProvider : IActorProvider
+internal sealed class FixedActorProvider : IActorProvider
 {
     private Actor? actor = null;
 

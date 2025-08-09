@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Actors;
+using CleanArchitecture.Actors.Extensions;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using Microsoft.Extensions.DependencyInjection;

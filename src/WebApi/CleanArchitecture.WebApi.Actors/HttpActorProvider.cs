@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Actors;
+using CleanArchitecture.Actors.ActorProviders;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 

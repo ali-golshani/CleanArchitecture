@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Actors;
+﻿namespace CleanArchitecture.Actors.ActorProviders;
 
 public interface IActorProvider
 {

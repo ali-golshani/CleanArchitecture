@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Actors;
+﻿using CleanArchitecture.Actors.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Ordering.Application.Services;
+namespace CleanArchitecture.Actors;
 
-internal sealed class ContextPreservingScopeFactory(IServiceProvider serviceProvider) : IServiceScopeFactory
+public sealed class ActorPreservingScopeFactory(IServiceProvider serviceProvider) : IServiceScopeFactory
 {
     public IServiceScope CreateScope()
     {

@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using CleanArchitecture.Actors.ActorProviders;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Actors;
+namespace CleanArchitecture.Actors.Extensions;
 
 public static class ActorExtensions
 {

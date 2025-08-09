@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Actors;
+﻿using CleanArchitecture.Actors.ActorProviders;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.WebApi.Actors;
