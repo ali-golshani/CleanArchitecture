@@ -1,5 +1,6 @@
 ﻿using Framework.Results;
 using Framework.Results.Errors;
+using Framework.Results.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
@@ -94,23 +95,7 @@ internal static class ResultToProblemDetails
         }
     }
 
-    private static int StatusCode(ErrorType type)
-    {
-        return type switch
-        {
-            ErrorType.Validation => StatusCodes.Status400BadRequest,
-            ErrorType.Conflict => StatusCodes.Status409Conflict,
-            ErrorType.NotFound => StatusCodes.Status404NotFound,
-            ErrorType.Unauthorized => StatusCodes.Status401Unauthorized,
-            ErrorType.Forbidden => StatusCodes.Status403Forbidden,
-            ErrorType.Timeout => StatusCodes.Status408RequestTimeout,
-            ErrorType.Locked => StatusCodes.Status423Locked,
-            ErrorType.Unavailable => StatusCodes.Status503ServiceUnavailable,
-            ErrorType.NotSupported or ErrorType.NotImplemented => StatusCodes.Status501NotImplemented,
-            ErrorType.Canceled => StatusCodes.Status499ClientClosedRequest,
-            _ => StatusCodes.Status500InternalServerError,
-        };
-    }
+    private static int StatusCode(ErrorType type) => (int)type.AsHttpStatusCode();
 
     private static string ErrorTitle(ErrorType type)
     {
