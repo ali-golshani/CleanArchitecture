@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Configurations;
 
-public enum EnvironmentMode
+public enum DeploymentStage
 {
     Development = 0,
     Production = 1,

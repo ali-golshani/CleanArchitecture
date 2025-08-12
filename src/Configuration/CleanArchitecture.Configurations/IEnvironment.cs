@@ -2,7 +2,7 @@
 
 public interface IEnvironment
 {
-    EnvironmentMode EnvironmentMode { get; }
+    DeploymentStage DeploymentStage { get; }
     OptionsMode OptionsMode { get; }
     SecretsMode SecretsMode { get; }
 }

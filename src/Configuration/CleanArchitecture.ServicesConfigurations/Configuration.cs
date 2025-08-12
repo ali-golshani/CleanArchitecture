@@ -57,7 +57,7 @@ public static class Configuration
         Ordering.Commands.ServiceConfigurations.RegisterServices(services);
         Ordering.Application.ServiceConfigurations.RegisterServices(services);
 
-        if (environment.EnvironmentMode == EnvironmentMode.Staging)
+        if (environment.DeploymentStage == DeploymentStage.Staging)
         {
             Infrastructure.CommoditySystem.Mock.ServiceConfigurations.RegisterServices(services);
         }
