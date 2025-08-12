@@ -8,7 +8,7 @@ internal static class Extensions
     {
         if (environment.Application == ApplicationFlavor.DbMigration)
         {
-            return Options.OptionsMode.DbMigration;
+            return Options.OptionsMode.DbMigrationProduction;
         }
 
         return environment.DeploymentStage switch

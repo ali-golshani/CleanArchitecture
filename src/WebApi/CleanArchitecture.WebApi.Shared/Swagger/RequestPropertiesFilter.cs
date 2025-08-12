@@ -10,5 +10,6 @@ internal class RequestPropertiesFilter : ReadOnlyPropertiesFilter<Request>
         nameof(Request.RequestTitle),
         nameof(Request.RequestTime),
         nameof(Request.ShouldLog),
+        nameof(Request.LoggingDomain),
     ];
 }

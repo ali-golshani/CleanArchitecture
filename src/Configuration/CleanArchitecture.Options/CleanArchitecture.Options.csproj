@@ -15,11 +15,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="Options\Options.DbMigration.json">
+		<None Update="Options\Options.Production.DbMigration.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
 		<None Update="Options\Options.Development.json">
-			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 		<None Update="Options\Options.Production.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

@@ -6,16 +6,20 @@ internal static class Extensions
 {
     public static SecretsMode SecretsMode(this IEnvironment environment)
     {
-        if (environment.Application == ApplicationFlavor.DbMigration)
+        if (environment.DeploymentStage == DeploymentStage.Production)
         {
-            return CleanArchitecture.Secrets.SecretsMode.DbMigration;
+            return environment.Application switch
+            {
+                ApplicationFlavor.DbMigration => Secrets.SecretsMode.DbMigrationProduction,
+                _ => Secrets.SecretsMode.Production,
+            };
         }
 
-        return environment.DeploymentStage switch
+        if (environment.DeploymentStage == DeploymentStage.Staging)
         {
-            DeploymentStage.Production => CleanArchitecture.Secrets.SecretsMode.Production,
-            DeploymentStage.Staging => CleanArchitecture.Secrets.SecretsMode.Staging,
-            _ => CleanArchitecture.Secrets.SecretsMode.Development,
-        };
+            return Secrets.SecretsMode.Staging;
+        }
+
+        return Secrets.SecretsMode.Development;
     }
 }

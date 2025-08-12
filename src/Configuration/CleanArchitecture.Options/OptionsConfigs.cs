@@ -7,14 +7,26 @@ public static class OptionsConfigs
 {
     public static void Configure(IConfigurationBuilder configuration, IEnvironment environment)
     {
-        var directory = AppDomain.CurrentDomain.BaseDirectory;
-        var fileName = ConfigurationFile(environment.OptionsMode());
-        var filePath = Path.Combine(directory, fileName);
+        var fileName = ConfigurationFileName(environment.OptionsMode());
+        var filePath = ConfigurationFilePath(fileName);
         configuration.AddJsonFile(filePath, optional: false, reloadOnChange: true);
     }
 
-    private static string ConfigurationFile(OptionsMode mode)
+    private static string ConfigurationFileName(OptionsMode mode)
     {
-        return Path.Combine("Options", $"Options.{mode}.json");
+        return mode switch
+        {
+            OptionsMode.Development => $"Options.Development.json",
+            OptionsMode.Staging => $"Options.Staging.json",
+            OptionsMode.Production => $"Options.Production.json",
+            OptionsMode.DbMigrationProduction => $"Options.Production.DbMigration.json",
+            _ => $"Options.{mode}.json",
+        };
+    }
+
+    private static string ConfigurationFilePath(string fileName)
+    {
+        var directory = AppDomain.CurrentDomain.BaseDirectory;
+        return Path.Combine(directory, "Options", fileName);
     }
 }
