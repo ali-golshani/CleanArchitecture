@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations.Configs;
 using CleanArchitecture.Shared;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -9,6 +10,16 @@ namespace CleanArchitecture.ServicesConfigurations;
 
 public static class Configuration
 {
+    public static void SetEnvironment(ApplicationFlavor application, IWebHostEnvironment environment)
+    {
+        SystemEnvironment.SetEnvironment(application, environment.DeploymentStage());
+    }
+
+    public static void SetEnvironment(ApplicationFlavor application, DeploymentStage stage)
+    {
+        SystemEnvironment.SetEnvironment(application, stage);
+    }
+
     public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment environment)
     {
         configuration.Sources.Clear();

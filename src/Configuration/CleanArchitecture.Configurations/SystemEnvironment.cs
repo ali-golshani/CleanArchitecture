@@ -2,21 +2,11 @@
 
 public static class SystemEnvironment
 {
-    private static EnvironmentOptions environment = EnvironmentOptions.Development;
+    private static EnvironmentOptions environment = new(ApplicationFlavor.Default, DeploymentStage.Development);
 
-    public static void SetAsProductionEnvironment()
+    public static void SetEnvironment(ApplicationFlavor application, DeploymentStage stage)
     {
-        environment = EnvironmentOptions.Production;
-    }
-
-    public static void SetAsStagingEnvironment()
-    {
-        environment = EnvironmentOptions.Staging;
-    }
-
-    public static void SetAsDbMigrationEnvironment()
-    {
-        environment = EnvironmentOptions.DbMigration;
+        environment = new(application, stage);
     }
 
     public static IEnvironment Environment => environment;

@@ -17,7 +17,7 @@ public static class ServiceCollectionBuilder
         var services = new ServiceCollection();
 
         configurationBuilder.SetBasePath(AppPath);
-        SystemEnvironment.SetAsDbMigrationEnvironment();
+        Configuration.SetEnvironment(ApplicationFlavor.DbMigration, DeploymentStage.Development);
         Configuration.ConfigureAppConfiguration(configurationBuilder, SystemEnvironment.Environment);
 
         configuration = configurationBuilder.Build();

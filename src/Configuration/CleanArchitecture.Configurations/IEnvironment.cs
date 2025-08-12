@@ -2,7 +2,6 @@
 
 public interface IEnvironment
 {
+    ApplicationFlavor Application { get; }
     DeploymentStage DeploymentStage { get; }
-    OptionsMode OptionsMode { get; }
-    SecretsMode SecretsMode { get; }
 }

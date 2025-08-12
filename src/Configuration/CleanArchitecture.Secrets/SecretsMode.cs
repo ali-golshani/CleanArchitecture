@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Configurations;
+﻿namespace CleanArchitecture.Secrets;
 
-public enum OptionsMode
+public enum SecretsMode
 {
     Development = 0,
     Production = 1,

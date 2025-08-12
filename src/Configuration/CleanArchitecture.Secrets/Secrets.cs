@@ -1,6 +1,4 @@
-﻿using CleanArchitecture.Configurations;
-
-namespace CleanArchitecture.Secrets;
+﻿namespace CleanArchitecture.Secrets;
 
 internal static class Secrets
 {

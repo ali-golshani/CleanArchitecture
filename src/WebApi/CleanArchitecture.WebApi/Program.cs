@@ -18,17 +18,8 @@ public static class Program
         var services = builder.Services;
 
         var isDevelopment = builder.Environment.IsDevelopment();
-        var isProduction = builder.Environment.IsProduction();
-        var isStaging = builder.Environment.IsStaging();
 
-        if (isProduction)
-        {
-            SystemEnvironment.SetAsProductionEnvironment();
-        }
-        else if (isStaging)
-        {
-            SystemEnvironment.SetAsStagingEnvironment();
-        }
+        ServicesConfigurations.Configuration.SetEnvironment(ApplicationFlavor.WebApi, builder.Environment);
 
         ServicesConfigurations.Configuration.ConfigureAppConfiguration
         (

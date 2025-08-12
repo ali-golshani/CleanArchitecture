@@ -13,12 +13,12 @@ public static class ServiceCollectionBuilder
 
     public static IServiceCollection Build(out IConfiguration configuration)
     {
-        SystemEnvironment.SetAsStagingEnvironment();
-
         var configurationBuilder = new ConfigurationBuilder();
         var services = new ServiceCollection();
 
         configurationBuilder.SetBasePath(AppPath);
+
+        Configuration.SetEnvironment(ApplicationFlavor.Default, DeploymentStage.Staging);
 
         Configuration.ConfigureAppConfiguration
         (
