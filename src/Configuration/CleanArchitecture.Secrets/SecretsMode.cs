@@ -5,5 +5,5 @@ internal enum SecretsMode
     Development,
     Staging,
     Production,
-    DbMigrationProduction,
+    ProductionDbMigration,
 }

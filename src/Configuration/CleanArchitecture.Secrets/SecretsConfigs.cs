@@ -30,7 +30,7 @@ public static class SecretsConfigs
             SecretsMode.Development => $"Secrets.Development.json",
             SecretsMode.Staging => $"Secrets.Staging.json",
             SecretsMode.Production => $"Secrets.Production.json",
-            SecretsMode.DbMigrationProduction => $"Secrets.Production.DbMigration.json",
+            SecretsMode.ProductionDbMigration => $"Secrets.Production.DbMigration.json",
             _ => $"Secrets.{mode}.json",
         };
     }

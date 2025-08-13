@@ -10,7 +10,7 @@ internal static class Extensions
         {
             return environment.Application switch
             {
-                ApplicationFlavor.DbMigration => Secrets.SecretsMode.DbMigrationProduction,
+                ApplicationFlavor.DbMigration => Secrets.SecretsMode.ProductionDbMigration,
                 _ => Secrets.SecretsMode.Production,
             };
         }
