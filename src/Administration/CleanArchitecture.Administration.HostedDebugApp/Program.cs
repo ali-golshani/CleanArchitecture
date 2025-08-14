@@ -28,11 +28,7 @@ internal static class Program
 
     private static void ConfigureAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder configuration)
     {
-        Configuration.ConfigureAppConfiguration
-        (
-            configuration: configuration,
-            environment: SystemEnvironment.Environment
-        );
+        Configuration.ConfigureAppConfiguration(configuration, SystemEnvironment.Environment);
     }
 
     private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)

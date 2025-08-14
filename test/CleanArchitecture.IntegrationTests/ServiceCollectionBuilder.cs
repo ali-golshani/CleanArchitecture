@@ -14,23 +14,14 @@ public static class ServiceCollectionBuilder
     public static IServiceCollection Build(out IConfiguration configuration)
     {
         var configurationBuilder = new ConfigurationBuilder();
-        var services = new ServiceCollection();
-
         configurationBuilder.SetBasePath(AppPath);
-
         Configuration.SetEnvironment(ApplicationFlavor.Default, DeploymentStage.Staging);
-
-        Configuration.ConfigureAppConfiguration
-        (
-            configuration: configurationBuilder,
-            environment: SystemEnvironment.Environment
-        );
-
+        Configuration.ConfigureAppConfiguration(configurationBuilder, SystemEnvironment.Environment);
         configuration = configurationBuilder.Build();
 
+        var services = new ServiceCollection();
         Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
         services.AddLogging(Configuration.ConfigureLogging);
-
         services.RegisterAsSelf<IService>(typeof(ServiceCollectionBuilder).Assembly);
 
         return services;

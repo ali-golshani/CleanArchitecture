@@ -14,17 +14,14 @@ public static class ServiceCollectionBuilder
     public static IServiceCollection Build(out IConfiguration configuration)
     {
         var configurationBuilder = new ConfigurationBuilder();
-        var services = new ServiceCollection();
-
         configurationBuilder.SetBasePath(AppPath);
         Configuration.SetEnvironment(ApplicationFlavor.DbMigration, DeploymentStage.Development);
         Configuration.ConfigureAppConfiguration(configurationBuilder, SystemEnvironment.Environment);
-
         configuration = configurationBuilder.Build();
 
+        var services = new ServiceCollection();
         Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
         services.AddLogging(Configuration.ConfigureLogging);
-
         ConfigureMassTransitMigrationServices(services);
 
         return services;
