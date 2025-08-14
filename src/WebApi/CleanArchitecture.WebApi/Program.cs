@@ -21,6 +21,7 @@ public static class Program
 
         ServicesConfigurations.Configuration.SetEnvironment(ApplicationFlavor.WebApi, builder.Environment);
         ServicesConfigurations.Configuration.ConfigureAppConfiguration(configuration, SystemEnvironment.Environment);
+        ServicesConfigurations.Configuration.AddAppSettings(configuration, builder.Environment);
         ServicesConfigurations.Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
 
         services.AddLogging(ServicesConfigurations.Configuration.ConfigureLogging);

@@ -20,6 +20,12 @@ public static class Configuration
         SystemEnvironment.SetEnvironment(application, stage);
     }
 
+    public static void AddAppSettings(IConfigurationBuilder configuration, IWebHostEnvironment environment)
+    {
+        configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        configuration.AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+    }
+
     public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment environment)
     {
         configuration.Sources.Clear();
