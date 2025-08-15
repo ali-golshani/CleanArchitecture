@@ -1,23 +1,23 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Actors.Extensions;
 using CleanArchitecture.Ordering.Application.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Application.Services;
 
-internal sealed class QueryService(IServiceProvider serviceProvider) : IQueryService
+internal sealed class QueryService(ActorPreservingScopeFactory scopeFactory) : IQueryService
 {
-    public Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        return serviceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
+        using var scope = scopeFactory.CreateScope();
+        return await scope.ServiceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
     }
 
-    public Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        serviceProvider.ResolveActor(actor);
-        return Handle(query, cancellationToken);
+        using var scope = scopeFactory.CreateScope(actor);
+        return await scope.ServiceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
     }
 }
