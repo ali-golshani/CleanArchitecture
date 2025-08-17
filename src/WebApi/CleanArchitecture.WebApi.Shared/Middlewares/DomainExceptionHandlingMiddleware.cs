@@ -1,6 +1,6 @@
 ﻿using Framework.Exceptions;
 using Framework.Exceptions.Extensions;
-using Framework.WebApi.Exceptions;
+using Framework.WebApi.Extensions;
 
 namespace CleanArchitecture.WebApi.Shared.Middlewares;
 

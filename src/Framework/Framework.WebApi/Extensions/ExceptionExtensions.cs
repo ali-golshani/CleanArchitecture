@@ -1,9 +1,10 @@
-﻿using Framework.Exceptions.Extensions;
-using Framework.Exceptions;
+﻿using Framework.Exceptions;
+using Framework.Exceptions.Extensions;
 using Framework.Results;
+using Framework.WebApi.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Framework.WebApi.Exceptions;
+namespace Framework.WebApi.Extensions;
 
 public static class ExceptionExtensions
 {
@@ -30,16 +31,16 @@ public static class ExceptionExtensions
         }
 
         return errors;
-    }
 
-    private static IReadOnlyCollection<string> Errors(Exception exp)
-    {
-        exp = exp.UnwrapAll();
-        return exp switch
+        static IReadOnlyCollection<string> Errors(Exception exp)
         {
-            UserFriendlyException friendlyException => friendlyException.Messages,
-            BaseSystemException systemException => systemException.Messages,
-            _ => [],
-        };
+            exp = exp.UnwrapAll();
+            return exp switch
+            {
+                UserFriendlyException friendlyException => friendlyException.Messages,
+                BaseSystemException systemException => systemException.Messages,
+                _ => [],
+            };
+        }
     }
 }
