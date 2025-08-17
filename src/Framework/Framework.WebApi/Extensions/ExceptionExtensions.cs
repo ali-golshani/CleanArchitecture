@@ -22,7 +22,7 @@ public static class ExceptionExtensions
 
     private static string[] ErrorMessages(Exception exp)
     {
-        var errors = exp.Errors().ToArray();
+        var errors = Errors(exp).ToArray();
 
         if (errors.Length == 0)
         {
@@ -32,7 +32,7 @@ public static class ExceptionExtensions
         return errors;
     }
 
-    private static IReadOnlyCollection<string> Errors(this Exception exp)
+    private static IReadOnlyCollection<string> Errors(Exception exp)
     {
         exp = exp.UnwrapAll();
         return exp switch
