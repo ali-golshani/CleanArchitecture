@@ -37,41 +37,6 @@ internal static class ResultToProblemDetails
         return TypedResults.Problem(ProblemDetails(errors));
     }
 
-    public static ActionResult ToActionResult(Result<Empty> result)
-    {
-        if (result.IsSuccess)
-        {
-            return new OkResult();
-        }
-        else
-        {
-            var problem = ProblemDetails(result.Errors);
-            return new ObjectResult(problem)
-            {
-                StatusCode = problem.Status,
-            };
-        }
-    }
-
-    public static ActionResult ToActionResult<T>(Result<T> result)
-    {
-        if (result.IsSuccess)
-        {
-            return new OkObjectResult(result.Value)
-            {
-                DeclaredType = typeof(T),
-            };
-        }
-        else
-        {
-            var problem = ProblemDetails(result.Errors);
-            return new ObjectResult(problem)
-            {
-                StatusCode = problem.Status,
-            };
-        }
-    }
-
     private static ProblemDetails ProblemDetails(Error[] errors)
     {
         var error = errors.Length == 0 ? UnexpectedError.Default : errors[0];

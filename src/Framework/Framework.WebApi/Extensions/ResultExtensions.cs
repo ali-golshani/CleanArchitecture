@@ -56,26 +56,4 @@ public static class ResultExtensions
     {
         return ResultToProblemDetails.ToTypedResults(result);
     }
-
-    public static async Task<ActionResult> AsActionResult(this Task<Result<Empty>> resultTask)
-    {
-        var result = await resultTask;
-        return ResultToProblemDetails.ToActionResult(result);
-    }
-
-    public static ActionResult AsActionResult(this Result<Empty> result)
-    {
-        return ResultToProblemDetails.ToActionResult(result);
-    }
-
-    public static async Task<ActionResult> AsActionResult<T>(this Task<Result<T>> resultTask)
-    {
-        var result = await resultTask;
-        return ResultToProblemDetails.ToActionResult(result);
-    }
-
-    public static ActionResult AsActionResult<T>(this Result<T> result)
-    {
-        return ResultToProblemDetails.ToActionResult(result);
-    }
 }

@@ -12,11 +12,11 @@ public class OrdersController(IQueryService queryService) : ODataController
 
     [HttpGet]
     [EnableODataQuery]
-    public Task<ActionResult> Get(Querying.OrdersQuery.Query query, CancellationToken cancellationToken)
+    public async Task<IResult> Get(Querying.OrdersQuery.Query query, CancellationToken cancellationToken)
     {
-        return
+        return await
             queryService
             .Handle(query, cancellationToken)
-            .AsActionResult();
+            .AsTypedResults();
     }
 }
