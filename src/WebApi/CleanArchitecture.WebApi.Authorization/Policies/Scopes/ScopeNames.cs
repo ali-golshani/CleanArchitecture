@@ -2,7 +2,7 @@
 
 internal static class ScopeNames
 {
-    public const string ClaimType = "scope";
+    public const string ClaimType = "functional-scope";
 
     public static string ScopeName(Scopes scopes)
     {

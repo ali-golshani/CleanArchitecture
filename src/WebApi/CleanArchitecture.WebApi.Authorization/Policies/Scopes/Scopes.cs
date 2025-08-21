@@ -4,8 +4,8 @@
 public enum Scopes : long
 {
     None = 0,
-    Admin = 1,
-    BrokerAdmin = 2,
-    BrokerClerk = 4,
+    Customers = 1,
+    Brokers = 2,
+    Orders = 4,
     All = ~None,
 }

@@ -2,7 +2,7 @@
 
 internal static class PermissionNames
 {
-    public const string ClaimType = "permissions";
+    public const string ClaimType = "permission";
 
     public static string PermissionName(Permission permission)
     {
