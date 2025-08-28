@@ -28,9 +28,11 @@ public static class DIExtensions
         services.RegisterAsImplementedInterfaces(typeof(IDomainEventHandler<>), assembly);
     }
 
-    public static void RegisterMiddlewares<TPipelineConfiguration>(this IServiceCollection services)
+    public static void AddKeyedPipeline<TPipelineConfiguration>(this IServiceCollection services, Type pipelineType)
         where TPipelineConfiguration : IKeyedPipelineConfiguration
     {
+        services.AddTransient(pipelineType);
+
         foreach (var type in TPipelineConfiguration.Middlewares())
         {
             services.AddKeyedTransient(typeof(IMiddleware<,>), TPipelineConfiguration.PipelineName, type);

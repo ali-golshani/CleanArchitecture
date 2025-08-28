@@ -17,8 +17,6 @@ public static class ServiceConfigurations
         services.RegisterAccessControls();
 
         services.AddTransient<IQueryService, QueryService>();
-
-        services.AddTransient(typeof(QueryPipeline.Pipeline<,>));
-        services.RegisterMiddlewares<QueryPipeline.Configuration>();
+        services.AddKeyedPipeline<QueryPipeline.Configuration>(typeof(QueryPipeline.Pipeline<,>));
     }
 }

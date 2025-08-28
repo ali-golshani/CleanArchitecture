@@ -13,10 +13,7 @@ public static class ServiceConfigurations
         services.AddTransient<ICommandService, CommandService>();
         services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
 
-        services.AddTransient(typeof(QueryPipeline.Pipeline<,>));
-        services.RegisterMiddlewares<QueryPipeline.Configuration>();
-
-        services.AddTransient(typeof(CommandPipeline.Pipeline<,>));
-        services.RegisterMiddlewares<CommandPipeline.Configuration>();
+        services.AddKeyedPipeline<QueryPipeline.Configuration>(typeof(QueryPipeline.Pipeline<,>));
+        services.AddKeyedPipeline<CommandPipeline.Configuration>(typeof(CommandPipeline.Pipeline<,>));
     }
 }
