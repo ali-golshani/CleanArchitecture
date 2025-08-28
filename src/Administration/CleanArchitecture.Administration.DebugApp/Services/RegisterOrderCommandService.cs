@@ -10,7 +10,7 @@ internal class RegisterOrderCommandService(IServiceProvider serviceProvider) : S
 
         var result = await service.Handle(Actor, new Command
         {
-            OrderId = 157,
+            OrderId = 165,
             BrokerId = 5,
             CommodityId = 12,
             CustomerId = 13,

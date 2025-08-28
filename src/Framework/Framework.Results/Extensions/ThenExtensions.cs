@@ -1,8 +1,8 @@
 ﻿namespace Framework.Results.Extensions;
 
-public static class ContinueOnSuccessExtensions
+public static class ThenExtensions
 {
-    public static async Task<Result<T2>> ContinueOnSuccess<T1, T2>(
+    public static async Task<Result<T2>> Then<T1, T2>(
         this Task<Result<T1>> result,
         Func<T1, Task<Result<T2>>> onSuccessFunction)
     {
@@ -16,7 +16,7 @@ public static class ContinueOnSuccessExtensions
         return await onSuccessFunction(value.Value!);
     }
 
-    public static async Task<Result<T>> ContinueOnSuccess<T>(
+    public static async Task<Result<T>> Then<T>(
         this Task<Result<Empty>> result,
         Func<Task<Result<T>>> onSuccessFunction)
     {
@@ -30,7 +30,7 @@ public static class ContinueOnSuccessExtensions
         return await onSuccessFunction();
     }
 
-    public static async Task<Result<Empty>> ContinueOnSuccess(
+    public static async Task<Result<Empty>> Then(
         this Task<Result<Empty>> result,
         Func<Task<Result<Empty>>> onSuccessFunction)
     {
@@ -44,7 +44,7 @@ public static class ContinueOnSuccessExtensions
         return await onSuccessFunction();
     }
 
-    public static async Task<Result<Empty>> ContinueOnSuccess(
+    public static async Task<Result<Empty>> Then(
         this Task<Result<Empty>> result,
         Func<Task> onSuccessFunction)
     {
@@ -60,7 +60,7 @@ public static class ContinueOnSuccessExtensions
         return Empty.Value;
     }
 
-    public static async Task<Result<Empty>> ContinueOnSuccess(
+    public static async Task<Result<Empty>> Then(
         this Task<Result<Empty>> result,
         Func<ValueTask> onSuccessFunction)
     {
