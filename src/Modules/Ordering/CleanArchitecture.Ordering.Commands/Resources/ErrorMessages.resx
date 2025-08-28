@@ -117,28 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Forbidden" xml:space="preserve">
-    <value>دسترسی غیر مجاز</value>
+  <data name="CommodityNotFoundError" xml:space="preserve">
+    <value>کالا با شناسه {0} یافت نشد</value>
   </data>
-  <data name="InvalidRequest" xml:space="preserve">
-    <value>درخواست نامعتبر</value>
+  <data name="DuplicateOrderError" xml:space="preserve">
+    <value>سفارش با شناسه {0} وجود دارد</value>
   </data>
-  <data name="NotImplemented" xml:space="preserve">
-    <value>درخواست مورد نظر توسط سیستم پیاده سازی نشده است</value>
-  </data>
-  <data name="NotSupported" xml:space="preserve">
-    <value>درخواست مورد نظر توسط سیستم پشتیبانی نمی شود</value>
-  </data>
-  <data name="OperationCanceled" xml:space="preserve">
-    <value>عملیات لغو گردید</value>
-  </data>
-  <data name="Timeout" xml:space="preserve">
-    <value>درخواست به دلیل اتمام زمان لغو گردید</value>
-  </data>
-  <data name="Unauthorized" xml:space="preserve">
-    <value>کاربر درخواست دهنده احراز هویت نشده است</value>
-  </data>
-  <data name="Unexpected" xml:space="preserve">
-    <value>خطای نامشخص</value>
+  <data name="OrderNotFoundError" xml:space="preserve">
+    <value>سفارش با شناسه {0} یافت نشد</value>
   </data>
 </root>

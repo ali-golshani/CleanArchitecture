@@ -1,7 +1,6 @@
 ﻿namespace Framework.Results.Errors;
 
-public class UnauthorizedError() 
-    : Error(ErrorType.Unauthorized, Resources.ErrorMessages.Unauthorized)
+public class UnauthorizedError(string message, params ErrorSource[] sources) : Error(ErrorType.Unauthorized, message, sources)
 {
-    public static readonly UnauthorizedError Default = new();
+    public static readonly UnauthorizedError Default = new(Resources.ErrorMessages.Unauthorized);
 }

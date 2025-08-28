@@ -1,7 +1,6 @@
 ﻿namespace Framework.Results.Errors;
 
-public class NotSupportedError(string? message = null)
-    : Error(ErrorType.NotSupported, message ?? Resources.ErrorMessages.NotSupported)
+public class NotSupportedError(string message, params ErrorSource[] sources) : Error(ErrorType.NotSupported, message, sources)
 {
-    public static readonly NotSupportedError Default = new();
+    public static readonly NotSupportedError Default = new(Resources.ErrorMessages.NotSupported);
 }

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Framework.Results.Resources {
+namespace CleanArchitecture.Ordering.Commands.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Framework.Results.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Framework.Results.Resources.ErrorMessages", typeof(ErrorMessages).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("CleanArchitecture.Ordering.Commands.Resources.ErrorMessages", typeof(ErrorMessages).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,74 +61,29 @@ namespace Framework.Results.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to دسترسی غیر مجاز.
+        ///   Looks up a localized string similar to کالا با شناسه {0} یافت نشد.
         /// </summary>
-        internal static string Forbidden {
+        internal static string CommodityNotFoundError {
             get {
-                return ResourceManager.GetString("Forbidden", resourceCulture);
+                return ResourceManager.GetString("CommodityNotFoundError", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to درخواست نامعتبر.
+        ///   Looks up a localized string similar to سفارش با شناسه {0} وجود دارد.
         /// </summary>
-        internal static string InvalidRequest {
+        internal static string DuplicateOrderError {
             get {
-                return ResourceManager.GetString("InvalidRequest", resourceCulture);
+                return ResourceManager.GetString("DuplicateOrderError", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to درخواست مورد نظر توسط سیستم پیاده سازی نشده است.
+        ///   Looks up a localized string similar to سفارش با شناسه {0} یافت نشد.
         /// </summary>
-        internal static string NotImplemented {
+        internal static string OrderNotFoundError {
             get {
-                return ResourceManager.GetString("NotImplemented", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to درخواست مورد نظر توسط سیستم پشتیبانی نمی شود.
-        /// </summary>
-        internal static string NotSupported {
-            get {
-                return ResourceManager.GetString("NotSupported", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to عملیات لغو گردید.
-        /// </summary>
-        internal static string OperationCanceled {
-            get {
-                return ResourceManager.GetString("OperationCanceled", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to درخواست به دلیل اتمام زمان لغو گردید.
-        /// </summary>
-        internal static string Timeout {
-            get {
-                return ResourceManager.GetString("Timeout", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to کاربر درخواست دهنده احراز هویت نشده است.
-        /// </summary>
-        internal static string Unauthorized {
-            get {
-                return ResourceManager.GetString("Unauthorized", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to خطای نامشخص.
-        /// </summary>
-        internal static string Unexpected {
-            get {
-                return ResourceManager.GetString("Unexpected", resourceCulture);
+                return ResourceManager.GetString("OrderNotFoundError", resourceCulture);
             }
         }
     }

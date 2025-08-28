@@ -46,7 +46,7 @@ public class OrderController : BaseController
         return
             queryService
             .Handle(query, cancellationToken)
-            .NotFoundIfNull(PersianDictionary.OrderDictionary.Order, query.OrderId)
+            .NotFoundIfNull(new Ordering.Commands.Errors.OrderNotFoundError(query.OrderId))
             .AsTypedResults();
     }
 

@@ -1,7 +1,6 @@
 ﻿namespace Framework.Results.Errors;
 
-public class InvalidRequestError(string? message = null)
-    : Error(ErrorType.Validation, message ?? Resources.ErrorMessages.InvalidRequest)
+public class InvalidRequestError(string message, params ErrorSource[] sources) : Error(ErrorType.Validation, message, sources)
 {
-    public static readonly InvalidRequestError Default = new();
+    public static readonly InvalidRequestError Default = new(Resources.ErrorMessages.InvalidRequest);
 }

@@ -1,3 +1,3 @@
 ﻿namespace Framework.Results.Errors;
 
-public class ConflictError(string message) : Error(ErrorType.Conflict, message);
+public class ConflictError(string message, params ErrorSource[] sources) : Error(ErrorType.Conflict, message, sources);

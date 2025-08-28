@@ -1,7 +1,6 @@
 ﻿namespace Framework.Results.Errors;
 
-public class OperationCanceledError() 
-    : Error(ErrorType.Canceled, Resources.ErrorMessages.OperationCanceled)
+public class OperationCanceledError(string message, params ErrorSource[] sources) : Error(ErrorType.Canceled, message, sources)
 {
-    public static readonly OperationCanceledError Default = new();
+    public static readonly OperationCanceledError Default = new(Resources.ErrorMessages.OperationCanceled);
 }
