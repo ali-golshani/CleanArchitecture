@@ -1,19 +1,18 @@
 ﻿using Framework.Results;
-using Framework.WebApi.Exceptions;
+using Framework.WebApi.Results;
 using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Framework.WebApi.Extensions;
 
 public static class ResultExtensions
 {
-    public static async Task<NoContent> AsNoContent(this Task task)
+    public static async Task<NoContent> ToNoContent(this Task task)
     {
         await task;
         return TypedResults.NoContent();
     }
 
-    public static Results<Ok<T>, NotFound> AsOkOrNotFound<T>(this T? value)
+    public static Results<Ok<T>, NotFound> ToOkOrNotFound<T>(this T? value)
     {
         if (value is null)
         {
@@ -25,35 +24,75 @@ public static class ResultExtensions
         }
     }
 
-    public static async Task<Results<Ok<T>, NotFound>> AsOkOrNotFound<T>(this Task<T?> valueTask)
+    public static async Task<Results<Ok<T>, NotFound>> ToOkOrNotFound<T>(this Task<T?> valueTask)
     {
-        return (await valueTask).AsOkOrNotFound();
+        return (await valueTask).ToOkOrNotFound();
     }
 
-    public static ProblemHttpResult AsProblemResult(this Error[] errors)
+    public static Results<Ok<T>, NotFound, ProblemHttpResult> ToOkOrNotFoundOrProblem<T>(this Result<T?> result)
     {
-        return ResultToProblemDetails.ToProblemResult(errors);
+        if (result.IsSuccess)
+        {
+            var value = result.Value;
+            if (value is null)
+            {
+                return TypedResults.NotFound();
+            }
+            else
+            {
+                return TypedResults.Ok(value);
+            }
+        }
+        else
+        {
+            return result.Errors.ToProblemResult();
+        }
     }
 
-    public static async Task<Results<NoContent, ProblemHttpResult>> AsTypedResults(this Task<Result<Empty>> resultTask)
+    public static async Task<Results<Ok<T>, NotFound, ProblemHttpResult>> ToOkOrNotFoundOrProblem<T>(this Task<Result<T?>> resultTask)
     {
         var result = await resultTask;
-        return ResultToProblemDetails.ToTypedResults(result);
+        return result.ToOkOrNotFoundOrProblem();
     }
 
-    public static Results<NoContent, ProblemHttpResult> AsTypedResults(this Result<Empty> result)
-    {
-        return ResultToProblemDetails.ToTypedResults(result);
-    }
-
-    public static async Task<Results<Ok<T>, ProblemHttpResult>> AsTypedResults<T>(this Task<Result<T>> resultTask)
+    public static async Task<Results<NoContent, ProblemHttpResult>> ToNoContentOrProblem(this Task<Result<Empty>> resultTask)
     {
         var result = await resultTask;
-        return ResultToProblemDetails.ToTypedResults(result);
+        return result.ToNoContentOrProblem();
     }
 
-    public static Results<Ok<T>, ProblemHttpResult> AsTypedResults<T>(this Result<T> result)
+    public static Results<NoContent, ProblemHttpResult> ToNoContentOrProblem(this Result<Empty> result)
     {
-        return ResultToProblemDetails.ToTypedResults(result);
+        if (result.IsSuccess)
+        {
+            return TypedResults.NoContent();
+        }
+        else
+        {
+            return ToProblemResult(result.Errors);
+        }
+    }
+
+    public static async Task<Results<Ok<T>, ProblemHttpResult>> ToOkOrProblem<T>(this Task<Result<T>> resultTask)
+    {
+        var result = await resultTask;
+        return result.ToOkOrProblem();
+    }
+
+    public static Results<Ok<T>, ProblemHttpResult> ToOkOrProblem<T>(this Result<T> result)
+    {
+        if (result.IsSuccess)
+        {
+            return TypedResults.Ok(result.Value);
+        }
+        else
+        {
+            return ToProblemResult(result.Errors);
+        }
+    }
+
+    public static ProblemHttpResult ToProblemResult(this Error[] errors)
+    {
+        return ErrorsToProblemResultConverter.ToProblemResult(errors);
     }
 }

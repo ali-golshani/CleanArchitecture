@@ -4,7 +4,6 @@ using CleanArchitecture.Ordering.Queries;
 using CleanArchitecture.Ordering.Queries.Models;
 using CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
 using Framework.Queries;
-using Framework.Results.Extensions;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +26,7 @@ public class OrderController : BaseController
         return
             queryService
             .Handle(query, cancellationToken)
-            .AsTypedResults();
+            .ToOkOrProblem();
     }
 
     /// <summary>
@@ -35,7 +34,7 @@ public class OrderController : BaseController
     /// </summary>
     [HttpGet("{orderId:int}")]
     public
-        Task<Results<Ok<Order>, ProblemHttpResult>>
+        Task<Results<Ok<Order>, NotFound, ProblemHttpResult>>
         Get(IQueryService queryService, int orderId, CancellationToken cancellationToken)
     {
         var query = new Ordering.Queries.Orders.OrderQuery.Query
@@ -46,8 +45,7 @@ public class OrderController : BaseController
         return
             queryService
             .Handle(query, cancellationToken)
-            .NotFoundIfNull(new Ordering.Commands.Errors.OrderNotFoundError(query.OrderId))
-            .AsTypedResults();
+            .ToOkOrNotFoundOrProblem();
     }
 
     /// <summary>
@@ -64,6 +62,6 @@ public class OrderController : BaseController
         return
             commandService
             .Handle(command, cancellationToken)
-            .AsTypedResults();
+            .ToNoContentOrProblem();
     }
 }

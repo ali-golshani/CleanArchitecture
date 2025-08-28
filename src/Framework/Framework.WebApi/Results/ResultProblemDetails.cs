@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace Framework.WebApi.Exceptions;
+namespace Framework.WebApi.Results;
 
 public sealed class ResultProblemDetails : ProblemDetails
 {

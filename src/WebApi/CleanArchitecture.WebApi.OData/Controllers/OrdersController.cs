@@ -17,6 +17,6 @@ public class OrdersController(IQueryService queryService) : ODataController
         return await
             queryService
             .Handle(query, cancellationToken)
-            .AsTypedResults();
+            .ToOkOrProblem();
     }
 }

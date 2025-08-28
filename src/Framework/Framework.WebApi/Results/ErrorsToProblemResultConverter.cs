@@ -4,34 +4,10 @@ using Framework.Results.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Framework.WebApi.Exceptions;
+namespace Framework.WebApi.Results;
 
-internal static class ResultToProblemDetails
+internal static class ErrorsToProblemResultConverter
 {
-    public static Results<NoContent, ProblemHttpResult> ToTypedResults(Result<Empty> result)
-    {
-        if (result.IsSuccess)
-        {
-            return TypedResults.NoContent();
-        }
-        else
-        {
-            return ToProblemResult(result.Errors);
-        }
-    }
-
-    public static Results<Ok<T>, ProblemHttpResult> ToTypedResults<T>(Result<T> result)
-    {
-        if (result.IsSuccess)
-        {
-            return TypedResults.Ok(result.Value);
-        }
-        else
-        {
-            return ToProblemResult(result.Errors);
-        }
-    }
-
     public static ProblemHttpResult ToProblemResult(Error[] errors)
     {
         return TypedResults.Problem(ProblemDetails(errors));
