@@ -10,15 +10,14 @@ public class DomainErrorsException : DomainException
     { }
 
     public DomainErrorsException(bool shouldLog, params Error[] errors)
+        : base(errors.Select(x => x.Message).MultiLineJoin())
     {
         Errors = errors;
-        Message = Errors.Select(x => x.Message).MultiLineJoin();
-        Messages = Errors.Select(x => x.Message).ToList();
+        Messages = [.. Errors.Select(x => x.Message)];
         ShouldLog = shouldLog;
     }
 
     public Error[] Errors { get; }
-    public override string Message { get; }
     public override IReadOnlyCollection<string> Messages { get; }
     public override bool ShouldLog { get; }
 }

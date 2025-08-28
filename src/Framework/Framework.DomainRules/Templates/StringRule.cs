@@ -1,4 +1,6 @@
-﻿namespace Framework.DomainRules.Templates;
+﻿using static Framework.DomainRules.Resources.RuleMessageBuilder;
+
+namespace Framework.DomainRules.Templates;
 
 public sealed class StringRule(
     string? value,
@@ -29,22 +31,22 @@ public sealed class StringRule(
         {
             if (MaxLength == null)
             {
-                return $"{Source} باید دارای مقدار باشد";
+                return StringRuleMessages.NotEmpty(Source);
             }
             else
             {
-                return $"{Source} باید دارای مقدار و حداکثر شامل {MaxLength.Value} حرف باشد";
+                return StringRuleMessages.NotEmptyMaxLength(Source, MaxLength.Value);
             }
         }
         else if (MinLength > 1)
         {
             if (MaxLength == null)
             {
-                return $"{Source} باید حداقل شامل {MinLength} حرف باشد";
+                return StringRuleMessages.MinLength(Source, MinLength.Value);
             }
             else
             {
-                return $"{Source} باید حداقل شامل {MinLength} حرف و حداکثر شامل {MaxLength} حرف باشد";
+                return StringRuleMessages.MinMaxLength(Source, MinLength.Value, MaxLength.Value);
             }
         }
         else
@@ -55,7 +57,7 @@ public sealed class StringRule(
             }
             else
             {
-                return $"{Source} باید حداکثر شامل {MaxLength} حرف باشد";
+                return StringRuleMessages.MaxLength(Source, MaxLength.Value);
             }
         }
     }

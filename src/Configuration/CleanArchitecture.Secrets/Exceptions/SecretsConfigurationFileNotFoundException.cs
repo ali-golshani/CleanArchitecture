@@ -1,13 +1,14 @@
-﻿namespace CleanArchitecture.Secrets.Exceptions;
+﻿using Framework.Exceptions;
 
-public class SecretsConfigurationFileNotFoundException : Exception
+namespace CleanArchitecture.Secrets.Exceptions;
+
+public class SecretsConfigurationFileNotFoundException : ConfigurationException
 {
     public SecretsConfigurationFileNotFoundException(string filePath)
+        : base($"Secrets Configuration File '{filePath}' is not exists!")
     {
         FilePath = filePath;
     }
 
     public string FilePath { get; }
-    public override string Message => $"Secrets Configuration File '{FilePath}' is not exists!";
-
 }

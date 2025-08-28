@@ -2,8 +2,7 @@
 
 namespace CleanArchitecture.Ordering.Domain.Exceptions;
 
-public class SubmitApprovedOrderException(int orderId) : DomainException
+public class SubmitApprovedOrderException(int orderId) : DomainException(Resources.ExceptionMessages.SubmitApprovedOrder)
 {
     public int OrderId { get; } = orderId;
-    public override string Message => "سفارش تایید شده است. درخواست ارسال سفارش نامعتبر است";
 }

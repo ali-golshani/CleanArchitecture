@@ -1,13 +1,14 @@
-﻿namespace CleanArchitecture.Secrets.Exceptions;
+﻿using Framework.Exceptions;
 
-public class InvalidEnvironmentVariableEncryptionException : Exception
+namespace CleanArchitecture.Secrets.Exceptions;
+
+public class InvalidEnvironmentVariableEncryptionException : ConfigurationException
 {
     public InvalidEnvironmentVariableEncryptionException(string variable)
+        : base($"Invalid Environment Variable '{variable}' Encryption!")
     {
         Variable = variable;
     }
 
     public string Variable { get; }
-    public override string Message => $"Invalid Environment Variable '{Variable}' Encryption!";
-
 }

@@ -27,7 +27,7 @@ public static class ExceptionExtensions
 
         if (errors.Length == 0)
         {
-            errors = ["خطای نامشخص"];
+            errors = [Resources.Messages.UnknownException];
         }
 
         return errors;

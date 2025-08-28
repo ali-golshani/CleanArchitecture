@@ -32,8 +32,6 @@ public class PersistenceException : Exceptions.PersistenceException
         Reason = reason;
     }
 
-    public override string Message => $"{base.Message} ({Reason})";
-
     public static PersistenceException Translate(Exception exception)
     {
         return exception switch

@@ -4,7 +4,7 @@ public class IntegrationEventBus : IIntegrationEventBus
 {
     private readonly Queue<IIntegrationEvent> events = new Queue<IIntegrationEvent>();
 
-    public IReadOnlyCollection<IIntegrationEvent> Events => events.ToArray();
+    public IReadOnlyCollection<IIntegrationEvent> Events => [.. events];
 
     public ValueTask Post(IIntegrationEvent @event)
     {

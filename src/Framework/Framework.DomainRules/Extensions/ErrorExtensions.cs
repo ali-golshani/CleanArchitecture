@@ -20,7 +20,7 @@ public static class ErrorExtensions
         return Clause.InvalidClause
         (
             statement: error.Message,
-            sources: error.Sources.Select(ToClauseSource).ToArray()
+            sources: [.. error.Sources.Select(ToClauseSource)]
         );
     }
 

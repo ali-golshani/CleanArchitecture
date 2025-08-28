@@ -11,7 +11,7 @@ public sealed class OrderQuantityRule(int quantity) : IDomainRule
             new Clause
             (
                 Quantity > 0,
-                "مقدار سفارش باید بزرگتر از صفر باشد",
+                Resources.RuleMessages.OrderQuantityRule,
                 (nameof(Quantity), Quantity)
             )
         ];

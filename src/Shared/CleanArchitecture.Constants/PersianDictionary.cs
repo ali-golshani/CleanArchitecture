@@ -4,16 +4,16 @@ public static class PersianDictionary
 {
     public static class OrderDictionary
     {
-        public const string Order = "سفارش";
+        public static readonly string Order = Resources.PersianDictionary.Order;
     }
 
     public static class CommodityDictionary
     {
-        public const string Commodity = "کالا";
+        public static readonly string Commodity = Resources.PersianDictionary.Commodity;
     }
 
     public static class CustomerDictionary
     {
-        public const string Customer = "مشتری";
+        public static readonly string Customer = Resources.PersianDictionary.Customer;
     }
 }

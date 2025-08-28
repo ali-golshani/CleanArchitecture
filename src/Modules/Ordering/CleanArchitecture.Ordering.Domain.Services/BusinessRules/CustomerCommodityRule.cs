@@ -40,7 +40,7 @@ internal class CustomerCommodityRule : IBusinessRule
             yield return new Clause
             (
                 result.Value,
-                "ارتباط کالا و مشتری برقرار نیست",
+                Resources.RuleMessages.CustomerCommodityRelationRule,
                 (nameof(Inquiry.CustomerId), inquiry.CustomerId),
                 (nameof(Inquiry.CommodityId), inquiry.CommodityId)
             );

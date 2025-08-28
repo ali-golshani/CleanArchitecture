@@ -1,7 +1,7 @@
 ﻿namespace Framework.Exceptions;
 
 public class ProgrammerException(string? technicalMessage = null)
-    : BaseSystemException(ExceptionMessages.ProgrammerException)
+    : BaseSystemException(Resources.ExceptionMessages.ProgrammerException)
 {
     public string? TechnicalMessage { get; } = technicalMessage;
 

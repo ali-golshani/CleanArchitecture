@@ -2,7 +2,7 @@
 
 namespace Infrastructure.CommoditySystem;
 
-public class CommoditySystemException(Exception innerException) : ExternalException(innerException)
+public class CommoditySystemException(Exception innerException) 
+    : ExternalException(Resources.Messages.CommoditySystemException, innerException)
 {
-    public override string Message => "خطا در ارتباط با سیستم کالایی";
 }

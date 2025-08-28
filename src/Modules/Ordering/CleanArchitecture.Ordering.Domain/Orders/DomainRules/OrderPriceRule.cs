@@ -11,7 +11,7 @@ public sealed class OrderPriceRule(decimal price) : IDomainRule
             new Clause
             (
                 Price > 0,
-                "قیمت سفارش باید بزرگتر از صفر باشد",
+                Resources.RuleMessages.OrderPriceRule,
                 (nameof(Price), Price)
             )
         ];

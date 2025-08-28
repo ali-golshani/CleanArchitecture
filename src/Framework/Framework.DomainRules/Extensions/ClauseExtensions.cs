@@ -29,7 +29,7 @@ public static class ClauseExtensions
         (
             type: ErrorType.Forbidden,
             message: clause.Statement,
-            sources: clause.Sources.Select(ToErrorSource).ToArray()
+            sources: [.. clause.Sources.Select(ToErrorSource)]
         );
     }
 

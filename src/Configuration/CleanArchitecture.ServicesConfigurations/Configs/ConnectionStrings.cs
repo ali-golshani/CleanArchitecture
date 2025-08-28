@@ -10,6 +10,6 @@ internal static class ConnectionStrings
     {
         return
             configuration.GetConnectionString(ConfigurationSections.ConnectionStrings.CleanArchitectureDb) ??
-            throw new ProgrammerException("Connection String is not Set !");
+            throw new ConfigurationException("Connection String is not Set !");
     }
 }

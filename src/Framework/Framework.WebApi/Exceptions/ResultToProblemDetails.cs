@@ -69,7 +69,7 @@ internal static class ResultToProblemDetails
 
     private static string[] Errors(Error[] errors)
     {
-        return errors.Select(x => x.Message).ToArray();
+        return [.. errors.Select(x => x.Message)];
     }
 
     private static Dictionary<string, string[]> ValidationErrors(Error[] errors)

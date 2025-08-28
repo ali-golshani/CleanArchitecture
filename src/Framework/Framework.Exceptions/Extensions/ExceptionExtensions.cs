@@ -82,7 +82,7 @@ public static class ExceptionExtensions
     {
         try
         {
-            return task.Result;
+            return task.GetAwaiter().GetResult();
         }
         catch (Exception exp)
         {
