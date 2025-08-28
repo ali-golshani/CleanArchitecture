@@ -10,30 +10,47 @@ public static class ExceptionExtensions
     {
         try
         {
-            return NameValueProperties(exception).Select(x => $"({x.Name} , {x.Value})").MultiLineJoin();
+            return NameValues().Select(x => $"({x.Name} , {x.Value})").MultiLineJoin();
         }
         catch
         {
             return null;
         }
+
+        IEnumerable<(string Name, string Value)> NameValues()
+        {
+            yield return new(nameof(exception.TraceId), exception.TraceId);
+
+            var properties = exception.GetType().GetProperties(
+                BindingFlags.Public
+                | BindingFlags.Instance
+                | BindingFlags.DeclaredOnly);
+
+            foreach (var property in properties)
+            {
+                var name = property.Name;
+                var value = Convert.ToString(property.GetValue(exception), Cultures.Default);
+
+                yield return new(name, value ?? "?");
+            }
+        }
     }
 
-    public static IEnumerable<(string Name, string Value)> NameValueProperties(this BaseSystemException exception)
+    public static string StackMessages(this Exception exception)
     {
-        yield return new(nameof(exception.TraceId), exception.TraceId);
+        var result = new StringBuilder();
 
-        var properties = exception.GetType().GetProperties(
-            BindingFlags.Public
-            | BindingFlags.Instance
-            | BindingFlags.DeclaredOnly);
+        result.AppendLine(exception.Message);
 
-        foreach (var property in properties)
+        var exp = exception.InnerException;
+
+        while (exp != null)
         {
-            var name = property.Name;
-            var value = Convert.ToString(property.GetValue(exception), Cultures.Default);
-
-            yield return new(name, value ?? "?");
+            result.AppendLine(exp.Message);
+            exp = exp.InnerException;
         }
+
+        return result.ToString();
     }
 
     public static string ToStringDemystified(this Exception exception)
@@ -59,74 +76,6 @@ public static class ExceptionExtensions
         };
 
         return result.Demystify();
-    }
-
-    public static void WaitAndTranslateException(this Task task)
-    {
-        try
-        {
-            task.Wait();
-        }
-        catch (Exception exp)
-        {
-            if (UnwrapAll(exp, out var innerException))
-            {
-                ExceptionDispatchInfo.Throw(innerException);
-            }
-
-            throw;
-        }
-    }
-
-    public static T ResultWithTranslateException<T>(this Task<T> task)
-    {
-        try
-        {
-            return task.GetAwaiter().GetResult();
-        }
-        catch (Exception exp)
-        {
-            if (UnwrapAll(exp, out var innerException))
-            {
-                ExceptionDispatchInfo.Throw(innerException);
-            }
-
-            throw;
-        }
-    }
-
-    public static string StackMessages(this Exception exception)
-    {
-        var result = new StringBuilder();
-
-        result.AppendLine(exception.Message);
-
-        var exp = exception.InnerException;
-
-        while (exp != null)
-        {
-            result.AppendLine(exp.Message);
-            exp = exp.InnerException;
-        }
-
-        return result.ToString();
-    }
-
-    public static object? TryInvoke(this MethodInfo method, object? obj, object?[]? parameters)
-    {
-        try
-        {
-            return method.Invoke(obj, parameters);
-        }
-        catch (Exception exp)
-        {
-            if (UnwrapAll(exp, out var innerException))
-            {
-                ExceptionDispatchInfo.Throw(innerException);
-            }
-
-            throw;
-        }
     }
 
     public static Exception UnwrapAll(this Exception exception)
@@ -160,5 +109,56 @@ public static class ExceptionExtensions
         }
 
         return hasChanges;
+    }
+
+    public static void WaitAndUnwrapException(this Task task)
+    {
+        try
+        {
+            task.Wait();
+        }
+        catch (Exception exp)
+        {
+            if (UnwrapAll(exp, out var innerException))
+            {
+                ExceptionDispatchInfo.Throw(innerException);
+            }
+
+            throw;
+        }
+    }
+
+    public static T GetResultAndUnwrapException<T>(this Task<T> task)
+    {
+        try
+        {
+            return task.GetAwaiter().GetResult();
+        }
+        catch (Exception exp)
+        {
+            if (UnwrapAll(exp, out var innerException))
+            {
+                ExceptionDispatchInfo.Throw(innerException);
+            }
+
+            throw;
+        }
+    }
+
+    public static object? InvokeAndUnwrapException(this MethodInfo method, object? obj, object?[]? parameters)
+    {
+        try
+        {
+            return method.Invoke(obj, parameters);
+        }
+        catch (Exception exp)
+        {
+            if (UnwrapAll(exp, out var innerException))
+            {
+                ExceptionDispatchInfo.Throw(innerException);
+            }
+
+            throw;
+        }
     }
 }
