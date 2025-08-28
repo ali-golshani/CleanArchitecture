@@ -1,14 +1,13 @@
 ﻿using Framework.Mediator;
-using Framework.Mediator.Extensions;
 using Framework.Results;
 
 namespace Infrastructure.CommoditySystem.Mock;
 
-internal class CommoditySystem(IServiceProvider serviceProvider) : ICommoditySystem
+internal class CommoditySystem(Minimal.Mediator.IMediator mediator) : ICommoditySystem
 {
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        return serviceProvider.SendToHandler(request, cancellationToken);
+        return mediator.Send(request, cancellationToken);
     }
 }

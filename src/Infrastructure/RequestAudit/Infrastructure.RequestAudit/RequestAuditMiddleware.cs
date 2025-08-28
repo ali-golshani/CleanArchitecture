@@ -1,12 +1,12 @@
 ﻿using Framework.Mediator;
-using Framework.Mediator.Middlewares;
 using Infrastructure.RequestAudit.Extensions;
 using Microsoft.Extensions.Logging;
+using Minimal.Mediator.Middlewares;
 using System.Diagnostics;
 
 namespace Infrastructure.RequestAudit;
 
-public class RequestAuditMiddleware<TRequest, TResponse> : IMiddleware<TRequest, TResponse>
+public class RequestAuditMiddleware<TRequest, TResponse> : IMiddleware<TRequest, Result<TResponse>>
     where TRequest : Request
 {
     private readonly IActorResolver actorResolver;
@@ -23,7 +23,7 @@ public class RequestAuditMiddleware<TRequest, TResponse> : IMiddleware<TRequest,
         this.logger = logger;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, Result<TResponse>> next)
     {
         var request = context.Request;
         var actor = actorResolver.Actor;

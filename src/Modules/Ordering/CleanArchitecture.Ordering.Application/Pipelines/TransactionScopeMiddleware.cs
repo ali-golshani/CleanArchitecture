@@ -2,13 +2,12 @@
 using Framework.Application;
 using Framework.Application.Extensions;
 using Framework.Mediator.IntegrationEvents;
-using Framework.Mediator.Middlewares;
 using Framework.Results;
+using Minimal.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Application.Pipelines;
 
-internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
-    IMiddleware<TRequest, TResponse>
+internal sealed class TransactionScopeMiddleware<TRequest, TResponse> : IMiddleware<TRequest, Result<TResponse>>
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
     private readonly OrderingDbContext db;
@@ -25,7 +24,7 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
         this.eventBus = eventBus;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, Result<TResponse>> next)
     {
         var cancellationToken = context.CancellationToken;
 

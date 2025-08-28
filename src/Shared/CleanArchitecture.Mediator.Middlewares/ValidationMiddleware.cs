@@ -1,11 +1,10 @@
 ﻿using FluentValidation;
-using Framework.Mediator.Middlewares;
 using Framework.Validation;
+using Minimal.Mediator.Middlewares;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class ValidationMiddleware<TRequest, TResponse> :
-    IMiddleware<TRequest, TResponse>
+public sealed class ValidationMiddleware<TRequest, TResponse> : IMiddleware<TRequest, Result<TResponse>>
 {
     private readonly IValidator<TRequest>[] validators;
 
@@ -14,7 +13,7 @@ public sealed class ValidationMiddleware<TRequest, TResponse> :
         this.validators = validators?.ToArray() ?? [];
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, Result<TResponse>> next)
     {
         var validationResult = await validators.ValidateAsync(context.Request);
         var errors = validationResult.Errors();

@@ -1,11 +1,10 @@
 ﻿using Framework.Application;
 using Framework.Mediator;
-using Framework.Mediator.Middlewares;
+using Minimal.Mediator.Middlewares;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class RequestContextMiddleware<TRequest, TResponse> :
-    IMiddleware<TRequest, TResponse>
+public sealed class RequestContextMiddleware<TRequest, TResponse> : IMiddleware<TRequest, Result<TResponse>>
     where TRequest : Request
 {
     private readonly RequestContextAccessor requestContextAccessor;
@@ -15,7 +14,7 @@ public sealed class RequestContextMiddleware<TRequest, TResponse> :
         this.requestContextAccessor = requestContextAccessor;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, Result<TResponse>> next)
     {
         requestContextAccessor.SetContext(context.Request);
         return await next.Handle(context);

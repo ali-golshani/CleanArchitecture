@@ -1,12 +1,13 @@
 ﻿using CleanArchitecture.Mediator.Middlewares;
-using Framework.Mediator.Middlewares;
+using Framework.Results;
 using Infrastructure.RequestAudit;
+using Minimal.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Application.Pipelines;
 
 internal static class CommandPipeline
 {
-    public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, TResponse>
+    public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, Result<TResponse>>
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         public Pipeline(IServiceProvider serviceProvider)
@@ -18,7 +19,7 @@ internal static class CommandPipeline
     {
         public static string PipelineName { get; } = "OrderingCommandPipeline";
 
-        public static Type[] Middlewares()
+        public static MiddlewareDescriptor[] Middlewares()
         {
             return
             [

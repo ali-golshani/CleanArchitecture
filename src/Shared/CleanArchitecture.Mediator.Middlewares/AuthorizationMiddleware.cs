@@ -1,12 +1,11 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
-using Framework.Mediator.Middlewares;
 using Framework.Results.Errors;
+using Minimal.Mediator.Middlewares;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class AuthorizationMiddleware<TRequest, TResponse> :
-    IMiddleware<TRequest, TResponse>
+public sealed class AuthorizationMiddleware<TRequest, TResponse> : IMiddleware<TRequest, Result<TResponse>>
 {
     private readonly IActorResolver actorResolver;
     private readonly AccessResolver<TRequest> accessResolver;
@@ -19,7 +18,7 @@ public sealed class AuthorizationMiddleware<TRequest, TResponse> :
         this.accessResolver = accessResolver;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, Result<TResponse>> next)
     {
         var actor = actorResolver.Actor;
 

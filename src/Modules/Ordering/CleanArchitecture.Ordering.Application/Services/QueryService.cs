@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Ordering.Application.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 
@@ -11,13 +10,13 @@ internal sealed class QueryService(ActorPreservingScopeFactory scopeFactory) : I
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope();
-        return await scope.ServiceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
+        return await scope.ServiceProvider.SendByMediator(query, cancellationToken);
     }
 
     public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope(actor);
-        return await scope.ServiceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
+        return await scope.ServiceProvider.SendByMediator(query, cancellationToken);
     }
 }

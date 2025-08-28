@@ -1,10 +1,11 @@
 ﻿using Framework.Mediator;
-using Framework.Mediator.Middlewares;
+using Framework.Results;
 using Infrastructure.RequestAudit;
+using Minimal.Mediator.Middlewares;
 
 namespace Infrastructure.CommoditySystem.Pipelines;
 
-internal sealed class RequestPipeline<TRequest, TResponse> : Pipeline<TRequest, TResponse>
+internal sealed class RequestPipeline<TRequest, TResponse> : Pipeline<TRequest, Result<TResponse>>
     where TRequest : RequestBase, IRequest<TRequest, TResponse>
 {
     public RequestPipeline(

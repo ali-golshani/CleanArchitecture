@@ -15,8 +15,7 @@ public static class ServiceConfigurations
         services.RegisterAccessControls();
         services.RegisterValidators();
 
-        services.AddTransient(typeof(RequestPipeline.Pipeline<,>));
-        services.RegisterMiddlewares<RequestPipeline.Configuration>();
+        services.AddKeyedPipeline<RequestPipeline.Configuration>(typeof(RequestPipeline.Pipeline<,>));
 
         services.AddTransient<IProcessManager, ProcessManager>();
     }

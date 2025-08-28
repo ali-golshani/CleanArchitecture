@@ -1,14 +1,13 @@
-﻿using CleanArchitecture.Querying.Pipelines;
-using Framework.Mediator.Extensions;
-using Framework.Results;
+﻿using Framework.Results;
+using Minimal.Mediator;
 
 namespace CleanArchitecture.Querying.Services;
 
-internal sealed class QueryService(IServiceProvider serviceProvider) : IQueryService
+internal sealed class QueryService(IMediator mediator) : IQueryService
 {
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        return serviceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
+        return mediator.Send(query, cancellationToken);
     }
 }

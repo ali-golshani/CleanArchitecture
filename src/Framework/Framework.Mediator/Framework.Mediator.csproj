@@ -7,6 +7,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="Minimal.Mediator" Version="3.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\..\Framework\Framework.DependencyInjection\Framework.DependencyInjection.csproj" />
 		<ProjectReference Include="..\..\Framework\Framework.Results\Framework.Results.csproj" />
 	</ItemGroup>

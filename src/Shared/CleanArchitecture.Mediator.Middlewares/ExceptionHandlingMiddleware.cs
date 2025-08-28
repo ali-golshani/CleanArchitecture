@@ -1,14 +1,13 @@
 ﻿using Framework.Exceptions;
 using Framework.Exceptions.Extensions;
-using Framework.Mediator.Middlewares;
 using Framework.Results.Errors;
 using Framework.Results.Exceptions;
 using Microsoft.Extensions.Logging;
+using Minimal.Mediator.Middlewares;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
-    IMiddleware<TRequest, TResponse>
+public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> : IMiddleware<TRequest, Result<TResponse>>
 {
     private readonly ILogger logger;
 
@@ -17,7 +16,7 @@ public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
         this.logger = logger;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, Result<TResponse>> next)
     {
         try
         {

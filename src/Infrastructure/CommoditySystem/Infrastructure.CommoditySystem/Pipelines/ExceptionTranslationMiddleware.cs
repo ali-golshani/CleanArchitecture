@@ -1,12 +1,11 @@
-﻿using Framework.Mediator.Middlewares;
-using Framework.Results;
+﻿using Framework.Results;
+using Minimal.Mediator.Middlewares;
 
 namespace Infrastructure.CommoditySystem.Pipelines;
 
-public sealed class ExceptionTranslationMiddleware<TRequest, TResponse> :
-    IMiddleware<TRequest, TResponse>
+public sealed class ExceptionTranslationMiddleware<TRequest, TResponse> : IMiddleware<TRequest, Result<TResponse>>
 {
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, Result<TResponse>> next)
     {
         try
         {

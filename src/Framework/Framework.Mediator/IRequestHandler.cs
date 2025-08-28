@@ -1,7 +1,4 @@
 ﻿namespace Framework.Mediator;
 
-public interface IRequestHandler<in TRequest, TResponse>
-    where TRequest : IRequest<TRequest, TResponse>
-{
-    Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken);
-}
+public interface IRequestHandler<in TRequest, TResponse> : Minimal.Mediator.IRequestHandler<TRequest, Result<TResponse>>
+    where TRequest : IRequest<TRequest, TResponse>;

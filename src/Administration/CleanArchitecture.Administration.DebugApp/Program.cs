@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Administration.DebugApp.Services;
+﻿using CleanArchitecture.Administration.DebugApp.Services;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Administration.DebugApp;

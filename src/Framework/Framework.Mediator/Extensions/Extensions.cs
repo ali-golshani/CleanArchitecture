@@ -1,30 +1,19 @@
 ﻿using Framework.Mediator.Exceptions;
-using Framework.Mediator.Middlewares;
 using Microsoft.Extensions.DependencyInjection;
+using Minimal.Mediator;
 
 namespace Framework.Mediator.Extensions;
 
 public static class Extensions
 {
-    public static Task<Result<TResponse>> SendToHandler<TRequest, TResponse>(
+    public static Task<Result<TResponse>> SendByMediator<TRequest, TResponse>(
         this IServiceProvider serviceProvider,
         IRequest<TRequest, TResponse> request,
         CancellationToken cancellationToken)
         where TRequest : IRequest<TRequest, TResponse>
     {
-        var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-        return handler.Handle(request.AsRequestType(), cancellationToken);
-    }
-
-    public static Task<Result<TResponse>> SendToPipeline<TRequest, TResponse, TPipeline>(
-        this IServiceProvider serviceProvider,
-        IRequest<TRequest, TResponse> request,
-        CancellationToken cancellationToken)
-        where TRequest : IRequest<TRequest, TResponse>
-        where TPipeline : IPipeline<TRequest, TResponse>
-    {
-        var pipeline = serviceProvider.GetRequiredService<TPipeline>();
-        return pipeline.Handle(request.AsRequestType(), cancellationToken);
+        var mediator = serviceProvider.GetRequiredService<IMediator>();
+        return mediator.Send(request, cancellationToken);
     }
 
     public static TRequest AsRequestType<TRequest, TResponse>(this IRequest<TRequest, TResponse> request)

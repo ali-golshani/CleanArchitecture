@@ -1,14 +1,13 @@
-﻿using CleanArchitecture.ProcessManager.Pipelines;
-using Framework.Mediator.Extensions;
-using Framework.Results;
+﻿using Framework.Results;
+using Minimal.Mediator;
 
 namespace CleanArchitecture.ProcessManager;
 
-internal class ProcessManager(IServiceProvider serviceProvider) : IProcessManager
+internal class ProcessManager(IMediator mediator) : IProcessManager
 {
     public Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        return serviceProvider.SendToPipeline<TRequest, TResponse, RequestPipeline.Pipeline<TRequest, TResponse>>(request, cancellationToken);
+        return mediator.Send(request, cancellationToken);
     }
 }
