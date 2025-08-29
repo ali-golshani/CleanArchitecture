@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
+﻿using CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
 
 namespace CleanArchitecture.Administration.HostedDebugApp.Services;
 

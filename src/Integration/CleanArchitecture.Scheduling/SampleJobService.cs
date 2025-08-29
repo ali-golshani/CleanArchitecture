@@ -1,23 +1,23 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
-using CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
 using Framework.Mediator.BatchCommands;
 using Framework.Results.Extensions;
 using Framework.Scheduling;
+using GetOrders = CleanArchitecture.Ordering.Queries.Orders.GetOrders;
 
 namespace CleanArchitecture.Scheduling;
 
 public class SampleJobService : IJobService
 {
     private readonly IQueryService queryService;
-    private readonly IBatchCommandsService<Ordering.Commands.EmptyTestingCommand.Command> batchCommandsService;
+    private readonly IBatchCommandsService<Ordering.Commands.SampleEmpty.Command> batchCommandsService;
 
     private static readonly Actor Actor = new InternalServiceActor(nameof(SampleJobService));
 
     public SampleJobService(
         IQueryService queryService,
-        IBatchCommandsService<Ordering.Commands.EmptyTestingCommand.Command> batchCommandsService)
+        IBatchCommandsService<Ordering.Commands.SampleEmpty.Command> batchCommandsService)
     {
         this.queryService = queryService;
         this.batchCommandsService = batchCommandsService;
@@ -25,7 +25,7 @@ public class SampleJobService : IJobService
 
     public async Task Execute(CancellationToken stoppingToken)
     {
-        var orders = await queryService.Handle(Actor, new Query
+        var orders = await queryService.Handle(Actor, new GetOrders.Query
         {
             OrderStatus = OrderStatus.Approved,
         }, stoppingToken)
@@ -36,9 +36,9 @@ public class SampleJobService : IJobService
         await batchCommandsService.Handle(commands, BatchCommandHandlingParameters.Safe, stoppingToken);
     }
 
-    private static Ordering.Commands.EmptyTestingCommand.Command EmptyCommand(Ordering.Queries.Models.Order order)
+    private static Ordering.Commands.SampleEmpty.Command EmptyCommand(Ordering.Queries.Models.Order order)
     {
-        return new Ordering.Commands.EmptyTestingCommand.Command
+        return new Ordering.Commands.SampleEmpty.Command
         {
             Id = order.OrderId
         };

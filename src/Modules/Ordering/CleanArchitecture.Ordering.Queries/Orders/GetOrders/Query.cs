@@ -1,8 +1,6 @@
-﻿namespace CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
+﻿namespace CleanArchitecture.Ordering.Queries.Orders.GetOrders;
 
-public class Query :
-    QueryBase,
-    IQuery<Query, Framework.Queries.PaginatedItems<Models.Order>>
+public class Query : QueryBase, IQuery<Query, Framework.Queries.PaginatedItems<Models.Order>>
 {
     public override string RequestTitle => "Orders Query";
 

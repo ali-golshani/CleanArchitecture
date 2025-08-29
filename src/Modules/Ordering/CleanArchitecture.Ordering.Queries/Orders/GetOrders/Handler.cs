@@ -4,16 +4,11 @@ using Framework.Persistence.Extensions;
 using Framework.Queries;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Queries.Orders.OrdersQuery;
+namespace CleanArchitecture.Ordering.Queries.Orders.GetOrders;
 
-internal sealed class Handler : IRequestHandler<Query, PaginatedItems<Models.Order>>
+internal sealed class Handler(IOrderingQueryDb db) : IRequestHandler<Query, PaginatedItems<Models.Order>>
 {
-    private readonly IOrderingQueryDb db;
-
-    public Handler(IOrderingQueryDb db)
-    {
-        this.db = db;
-    }
+    private readonly IOrderingQueryDb db = db;
 
     public async Task<Result<PaginatedItems<Models.Order>>> Handle(Query request, CancellationToken cancellationToken)
     {

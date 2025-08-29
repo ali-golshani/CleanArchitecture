@@ -1,5 +1,5 @@
 ﻿using Bogus;
-using CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
+using CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
 
 namespace CleanArchitecture.IntegrationTests.Fakers;
 

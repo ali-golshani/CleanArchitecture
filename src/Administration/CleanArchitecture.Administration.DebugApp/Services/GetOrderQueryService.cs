@@ -1,8 +1,8 @@
-﻿using CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
+﻿using GetOrder = CleanArchitecture.Ordering.Queries.Orders.GetOrder;
 
 namespace CleanArchitecture.Administration.DebugApp.Services;
 
-internal class QueryOrderService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal class GetOrderQueryService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {
@@ -10,7 +10,7 @@ internal class QueryOrderService(IServiceProvider serviceProvider) : ServiceBase
 
         ResolveActor();
 
-        var result = await service.Handle(new Query
+        var result = await service.Handle(new GetOrder.Query
         {
             OrderId = 14
         }, default);

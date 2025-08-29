@@ -9,7 +9,7 @@ using Framework.Results;
 using Framework.Results.Extensions;
 using Infrastructure.CommoditySystem;
 
-namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
 
 internal sealed class Handler : IRequestHandler<Command, Empty>
 {

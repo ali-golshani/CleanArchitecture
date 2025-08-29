@@ -13,7 +13,7 @@ internal sealed class Handler(Ordering.Commands.ICommandService commandService) 
 
         try
         {
-            var registerOrderCommand = new Ordering.Commands.Orders.RegisterOrderCommand.Command
+            var registerOrderCommand = new Ordering.Commands.Orders.RegisterOrder.Command
             {
                 BrokerId = request.BrokerId,
                 CommodityId = request.CommodityId,
@@ -32,7 +32,7 @@ internal sealed class Handler(Ordering.Commands.ICommandService commandService) 
 
             control = true;
 
-            var otherCommand = new Ordering.Commands.EmptyTestingCommand.Command
+            var otherCommand = new Ordering.Commands.SampleEmpty.Command
             {
                 Id = request.OrderId
             };
@@ -47,7 +47,7 @@ internal sealed class Handler(Ordering.Commands.ICommandService commandService) 
         {
             if (control)
             {
-                var controlCommand = new Ordering.Commands.Orders.ControlOrderStatusCommand.Command
+                var controlCommand = new Ordering.Commands.Orders.ControlOrderStatus.Command
                 {
                     OrderId = request.OrderId,
                 };

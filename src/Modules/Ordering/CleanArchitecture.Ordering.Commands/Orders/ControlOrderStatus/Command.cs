@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Mediator;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Commands.Orders.ControlOrderStatusCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.ControlOrderStatus;
 
 public class Command : CommandBase, IOrderRequest, ICommand<Command, Empty>
 {

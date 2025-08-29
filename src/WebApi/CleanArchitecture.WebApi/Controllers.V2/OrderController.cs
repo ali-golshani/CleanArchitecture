@@ -1,11 +1,11 @@
 ﻿using Asp.Versioning;
 using CleanArchitecture.Ordering.Queries;
 using CleanArchitecture.Ordering.Queries.Models;
-using CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
 using CleanArchitecture.WebApi.Shared.Versioning;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using GetOrder = CleanArchitecture.Ordering.Queries.Orders.GetOrder;
 
 namespace CleanArchitecture.WebApi.Controllers.V2;
 
@@ -17,7 +17,7 @@ public class OrderController : BaseController
         Task<Results<Ok<Order>, NotFound, ProblemHttpResult>>
         Get(IQueryService queryService, int orderId, CancellationToken cancellationToken)
     {
-        var query = new Query
+        var query = new GetOrder.Query
         {
             OrderId = orderId,
         };

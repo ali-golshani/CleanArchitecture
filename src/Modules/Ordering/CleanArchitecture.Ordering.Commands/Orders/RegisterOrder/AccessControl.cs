@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
 
-namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrderCommand;
+namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
 
 internal sealed class AccessControl : AccessControlByPermissionRules<Command>
 {

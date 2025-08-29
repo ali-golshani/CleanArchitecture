@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
+﻿namespace CleanArchitecture.Ordering.Queries.Orders.GetOrder;
 
 internal sealed class FilteredQuery : Query
 {

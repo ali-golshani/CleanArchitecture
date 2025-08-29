@@ -6,7 +6,7 @@ internal class EmptyTestingCommandService(IServiceProvider serviceProvider) : Se
     {
         var service = CommandService();
 
-        var result = await service.Handle(Actor, new Ordering.Commands.EmptyTestingCommand.Command
+        var result = await service.Handle(Actor, new Ordering.Commands.SampleEmpty.Command
         {
             Id = 101,
         }, default);

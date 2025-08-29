@@ -2,7 +2,7 @@
 using CleanArchitecture.Authorization;
 using CleanArchitecture.Ordering.Queries.Models;
 
-namespace CleanArchitecture.Ordering.Queries.Orders.OrderQuery;
+namespace CleanArchitecture.Ordering.Queries.Orders.GetOrder;
 
 internal sealed class RequestFilter : IFilter<Query, Order?>
 {

@@ -12,7 +12,7 @@ public class OrderStatusChangedEventConsumer(ICommandService commandService, IQu
 {
     public Task Consume(ConsumeContext<OrderStatusChangedEvent> context)
     {
-        var command = new Commands.EmptyTestingCommand.Command
+        var command = new Commands.SampleEmpty.Command
         {
             Id = context.Message.OrderId,
         }

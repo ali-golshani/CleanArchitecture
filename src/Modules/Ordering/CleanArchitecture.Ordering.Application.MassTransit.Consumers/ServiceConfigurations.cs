@@ -7,7 +7,7 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.RegisterConsumer<OrderQueryConsumer>();
+        services.RegisterConsumer<GetOrderQueryConsumer>();
         services.RegisterConsumer<OrderStatusChangedEventConsumer>();
     }
 }
