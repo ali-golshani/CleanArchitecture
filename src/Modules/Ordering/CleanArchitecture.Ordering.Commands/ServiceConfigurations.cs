@@ -16,6 +16,6 @@ public static class ServiceConfigurations
         services.RegisterFilters();
         services.RegisterValidators();
 
-        services.RegisterAsSelf(typeof(UseCase<,>), typeof(ServiceConfigurations).Assembly);
+        services.RegisterAsSelf(typeof(UseCase<,>));
     }
 }
