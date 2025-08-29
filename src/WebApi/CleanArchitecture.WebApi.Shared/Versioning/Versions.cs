@@ -4,4 +4,5 @@ public static class Versions
 {
     public const double V1 = 1;
     public const double V2 = 2;
+    public const double V3 = 3;
 }

@@ -19,10 +19,7 @@ public class OrderController : BaseController
     [HttpGet]
     public
         Task<Results<Ok<PaginatedItems<Order>>, ProblemHttpResult>>
-        Get(
-        IQueryService queryService,
-        [FromQuery] GetOrders.Query query,
-        CancellationToken cancellationToken)
+        Get(IQueryService queryService, [FromQuery] GetOrders.Query query, CancellationToken cancellationToken)
     {
         return
             queryService
@@ -55,10 +52,7 @@ public class OrderController : BaseController
     [HttpPost]
     public
         Task<Results<NoContent, ProblemHttpResult>>
-        Add(
-        ICommandService commandService,
-        RegisterOrder.Command command,
-        CancellationToken cancellationToken)
+        Add(ICommandService commandService, RegisterOrder.Command command, CancellationToken cancellationToken)
     {
         return
             commandService

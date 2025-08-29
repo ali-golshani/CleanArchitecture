@@ -8,22 +8,6 @@ public static class DIExtensions
     /// <summary>
     /// Register All types derived from 'TBase' as Self with Transient-Lifetime
     /// </summary>
-    public static void RegisterAsSelf<TBase>(this IServiceCollection services)
-    {
-        services.Scan(scan =>
-        {
-            scan
-                .FromCallingAssembly()
-                .AddClasses(classes => classes.AssignableTo<TBase>())
-                .AsSelf()
-                .WithTransientLifetime()
-                ;
-        });
-    }
-
-    /// <summary>
-    /// Register All types derived from 'TBase' as Self with Transient-Lifetime
-    /// </summary>
     public static void RegisterAsSelf<TBase>(
         this IServiceCollection services,
         Assembly assembly)
@@ -33,22 +17,6 @@ public static class DIExtensions
             scan
                 .FromAssemblies(assembly)
                 .AddClasses(classes => classes.AssignableTo<TBase>())
-                .AsSelf()
-                .WithTransientLifetime()
-                ;
-        });
-    }
-
-    /// <summary>
-    /// Register All types derived from 'baseType' as Self with Transient-Lifetime
-    /// </summary>
-    public static void RegisterAsSelf(this IServiceCollection services, Type baseType)
-    {
-        services.Scan(scan =>
-        {
-            scan
-                .FromCallingAssembly()
-                .AddClasses(classes => classes.AssignableTo(baseType))
                 .AsSelf()
                 .WithTransientLifetime()
                 ;

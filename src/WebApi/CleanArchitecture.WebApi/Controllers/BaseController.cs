@@ -7,6 +7,4 @@ namespace CleanArchitecture.WebApi.Controllers;
 [ApiController]
 [Route("[controller]")]
 [ApiVersion(Versions.V1)]
-public abstract class BaseController : ControllerBase
-{
-}
+public abstract class BaseController : ControllerBase;
