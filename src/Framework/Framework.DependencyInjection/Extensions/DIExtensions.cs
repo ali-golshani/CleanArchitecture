@@ -23,6 +23,25 @@ public static class DIExtensions
         });
     }
 
+    /// <summary>
+    /// Register All types derived from 'baseType' as Self with Transient-Lifetime
+    /// </summary>
+    public static void RegisterAsSelf(
+        this IServiceCollection services,
+        Type baseType,
+        Assembly assembly)
+    {
+        services.Scan(scan =>
+        {
+            scan
+                .FromAssemblies(assembly)
+                .AddClasses(classes => classes.AssignableTo(baseType))
+                .AsSelf()
+                .WithTransientLifetime()
+                ;
+        });
+    }
+
     public static void RegisterAsImplementedInterfaces(
         this IServiceCollection services,
         Type interfaceType,

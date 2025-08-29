@@ -13,6 +13,9 @@ public static class ServiceConfigurations
         services.AddTransient<ICommandService, CommandService>();
         services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
 
+        services.AddTransient(typeof(IQueryPipeline<,>), typeof(QueryPipeline.Pipeline<,>));
+        services.AddTransient(typeof(ICommandPipeline<,>), typeof(CommandPipeline.Pipeline<,>));
+
         services.AddKeyedPipeline<QueryPipeline.Configuration>(typeof(QueryPipeline.Pipeline<,>));
         services.AddKeyedPipeline<CommandPipeline.Configuration>(typeof(CommandPipeline.Pipeline<,>));
     }

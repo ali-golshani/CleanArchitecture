@@ -9,6 +9,7 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
+	  <ProjectReference Include="..\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
 	</ItemGroup>
 
 </Project>
