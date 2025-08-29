@@ -13,7 +13,7 @@ namespace CleanArchitecture.WebApi.Controllers.V3;
 public class OrderController : BaseController
 {
     [HttpGet("{orderId:int}")]
-    public async
+    public
         Task<Results<Ok<Order>, NotFound, ProblemHttpResult>>
         Get(GetOrder.UseCase useCase, int orderId, CancellationToken cancellationToken)
     {
@@ -22,20 +22,10 @@ public class OrderController : BaseController
             OrderId = orderId,
         };
 
-        var result = await useCase.Execute(query, cancellationToken);
-
-        if (result.IsFailure)
-        {
-            return result.Errors.ToProblemResult();
-        }
-        else if (result.Value is null)
-        {
-            return TypedResults.NotFound();
-        }
-        else
-        {
-            return TypedResults.Ok(result.Value);
-        }
+        return
+            useCase
+            .Execute(query, cancellationToken)
+            .ToOkOrNotFoundOrProblem();
     }
 
     /// <summary>
