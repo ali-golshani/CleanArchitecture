@@ -9,7 +9,7 @@ using Framework.Results;
 using Framework.Results.Extensions;
 using Infrastructure.CommoditySystem;
 using Infrastructure.CommoditySystem.Models;
-using GetCommodity = Infrastructure.CommoditySystem.Requests.GetCommodity;
+using Infrastructure.CommoditySystem.Requests;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
 
@@ -84,7 +84,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
     private async Task<Result<Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
     {
-        var request = new GetCommodity.Request
+        var request = new GetCommodityRequest
         {
             CommodityId = commodityId
         };

@@ -1,6 +1,4 @@
-﻿using Framework.DependencyInjection.Extensions;
-using Framework.Mediator.Extensions;
-using Infrastructure.CommoditySystem.Requests;
+﻿using Framework.Mediator.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.CommoditySystem;
@@ -11,7 +9,5 @@ public static class MockServiceConfigurations
     {
         services.RegisterRequestHandlers();
         services.AddScoped<ICommoditySystem, CommoditySystem>();
-
-        services.RegisterClosedImplementationsOf(typeof(IUseCase<,>), typeof(MockServiceConfigurations).Assembly);
     }
 }

@@ -1,8 +1,8 @@
 ﻿using Framework.Mediator;
 
-namespace Infrastructure.CommoditySystem.Requests.VerifyCustomerCommodityLicense;
+namespace Infrastructure.CommoditySystem.Requests;
 
-public class Request : RequestBase, IRequest<Request, bool>
+public class VerifyCustomerCommodityLicenseRequest : RequestBase, IRequest<VerifyCustomerCommodityLicenseRequest, bool>
 {
     public override string RequestTitle => "اعتبار سنجی ارتباط مشتری و کالا";
     public override bool? ShouldLog => true;

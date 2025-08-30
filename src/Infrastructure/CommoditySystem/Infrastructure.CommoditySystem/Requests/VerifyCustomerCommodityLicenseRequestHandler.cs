@@ -1,11 +1,11 @@
 ﻿using Framework.Mediator;
 using Framework.Results;
 
-namespace Infrastructure.CommoditySystem.Requests.VerifyCustomerCommodityLicense;
+namespace Infrastructure.CommoditySystem.Requests;
 
-internal sealed class Handler : IRequestHandler<Request, bool>
+internal sealed class VerifyCustomerCommodityLicenseRequestHandler : IRequestHandler<VerifyCustomerCommodityLicenseRequest, bool>
 {
-    public async Task<Result<bool>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<bool>> Handle(VerifyCustomerCommodityLicenseRequest request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
 

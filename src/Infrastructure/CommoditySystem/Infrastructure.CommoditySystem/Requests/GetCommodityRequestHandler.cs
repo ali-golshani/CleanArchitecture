@@ -2,11 +2,11 @@
 using Framework.Results;
 using Infrastructure.CommoditySystem.Models;
 
-namespace Infrastructure.CommoditySystem.Requests.GetCommodity;
+namespace Infrastructure.CommoditySystem.Requests;
 
-internal sealed class Handler : IRequestHandler<Request, Commodity?>
+internal sealed class GetCommodityRequestHandler : IRequestHandler<GetCommodityRequest, Commodity?>
 {
-    public async Task<Result<Commodity?>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Commodity?>> Handle(GetCommodityRequest request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
 

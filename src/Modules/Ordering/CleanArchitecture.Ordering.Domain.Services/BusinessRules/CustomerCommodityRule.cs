@@ -1,6 +1,6 @@
 ﻿using Framework.DomainRules.Extensions;
 using Infrastructure.CommoditySystem;
-using VerifyCustomerCommodityLicense = Infrastructure.CommoditySystem.Requests.VerifyCustomerCommodityLicense;
+using Infrastructure.CommoditySystem.Requests;
 
 namespace CleanArchitecture.Ordering.Domain.Services.BusinessRules;
 
@@ -23,7 +23,7 @@ internal class CustomerCommodityRule : IBusinessRule
 
     public async IAsyncEnumerable<Clause> Evaluate()
     {
-        var result = await commoditySystem.Handle(new VerifyCustomerCommodityLicense.Request
+        var result = await commoditySystem.Handle(new VerifyCustomerCommodityLicenseRequest
         {
             CustomerId = inquiry.CustomerId,
             CommodityId = inquiry.CommodityId,
