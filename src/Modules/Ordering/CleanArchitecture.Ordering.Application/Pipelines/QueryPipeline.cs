@@ -6,7 +6,7 @@ namespace CleanArchitecture.Ordering.Application.Pipelines;
 
 internal static class QueryPipeline
 {
-    public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, TResponse>, IQueryPipeline<TRequest, TResponse>
+    public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, TResponse>
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         public Pipeline(IServiceProvider serviceProvider)
