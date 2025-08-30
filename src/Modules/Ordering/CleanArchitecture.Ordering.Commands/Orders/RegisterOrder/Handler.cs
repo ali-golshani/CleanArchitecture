@@ -8,6 +8,8 @@ using Framework.Mediator.IntegrationEvents;
 using Framework.Results;
 using Framework.Results.Extensions;
 using Infrastructure.CommoditySystem;
+using Infrastructure.CommoditySystem.Models;
+using GetCommodity = Infrastructure.CommoditySystem.Requests.GetCommodity;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
 
@@ -82,7 +84,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
     private async Task<Result<Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
     {
-        var request = new CommodityRequest
+        var request = new GetCommodity.Request
         {
             CommodityId = commodityId
         };

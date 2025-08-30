@@ -1,4 +1,5 @@
 ﻿using Bogus;
+using Infrastructure.CommoditySystem.Models;
 
 namespace Infrastructure.CommoditySystem.Mock.Fakers;
 

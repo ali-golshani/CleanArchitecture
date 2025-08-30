@@ -1,5 +1,6 @@
 ﻿using Framework.Test;
 using Infrastructure.CommoditySystem.Mock.Fakers;
+using Infrastructure.CommoditySystem.Models;
 
 namespace Infrastructure.CommoditySystem.Mock.Data;
 

@@ -1,11 +1,12 @@
 ﻿using Framework.Mediator;
 using Framework.Results;
+using Infrastructure.CommoditySystem.Models;
 
-namespace Infrastructure.CommoditySystem.Handlers;
+namespace Infrastructure.CommoditySystem.Requests.GetCommodity;
 
-internal sealed class CommodityRequestHandler : IRequestHandler<CommodityRequest, Commodity?>
+internal sealed class Handler : IRequestHandler<Request, Commodity?>
 {
-    public async Task<Result<Commodity?>> Handle(CommodityRequest request, CancellationToken cancellationToken)
+    public async Task<Result<Commodity?>> Handle(Request request, CancellationToken cancellationToken)
     {
         await Task.CompletedTask;
 
