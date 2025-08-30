@@ -1,5 +1,6 @@
 ﻿using Framework.Mediator;
 using Framework.Mediator.Middlewares;
+using Infrastructure.CommoditySystem.Requests;
 using Infrastructure.RequestAudit;
 
 namespace Infrastructure.CommoditySystem.Pipelines;

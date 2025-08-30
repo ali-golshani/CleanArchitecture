@@ -1,6 +1,6 @@
 ﻿using Framework.Mediator;
 
-namespace Infrastructure.CommoditySystem;
+namespace Infrastructure.CommoditySystem.Requests;
 
 public abstract class RequestBase : Request
 {
