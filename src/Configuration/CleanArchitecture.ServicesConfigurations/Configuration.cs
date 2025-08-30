@@ -76,7 +76,7 @@ public static class Configuration
 
         if (environment.DeploymentStage == DeploymentStage.Staging)
         {
-            Infrastructure.CommoditySystem.Mock.ServiceConfigurations.RegisterServices(services);
+            Infrastructure.CommoditySystem.MockServiceConfigurations.RegisterMockServices(services);
         }
         else
         {

@@ -1,8 +1,8 @@
 ﻿using Framework.Test;
-using Infrastructure.CommoditySystem.Mock.Fakers;
+using Infrastructure.CommoditySystem.Fakers;
 using Infrastructure.CommoditySystem.Models;
 
-namespace Infrastructure.CommoditySystem.Mock.Data;
+namespace Infrastructure.CommoditySystem.MockData;
 
 public static class Commodities
 {

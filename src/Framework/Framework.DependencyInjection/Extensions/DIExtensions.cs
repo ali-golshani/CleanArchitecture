@@ -57,4 +57,31 @@ public static class DIExtensions
                 ;
         });
     }
+
+    public static IServiceCollection RegisterClosedImplementationsOf(
+        this IServiceCollection services,
+        Type genericInterfaceType,
+        Assembly assembly)
+    {
+        services.Scan(scan =>
+        {
+            scan
+                .FromAssemblies(assembly)
+                .AddClasses(classes => classes.AssignableTo(genericInterfaceType), publicOnly: false)
+                .As(type =>
+                {
+                    var interfaces = type.GetInterfaces();
+                    return
+                        interfaces
+                        .Where(i =>
+                            i != genericInterfaceType &&
+                            i.GetInterfaces().Any(ii => ii.IsGenericType && ii.GetGenericTypeDefinition() == genericInterfaceType)
+                        );
+                })
+                .WithTransientLifetime()
+                ;
+        });
+
+        return services;
+    }
 }

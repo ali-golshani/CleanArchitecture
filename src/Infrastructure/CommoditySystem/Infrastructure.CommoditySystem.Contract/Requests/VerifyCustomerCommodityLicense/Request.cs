@@ -1,6 +1,6 @@
 ﻿using Framework.Mediator;
 
-namespace Infrastructure.CommoditySystem.Requests.VerifyCustomerCommodityLicence;
+namespace Infrastructure.CommoditySystem.Requests.VerifyCustomerCommodityLicense;
 
 public class Request : RequestBase, IRequest<Request, bool>
 {

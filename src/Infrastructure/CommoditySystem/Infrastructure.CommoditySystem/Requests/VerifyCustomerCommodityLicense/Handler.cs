@@ -1,7 +1,7 @@
 ﻿using Framework.Mediator;
 using Framework.Results;
 
-namespace Infrastructure.CommoditySystem.Requests.VerifyCustomerCommodityLicence;
+namespace Infrastructure.CommoditySystem.Requests.VerifyCustomerCommodityLicense;
 
 internal sealed class Handler : IRequestHandler<Request, bool>
 {

@@ -3,4 +3,5 @@ using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.SampleEmpty;
 
-public sealed class UseCase(ActorPreservingScopeFactory scopeFactory) : UseCase<Command, Empty>(scopeFactory);
+public interface IUseCase : IUseCase<Command, Empty>;
+internal sealed class UseCase(ActorPreservingScopeFactory scopeFactory) : UseCase<Command, Empty>(scopeFactory), IUseCase;

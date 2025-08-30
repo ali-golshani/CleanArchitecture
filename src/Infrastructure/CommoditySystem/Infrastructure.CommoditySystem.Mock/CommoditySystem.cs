@@ -3,7 +3,7 @@ using Framework.Mediator.Extensions;
 using Framework.Results;
 using Infrastructure.CommoditySystem.Requests;
 
-namespace Infrastructure.CommoditySystem.Mock;
+namespace Infrastructure.CommoditySystem;
 
 internal class CommoditySystem(IServiceProvider serviceProvider) : ICommoditySystem
 {

@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Actors;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.IntegrationTests.Tests;
 

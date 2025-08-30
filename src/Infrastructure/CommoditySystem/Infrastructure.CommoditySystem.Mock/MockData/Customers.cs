@@ -1,6 +1,6 @@
 ﻿using Framework.Test;
 
-namespace Infrastructure.CommoditySystem.Mock.Data;
+namespace Infrastructure.CommoditySystem.MockData;
 
 public static class Customers
 {
