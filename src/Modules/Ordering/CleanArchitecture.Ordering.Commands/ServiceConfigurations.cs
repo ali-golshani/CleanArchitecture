@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Authorization;
-using Framework.DependencyInjection.Extensions;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +14,5 @@ public static class ServiceConfigurations
         services.RegisterAccessControls();
         services.RegisterFilters();
         services.RegisterValidators();
-
-        services.RegisterClosedImplementationsOf(typeof(IUseCase<,>), typeof(ServiceConfigurations).Assembly);
     }
 }
