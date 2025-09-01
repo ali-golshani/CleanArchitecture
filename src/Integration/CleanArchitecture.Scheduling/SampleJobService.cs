@@ -5,19 +5,20 @@ using Framework.Mediator.BatchCommands;
 using Framework.Results.Extensions;
 using Framework.Scheduling;
 using GetOrders = CleanArchitecture.Ordering.Queries.Orders.GetOrders;
+using SampleEmpty = CleanArchitecture.Ordering.Commands.SampleEmpty;
 
 namespace CleanArchitecture.Scheduling;
 
-public class SampleJobService : IJobService
+public sealed class SampleJobService : IJobService
 {
     private readonly IQueryService queryService;
-    private readonly IBatchCommandsService<Ordering.Commands.SampleEmpty.Command> batchCommandsService;
+    private readonly IBatchCommandsService<SampleEmpty.Command> batchCommandsService;
 
     private static readonly Actor Actor = new InternalServiceActor(nameof(SampleJobService));
 
     public SampleJobService(
         IQueryService queryService,
-        IBatchCommandsService<Ordering.Commands.SampleEmpty.Command> batchCommandsService)
+        IBatchCommandsService<SampleEmpty.Command> batchCommandsService)
     {
         this.queryService = queryService;
         this.batchCommandsService = batchCommandsService;
@@ -36,9 +37,9 @@ public class SampleJobService : IJobService
         await batchCommandsService.Handle(commands, BatchCommandHandlingParameters.Safe, stoppingToken);
     }
 
-    private static Ordering.Commands.SampleEmpty.Command EmptyCommand(Ordering.Queries.Models.Order order)
+    private static SampleEmpty.Command EmptyCommand(Ordering.Queries.Models.Order order)
     {
-        return new Ordering.Commands.SampleEmpty.Command
+        return new SampleEmpty.Command
         {
             Id = order.OrderId
         };

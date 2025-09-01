@@ -8,6 +8,7 @@ namespace CleanArchitecture.Querying.OrdersQuery;
 
 internal sealed class Handler(EmptyDbContext db) : IRequestHandler<Query, IQueryable<Order>>
 {
+    private static readonly string SqlQuery = Properties.Resources.OrdersSqlView;
     private readonly EmptyDbContext db = db;
 
     public async Task<Result<IQueryable<Order>>> Handle(Query request, CancellationToken cancellationToken)
@@ -28,6 +29,4 @@ internal sealed class Handler(EmptyDbContext db) : IRequestHandler<Query, IQuery
 
         return orders.AsResult();
     }
-
-    private static string SqlQuery => Properties.Resources.OrdersSqlView;
 }

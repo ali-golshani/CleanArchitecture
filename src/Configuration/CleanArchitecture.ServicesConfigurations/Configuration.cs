@@ -20,18 +20,18 @@ public static class Configuration
         SystemEnvironment.SetEnvironment(application, stage);
     }
 
-    public static void AddAppSettings(IConfigurationBuilder configuration, IWebHostEnvironment environment)
-    {
-        configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
-        configuration.AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
-    }
-
     public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment environment)
     {
         configuration.Sources.Clear();
         SettingsConfigs.ConfigureSettings(configuration);
         Options.OptionsConfigs.Configure(configuration, environment);
         Secrets.SecretsConfigs.Configure(configuration, environment);
+    }
+
+    public static void AddAppSettings(IConfigurationBuilder configuration, IWebHostEnvironment environment)
+    {
+        configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        configuration.AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
     }
 
     public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IEnvironment environment)

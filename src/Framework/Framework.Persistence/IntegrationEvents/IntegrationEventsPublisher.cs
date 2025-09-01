@@ -104,6 +104,14 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         }
     }
 
+    private async Task<TEvent?> NextEvent()
+    {
+        using var scope = CreateScope();
+        using var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
+        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable);
+        return await NextEvent(db);
+    }
+
     /// <summary>
     /// return AsNoTracking()
     /// </summary>
@@ -150,14 +158,6 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
 
         await db.SaveChangesAsync();
         await transaction.CommitAsync();
-    }
-
-    private async Task<TEvent?> NextEvent()
-    {
-        using var scope = CreateScope();
-        using var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
-        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable);
-        return await NextEvent(db);
     }
 
     private IServiceScope CreateScope()
