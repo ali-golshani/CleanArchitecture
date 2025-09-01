@@ -19,7 +19,7 @@ public static class OptionsConfigs
             OptionsMode.Development => $"Options.Development.json",
             OptionsMode.Staging => $"Options.Staging.json",
             OptionsMode.Production => $"Options.Production.json",
-            OptionsMode.DbMigrationProduction => $"Options.Production.DbMigration.json",
+            OptionsMode.ProductionDbMigration => $"Options.Production.DbMigration.json",
             _ => $"Options.{mode}.json",
         };
     }

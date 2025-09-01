@@ -5,5 +5,5 @@ internal enum OptionsMode
     Development,
     Staging,
     Production,
-    DbMigrationProduction,
+    ProductionDbMigration,
 }
