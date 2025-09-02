@@ -14,11 +14,4 @@ public static class GlobalSettings
             public const string Decimal = "decimal(18, 2)";
         }
     }
-
-    public static class IntegrationEvents
-    {
-        public const int MaximumNumberOfRetries = 5;
-        public static readonly TimeSpan EventWaitingTimeout = TimeSpan.FromSeconds(30);
-        public static readonly TimeSpan DelayOnError = TimeSpan.FromSeconds(5);
-    }
 }
