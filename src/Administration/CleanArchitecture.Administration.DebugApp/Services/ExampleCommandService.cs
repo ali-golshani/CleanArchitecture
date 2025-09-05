@@ -1,12 +1,12 @@
 ﻿namespace CleanArchitecture.Administration.DebugApp.Services;
 
-internal class EmptyTestingCommandService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal class ExampleCommandService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {
         var service = CommandService();
 
-        var result = await service.Handle(Actor, new Ordering.Commands.SampleEmpty.Command
+        var result = await service.Handle(Actor, new Ordering.Commands.Example.Command
         {
             Id = 101,
         }, default);

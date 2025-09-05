@@ -5,20 +5,20 @@ using Framework.Mediator.BatchCommands;
 using Framework.Results.Extensions;
 using Framework.Scheduling;
 using GetOrders = CleanArchitecture.Ordering.Queries.Orders.GetOrders;
-using SampleEmpty = CleanArchitecture.Ordering.Commands.SampleEmpty;
+using Example = CleanArchitecture.Ordering.Commands.Example;
 
 namespace CleanArchitecture.Scheduling;
 
 public sealed class SampleJobService : IJobService
 {
     private readonly IQueryService queryService;
-    private readonly IBatchCommandsService<SampleEmpty.Command> batchCommandsService;
+    private readonly IBatchCommandsService<Example.Command> batchCommandsService;
 
     private static readonly Actor Actor = new InternalServiceActor(nameof(SampleJobService));
 
     public SampleJobService(
         IQueryService queryService,
-        IBatchCommandsService<SampleEmpty.Command> batchCommandsService)
+        IBatchCommandsService<Example.Command> batchCommandsService)
     {
         this.queryService = queryService;
         this.batchCommandsService = batchCommandsService;
@@ -32,14 +32,14 @@ public sealed class SampleJobService : IJobService
         }, stoppingToken)
         .ThrowIsFailure();
 
-        var commands = orders.Items.Select(EmptyCommand).ToList();
+        var commands = orders.Items.Select(ExampleCommand).ToList();
 
         await batchCommandsService.Handle(commands, BatchCommandHandlingParameters.Safe, stoppingToken);
     }
 
-    private static SampleEmpty.Command EmptyCommand(Ordering.Queries.Models.Order order)
+    private static Example.Command ExampleCommand(Ordering.Queries.Models.Order order)
     {
-        return new SampleEmpty.Command
+        return new Example.Command
         {
             Id = order.OrderId
         };

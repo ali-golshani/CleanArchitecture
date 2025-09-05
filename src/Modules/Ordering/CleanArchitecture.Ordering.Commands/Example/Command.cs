@@ -1,10 +1,10 @@
 ﻿using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Commands.SampleEmpty;
+namespace CleanArchitecture.Ordering.Commands.Example;
 
 public class Command : CommandBase, ICommand<Command, Empty>
 {
-    public override string RequestTitle => "Sample Empty Request";
+    public override string RequestTitle => "Example Request";
 
     public int Id { get; init; }
 }

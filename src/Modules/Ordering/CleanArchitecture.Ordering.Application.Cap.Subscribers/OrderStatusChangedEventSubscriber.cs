@@ -12,7 +12,7 @@ public class OrderStatusChangedEventSubscriber(ICommandService commandService) :
     [CapSubscribe(OrderStatusChangedEvent.EventTopic)]
     public Task Handle(OrderStatusChangedEvent @event, CancellationToken cancellationToken)
     {
-        var command = new Commands.SampleEmpty.Command
+        var command = new Commands.Example.Command
         {
             Id = @event.OrderId,
         }

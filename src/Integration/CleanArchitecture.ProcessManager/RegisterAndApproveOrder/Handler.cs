@@ -32,7 +32,7 @@ internal sealed class Handler(Ordering.Commands.ICommandService commandService) 
 
             control = true;
 
-            var otherCommand = new Ordering.Commands.SampleEmpty.Command
+            var otherCommand = new Ordering.Commands.Example.Command
             {
                 Id = request.OrderId
             };
