@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.ProcessManager;
+﻿using RegisterAndApproveOrder = CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
 namespace CleanArchitecture.Administration.DebugApp.Services;
 
@@ -6,10 +6,10 @@ internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) 
 {
     public virtual async Task Run()
     {
-        var service = Service<IProcessManager>();
+        var service = Service<RegisterAndApproveOrder.IService>();
         ResolveActor();
 
-        var result = await service.Handle(new ProcessManager.RegisterAndApproveOrder.Request
+        var result = await service.Handle(new RegisterAndApproveOrder.Request
         {
             OrderId = 1212,
             BrokerId = 5,

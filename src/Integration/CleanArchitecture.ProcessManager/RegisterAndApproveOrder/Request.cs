@@ -1,12 +1,10 @@
 ﻿using CleanArchitecture.Mediator;
+using Framework.Mediator;
 using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
-public class Request :
-    RequestBase,
-    IOrderRequest,
-    IRequest<Request, Empty>
+public sealed class Request : RequestBase, IOrderRequest, IRequest<Request, Empty>
 {
     public override string RequestTitle => "Register and Approve Order";
 

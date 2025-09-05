@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Authorization;
-using CleanArchitecture.ProcessManager.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +14,6 @@ public static class ServiceConfigurations
         services.RegisterAccessControls();
         services.RegisterValidators();
 
-        services.AddTransient<IProcessManager, ProcessManager>();
-        services.AddKeyedPipeline<RequestPipeline.Configuration>(typeof(RequestPipeline.Pipeline<,>));
+        services.AddTransient<RegisterAndApproveOrder.IService, RegisterAndApproveOrder.Service>();
     }
 }
