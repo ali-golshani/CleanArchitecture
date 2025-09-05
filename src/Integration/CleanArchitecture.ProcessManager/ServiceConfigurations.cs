@@ -10,7 +10,6 @@ public static class ServiceConfigurations
     public static void RegisterServices(IServiceCollection services)
     {
         services.RegisterRequestHandlers();
-        services.RegisterDomainEventHandlers();
         services.RegisterAccessControls();
         services.RegisterValidators();
 

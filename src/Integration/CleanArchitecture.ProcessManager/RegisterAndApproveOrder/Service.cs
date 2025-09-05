@@ -4,12 +4,7 @@ using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
-internal sealed class Service : Pipeline<Request, Empty>, IService
-{
-    public Service(
-        Handler handler,
-        ExceptionHandlingMiddleware<Request, Empty> exceptionHandling,
-        ValidationMiddleware<Request, Empty> validation)
-        : base(handler, exceptionHandling, validation)
-    { }
-}
+internal sealed class Service(
+    Handler handler,
+    ExceptionHandlingMiddleware<Request, Empty> exceptionHandling)
+    : Pipeline<Request, Empty>(handler, exceptionHandling), IService;
