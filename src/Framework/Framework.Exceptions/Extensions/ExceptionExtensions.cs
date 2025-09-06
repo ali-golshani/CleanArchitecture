@@ -115,7 +115,7 @@ public static class ExceptionExtensions
     {
         try
         {
-            task.Wait();
+            task.GetAwaiter().GetResult();
         }
         catch (Exception exp)
         {
