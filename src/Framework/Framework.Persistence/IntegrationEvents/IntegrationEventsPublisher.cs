@@ -90,18 +90,18 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         try
         {
             await Publish(@event, cancellationToken);
-            await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Published, tryCount, cancellationToken);
+            await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Published, tryCount);
             return true;
         }
         catch
         {
             if (tryCount == maximumNumberOfRetries)
             {
-                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Failed, tryCount, cancellationToken);
+                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Failed, tryCount);
             }
             else
             {
-                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.InProcess, tryCount, cancellationToken);
+                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.InProcess, tryCount);
             }
 
             throw;
@@ -132,11 +132,11 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
     /// <summary>
     /// return AsTracking()
     /// </summary>
-    protected async virtual Task<TEvent?> FindEvent(TDbContext db, long eventId, CancellationToken cancellationToken)
+    protected async virtual Task<TEvent?> FindEvent(TDbContext db, long eventId)
     {
         return await
             db.Set<TEvent>()
-            .FirstOrDefaultAsync(x => x.EventId == eventId, cancellationToken);
+            .FirstOrDefaultAsync(x => x.EventId == eventId);
     }
 
     private async Task Publish(TEvent @event, CancellationToken cancellationToken)
@@ -145,13 +145,13 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         await PublishEvent(scope.ServiceProvider, @event, cancellationToken);
     }
 
-    private async Task UpdatePublishStatus(long eventId, IntegrationEventPublishStatus publishStatus, int publishTryCount, CancellationToken cancellationToken)
+    private async Task UpdatePublishStatus(long eventId, IntegrationEventPublishStatus publishStatus, int publishTryCount)
     {
         using var scope = CreateScope();
         using var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
-        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable, cancellationToken);
+        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable);
 
-        var @event = await FindEvent(db, eventId, cancellationToken);
+        var @event = await FindEvent(db, eventId);
 
         if (@event is null)
         {
@@ -160,8 +160,8 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
 
         @event.Update(publishStatus, publishTryCount);
 
-        await db.SaveChangesAsync(cancellationToken);
-        await transaction.CommitAsync(cancellationToken);
+        await db.SaveChangesAsync();
+        await transaction.CommitAsync();
     }
 
     private IServiceScope CreateScope()
