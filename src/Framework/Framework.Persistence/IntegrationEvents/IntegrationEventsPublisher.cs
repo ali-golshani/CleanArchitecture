@@ -17,9 +17,9 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
     protected abstract string DistributedLockName { get; }
     protected abstract Task Log(Exception exception);
     protected abstract void OnScopeCreated(IServiceScope scope);
-    protected abstract Task PublishEvent(IServiceProvider serviceProvider, TEvent @event);
+    protected abstract Task PublishEvent(IServiceProvider serviceProvider, TEvent @event, CancellationToken cancellationToken);
 
-    private readonly AutoResetEvent signalEvent = new AutoResetEvent(true);
+    private readonly SemaphoreSlim signalEvent = new(0, 1);
     private readonly IServiceScopeFactory serviceScopeFactory = serviceScopeFactory;
 
     protected readonly int maximumNumberOfRetries = maximumNumberOfRetries;
@@ -28,12 +28,12 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
 
     public void Signal()
     {
-        signalEvent.Set();
+        signalEvent.Release();
     }
 
-    protected virtual void WaitingForEvent()
+    protected virtual async Task WaitingForEvent(CancellationToken cancellationToken)
     {
-        signalEvent.WaitOne(eventWaitingTimeout);
+        await signalEvent.WaitAsync(eventWaitingTimeout, cancellationToken);
     }
 
     protected override IDistributedLock DistributedLock()
@@ -43,9 +43,9 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         return db.DistributedLock(DistributedLockName);
     }
 
-    protected override Task OnAcquiringDistributedLockFailure()
+    protected override async Task OnAcquiringDistributedLockFailure()
     {
-        return Log(new AcquiringDistributedLockException(DistributedLockName));
+        await Log(new AcquiringDistributedLockException(DistributedLockName));
     }
 
     protected override async Task Executing(CancellationToken cancellationToken)
@@ -56,24 +56,28 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         {
             try
             {
-                wait = !await LoadAndEvaluateNextEvent();
+                wait = !await LoadAndEvaluateNextEvent(cancellationToken);
+            }
+            catch (OperationCanceledException) when (cancellationToken.IsCancellationRequested)
+            {
+                return;
             }
             catch (Exception exp)
             {
                 await Log(exp);
-                await Delay(delayOnError);
+                await Task.Delay(delayOnError, cancellationToken);
             }
 
-            if (wait)
+            if (wait && !cancellationToken.IsCancellationRequested)
             {
-                WaitingForEvent();
+                await WaitingForEvent(cancellationToken);
             }
         }
     }
 
-    private async Task<bool> LoadAndEvaluateNextEvent()
+    private async Task<bool> LoadAndEvaluateNextEvent(CancellationToken cancellationToken)
     {
-        var @event = await NextEvent();
+        var @event = await NextEvent(cancellationToken);
 
         if (@event == null)
         {
@@ -85,69 +89,69 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
 
         try
         {
-            await Publish(@event);
-            await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Published, tryCount);
+            await Publish(@event, cancellationToken);
+            await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Published, tryCount, cancellationToken);
             return true;
         }
         catch
         {
             if (tryCount == maximumNumberOfRetries)
             {
-                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Failed, tryCount);
+                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Failed, tryCount, cancellationToken);
             }
             else
             {
-                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.InProcess, tryCount);
+                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.InProcess, tryCount, cancellationToken);
             }
 
             throw;
         }
     }
 
-    private async Task<TEvent?> NextEvent()
+    private async Task<TEvent?> NextEvent(CancellationToken cancellationToken)
     {
         using var scope = CreateScope();
         using var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
-        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable);
-        return await NextEvent(db);
+        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable, cancellationToken);
+        return await NextEvent(db, cancellationToken);
     }
 
     /// <summary>
     /// return AsNoTracking()
     /// </summary>
-    protected async virtual Task<TEvent?> NextEvent(TDbContext db)
+    protected async virtual Task<TEvent?> NextEvent(TDbContext db, CancellationToken cancellationToken)
     {
         return await
             db.Set<TEvent>()
             .Where(x => x.PublishStatus == IntegrationEventPublishStatus.InProcess)
             .OrderBy(x => x.EventId)
             .AsNoTracking()
-            .FirstOrDefaultAsync();
+            .FirstOrDefaultAsync(cancellationToken);
     }
 
     /// <summary>
     /// return AsTracking()
     /// </summary>
-    protected async virtual Task<TEvent?> FindEvent(TDbContext db, long eventId)
+    protected async virtual Task<TEvent?> FindEvent(TDbContext db, long eventId, CancellationToken cancellationToken)
     {
         return await
             db.Set<TEvent>()
-            .FirstOrDefaultAsync(x => x.EventId == eventId);
+            .FirstOrDefaultAsync(x => x.EventId == eventId, cancellationToken);
     }
 
-    private async Task Publish(TEvent @event)
+    private async Task Publish(TEvent @event, CancellationToken cancellationToken)
     {
         using var scope = CreateScope();
-        await PublishEvent(scope.ServiceProvider, @event);
+        await PublishEvent(scope.ServiceProvider, @event, cancellationToken);
     }
 
-    private async Task UpdatePublishStatus(long eventId, IntegrationEventPublishStatus publishStatus, int publishTryCount)
+    private async Task UpdatePublishStatus(long eventId, IntegrationEventPublishStatus publishStatus, int publishTryCount, CancellationToken cancellationToken)
     {
         using var scope = CreateScope();
         using var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
-        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable);
+        using var transaction = await db.Database.BeginTransactionAsync(System.Data.IsolationLevel.Serializable, cancellationToken);
 
-        var @event = await FindEvent(db, eventId);
+        var @event = await FindEvent(db, eventId, cancellationToken);
 
         if (@event is null)
         {
@@ -156,8 +160,8 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
 
         @event.Update(publishStatus, publishTryCount);
 
-        await db.SaveChangesAsync();
-        await transaction.CommitAsync();
+        await db.SaveChangesAsync(cancellationToken);
+        await transaction.CommitAsync(cancellationToken);
     }
 
     private IServiceScope CreateScope()

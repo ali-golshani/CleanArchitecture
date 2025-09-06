@@ -14,11 +14,11 @@ public class RequestAuditService : BackgroundService
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        commandAuditAgent.Start(stoppingToken);
+        await commandAuditAgent.EnsureStarted(stoppingToken);
 
         while (!stoppingToken.IsCancellationRequested)
         {
-            commandAuditAgent.EnsureStarted();
+            await commandAuditAgent.EnsureStarted(stoppingToken);
             await Task.Delay(Settings.EnsureStartedTimeout, stoppingToken);
         }
     }

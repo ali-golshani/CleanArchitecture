@@ -14,7 +14,7 @@ internal static class BackgroundServices
         var serviceProvider = serviceScope.ServiceProvider;
         cts = new CancellationTokenSource();
         var auditAgent = serviceProvider.GetRequiredService<RequestAuditAgent>();
-        auditAgent.Start(cts.Token);
+        _ = auditAgent.EnsureStarted(cts.Token);
     }
 
     public static async Task Stop()
