@@ -89,7 +89,7 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         }
         catch
         {
-            if (tryCount == maximumNumberOfRetries)
+            if (tryCount >= maximumNumberOfRetries)
             {
                 await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Failed, tryCount);
             }
