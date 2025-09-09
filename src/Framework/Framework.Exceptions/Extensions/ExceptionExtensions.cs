@@ -115,7 +115,7 @@ public static class ExceptionExtensions
     {
         try
         {
-            task.GetAwaiter().GetResult();
+            task.ConfigureAwait(false).GetAwaiter().GetResult();
         }
         catch (Exception exp)
         {
@@ -132,7 +132,7 @@ public static class ExceptionExtensions
     {
         try
         {
-            return task.GetAwaiter().GetResult();
+            return task.ConfigureAwait(false).GetAwaiter().GetResult();
         }
         catch (Exception exp)
         {
