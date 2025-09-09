@@ -19,21 +19,15 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
     protected abstract void OnScopeCreated(IServiceScope scope);
     protected abstract Task PublishEvent(IServiceProvider serviceProvider, TEvent @event, CancellationToken cancellationToken);
 
-    private readonly SemaphoreSlim signalEvent = new(0, 1);
     private readonly IServiceScopeFactory serviceScopeFactory = serviceScopeFactory;
 
     protected readonly int maximumNumberOfRetries = maximumNumberOfRetries;
     protected readonly TimeSpan eventWaitingTimeout = eventWaitingTimeout;
     protected readonly TimeSpan delayOnError = delayOnError;
 
-    public void Signal()
-    {
-        signalEvent.Release();
-    }
-
     protected virtual async Task WaitingForEvent(CancellationToken cancellationToken)
     {
-        await signalEvent.WaitAsync(eventWaitingTimeout, cancellationToken);
+        await Task.Delay(eventWaitingTimeout, cancellationToken);
     }
 
     protected override IDistributedLock DistributedLock()
@@ -95,7 +89,7 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         }
         catch
         {
-            if (tryCount == maximumNumberOfRetries)
+            if (tryCount >= maximumNumberOfRetries)
             {
                 await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Failed, tryCount);
             }
