@@ -10,7 +10,7 @@ internal class QueryingOrdersService(IServiceProvider serviceProvider) : Service
 
         ResolveActor();
 
-        var result = await service.Handle(new Querying.OrdersQuery.Query
+        var result = await service.Handle(new Querying.GetOrders.Query
         {
             CustomerId = 8
         }, default);

@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
 
-namespace CleanArchitecture.Querying.OrdersQuery;
+namespace CleanArchitecture.Querying.GetOrders;
 
 internal sealed class RequestFilter : IFilter<Query, IQueryable<Order>>
 {

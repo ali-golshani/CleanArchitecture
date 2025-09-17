@@ -4,7 +4,7 @@ using Framework.Results;
 using Framework.Results.Extensions;
 using Microsoft.EntityFrameworkCore;
 
-namespace CleanArchitecture.Querying.OrdersQuery;
+namespace CleanArchitecture.Querying.GetOrders;
 
 internal sealed class Handler(EmptyDbContext db) : IRequestHandler<Query, IQueryable<Order>>
 {

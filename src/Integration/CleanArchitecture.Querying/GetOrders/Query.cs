@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.Querying.OrdersQuery;
+﻿namespace CleanArchitecture.Querying.GetOrders;
 
 public class Query : QueryBase, IQuery<Query, IQueryable<Order>>
 {

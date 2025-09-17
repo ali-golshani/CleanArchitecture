@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Querying.OrdersQuery;
+﻿using CleanArchitecture.Querying.GetOrders;
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 
