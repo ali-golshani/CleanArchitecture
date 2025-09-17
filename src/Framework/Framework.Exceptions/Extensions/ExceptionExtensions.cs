@@ -111,40 +111,6 @@ public static class ExceptionExtensions
         return hasChanges;
     }
 
-    public static void WaitAndUnwrapException(this Task task)
-    {
-        try
-        {
-            task.ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-        catch (Exception exp)
-        {
-            if (UnwrapAll(exp, out var innerException))
-            {
-                ExceptionDispatchInfo.Throw(innerException);
-            }
-
-            throw;
-        }
-    }
-
-    public static T GetResultAndUnwrapException<T>(this Task<T> task)
-    {
-        try
-        {
-            return task.ConfigureAwait(false).GetAwaiter().GetResult();
-        }
-        catch (Exception exp)
-        {
-            if (UnwrapAll(exp, out var innerException))
-            {
-                ExceptionDispatchInfo.Throw(innerException);
-            }
-
-            throw;
-        }
-    }
-
     public static object? InvokeAndUnwrapException(this MethodInfo method, object? obj, object?[]? parameters)
     {
         try
