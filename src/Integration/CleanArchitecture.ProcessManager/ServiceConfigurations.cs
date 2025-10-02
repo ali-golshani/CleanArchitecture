@@ -13,6 +13,7 @@ public static class ServiceConfigurations
         services.RegisterAccessControls();
         services.RegisterValidators();
 
+        services.AddTransient<RegisterAndApproveOrder.Handler>();
         services.AddTransient<RegisterAndApproveOrder.IService, RegisterAndApproveOrder.Service>();
     }
 }
