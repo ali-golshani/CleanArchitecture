@@ -7,12 +7,13 @@ using CleanArchitecture.WebApi.Shared.Middlewares;
 using CleanArchitecture.WebApi.Shared.Swagger;
 using CleanArchitecture.WebApi.Shared.Versioning;
 using Hellang.Middleware.ProblemDetails;
+using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebApi.OData;
 
 public static class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
         var configuration = builder.Configuration;
@@ -73,6 +74,6 @@ public static class Program
         app.UseResponseCompression();
         app.MapControllers();
 
-        app.Run();
+        await app.RunAsync();
     }
 }
