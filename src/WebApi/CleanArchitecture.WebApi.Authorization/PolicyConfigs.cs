@@ -12,7 +12,8 @@ public static class PolicyConfigs
         services.AddSingleton<IAuthorizationHandler, ScopeRequirementHandler>();
         services.AddSingleton<IAuthorizationHandler, PermissionRequirementHandler>();
 
-        services.AddSingleton<IAuthorizationPolicyProvider, ScopeAuthorizationPolicyProvider>();
-        services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+        services.AddSingleton<ScopeAuthorizationPolicyProvider>();
+        services.AddSingleton<PermissionAuthorizationPolicyProvider>();
+        services.AddSingleton<IAuthorizationPolicyProvider, Policies.AuthorizationPolicyProvider>();
     }
 }

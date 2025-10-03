@@ -4,7 +4,7 @@ public enum Permission
 {
     None = 0,
     ReadOrders = 1,
-    PlaceOrder = 2,
+    RegisterOrder = 2,
     CancelOrder = 3,
     RejectOrder = 4,
 }

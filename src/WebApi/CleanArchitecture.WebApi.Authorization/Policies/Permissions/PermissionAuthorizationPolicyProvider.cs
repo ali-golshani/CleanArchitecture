@@ -3,23 +3,23 @@ using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.WebApi.Authorization.Policies.Permissions;
 
-public class PermissionAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options) : DefaultAuthorizationPolicyProvider(options)
+public sealed class PermissionAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options)
 {
     private readonly AuthorizationOptions options = options.Value;
 
-    public override async Task<AuthorizationPolicy?> GetPolicyAsync(string policyName)
+    public AuthorizationPolicy? GetPolicy(string policyName)
     {
-        var policy = await base.GetPolicyAsync(policyName);
-
-        if (policy is null && PolicyNames.TryParsePolicyName(policyName, out var permission))
+        if (!PolicyNames.TryParsePolicyName(policyName, out var permission))
         {
-            policy =
+            return null;
+        }
+
+        var policy =
                 new AuthorizationPolicyBuilder()
                 .AddRequirements(new PermissionRequirement(permission))
                 .Build();
 
-            options.AddPolicy(policyName, policy);
-        }
+        options.AddPolicy(policyName, policy);
 
         return policy;
     }

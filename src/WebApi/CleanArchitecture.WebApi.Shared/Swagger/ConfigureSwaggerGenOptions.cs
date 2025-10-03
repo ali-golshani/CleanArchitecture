@@ -9,8 +9,8 @@ namespace CleanArchitecture.WebApi.Shared.Swagger;
 internal class ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider provider)
     : IConfigureOptions<SwaggerGenOptions>
 {
-    private const string SampleTokenA = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3MzE5MTIyODQsImV4cCI6MTc2MzQ0ODI4NCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJHaXZlbk5hbWUiOiJBbGkiLCJTdXJuYW1lIjoiR29sc2hhbmkiLCJ1c2VyX2Rpc3BsYXlfbmFtZSI6IkFsaSBHb2xzaGFuaSIsIlJvbGUiOiJwcm9ncmFtbWVyIiwibmFtZSI6ImFsaWdvbHNoYW5pIn0.12FukcrLXCHtQ96eNnti2iogfopvNFKZoz0CMdVTc4o";
-    private const string SampleTokenB = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3MzIwOTUwNzcsImV4cCI6MTc2MzYzMTA3NywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJHaXZlbk5hbWUiOiJBbGkiLCJTdXJuYW1lIjoiR29sc2hhbmkiLCJ1c2VyX2Rpc3BsYXlfbmFtZSI6IkFsaSBHb2xzaGFuaSIsIlJvbGUiOiJwcm9ncmFtbWVyIiwibmFtZSI6ImFsaWdvbHNoYW5pIn0.uHl3N89zwiL-OcmTL6rxXc4uRbEcrOwQk-jB-rLjkY4";
+    private const string SampleTokenA = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NTk0ODIxMDMsImV4cCI6MTkxNzI0ODUwMywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJSb2xlIjoicHJvZ3JhbW1lciIsInBlcm1pc3Npb24iOlsiUmVhZE9yZGVycyIsIlJlZ2lzdGVyT3JkZXIiXSwicGVybWlzc2lvbi1zY29wZSI6Ik9yZGVycyIsIm5hbWUiOiJhbGlnb2xzaGFuaSIsImRpc3BsYXlOYW1lIjoiQWxpIEdvbHNoYW5pIn0.YAvd96Xm2xcRiVSvp4fh3tD0OPwMAyfU-2v1K9zhxwU";
+    private const string SampleTokenB = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NTk0ODIxMDMsImV4cCI6MTkxNzI0ODUwMywiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJSb2xlIjoicHJvZ3JhbW1lciIsInBlcm1pc3Npb24iOlsiUmVhZE9yZGVycyIsIlJlZ2lzdGVyT3JkZXIiXSwicGVybWlzc2lvbi1zY29wZSI6Ik9yZGVycyIsIm5hbWUiOiJhbGlnb2xzaGFuaSIsImRpc3BsYXlOYW1lIjoiQWxpIEdvbHNoYW5pIn0.EO15PKVjTdOP0QOmcMLTUN0UIUcSEOMIyCW9FzCvCgw";
 
     public void Configure(SwaggerGenOptions options)
     {
@@ -48,7 +48,11 @@ internal class ConfigureSwaggerGenOptions(IApiVersionDescriptionProvider provide
                 Description = 
                     "Input bearer token to access this API. Example:" +
                     "\r\n\r\n" +
+                    "Schema-A:" +
+                    "\r\n\r\n" +
                     SampleTokenA +
+                    "\r\n\r\n" +
+                    "Schema-B:" +
                     "\r\n\r\n" +
                     SampleTokenB,
             });
