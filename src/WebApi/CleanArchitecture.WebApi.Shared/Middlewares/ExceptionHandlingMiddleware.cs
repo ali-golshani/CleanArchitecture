@@ -5,19 +5,19 @@ using Framework.WebApi.Extensions;
 
 namespace CleanArchitecture.WebApi.Shared.Middlewares;
 
-public class DomainExceptionHandlingMiddleware
+public class ExceptionHandlingMiddleware
 {
     private readonly RequestDelegate next;
     private readonly IEnvironment environment;
     private readonly ILogger logger;
 
-    public DomainExceptionHandlingMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IEnvironment environment)
+    public ExceptionHandlingMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IEnvironment environment)
     {
         ArgumentNullException.ThrowIfNull(next);
 
         this.next = next;
         this.environment = environment;
-        logger = loggerFactory.CreateLogger<DomainExceptionHandlingMiddleware>();
+        logger = loggerFactory.CreateLogger<ExceptionHandlingMiddleware>();
     }
 
     public async Task Invoke(HttpContext context)

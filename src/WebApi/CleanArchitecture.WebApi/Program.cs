@@ -56,7 +56,7 @@ public static class Program
         app.UseCors();
         app.UseHttpsRedirection();
         app.UseProblemDetails();
-        app.UseMiddleware<DomainExceptionHandlingMiddleware>();
+        app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseResponseCompression();
