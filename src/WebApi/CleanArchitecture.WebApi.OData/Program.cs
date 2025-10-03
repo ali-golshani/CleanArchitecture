@@ -7,7 +7,6 @@ using CleanArchitecture.WebApi.Shared.Middlewares;
 using CleanArchitecture.WebApi.Shared.Swagger;
 using CleanArchitecture.WebApi.Shared.Versioning;
 using Hellang.Middleware.ProblemDetails;
-using System.Threading.Tasks;
 
 namespace CleanArchitecture.WebApi.OData;
 
@@ -58,16 +57,7 @@ public static class Program
 
         app.UseCors();
         app.UseHttpsRedirection();
-
-        if (isDevelopment)
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseProblemDetails();
-        }
-
+        app.UseProblemDetails();
         app.UseMiddleware<DomainExceptionHandlingMiddleware>();
         app.UseAuthentication();
         app.UseAuthorization();

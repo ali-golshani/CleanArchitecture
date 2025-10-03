@@ -38,6 +38,8 @@ public static class Configuration
     {
         var connectionString = configuration.CleanArchitectureConnectionString();
 
+        services.AddSingleton(_ => SystemEnvironment.Environment);
+
         DbContextConfigs.RegisterDbContexts(services, connectionString);
 
         CapConfigs.RegisterCap(services, configuration, connectionString);

@@ -11,7 +11,7 @@ namespace CleanArchitecture.WebApi;
 
 public static class Program
 {
-    public static void Main(string[] args)
+    public static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
         var configuration = builder.Configuration;
@@ -55,22 +55,13 @@ public static class Program
 
         app.UseCors();
         app.UseHttpsRedirection();
-
-        if (isDevelopment)
-        {
-            app.UseDeveloperExceptionPage();
-        }
-        else
-        {
-            app.UseProblemDetails();
-        }
-
+        app.UseProblemDetails();
         app.UseMiddleware<DomainExceptionHandlingMiddleware>();
         app.UseAuthentication();
         app.UseAuthorization();
         app.UseResponseCompression();
         app.MapControllers();
 
-        app.Run();
+        await app.RunAsync();
     }
 }

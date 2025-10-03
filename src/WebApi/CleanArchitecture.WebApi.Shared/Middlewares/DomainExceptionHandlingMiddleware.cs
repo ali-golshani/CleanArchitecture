@@ -1,4 +1,5 @@
-﻿using Framework.Exceptions;
+﻿using CleanArchitecture.Configurations;
+using Framework.Exceptions;
 using Framework.Exceptions.Extensions;
 using Framework.WebApi.Extensions;
 
@@ -7,13 +8,15 @@ namespace CleanArchitecture.WebApi.Shared.Middlewares;
 public class DomainExceptionHandlingMiddleware
 {
     private readonly RequestDelegate next;
+    private readonly IEnvironment environment;
     private readonly ILogger logger;
 
-    public DomainExceptionHandlingMiddleware(RequestDelegate next, ILoggerFactory loggerFactory)
+    public DomainExceptionHandlingMiddleware(RequestDelegate next, ILoggerFactory loggerFactory, IEnvironment environment)
     {
         ArgumentNullException.ThrowIfNull(next);
 
         this.next = next;
+        this.environment = environment;
         logger = loggerFactory.CreateLogger<DomainExceptionHandlingMiddleware>();
     }
 
@@ -37,17 +40,24 @@ public class DomainExceptionHandlingMiddleware
             {
                 case UserFriendlyException:
                 case BaseSystemException:
+                case Exception when environment.DeploymentStage != DeploymentStage.Development:
                     {
-                        var problem = exp.AsProblemDetails();
-                        context.Response.Clear();
-                        context.Response.StatusCode = problem.Status!.Value;
-                        await context.Response.WriteAsJsonAsync(problem);
+                        logger.LogError(exp, "An unexpected error occurred: {Message}", exp.Message);
+                        await WriteAsProblem(context, exp);
                         return;
                     }
             }
 
             throw;
         }
+    }
+
+    private static async Task WriteAsProblem(HttpContext context, Exception exp)
+    {
+        var problem = exp.AsProblemDetails();
+        context.Response.Clear();
+        context.Response.StatusCode = problem.Status!.Value;
+        await context.Response.WriteAsJsonAsync(problem);
     }
 
     private static bool ShouldLog(int? status)
