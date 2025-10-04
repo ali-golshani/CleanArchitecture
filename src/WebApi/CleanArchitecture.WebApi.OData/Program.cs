@@ -1,3 +1,4 @@
+using CleanArchitecture.Actors.WebApi;
 using CleanArchitecture.Configurations;
 using CleanArchitecture.WebApi.OData.Configs;
 using CleanArchitecture.WebApi.Shared.Configs;
@@ -36,7 +37,7 @@ public static class Program
 
         Authentication.AuthenticationConfigs.Configure(configuration, services);
         Authorization.AuthorizationConfigs.Configure(services);
-        Actors.ServiceConfigurations.RegisterHttpActorsServices(services);
+        ServiceConfigurations.RegisterHttpActorsServices(services);
 
         services
             .AddControllers(options =>

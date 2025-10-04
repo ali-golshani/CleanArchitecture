@@ -1,8 +1,7 @@
-﻿using CleanArchitecture.Actors;
-using CleanArchitecture.WebApi.Actors.ActorResolvers;
+﻿using CleanArchitecture.Actors.WebApi.ActorResolvers;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Actors;
+namespace CleanArchitecture.Actors.WebApi;
 
 internal static class ClaimsPrincipalExtensions
 {

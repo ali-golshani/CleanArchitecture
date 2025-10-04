@@ -1,9 +1,8 @@
-﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Actors.ActorProviders;
+﻿using CleanArchitecture.Actors.ActorProviders;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace CleanArchitecture.WebApi.Actors;
+namespace CleanArchitecture.Actors.WebApi;
 
 internal sealed class HttpActorProvider : IActorProvider
 {

@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Actors.ActorProviders;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.WebApi.Actors;
+namespace CleanArchitecture.Actors.WebApi;
 
 public static class ServiceConfigurations
 {
