@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.WebApi.Authorization.Policies.Scopes;
+﻿namespace CleanArchitecture.Authorization.WebApi.Policies.Scopes;
 
 internal static class PolicyNames
 {

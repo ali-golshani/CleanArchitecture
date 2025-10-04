@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.WebApi.Authorization.Policies.Permissions;
-using CleanArchitecture.WebApi.Authorization.Policies.Scopes;
+﻿using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
+using CleanArchitecture.Authorization.WebApi.Policies.Scopes;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
-namespace CleanArchitecture.WebApi.Authorization.Policies;
+namespace CleanArchitecture.Authorization.WebApi.Policies;
 
 public sealed class AuthorizationPolicyProvider(
     IOptions<AuthorizationOptions> options,

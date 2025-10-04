@@ -1,22 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Options;
 
-namespace CleanArchitecture.WebApi.Authorization.Policies.Scopes;
+namespace CleanArchitecture.Authorization.WebApi.Policies.Permissions;
 
-public sealed class ScopeAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options)
+public sealed class PermissionAuthorizationPolicyProvider(IOptions<AuthorizationOptions> options)
 {
     private readonly AuthorizationOptions options = options.Value;
 
     public AuthorizationPolicy? GetPolicy(string policyName)
     {
-        if (!PolicyNames.TryParsePolicyName(policyName, out var scopes))
+        if (!PolicyNames.TryParsePolicyName(policyName, out var permission))
         {
             return null;
         }
 
         var policy =
                 new AuthorizationPolicyBuilder()
-                .AddRequirements(new ScopeRequirement(scopes))
+                .AddRequirements(new PermissionRequirement(permission))
                 .Build();
 
         options.AddPolicy(policyName, policy);

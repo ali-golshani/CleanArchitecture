@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.WebApi.Authorization;
+﻿using CleanArchitecture.Authorization.WebApi;
+
+namespace CleanArchitecture.WebApi.Authorization;
 
 internal static class AuthorizationConfigs
 {

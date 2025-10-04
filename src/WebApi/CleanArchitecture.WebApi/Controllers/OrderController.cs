@@ -1,8 +1,6 @@
 ﻿using CleanArchitecture.Ordering.Queries;
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries.Models;
-using CleanArchitecture.WebApi.Authorization.Policies.Scopes;
-using CleanArchitecture.WebApi.Authorization.Policies.Permissions;
 using Framework.Queries;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -10,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using GetOrder = CleanArchitecture.Ordering.Queries.Orders.GetOrder;
 using GetOrders = CleanArchitecture.Ordering.Queries.Orders.GetOrders;
 using RegisterOrder = CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
+using CleanArchitecture.Authorization.WebApi.Policies.Scopes;
+using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
 
 namespace CleanArchitecture.WebApi.Controllers;
 

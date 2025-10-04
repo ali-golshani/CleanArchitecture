@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.WebApi.Authorization.Policies.Permissions;
+﻿namespace CleanArchitecture.Authorization.WebApi.Policies.Permissions;
 
 internal static class PolicyNames
 {
@@ -14,7 +14,7 @@ internal static class PolicyNames
         if (policyName.StartsWith(PolicyPrefix))
         {
             var permissionString = policyName[PolicyPrefix.Length..];
-            if (Enum.TryParse<Permission>(permissionString, out permission))
+            if (Enum.TryParse(permissionString, out permission))
             {
                 return true;
             }

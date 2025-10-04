@@ -25,10 +25,10 @@
     <ProjectReference Include="..\..\Framework\Framework.DomainRules\Framework.DomainRules.csproj" />
     <ProjectReference Include="..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Actors.WebApi\CleanArchitecture.Actors.WebApi.csproj" />
+    <ProjectReference Include="..\..\Shared\CleanArchitecture.Authorization.WebApi\CleanArchitecture.Authorization.WebApi.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
     <ProjectReference Include="..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.WebApi.Authorization\CleanArchitecture.WebApi.Authorization.csproj" />
   </ItemGroup>
 
 </Project>

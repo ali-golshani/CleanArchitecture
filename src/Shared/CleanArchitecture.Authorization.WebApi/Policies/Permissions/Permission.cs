@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.WebApi.Authorization.Policies.Permissions;
+﻿namespace CleanArchitecture.Authorization.WebApi.Policies.Permissions;
 
 public enum Permission
 {
