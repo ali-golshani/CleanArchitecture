@@ -5,7 +5,7 @@ using System.Security.Claims;
 
 namespace CleanArchitecture.WebApi.Actors;
 
-internal class HttpActorProvider : IActorProvider
+internal sealed class HttpActorProvider : IActorProvider
 {
     private readonly IHttpContextAccessor httpContextAccessor;
 

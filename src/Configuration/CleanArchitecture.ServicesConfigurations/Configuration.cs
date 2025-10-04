@@ -64,7 +64,7 @@ public static class Configuration
         Framework.Mediator.ServiceConfigurations.RegisterServices(services);
         Framework.Persistence.ServiceConfigurations.RegisterServices(services);
 
-        Actors.ServiceConfigurations.RegisterServices(services);
+        Actors.ServiceConfigurations.RegisterActorsServices(services);
         Mediator.Middlewares.ServiceConfigurations.RegisterServices(services);
 
         Infrastructure.RequestAudit.ServiceConfigurations.RegisterServices(services);

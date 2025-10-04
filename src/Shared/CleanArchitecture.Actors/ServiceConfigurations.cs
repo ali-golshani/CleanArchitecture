@@ -5,7 +5,7 @@ namespace CleanArchitecture.Actors;
 
 public static class ServiceConfigurations
 {
-    public static void RegisterServices(IServiceCollection services)
+    public static void RegisterActorsServices(IServiceCollection services)
     {
         services.AddScoped<FixedActorProvider>();
         services.AddScoped<IActorProvider, FixedActorProvider>(sp => sp.GetRequiredService<FixedActorProvider>());
