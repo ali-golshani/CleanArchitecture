@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.ServicesConfigurations;
 
-internal static class Modules
+internal static class ServicesRegistration
 {
     public static IServiceCollection AddOrderingModule(this IServiceCollection services, ConnectionStrings connectionStrings)
     {
@@ -92,7 +92,7 @@ internal static class Modules
         return services;
     }
 
-    public static IServiceCollection AddAuthorization(this IServiceCollection services)
+    public static IServiceCollection AddActorAuthorization(this IServiceCollection services)
     {
         Actors.ServiceConfigurations.RegisterServices(services);
         Authorization.ServiceConfigurations.RegisterServices(services);
@@ -102,6 +102,26 @@ internal static class Modules
 
     public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
+        services.AddCapMessaging(configuration, connectionStrings);
+        services.AddMassTransitMessaging(configuration, connectionStrings);
+
+        return services;
+    }
+
+    private static IServiceCollection AddCapMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    {
+        CapConfigs.RegisterCap(services, configuration, connectionStrings.CleanArchitectureConnectionString);
+
+        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.Cap)
+        {
+            Framework.Cap.ServiceConfigurations.RegisterEventOutbox(services);
+        }
+
+        return services;
+    }
+
+    private static IServiceCollection AddMassTransitMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    {
         services
             .AddDbContext<Framework.MassTransit.MassTransitDbContext>(
             optionsBuilder => SqlConfigs.Configure(optionsBuilder, connectionStrings.CleanArchitectureConnectionString, Framework.MassTransit.Settings.Persistence.SchemaNames.MassTransit),
@@ -110,13 +130,7 @@ internal static class Modules
         MassTransitConfigs.RegisterMassTransitOutboxAndTransport(services, connectionStrings.CleanArchitectureConnectionString);
         services.AddHostedService<Framework.MassTransit.BusHostedService>();
 
-        CapConfigs.RegisterCap(services, configuration, connectionStrings.CleanArchitectureConnectionString);
-
-        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.Cap)
-        {
-            Framework.Cap.ServiceConfigurations.RegisterEventOutbox(services);
-        }
-        else if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.MassTransit)
+        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.MassTransit)
         {
             Framework.MassTransit.ServiceConfigurations.RegisterEventOutbox(services);
         }
