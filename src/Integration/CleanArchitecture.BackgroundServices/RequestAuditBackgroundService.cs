@@ -3,11 +3,11 @@ using Microsoft.Extensions.Hosting;
 
 namespace CleanArchitecture.BackgroundServices;
 
-public class RequestAuditService : BackgroundService
+public class RequestAuditBackgroundService : BackgroundService
 {
     private readonly RequestAuditAgent commandAuditAgent;
 
-    public RequestAuditService(RequestAuditAgent commandAuditAgent)
+    public RequestAuditBackgroundService(RequestAuditAgent commandAuditAgent)
     {
         this.commandAuditAgent = commandAuditAgent;
     }

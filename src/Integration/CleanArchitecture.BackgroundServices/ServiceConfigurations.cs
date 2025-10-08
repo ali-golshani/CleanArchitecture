@@ -6,6 +6,6 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddHostedService<RequestAuditService>();
+        services.AddHostedService<RequestAuditBackgroundService>();
     }
 }
