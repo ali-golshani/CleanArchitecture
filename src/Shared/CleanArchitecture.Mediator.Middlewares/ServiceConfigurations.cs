@@ -1,5 +1,4 @@
-﻿using Framework.Application;
-using Framework.Domain;
+﻿using Framework.Domain;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Mediator.Middlewares;

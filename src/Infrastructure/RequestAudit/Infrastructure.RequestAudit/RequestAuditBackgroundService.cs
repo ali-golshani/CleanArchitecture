@@ -1,7 +1,6 @@
-﻿using Infrastructure.RequestAudit;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 
-namespace CleanArchitecture.BackgroundServices;
+namespace Infrastructure.RequestAudit;
 
 public class RequestAuditBackgroundService : BackgroundService
 {

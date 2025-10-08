@@ -7,18 +7,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Update="GlobalSettings.json">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application\CleanArchitecture.Ordering.Application.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.Cap.Subscribers\CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.MassTransit.Consumers\CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />
-		<ProjectReference Include="..\..\Integration\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj" />
 		<ProjectReference Include="..\..\Integration\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
 		<ProjectReference Include="..\..\Integration\CleanArchitecture.Scheduling\CleanArchitecture.Scheduling.csproj" />
 		<ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />

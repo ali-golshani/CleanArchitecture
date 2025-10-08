@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.9.34607.119
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11104.47 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{645BA2CF-F2A0-43B8-A133-254CEBDF9051}"
 EndProject
@@ -119,8 +119,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.ServicesConfigurations", "src\Configuration\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj", "{96F85FCA-6C27-4D2B-AFC2-130CA6E17F21}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.BackgroundServices", "src\Integration\CleanArchitecture.BackgroundServices\CleanArchitecture.BackgroundServices.csproj", "{9F933D07-55DF-4B5B-9B4B-D238CA1BCF6E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Querying", "src\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj", "{4996B7CA-8C2F-436D-AB42-2D55347C3256}"
 EndProject
@@ -338,10 +336,6 @@ Global
 		{96F85FCA-6C27-4D2B-AFC2-130CA6E17F21}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96F85FCA-6C27-4D2B-AFC2-130CA6E17F21}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96F85FCA-6C27-4D2B-AFC2-130CA6E17F21}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F933D07-55DF-4B5B-9B4B-D238CA1BCF6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F933D07-55DF-4B5B-9B4B-D238CA1BCF6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F933D07-55DF-4B5B-9B4B-D238CA1BCF6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F933D07-55DF-4B5B-9B4B-D238CA1BCF6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4996B7CA-8C2F-436D-AB42-2D55347C3256}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4996B7CA-8C2F-436D-AB42-2D55347C3256}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4996B7CA-8C2F-436D-AB42-2D55347C3256}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -460,7 +454,6 @@ Global
 		{88FBFF9D-FD90-4DFF-B4C7-09AB33E2B1DC} = {AFA29777-30FF-406D-8404-B6A5EAE89D4C}
 		{96F85FCA-6C27-4D2B-AFC2-130CA6E17F21} = {AFA29777-30FF-406D-8404-B6A5EAE89D4C}
 		{9E942061-9093-4C0A-8B8A-6A18F0B7A9C2} = {645BA2CF-F2A0-43B8-A133-254CEBDF9051}
-		{9F933D07-55DF-4B5B-9B4B-D238CA1BCF6E} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}
 		{4996B7CA-8C2F-436D-AB42-2D55347C3256} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}
 		{37944B51-F97A-4371-9FED-6C3E7149D127} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}
 		{74158D0A-11FF-478E-8FF3-72294FBB5479} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}

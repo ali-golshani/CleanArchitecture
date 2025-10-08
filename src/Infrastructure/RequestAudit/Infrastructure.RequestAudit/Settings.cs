@@ -6,6 +6,8 @@ public static class Settings
     public static readonly bool LogAllRequests = false;
     public static readonly TimeSpan QueryResponseTimeThreshold = TimeSpan.FromSeconds(1);
 
+    public static readonly TimeSpan EnsureStartedTimeout = TimeSpan.FromSeconds(30);
+
     public static class Persistence
     {
         public static class SchemaNames

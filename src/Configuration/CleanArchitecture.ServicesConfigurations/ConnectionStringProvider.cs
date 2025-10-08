@@ -2,9 +2,9 @@
 using Framework.Exceptions;
 using Microsoft.Extensions.Configuration;
 
-namespace CleanArchitecture.ServicesConfigurations.Configs;
+namespace CleanArchitecture.ServicesConfigurations;
 
-internal static class ConnectionStrings
+internal static class ConnectionStringProvider
 {
     public static string CleanArchitectureConnectionString(this IConfiguration configuration)
     {

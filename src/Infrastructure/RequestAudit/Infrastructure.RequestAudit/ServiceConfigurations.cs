@@ -9,4 +9,9 @@ public static class ServiceConfigurations
         services.AddSingleton<RequestAuditAgent>();
         services.AddTransient(typeof(RequestAuditMiddleware<,>));
     }
+
+    public static void RegisterHostedServices(IServiceCollection services)
+    {
+        services.AddHostedService<RequestAuditBackgroundService>();
+    }
 }

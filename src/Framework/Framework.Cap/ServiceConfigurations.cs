@@ -5,7 +5,7 @@ namespace Framework.Cap;
 
 public static class ServiceConfigurations
 {
-    public static void RegisterServices(IServiceCollection services)
+    public static void RegisterEventOutbox(IServiceCollection services)
     {
         services.AddScoped<IIntegrationEventOutbox, EventOutbox>();
     }

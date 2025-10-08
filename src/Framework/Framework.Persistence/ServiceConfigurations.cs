@@ -5,7 +5,7 @@ namespace Framework.Persistence;
 
 public static class ServiceConfigurations
 {
-    public static void RegisterServices(IServiceCollection services)
+    public static void RegisterDbInterceptors(IServiceCollection services)
     {
         services.AddScoped<CorrelationIdInterceptor>();
     }

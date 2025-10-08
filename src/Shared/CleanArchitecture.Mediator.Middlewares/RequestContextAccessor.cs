@@ -1,7 +1,7 @@
 ﻿using Framework.Domain;
 using Framework.Mediator;
 
-namespace Framework.Application;
+namespace CleanArchitecture.Mediator.Middlewares;
 
 public sealed class RequestContextAccessor : IRequestContextAccessor
 {

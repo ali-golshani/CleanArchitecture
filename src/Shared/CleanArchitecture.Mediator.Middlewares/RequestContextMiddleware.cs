@@ -1,5 +1,4 @@
-﻿using Framework.Application;
-using Framework.Mediator;
+﻿using Framework.Mediator;
 using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.Mediator.Middlewares;
