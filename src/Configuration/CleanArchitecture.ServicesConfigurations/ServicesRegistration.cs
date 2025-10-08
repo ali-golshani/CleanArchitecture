@@ -103,7 +103,7 @@ internal static class ServicesRegistration
     public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
         services.AddCapMessaging(configuration, connectionStrings);
-        services.AddMassTransitMessaging(configuration, connectionStrings);
+        services.AddMassTransitMessaging(connectionStrings);
 
         return services;
     }
@@ -120,7 +120,7 @@ internal static class ServicesRegistration
         return services;
     }
 
-    private static IServiceCollection AddMassTransitMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    private static IServiceCollection AddMassTransitMessaging(this IServiceCollection services, ConnectionStrings connectionStrings)
     {
         services
             .AddDbContext<Framework.MassTransit.MassTransitDbContext>(
