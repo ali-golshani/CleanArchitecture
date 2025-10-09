@@ -8,6 +8,6 @@ public static class MockServiceConfigurations
     public static void RegisterMockServices(IServiceCollection services)
     {
         services.RegisterRequestHandlers();
-        services.AddScoped<ICommoditySystem, CommoditySystem>();
+        services.AddScoped<ICommoditySystem, MockCommoditySystem>();
     }
 }

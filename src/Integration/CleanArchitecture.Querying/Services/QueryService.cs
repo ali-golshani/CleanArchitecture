@@ -1,14 +1,16 @@
 ﻿using CleanArchitecture.Querying.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Querying.Services;
 
 internal sealed class QueryService(IServiceProvider serviceProvider) : IQueryService
 {
-    public Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        return serviceProvider.SendToPipeline<TRequest, TResponse, QueryPipeline.Pipeline<TRequest, TResponse>>(query, cancellationToken);
+        var pipeline = serviceProvider.GetRequiredService<QueryPipeline.Pipeline<TRequest, TResponse>>();
+        return await pipeline.Handle(query.AsRequestType(), cancellationToken);
     }
 }

@@ -2,6 +2,7 @@
 using CleanArchitecture.Ordering.Application.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Application.Services;
 
@@ -11,13 +12,15 @@ internal sealed class CommandService(ActorPreservingScopeFactory scopeFactory) :
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope();
-        return await scope.ServiceProvider.SendToPipeline<TRequest, TResponse, CommandPipeline.Pipeline<TRequest, TResponse>>(command, cancellationToken);
+        var pipeline = scope.ServiceProvider.GetRequiredService<CommandPipeline.Pipeline<TRequest, TResponse>>();
+        return await pipeline.Handle(command.AsRequestType(), cancellationToken);
     }
 
     public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, ICommand<TRequest, TResponse> command, CancellationToken cancellationToken)
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope(actor);
-        return await scope.ServiceProvider.SendToPipeline<TRequest, TResponse, CommandPipeline.Pipeline<TRequest, TResponse>>(command, cancellationToken);
+        var pipeline = scope.ServiceProvider.GetRequiredService<CommandPipeline.Pipeline<TRequest, TResponse>>();
+        return await pipeline.Handle(command.AsRequestType(), cancellationToken);
     }
 }
