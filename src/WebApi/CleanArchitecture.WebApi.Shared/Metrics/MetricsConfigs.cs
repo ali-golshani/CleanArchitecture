@@ -1,6 +1,6 @@
 ﻿using Prometheus;
 
-namespace CleanArchitecture.WebApi.Shared.Configs;
+namespace CleanArchitecture.WebApi.Shared.Metrics;
 
 public static class MetricsConfigs
 {

@@ -1,18 +1,10 @@
 ﻿using Microsoft.AspNetCore.RateLimiting;
 using System.Threading.RateLimiting;
 
-namespace CleanArchitecture.WebApi.Shared.Configs;
+namespace CleanArchitecture.WebApi.Shared.RateLimitation;
 
-public static class RateLimiterConfigs
+public static class RateLimitationConfigs
 {
-    public static readonly FixedWindowRateLimiterOptions Fixed = new FixedWindowRateLimiterOptions
-    {
-        PermitLimit = 10,
-        Window = TimeSpan.FromSeconds(1),
-        QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
-        QueueLimit = 10,
-    };
-
     public static void Configure(IServiceCollection services, FixedWindowRateLimiterOptions options)
     {
         services.AddRateLimiter(rateLimiterOptions =>

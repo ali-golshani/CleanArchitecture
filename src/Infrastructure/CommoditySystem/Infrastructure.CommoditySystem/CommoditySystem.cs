@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.CommoditySystem;
 
-internal class CommoditySystem(IServiceProvider serviceProvider) : ICommoditySystem
+internal sealed class CommoditySystem(IServiceProvider serviceProvider) : ICommoditySystem
 {
     public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>

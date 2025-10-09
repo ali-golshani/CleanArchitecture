@@ -2,7 +2,7 @@
 
 public class Query : QueryBase, IQuery<Query, Framework.Queries.PaginatedItems<Models.Order>>
 {
-    public override string RequestTitle => "Get Orders Query";
+    public override string RequestTitle => "Get Orders";
 
     public int? CustomerId { get; init; }
     public int? BrokerId { get; init; }

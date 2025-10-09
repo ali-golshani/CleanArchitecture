@@ -18,7 +18,7 @@ internal sealed class BuildOrderPolicyBuilder(ICommoditySystem commoditySystem)
 
         var businessRules = new IBusinessRule[]
         {
-            new CustomerCommodityRule(commoditySystem, new CustomerCommodityRule.Inquiry
+            new CustomerCommodityLicenseRule(commoditySystem, new CustomerCommodityLicenseRule.Inquiry
             {
                 CustomerId = value.CustomerId,
                 CommodityId = value.Commodity.CommodityId,

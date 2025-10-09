@@ -6,14 +6,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Ordering.Queries.Orders.GetOrder;
 
-internal sealed class Handler : IRequestHandler<Query, Models.Order?>
+internal sealed class Handler(IOrderingQueryDb db) : IRequestHandler<Query, Models.Order?>
 {
-    private readonly IOrderingQueryDb db;
-
-    public Handler(IOrderingQueryDb db)
-    {
-        this.db = db;
-    }
+    private readonly IOrderingQueryDb db = db;
 
     public async Task<Result<Models.Order?>> Handle(Query request, CancellationToken cancellationToken)
     {

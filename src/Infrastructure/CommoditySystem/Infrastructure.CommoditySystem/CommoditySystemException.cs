@@ -2,7 +2,7 @@
 
 namespace Infrastructure.CommoditySystem;
 
-public class CommoditySystemException(Exception innerException) 
+public sealed class CommoditySystemException(Exception innerException) 
     : ExternalException(Resources.Messages.CommoditySystemException, innerException)
 {
 }

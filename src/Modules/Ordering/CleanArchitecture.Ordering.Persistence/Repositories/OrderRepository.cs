@@ -3,14 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Ordering.Persistence.Repositories;
 
-internal class OrderRepository : Domain.Repositories.IOrderRepository
+internal sealed class OrderRepository(OrderingDbContext db) : Domain.Repositories.IOrderRepository
 {
-    private readonly OrderingDbContext db;
-
-    public OrderRepository(OrderingDbContext db)
-    {
-        this.db = db;
-    }
+    private readonly OrderingDbContext db = db;
 
     public void Add(Order order)
     {

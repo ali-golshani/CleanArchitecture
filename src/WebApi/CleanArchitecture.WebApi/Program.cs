@@ -3,6 +3,7 @@ using CleanArchitecture.WebApi.Shared.Configs;
 using CleanArchitecture.WebApi.Shared.Cors;
 using CleanArchitecture.WebApi.Shared.Filters;
 using CleanArchitecture.WebApi.Shared.Middlewares;
+using CleanArchitecture.WebApi.Shared.RateLimitation;
 using CleanArchitecture.WebApi.Shared.Swagger;
 using CleanArchitecture.WebApi.Shared.Versioning;
 using Hellang.Middleware.ProblemDetails;
@@ -28,7 +29,7 @@ public static class Program
 
         VersioningConfigs.Configure(services);
         CorsConfigs.Configure(services);
-        RateLimiterConfigs.Configure(services, RateLimiterConfigs.Fixed);
+        RateLimitationConfigs.Configure(services, RateLimiters.Fixed);
         SwaggerConfigs.Configure(services);
         ResponseCompressionConfigs.Configure(services);
         ProblemDetailsConfigs.Configure(services, isDevelopment);

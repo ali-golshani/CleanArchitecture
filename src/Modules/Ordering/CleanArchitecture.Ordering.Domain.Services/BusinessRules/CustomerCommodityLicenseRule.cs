@@ -4,7 +4,7 @@ using Infrastructure.CommoditySystem.Requests;
 
 namespace CleanArchitecture.Ordering.Domain.Services.BusinessRules;
 
-internal class CustomerCommodityRule : IBusinessRule
+internal sealed class CustomerCommodityLicenseRule : IBusinessRule
 {
     public readonly struct Inquiry
     {
@@ -15,7 +15,7 @@ internal class CustomerCommodityRule : IBusinessRule
     private readonly ICommoditySystem commoditySystem;
     private readonly Inquiry inquiry;
 
-    public CustomerCommodityRule(ICommoditySystem commoditySystem, Inquiry inquiry)
+    public CustomerCommodityLicenseRule(ICommoditySystem commoditySystem, Inquiry inquiry)
     {
         this.commoditySystem = commoditySystem;
         this.inquiry = inquiry;

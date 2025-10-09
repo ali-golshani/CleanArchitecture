@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection;
 
 namespace CleanArchitecture.Ordering.Persistence;
 
@@ -12,6 +11,6 @@ public class OrderingDbContext : Framework.Persistence.DbContextBase, IOrderingQ
     {
         base.OnModelCreating(modelBuilder);
 
-        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderingDbContext).Assembly);
     }
 }
