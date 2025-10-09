@@ -39,8 +39,7 @@ public static class Configuration
         services.AddSingleton<IDateTime, SystemDateTime>();
         services.AddSingleton(_ => SystemEnvironment.Environment);
 
-        Framework.Persistence.ServiceConfigurations.RegisterDbInterceptors(services);
-
+        services.AddDbInterceptors();
         services.AddMediator();
         services.AddRequestAudit(connectionStrings);
         services.AddCommoditySystem(environment);

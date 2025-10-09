@@ -9,7 +9,7 @@ namespace CleanArchitecture.ServicesConfigurations;
 
 internal static class ServicesRegistration
 {
-    public static IServiceCollection AddOrderingModule(this IServiceCollection services, ConnectionStrings connectionStrings)
+    public static void AddOrderingModule(this IServiceCollection services, ConnectionStrings connectionStrings)
     {
         services
             .AddDbContext<Ordering.Persistence.OrderingDbContext>((sp, optionsBuilder) =>
@@ -26,11 +26,9 @@ internal static class ServicesRegistration
         Ordering.Application.ServiceConfigurations.RegisterServices(services);
         Ordering.Application.Cap.Subscribers.ServiceConfigurations.RegisterServices(services);
         Ordering.Application.MassTransit.Consumers.ServiceConfigurations.RegisterServices(services);
-
-        return services;
     }
 
-    public static IServiceCollection AddCommoditySystem(this IServiceCollection services, IEnvironment environment)
+    public static void AddCommoditySystem(this IServiceCollection services, IEnvironment environment)
     {
         if (environment.DeploymentStage == DeploymentStage.Staging)
         {
@@ -40,11 +38,9 @@ internal static class ServicesRegistration
         {
             Infrastructure.CommoditySystem.ServiceConfigurations.RegisterServices(services);
         }
-
-        return services;
     }
 
-    public static IServiceCollection AddRequestAudit(this IServiceCollection services, ConnectionStrings connectionStrings)
+    public static void AddRequestAudit(this IServiceCollection services, ConnectionStrings connectionStrings)
     {
         services
             .AddDbContext<Infrastructure.RequestAudit.Persistence.AuditDbContext>(optionsBuilder =>
@@ -53,62 +49,53 @@ internal static class ServicesRegistration
 
         Infrastructure.RequestAudit.ServiceConfigurations.RegisterServices(services);
         Infrastructure.RequestAudit.ServiceConfigurations.RegisterHostedServices(services);
-
-        return services;
     }
 
-    public static IServiceCollection AddProcessManager(this IServiceCollection services)
+    public static void AddProcessManager(this IServiceCollection services)
     {
         ProcessManager.ServiceConfigurations.RegisterServices(services);
-
-        return services;
     }
 
-    public static IServiceCollection AddQuerying(this IServiceCollection services, ConnectionStrings connectionStrings)
+    public static void AddQuerying(this IServiceCollection services, ConnectionStrings connectionStrings)
     {
         services
             .AddDbContext<Querying.Persistence.EmptyDbContext>(
             optionsBuilder => optionsBuilder.UseSqlServer(connectionStrings.CleanArchitectureConnectionString));
 
         Querying.ServiceConfigurations.RegisterServices(services);
-
-        return services;
     }
 
-    public static IServiceCollection AddMediator(this IServiceCollection services)
+    public static void AddMediator(this IServiceCollection services)
     {
         Framework.Mediator.ServiceConfigurations.RegisterServices(services);
         Mediator.Middlewares.ServiceConfigurations.RegisterServices(services);
-
-        return services;
     }
 
-    public static IServiceCollection AddScheduling(this IServiceCollection services)
+    public static void AddScheduling(this IServiceCollection services)
     {
         Framework.Scheduling.ServiceConfigurations.RegisterServices(services);
         Framework.Scheduling.ServiceConfigurations.RegisterHostedServices(services);
         Scheduling.ServiceConfigurations.RegisterJobs(services);
-
-        return services;
     }
 
-    public static IServiceCollection AddActorAuthorization(this IServiceCollection services)
+    public static void AddDbInterceptors(this IServiceCollection services)
+    {
+        Framework.Persistence.ServiceConfigurations.RegisterDbInterceptors(services);
+    }
+
+    public static void AddActorAuthorization(this IServiceCollection services)
     {
         Actors.ServiceConfigurations.RegisterServices(services);
         Authorization.ServiceConfigurations.RegisterServices(services);
-
-        return services;
     }
 
-    public static IServiceCollection AddMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    public static void AddMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
         services.AddCapMessaging(configuration, connectionStrings);
         services.AddMassTransitMessaging(connectionStrings);
-
-        return services;
     }
 
-    private static IServiceCollection AddCapMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    private static void AddCapMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
         CapConfigs.RegisterCap(services, configuration, connectionStrings.CleanArchitectureConnectionString);
 
@@ -116,11 +103,9 @@ internal static class ServicesRegistration
         {
             Framework.Cap.ServiceConfigurations.RegisterEventOutbox(services);
         }
-
-        return services;
     }
 
-    private static IServiceCollection AddMassTransitMessaging(this IServiceCollection services, ConnectionStrings connectionStrings)
+    private static void AddMassTransitMessaging(this IServiceCollection services, ConnectionStrings connectionStrings)
     {
         services
             .AddDbContext<Framework.MassTransit.MassTransitDbContext>(
@@ -134,7 +119,5 @@ internal static class ServicesRegistration
         {
             Framework.MassTransit.ServiceConfigurations.RegisterEventOutbox(services);
         }
-
-        return services;
     }
 }
