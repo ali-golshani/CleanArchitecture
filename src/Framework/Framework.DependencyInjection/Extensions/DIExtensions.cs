@@ -16,7 +16,7 @@ public static class DIExtensions
         {
             scan
                 .FromAssemblies(assembly)
-                .AddClasses(classes => classes.AssignableTo<TBase>())
+                .AddClasses(classes => classes.AssignableTo<TBase>(), publicOnly: false)
                 .AsSelf()
                 .WithTransientLifetime()
                 ;
@@ -35,7 +35,7 @@ public static class DIExtensions
         {
             scan
                 .FromAssemblies(assembly)
-                .AddClasses(classes => classes.AssignableTo(baseType))
+                .AddClasses(classes => classes.AssignableTo(baseType), publicOnly: false)
                 .AsSelf()
                 .WithTransientLifetime()
                 ;
