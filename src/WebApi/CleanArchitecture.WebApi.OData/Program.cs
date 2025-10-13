@@ -56,13 +56,13 @@ public static class Program
             SwaggerConfigs.Configure(app);
         }
 
-        app.UseCors();
         app.UseHttpsRedirection();
+        app.UseResponseCompression();
+        app.UseCors();
         app.UseProblemDetails();
         app.UseMiddleware<ExceptionHandlingMiddleware>();
         app.UseAuthentication();
         app.UseAuthorization();
-        app.UseResponseCompression();
         app.MapControllers();
 
         await app.RunAsync();
