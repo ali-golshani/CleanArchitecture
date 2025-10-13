@@ -1,6 +1,6 @@
 ﻿namespace Framework.DomainRules;
 
-public sealed class ClauseSource(string name, object? value = null)
+public readonly struct ClauseSource(string name, object? value = null)
 {
     public string Name { get; } = name;
     public object? Value { get; } = value;
