@@ -18,12 +18,12 @@ public static class DIExtensions
         services.RegisterAsImplementedInterfaces(typeof(IRequestHandler<,>), assembly);
     }
 
-    public static void RegisterDomainEventHandlers(this IServiceCollection services)
+    public static void RegisterNotificationHandlers(this IServiceCollection services)
     {
-        services.RegisterDomainEventHandlers(Assembly.GetCallingAssembly());
+        services.RegisterNotificationHandlers(Assembly.GetCallingAssembly());
     }
 
-    public static void RegisterDomainEventHandlers(this IServiceCollection services, Assembly assembly)
+    public static void RegisterNotificationHandlers(this IServiceCollection services, Assembly assembly)
     {
         services.RegisterAsImplementedInterfaces(typeof(INotificationHandler<>), assembly);
     }

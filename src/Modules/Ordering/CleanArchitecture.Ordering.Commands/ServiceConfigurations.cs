@@ -9,7 +9,7 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.RegisterDomainEventHandlers();
+        services.RegisterNotificationHandlers();
         services.RegisterRequestHandlers();
         services.RegisterAccessControls();
         services.RegisterFilters();
