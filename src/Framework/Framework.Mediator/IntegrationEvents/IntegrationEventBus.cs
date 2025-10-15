@@ -2,7 +2,7 @@
 
 public class IntegrationEventBus : IIntegrationEventBus
 {
-    private readonly Queue<IIntegrationEvent> events = new Queue<IIntegrationEvent>();
+    private readonly Queue<IIntegrationEvent> events = [];
 
     public IReadOnlyCollection<IIntegrationEvent> Events => [.. events];
 

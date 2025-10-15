@@ -1,14 +1,9 @@
 ﻿namespace Framework.Mediator.Notifications;
 
-internal sealed class NotificationPublisher<TNotification>
+internal sealed class NotificationPublisher<TNotification>(IEnumerable<INotificationHandler<TNotification>> handlers)
     where TNotification : INotification
 {
-    private readonly IEnumerable<INotificationHandler<TNotification>> handlers;
-
-    public NotificationPublisher(IEnumerable<INotificationHandler<TNotification>> handlers)
-    {
-        this.handlers = handlers;
-    }
+    private readonly IEnumerable<INotificationHandler<TNotification>> handlers = handlers;
 
     public async Task<Result<Empty>> Publish(TNotification notification, CancellationToken cancellationToken)
     {
