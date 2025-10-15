@@ -1,9 +1,9 @@
-﻿using CleanArchitecture.Ordering.Commands.DomainEvents.OrderRegistered;
+﻿using CleanArchitecture.Ordering.Commands.Notifications.OrderRegistered;
 using CleanArchitecture.Ordering.Commands.Errors;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using CleanArchitecture.Ordering.Domain.Services;
 using Framework.Mediator;
-using Framework.Mediator.DomainEvents;
+using Framework.Mediator.Notifications;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Results;
 using Framework.Results.Extensions;
@@ -18,20 +18,20 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     private readonly IOrderRepository orderRepository;
     private readonly IBuildOrderService buildOrderService;
     private readonly ICommoditySystem commoditySystem;
-    private readonly IDomainEventPublisher eventPublisher;
+    private readonly INotificationPublisher notificationPublisher;
     private readonly IIntegrationEventBus integrationEventBus;
 
     public Handler(
         IOrderRepository orderRepository,
         IBuildOrderService buildOrderService,
         ICommoditySystem commoditySystem,
-        IDomainEventPublisher eventPublisher,
+        INotificationPublisher notificationPublisher,
         IIntegrationEventBus integrationEventBus)
     {
         this.orderRepository = orderRepository;
         this.buildOrderService = buildOrderService;
         this.commoditySystem = commoditySystem;
-        this.eventPublisher = eventPublisher;
+        this.notificationPublisher = notificationPublisher;
         this.integrationEventBus = integrationEventBus;
     }
 
@@ -113,9 +113,9 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         Guid? correlationId,
         CancellationToken cancellationToken)
     {
-        var result = await eventPublisher.Publish
+        var result = await notificationPublisher.Publish
         (
-            new Event { OrderId = order.OrderId },
+            new Notification { OrderId = order.OrderId },
             cancellationToken
         );
 

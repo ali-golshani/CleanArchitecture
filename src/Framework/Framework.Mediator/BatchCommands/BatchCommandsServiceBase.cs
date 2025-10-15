@@ -41,7 +41,8 @@ public abstract class BatchCommandsServiceBase<TCommand>
             {
                 throw;
             }
-            else if (parameters.DelayOnError > TimeSpan.Zero)
+            
+            if (parameters.DelayOnError > TimeSpan.Zero)
             {
                 await Task.Delay(parameters.DelayOnError.Value, cancellationToken);
             }

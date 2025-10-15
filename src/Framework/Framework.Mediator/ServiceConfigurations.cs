@@ -1,4 +1,4 @@
-﻿using Framework.Mediator.DomainEvents;
+﻿using Framework.Mediator.Notifications;
 using Framework.Mediator.IntegrationEvents;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,8 +8,8 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        services.AddTransient(typeof(DomainEventPublisher<>));
+        services.AddTransient(typeof(NotificationPublisher<>));
         services.AddScoped<IIntegrationEventBus, IntegrationEventBus>();
-        services.AddTransient<IDomainEventPublisher, DomainEventPublisher>();
+        services.AddTransient<INotificationPublisher, NotificationPublisher>();
     }
 }

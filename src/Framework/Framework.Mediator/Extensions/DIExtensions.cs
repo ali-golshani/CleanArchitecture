@@ -1,5 +1,5 @@
 ﻿using Framework.DependencyInjection.Extensions;
-using Framework.Mediator.DomainEvents;
+using Framework.Mediator.Notifications;
 using Framework.Mediator.Middlewares;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
@@ -25,7 +25,7 @@ public static class DIExtensions
 
     public static void RegisterDomainEventHandlers(this IServiceCollection services, Assembly assembly)
     {
-        services.RegisterAsImplementedInterfaces(typeof(IDomainEventHandler<>), assembly);
+        services.RegisterAsImplementedInterfaces(typeof(INotificationHandler<>), assembly);
     }
 
     public static void AddKeyedPipeline<TPipelineConfiguration>(this IServiceCollection services, Type pipelineType)
