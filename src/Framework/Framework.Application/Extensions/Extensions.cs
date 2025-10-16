@@ -1,10 +1,10 @@
-﻿using Framework.Mediator.IntegrationEvents;
+﻿using Framework.Mediator.DomainEvents;
 
 namespace Framework.Application.Extensions;
 
 public static class Extensions
 {
-    public static async Task PublishEvents(this IIntegrationEventOutbox eventsOutbox, IIntegrationEventBus eventBus, CancellationToken cancellationToken)
+    public static async Task PublishEvents(this IDomainEventOutbox eventsOutbox, IDomainEventBus eventBus, CancellationToken cancellationToken)
     {
         var events = eventBus.Events;
 

@@ -2,7 +2,7 @@
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using MassTransit;
-using CleanArchitecture.Ordering.IntegrationEvents;
+using CleanArchitecture.Ordering.DomainEvents;
 
 namespace CleanArchitecture.Ordering.Application.MassTransit.Consumers;
 

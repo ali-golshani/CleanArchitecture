@@ -1,18 +1,18 @@
-﻿using Framework.Domain.IntegrationEvents;
+﻿using Framework.Domain.DomainEvents;
 using Framework.Threading.BackgroundServices;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Framework.Persistence.IntegrationEvents;
+namespace Framework.Persistence.DomainEvents;
 
-public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
+public abstract class DomainEventsPublisher<TDbContext, TEvent>(
     IServiceScopeFactory serviceScopeFactory,
     int maximumNumberOfRetries,
     TimeSpan eventWaitingTimeout,
     TimeSpan delayOnError)
     : BackgroundServiceAgentBase
     where TDbContext : DbContextBase
-    where TEvent : class, IIntegrationEvent
+    where TEvent : class, IDomainEvent
 {
     protected abstract string DistributedLockName { get; }
     protected abstract Task Log(Exception exception);
@@ -84,18 +84,18 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         try
         {
             await Publish(@event, cancellationToken);
-            await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Published, tryCount);
+            await UpdatePublishStatus(eventId, DomainEventPublishStatus.Published, tryCount);
             return true;
         }
         catch
         {
             if (tryCount >= maximumNumberOfRetries)
             {
-                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.Failed, tryCount);
+                await UpdatePublishStatus(eventId, DomainEventPublishStatus.Failed, tryCount);
             }
             else
             {
-                await UpdatePublishStatus(eventId, IntegrationEventPublishStatus.InProcess, tryCount);
+                await UpdatePublishStatus(eventId, DomainEventPublishStatus.InProcess, tryCount);
             }
 
             throw;
@@ -117,7 +117,7 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
     {
         return await
             db.Set<TEvent>()
-            .Where(x => x.PublishStatus == IntegrationEventPublishStatus.InProcess)
+            .Where(x => x.PublishStatus == DomainEventPublishStatus.InProcess)
             .OrderBy(x => x.EventId)
             .AsNoTracking()
             .FirstOrDefaultAsync(cancellationToken);
@@ -139,7 +139,7 @@ public abstract class IntegrationEventsPublisher<TDbContext, TEvent>(
         await PublishEvent(scope.ServiceProvider, @event, cancellationToken);
     }
 
-    private async Task UpdatePublishStatus(long eventId, IntegrationEventPublishStatus publishStatus, int publishTryCount)
+    private async Task UpdatePublishStatus(long eventId, DomainEventPublishStatus publishStatus, int publishTryCount)
     {
         using var scope = CreateScope();
         using var db = scope.ServiceProvider.GetRequiredService<TDbContext>();

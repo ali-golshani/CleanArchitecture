@@ -1,23 +1,23 @@
-﻿namespace Framework.Domain.IntegrationEvents;
+﻿namespace Framework.Domain.DomainEvents;
 
-public abstract class IntegrationEvent : IIntegrationEvent
+public abstract class DomainEvent : IDomainEvent
 {
     public long EventId { get; }
     public Guid EventGuid { get; }
     public DateTime EventTime { get; }
-    public IntegrationEventPublishStatus PublishStatus { get; private set; }
+    public DomainEventPublishStatus PublishStatus { get; private set; }
     public int PublishTryCount { get; private set; }
     public Guid? CorrelationId { get; set; }
 
-    protected IntegrationEvent(DateTime eventTime)
+    protected DomainEvent(DateTime eventTime)
     {
         EventGuid = Guid.NewGuid();
-        PublishStatus = IntegrationEventPublishStatus.InProcess;
+        PublishStatus = DomainEventPublishStatus.InProcess;
         PublishTryCount = 0;
         EventTime = eventTime;
     }
 
-    public void Update(IntegrationEventPublishStatus publishStatus, int publishTryCount)
+    public void Update(DomainEventPublishStatus publishStatus, int publishTryCount)
     {
         PublishStatus = publishStatus;
         PublishTryCount = publishTryCount;

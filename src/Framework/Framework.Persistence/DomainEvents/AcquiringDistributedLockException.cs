@@ -1,4 +1,4 @@
-﻿namespace Framework.Persistence.IntegrationEvents;
+﻿namespace Framework.Persistence.DomainEvents;
 
 public class AcquiringDistributedLockException : Exception
 {

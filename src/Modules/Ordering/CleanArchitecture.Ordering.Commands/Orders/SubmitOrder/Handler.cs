@@ -1,9 +1,9 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
 using CleanArchitecture.Ordering.Commands.Errors;
-using CleanArchitecture.Ordering.IntegrationEvents;
+using CleanArchitecture.Ordering.DomainEvents;
 using CleanArchitecture.Ordering.Domain.Repositories;
-using Framework.Mediator.IntegrationEvents;
+using Framework.Mediator.DomainEvents;
 using Framework.Results;
 using Framework.Results.Errors;
 using Framework.Mediator;
@@ -14,16 +14,16 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 {
     private readonly IActorResolver actorResolver;
     private readonly IOrderRepository orderRepository;
-    private readonly IIntegrationEventBus integrationEventBus;
+    private readonly IDomainEventBus domainEventBus;
 
     public Handler(
         IActorResolver actorResolver,
         IOrderRepository orderRepository,
-        IIntegrationEventBus integrationEventBus)
+        IDomainEventBus domainEventBus)
     {
         this.actorResolver = actorResolver;
         this.orderRepository = orderRepository;
-        this.integrationEventBus = integrationEventBus;
+        this.domainEventBus = domainEventBus;
     }
 
     public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
@@ -43,7 +43,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (order.Submit())
         {
-            await integrationEventBus.Post(new OrderStatusChangedEvent
+            await domainEventBus.Post(new OrderStatusChangedEvent
             {
                 OrderId = order.OrderId,
                 OrderStatus = order.Status,
