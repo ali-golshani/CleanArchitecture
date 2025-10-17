@@ -1,12 +1,11 @@
-﻿using Framework.Domain;
-using Framework.Persistence.Extensions;
+﻿using Framework.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Framework.Persistence.Interceptors;
 
-public sealed class CorrelationIdInterceptor(IRequestContextAccessor requestContextAccessor) : SaveChangesInterceptor
+public sealed class CorrelationIdInterceptor(ICorrelationIdProvider correlationIdProvider) : SaveChangesInterceptor
 {
-    private readonly IRequestContextAccessor requestContextAccessor = requestContextAccessor;
+    private readonly ICorrelationIdProvider correlationIdProvider = correlationIdProvider;
 
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {
@@ -22,7 +21,7 @@ public sealed class CorrelationIdInterceptor(IRequestContextAccessor requestCont
 
     private void LinkCommandCorrelationIds(DbContextEventData eventData)
     {
-        var correlationId = requestContextAccessor.CorrelationId;
+        var correlationId = correlationIdProvider.CorrelationId;
 
         if (correlationId != null && eventData.Context is DbContextBase db)
         {

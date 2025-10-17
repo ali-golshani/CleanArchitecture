@@ -1,9 +1,9 @@
-﻿using Framework.Domain;
-using Framework.Mediator;
+﻿using Framework.Mediator;
+using Framework.Persistence.Interceptors;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class RequestContextAccessor : IRequestContextAccessor
+public sealed class RequestContextAccessor : ICorrelationIdProvider
 {
     public Guid? CorrelationId { get; private set; }
 

@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
 		<ProjectReference Include="..\..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Contract\Infrastructure.CommoditySystem.Contract.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.Domain\CleanArchitecture.Ordering.Domain.csproj" />
 	</ItemGroup>

@@ -1,4 +1,4 @@
-﻿using Framework.Domain;
+﻿using Framework.Persistence.Interceptors;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Mediator.Middlewares;
@@ -14,6 +14,6 @@ public static class ServiceConfigurations
         services.AddTransient(typeof(RequestContextMiddleware<,>));
 
         services.AddScoped<RequestContextAccessor>();
-        services.AddScoped<IRequestContextAccessor>(sp => sp.GetRequiredService<RequestContextAccessor>());
+        services.AddScoped<ICorrelationIdProvider>(sp => sp.GetRequiredService<RequestContextAccessor>());
     }
 }
