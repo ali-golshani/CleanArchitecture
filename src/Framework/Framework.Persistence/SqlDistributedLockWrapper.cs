@@ -3,7 +3,7 @@ using Medallion.Threading.SqlServer;
 
 namespace Framework.Persistence;
 
-internal class SqlDistributedLockWrapper : IDistributedLock
+internal sealed class SqlDistributedLockWrapper : IDistributedLock
 {
     private readonly string dbConnectionString;
     private readonly string distributedLockName;
