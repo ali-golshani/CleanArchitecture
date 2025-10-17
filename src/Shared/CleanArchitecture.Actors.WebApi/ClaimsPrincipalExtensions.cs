@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.Actors.WebApi.ActorResolvers;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace CleanArchitecture.Actors.WebApi;
 
@@ -7,33 +6,7 @@ internal static class ClaimsPrincipalExtensions
 {
     private const string Question = "?";
 
-    public static IEnumerable<Actor> Actors(ClaimsPrincipal user)
-    {
-        var query = User(user);
-
-        if (query is null)
-        {
-            yield break;
-        }
-
-        var resolvers = new IUserActorsResolver[]
-        {
-            new ProgrammerResolver(),
-            new SupervisorActorResolver(),
-            new BrokerActorResolver(),
-            new CustomerActorResolver(),
-        };
-
-        foreach (var resolver in resolvers)
-        {
-            foreach (var item in resolver.GetActors(query))
-            {
-                yield return item;
-            }
-        }
-    }
-
-    private static User? User(ClaimsPrincipal user)
+    public static User? GetUser(this ClaimsPrincipal user)
     {
         if (user?.Identity?.IsAuthenticated != true)
         {

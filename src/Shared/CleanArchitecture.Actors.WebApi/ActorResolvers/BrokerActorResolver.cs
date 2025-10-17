@@ -2,9 +2,9 @@
 
 namespace CleanArchitecture.Actors.WebApi.ActorResolvers;
 
-internal sealed class BrokerActorResolver : IUserActorsResolver
+internal sealed class BrokerActorResolver : IActorResolver<BrokerActor>
 {
-    public IEnumerable<Actor> GetActors(User user)
+    public BrokerActor? Resolve(User user)
     {
         string username = user.Username;
         string displayName = user.DisplayName;
@@ -13,15 +13,17 @@ internal sealed class BrokerActorResolver : IUserActorsResolver
 
         if (brokerId is null)
         {
-            yield break;
+            return null;
         }
 
         var isBroker = user.IsInRole(ClaimTypes.BrokerRoles);
 
-        if (isBroker)
+        if (!isBroker)
         {
-            yield return new BrokerActor(brokerId.Value, username, displayName, true);
+            return null;
         }
+
+        return new BrokerActor(brokerId.Value, username, displayName, true);
     }
 
     private static int? BrokerId(ClaimsPrincipal user)

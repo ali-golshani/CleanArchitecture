@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Actors.WebApi;
 
-internal record class User(ClaimsPrincipal Principal, List<Claim> Roles, string Username, string DisplayName)
+internal sealed record class User(ClaimsPrincipal Principal, List<Claim> Roles, string Username, string DisplayName)
 {
     public bool IsInRole(List<string> roles)
     {

@@ -18,7 +18,7 @@ public class RequestAuditBackgroundService : BackgroundService
         while (!stoppingToken.IsCancellationRequested)
         {
             await commandAuditAgent.EnsureStarted(stoppingToken);
-            await Task.Delay(Settings.EnsureStartedTimeout, stoppingToken);
+            await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken);
         }
     }
 }

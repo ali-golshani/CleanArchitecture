@@ -2,23 +2,28 @@
 
 namespace CleanArchitecture.Actors.WebApi.ActorResolvers;
 
-internal sealed class CustomerActorResolver : IUserActorsResolver
+internal sealed class CustomerActorResolver : IActorResolver<CustomerActor>
 {
-    public IEnumerable<Actor> GetActors(User user)
+    public CustomerActor? Resolve(User user)
     {
         string username = user.Username;
         string displayName = user.DisplayName;
 
         var isCustomer = user.IsInRole(ClaimTypes.CustomerRoles);
 
-        if (isCustomer)
+        if (!isCustomer)
         {
-            var customerId = CustomerId(user.Principal);
-            if (customerId != null)
-            {
-                yield return new CustomerActor(customerId.Value, username, displayName);
-            }
+            return null;
         }
+
+        var customerId = CustomerId(user.Principal);
+
+        if (customerId == null)
+        {
+            return null;
+        }
+
+        return new CustomerActor(customerId.Value, username, displayName);
     }
 
     private static int? CustomerId(ClaimsPrincipal user)

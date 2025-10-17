@@ -1,24 +1,19 @@
 ﻿namespace CleanArchitecture.Actors.WebApi.ActorResolvers;
 
-internal sealed class ProgrammerResolver : IUserActorsResolver
+internal sealed class ProgrammerResolver : IActorResolver<Programmer>
 {
-    public IEnumerable<Actor> GetActors(User user)
+    public Programmer? Resolve(User user)
     {
         string username = user.Username;
         string displayName = user.DisplayName;
 
         var isProgrammer = user.IsInRole(ClaimTypes.ProgrammerRoles);
 
-        if (isProgrammer)
+        if (!isProgrammer)
         {
-            yield return new Programmer(username, displayName);
+            return null;
         }
 
-        var isSupervisor = user.IsInRole(ClaimTypes.SupervisorRoles);
-
-        if (isSupervisor)
-        {
-            yield return new SupervisorActor(username, displayName);
-        }
+        return new Programmer(username, displayName);
     }
 }
