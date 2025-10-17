@@ -1,10 +1,9 @@
-﻿using CleanArchitecture.Ordering.Commands.Notifications.OrderRegistered;
-using CleanArchitecture.Ordering.Commands.Errors;
+﻿using CleanArchitecture.Ordering.Commands.Errors;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using CleanArchitecture.Ordering.Domain.Services;
 using Framework.Mediator;
-using Framework.Mediator.Notifications;
 using Framework.Mediator.IntegrationEvents;
+using Framework.Mediator.Notifications;
 using Framework.Results;
 using Framework.Results.Extensions;
 using Infrastructure.CommoditySystem;
@@ -115,7 +114,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     {
         var result = await notificationPublisher.Publish
         (
-            new Notification { OrderId = order.OrderId },
+            new Notifications.OrderRegistered.Notification { OrderId = order.OrderId },
             cancellationToken
         );
 

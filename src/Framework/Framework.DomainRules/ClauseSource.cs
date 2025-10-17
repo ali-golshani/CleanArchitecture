@@ -2,8 +2,8 @@
 
 public readonly struct ClauseSource(string name, object? value = null)
 {
-    public string Name { get; } = name;
-    public object? Value { get; } = value;
+    public readonly string Name { get; } = name;
+    public readonly object? Value { get; } = value;
 
     public static implicit operator ClauseSource(string name)
     {
@@ -15,7 +15,7 @@ public readonly struct ClauseSource(string name, object? value = null)
         return new(nameValue.Name, nameValue.Value);
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         if (Value is null)
         {

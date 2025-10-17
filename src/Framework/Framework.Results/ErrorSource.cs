@@ -2,8 +2,8 @@
 
 public readonly struct ErrorSource(string name, object? value)
 {
-    public string Name { get; } = name;
-    public object? Value { get; } = value;
+    public readonly string Name { get; } = name;
+    public readonly object? Value { get; } = value;
 
     public static implicit operator ErrorSource(string sourceName)
     {
@@ -15,7 +15,7 @@ public readonly struct ErrorSource(string name, object? value)
         return new(nameValue.Name, nameValue.Value);
     }
 
-    public override string ToString()
+    public override readonly string ToString()
     {
         if (Value == null)
         {

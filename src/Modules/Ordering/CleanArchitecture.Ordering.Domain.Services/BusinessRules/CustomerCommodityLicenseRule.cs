@@ -8,8 +8,8 @@ internal sealed class CustomerCommodityLicenseRule : IBusinessRule
 {
     public readonly struct Inquiry
     {
-        public required int CustomerId { get; init; }
-        public required int CommodityId { get; init; }
+        public required readonly int CustomerId { get; init; }
+        public required readonly int CommodityId { get; init; }
     }
 
     private readonly ICommoditySystem commoditySystem;
