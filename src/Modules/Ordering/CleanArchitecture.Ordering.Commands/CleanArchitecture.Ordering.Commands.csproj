@@ -7,7 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
 		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Utilities\Framework.Utilities.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
@@ -37,9 +36,5 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>ValidationMessages.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="IntegrationEvents\" />
 	</ItemGroup>
 </Project>
