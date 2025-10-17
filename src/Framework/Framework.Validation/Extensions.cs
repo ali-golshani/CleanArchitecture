@@ -30,8 +30,7 @@ public static class Extensions
             return [];
         }
 
-        return
-            [.. validationResult.Errors.Select(ToError)];
+        return [.. validationResult.Errors.Select(ToError)];
     }
 
     private static Error ToError(ValidationFailure failure)
