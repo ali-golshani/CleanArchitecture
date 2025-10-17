@@ -4,7 +4,7 @@ namespace Framework.Application.Extensions;
 
 public static class Extensions
 {
-    public static async Task PublishEvents(this IDomainEventOutbox eventsOutbox, IIntegrationEventBus eventBus, CancellationToken cancellationToken)
+    public static async Task PublishEvents(this IIntegrationEventOutbox eventsOutbox, IIntegrationEventBus eventBus, CancellationToken cancellationToken)
     {
         var events = eventBus.Events;
 

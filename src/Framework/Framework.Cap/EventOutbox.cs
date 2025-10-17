@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Framework.Cap;
 
-internal sealed class EventOutbox(ICapPublisher publisher) : IDomainEventOutbox
+internal sealed class EventOutbox(ICapPublisher publisher) : IIntegrationEventOutbox
 {
     private readonly ICapPublisher publisher = publisher;
 

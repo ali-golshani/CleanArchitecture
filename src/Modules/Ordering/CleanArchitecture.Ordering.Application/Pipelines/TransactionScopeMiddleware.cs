@@ -12,12 +12,12 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
     where TRequest : CommandBase, ICommand<TRequest, TResponse>
 {
     private readonly OrderingDbContext db;
-    private readonly IDomainEventOutbox eventOutbox;
+    private readonly IIntegrationEventOutbox eventOutbox;
     private readonly IIntegrationEventBus eventBus;
 
     public TransactionScopeMiddleware(
         OrderingDbContext db,
-        IDomainEventOutbox eventOutbox,
+        IIntegrationEventOutbox eventOutbox,
         IIntegrationEventBus eventBus)
     {
         this.db = db;

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Framework.MassTransit;
 
-internal sealed class EventOutbox(MassTransitDbContext massTransitDb, IPublishEndpoint publishEndpoint) : IDomainEventOutbox
+internal sealed class EventOutbox(MassTransitDbContext massTransitDb, IPublishEndpoint publishEndpoint) : IIntegrationEventOutbox
 {
     private readonly MassTransitDbContext massTransitDb = massTransitDb;
     private readonly IPublishEndpoint publishEndpoint = publishEndpoint;

@@ -7,6 +7,6 @@ public static class ServiceConfigurations
 {
     public static void RegisterEventOutbox(IServiceCollection services)
     {
-        services.AddScoped<IDomainEventOutbox, EventOutbox>();
+        services.AddScoped<IIntegrationEventOutbox, EventOutbox>();
     }
 }

@@ -12,6 +12,7 @@
 		<ProjectReference Include="..\..\..\Framework\Framework.Utilities\Framework.Utilities.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.Domain.Services\CleanArchitecture.Ordering.Domain.Services.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.IntegrationEvents\CleanArchitecture.Ordering.IntegrationEvents.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -36,5 +37,9 @@
 	    <Generator>ResXFileCodeGenerator</Generator>
 	    <LastGenOutput>ValidationMessages.Designer.cs</LastGenOutput>
 	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="IntegrationEvents\" />
 	</ItemGroup>
 </Project>
