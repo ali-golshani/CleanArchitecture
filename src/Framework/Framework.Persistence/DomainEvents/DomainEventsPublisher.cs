@@ -12,7 +12,7 @@ public abstract class DomainEventsPublisher<TDbContext, TEvent>(
     TimeSpan delayOnError)
     : BackgroundServiceAgentBase
     where TDbContext : DbContextBase
-    where TEvent : class, IDomainEvent
+    where TEvent : DomainEvent
 {
     protected abstract string DistributedLockName { get; }
     protected abstract Task Log(Exception exception);

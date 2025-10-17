@@ -1,8 +1,8 @@
-﻿using Framework.Mediator.DomainEvents;
+﻿using Framework.Mediator.IntegrationEvents;
 
-namespace CleanArchitecture.Ordering.DomainEvents;
+namespace CleanArchitecture.Ordering.IntegrationEvents;
 
-public class OrderStatusChangedEvent : IDomainEvent
+public class OrderStatusChangedEvent : IIntegrationEvent
 {
     public const string EventTopic = nameof(OrderStatusChangedEvent);
     public string Topic { get; } = EventTopic;

@@ -4,7 +4,7 @@ using CleanArchitecture.Ordering.Domain.Repositories;
 using CleanArchitecture.Ordering.Domain.Services;
 using Framework.Mediator;
 using Framework.Mediator.Notifications;
-using Framework.Mediator.DomainEvents;
+using Framework.Mediator.IntegrationEvents;
 using Framework.Results;
 using Framework.Results.Extensions;
 using Infrastructure.CommoditySystem;
@@ -19,20 +19,20 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     private readonly IBuildOrderService buildOrderService;
     private readonly ICommoditySystem commoditySystem;
     private readonly INotificationPublisher notificationPublisher;
-    private readonly IDomainEventBus domainEventBus;
+    private readonly IIntegrationEventBus integrationEventBus;
 
     public Handler(
         IOrderRepository orderRepository,
         IBuildOrderService buildOrderService,
         ICommoditySystem commoditySystem,
         INotificationPublisher notificationPublisher,
-        IDomainEventBus domainEventBus)
+        IIntegrationEventBus integrationEventBus)
     {
         this.orderRepository = orderRepository;
         this.buildOrderService = buildOrderService;
         this.commoditySystem = commoditySystem;
         this.notificationPublisher = notificationPublisher;
-        this.domainEventBus = domainEventBus;
+        this.integrationEventBus = integrationEventBus;
     }
 
     public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
@@ -124,7 +124,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             return result;
         }
 
-        await domainEventBus.Post(new DomainEvents.OrderStatusChangedEvent
+        await integrationEventBus.Post(new IntegrationEvents.OrderStatusChangedEvent
         {
             CorrelationId = correlationId,
             OrderId = order.OrderId,

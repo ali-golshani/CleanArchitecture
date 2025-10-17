@@ -1,7 +1,7 @@
 ﻿using Framework.Mediator.Extensions;
 using CleanArchitecture.Ordering.Commands;
 using DotNetCore.CAP;
-using CleanArchitecture.Ordering.DomainEvents;
+using CleanArchitecture.Ordering.IntegrationEvents;
 
 namespace CleanArchitecture.Ordering.Application.Cap.Subscribers;
 

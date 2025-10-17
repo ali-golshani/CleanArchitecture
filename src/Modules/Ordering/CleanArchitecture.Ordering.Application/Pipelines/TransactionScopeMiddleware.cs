@@ -1,7 +1,7 @@
 ﻿using CleanArchitecture.Ordering.Persistence;
 using Framework.Application;
 using Framework.Application.Extensions;
-using Framework.Mediator.DomainEvents;
+using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
 
@@ -13,12 +13,12 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
 {
     private readonly OrderingDbContext db;
     private readonly IDomainEventOutbox eventOutbox;
-    private readonly IDomainEventBus eventBus;
+    private readonly IIntegrationEventBus eventBus;
 
     public TransactionScopeMiddleware(
         OrderingDbContext db,
         IDomainEventOutbox eventOutbox,
-        IDomainEventBus eventBus)
+        IIntegrationEventBus eventBus)
     {
         this.db = db;
         this.eventOutbox = eventOutbox;

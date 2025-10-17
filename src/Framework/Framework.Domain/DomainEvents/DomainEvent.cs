@@ -1,6 +1,6 @@
 ﻿namespace Framework.Domain.DomainEvents;
 
-public abstract class DomainEvent : IDomainEvent
+public abstract class DomainEvent
 {
     public long EventId { get; }
     public Guid EventGuid { get; }
