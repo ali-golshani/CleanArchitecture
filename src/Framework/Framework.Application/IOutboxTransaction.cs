@@ -1,7 +1,7 @@
 ﻿namespace Framework.Application;
 
-public interface IOutboxTransaction : IDisposable
+public interface IOutboxTransaction : IAsyncDisposable
 {
-    void Commit();
-    void Rollback();
+    Task CommitAsync();
+    Task RollbackAsync();
 }

@@ -8,19 +8,19 @@ internal sealed class OutboxTransaction(DbConnection connection, DbTransaction t
     private readonly DbConnection connection = connection;
     private readonly DbTransaction transaction = transaction;
 
-    public void Commit()
+    public async Task CommitAsync()
     {
-        transaction.Commit();
+        await transaction.CommitAsync();
     }
 
-    public void Rollback()
+    public async Task RollbackAsync()
     {
-        transaction.Rollback();
+        await transaction.RollbackAsync();
     }
 
-    public void Dispose()
+    public async ValueTask DisposeAsync()
     {
-        transaction.Dispose();
-        connection.Dispose();
+        await transaction.DisposeAsync();
+        await connection.DisposeAsync();
     }
 }

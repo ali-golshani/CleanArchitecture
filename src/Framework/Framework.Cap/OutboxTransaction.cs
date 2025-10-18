@@ -7,18 +7,18 @@ internal sealed class OutboxTransaction(IDbContextTransaction transaction) : IOu
 {
     private readonly IDbContextTransaction transaction = transaction;
 
-    public void Commit()
+    public async Task CommitAsync()
     {
-        transaction.Commit();
+        await transaction.CommitAsync();
     }
 
-    public void Rollback()
+    public async Task RollbackAsync()
     {
-        transaction.Rollback();
+        await transaction.RollbackAsync();
     }
 
-    public void Dispose()
+    public async ValueTask DisposeAsync()
     {
-        transaction.Dispose();
+        await transaction.DisposeAsync();
     }
 }

@@ -4,13 +4,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Framework.Cap;
 
-internal sealed class EventOutbox(ICapPublisher publisher) : IIntegrationEventOutbox
+internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEventOutbox
 {
     private readonly ICapPublisher publisher = publisher;
+    private ICapTransaction? publisherTransaction;
 
     public async Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken)
     {
         var transaction = await db.Database.BeginTransactionAsync(publisher, autoCommit: false, cancellationToken);
+        publisherTransaction = publisher.Transaction;
         return new OutboxTransaction(transaction);
     }
 
@@ -19,6 +21,8 @@ internal sealed class EventOutbox(ICapPublisher publisher) : IIntegrationEventOu
         string topic,
         CancellationToken cancellationToken)
     {
+        publisher.Transaction = publisherTransaction;
+
         foreach (var @event in events)
         {
             await publisher.PublishAsync(topic, @event, cancellationToken: cancellationToken);
