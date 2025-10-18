@@ -6,6 +6,6 @@ public static class ServiceConfigurations
 {
     public static void RegisterServices(IServiceCollection services)
     {
-        DoNothings.Do(services);
+        services.AddTransient<OrderStatusChangedEventSubscriber>();
     }
 }

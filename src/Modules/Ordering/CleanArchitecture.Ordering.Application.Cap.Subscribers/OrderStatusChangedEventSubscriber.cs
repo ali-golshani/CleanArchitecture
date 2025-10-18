@@ -5,7 +5,7 @@ using CleanArchitecture.Ordering.IntegrationEvents;
 
 namespace CleanArchitecture.Ordering.Application.Cap.Subscribers;
 
-public class OrderStatusChangedEventSubscriber(ICommandService commandService) :
+public sealed class OrderStatusChangedEventSubscriber(ICommandService commandService) :
     SubscriberBase(commandService),
     ICapSubscribe
 {
