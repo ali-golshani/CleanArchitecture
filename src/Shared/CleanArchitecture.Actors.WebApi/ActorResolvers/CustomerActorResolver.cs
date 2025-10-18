@@ -28,9 +28,9 @@ internal sealed class CustomerActorResolver : IActorResolver<CustomerActor>
 
     private static int? CustomerId(ClaimsPrincipal user)
     {
-        if (int.TryParse(user.FindFirst(ClaimTypes.CustomerId)?.Value, out var auctioneerId) && auctioneerId > 0)
+        if (int.TryParse(user.FindFirst(ClaimTypes.CustomerId)?.Value, out var customerId) && customerId > 0)
         {
-            return auctioneerId;
+            return customerId;
         }
         else
         {

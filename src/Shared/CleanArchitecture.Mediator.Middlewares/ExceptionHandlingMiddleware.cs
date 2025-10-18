@@ -26,7 +26,6 @@ public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
         catch (Exception exp)
         {
             logger.LogError(exp, "{@Request} {@Error}", context.Request, exp);
-
             var systemException = exp.TranslateToSystemException();
             return Errors(systemException);
         }

@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Ordering.Persistence;
 using Framework.Application;
-using Framework.Application.Extensions;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
