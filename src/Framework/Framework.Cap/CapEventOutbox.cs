@@ -9,11 +9,13 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
     private readonly ICapPublisher publisher = publisher;
     private ICapTransaction? publisherTransaction;
 
-    public async Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken)
+    public Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken)
     {
-        var transaction = await db.Database.BeginTransactionAsync(publisher, autoCommit: false, cancellationToken);
+        // Cap do 'sync over async' in BeginTransactionAsync: use sync version here
+        var transaction = db.Database.BeginTransaction(publisher, autoCommit: false);
         publisherTransaction = publisher.Transaction;
-        return new CapOutboxTransaction(transaction);
+        IOutboxTransaction result = new CapOutboxTransaction(transaction);
+        return Task.FromResult(result);
     }
 
     public async Task Publish<TEvent>(
@@ -21,7 +23,7 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
         string topic,
         CancellationToken cancellationToken)
     {
-        publisher.Transaction = publisherTransaction;
+        publisher.Transaction ??= publisherTransaction;
 
         foreach (var @event in events)
         {

@@ -105,7 +105,7 @@ internal static class ServicesRegistration
     private static void AddCapMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
         CapConfigs.RegisterCap(services, configuration, connectionStrings.CleanArchitectureConnectionString);
-        Framework.Cap.ServiceConfigurations.RegisterEventOutbox(services);
+        Framework.Cap.ServiceConfigurations.RegisterCapEventOutbox(services);
     }
 
     private static void AddMassTransitMessaging(this IServiceCollection services, ConnectionStrings connectionStrings)
