@@ -13,7 +13,7 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
     {
         var transaction = await db.Database.BeginTransactionAsync(publisher, autoCommit: false, cancellationToken);
         publisherTransaction = publisher.Transaction;
-        return new OutboxTransaction(transaction);
+        return new CapOutboxTransaction(transaction);
     }
 
     public async Task Publish<TEvent>(

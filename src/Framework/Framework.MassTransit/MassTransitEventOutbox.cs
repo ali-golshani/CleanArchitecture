@@ -13,7 +13,7 @@ internal sealed class MassTransitEventOutbox(MassTransitDbContext massTransitDb,
     public async Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken)
     {
         (var connection, var transaction) = await DualDbContext.BeginTransaction(db, massTransitDb, cancellationToken);
-        return new OutboxTransaction(connection, transaction);
+        return new MassTransitOutboxTransaction(connection, transaction);
     }
 
     public async Task Publish<TEvent>(IReadOnlyCollection<TEvent> events, string topic, CancellationToken cancellationToken)

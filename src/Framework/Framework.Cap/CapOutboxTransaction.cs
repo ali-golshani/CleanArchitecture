@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Framework.Cap;
 
-internal sealed class OutboxTransaction(IDbContextTransaction transaction) : IOutboxTransaction
+internal sealed class CapOutboxTransaction(IDbContextTransaction transaction) : IOutboxTransaction
 {
     private readonly IDbContextTransaction transaction = transaction;
 

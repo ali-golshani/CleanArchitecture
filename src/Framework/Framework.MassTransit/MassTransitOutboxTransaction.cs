@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace Framework.MassTransit;
 
-internal sealed class OutboxTransaction(DbConnection connection, DbTransaction transaction) : IOutboxTransaction
+internal sealed class MassTransitOutboxTransaction(DbConnection connection, DbTransaction transaction) : IOutboxTransaction
 {
     private readonly DbConnection connection = connection;
     private readonly DbTransaction transaction = transaction;
