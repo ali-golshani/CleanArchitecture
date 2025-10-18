@@ -12,6 +12,8 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
     [CapSubscribe(OrderStatusChangedEvent.EventTopic)]
     public Task Handle(OrderStatusChangedEvent @event, CancellationToken cancellationToken)
     {
+        Console.WriteLine($"{GetType().Name}: Order-Id = {@event.OrderId}");
+
         var command = new Commands.Example.Command
         {
             Id = @event.OrderId,

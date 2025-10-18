@@ -11,6 +11,8 @@ public class GetOrderQueryConsumer(ICommandService commandService, IQueryService
 {
     public async Task Consume(ConsumeContext<GetOrder.Query> context)
     {
+        Console.WriteLine($"{GetType().Name}: Order-Id = {context.Message.OrderId}");
+
         var result = await Handle(context.Message, context.CancellationToken);
         await context.RespondAsync(result);
     }

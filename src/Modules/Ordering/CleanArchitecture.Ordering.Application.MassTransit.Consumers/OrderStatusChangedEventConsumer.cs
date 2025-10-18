@@ -12,6 +12,8 @@ public class OrderStatusChangedEventConsumer(ICommandService commandService, IQu
 {
     public Task Consume(ConsumeContext<OrderStatusChangedEvent> context)
     {
+        Console.WriteLine($"{GetType().Name}: Order-Id = {context.Message.OrderId}");
+
         var command = new Commands.Example.Command
         {
             Id = context.Message.OrderId,
