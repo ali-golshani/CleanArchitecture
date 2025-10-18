@@ -4,7 +4,7 @@ public static class GlobalSettings
 {
     public static class Messaging
     {
-        public static readonly MessagingSystem MessagingSystem = MessagingSystem.MassTransit;
+        public static readonly MessagingSystem MessagingSystem = MessagingSystem.Cap;
     }
 
     public static class Database

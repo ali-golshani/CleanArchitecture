@@ -91,18 +91,21 @@ internal static class ServicesRegistration
 
     public static void AddMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
-        services.AddCapMessaging(configuration, connectionStrings);
-        services.AddMassTransitMessaging(connectionStrings);
+        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.Cap)
+        {
+            services.AddCapMessaging(configuration, connectionStrings);
+        }
+
+        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.MassTransit)
+        {
+            services.AddMassTransitMessaging(connectionStrings);
+        }
     }
 
     private static void AddCapMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
         CapConfigs.RegisterCap(services, configuration, connectionStrings.CleanArchitectureConnectionString);
-
-        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.Cap)
-        {
-            Framework.Cap.ServiceConfigurations.RegisterEventOutbox(services);
-        }
+        Framework.Cap.ServiceConfigurations.RegisterEventOutbox(services);
     }
 
     private static void AddMassTransitMessaging(this IServiceCollection services, ConnectionStrings connectionStrings)
@@ -115,9 +118,6 @@ internal static class ServicesRegistration
         MassTransitConfigs.RegisterMassTransitOutboxAndTransport(services, connectionStrings.CleanArchitectureConnectionString);
         services.AddHostedService<Framework.MassTransit.BusHostedService>();
 
-        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.MassTransit)
-        {
-            Framework.MassTransit.ServiceConfigurations.RegisterEventOutbox(services);
-        }
+        Framework.MassTransit.ServiceConfigurations.RegisterEventOutbox(services);
     }
 }
