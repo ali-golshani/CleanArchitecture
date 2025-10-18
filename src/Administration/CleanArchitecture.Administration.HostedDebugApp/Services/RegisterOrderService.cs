@@ -14,7 +14,7 @@ internal class RegisterOrderService(IServiceProvider serviceProvider) : ServiceB
             BrokerId = 1,
             CommodityId = 1,
             CustomerId = 1,
-            Price = 100,
+            Price = 110,
             Quantity = 10,
         }, default);
 
