@@ -8,7 +8,7 @@ internal class RoleRequirementHandler : AuthorizationHandler<RoleRequirement>
 
     public RoleRequirementHandler()
     {
-        allRoles = Enum.GetValues<Roles>();
+        allRoles = [.. Enum.GetValues<Roles>().Except([Roles.None])];
     }
 
     protected override Task HandleRequirementAsync(

@@ -73,10 +73,28 @@ public static class ResultExtensions
         }
     }
 
+    public static async Task<Results<Ok, ProblemHttpResult>> ToOkOrProblem(this Task<Result<Empty>> resultTask)
+    {
+        var result = await resultTask;
+        return result.ToOkOrProblem();
+    }
+
     public static async Task<Results<Ok<T>, ProblemHttpResult>> ToOkOrProblem<T>(this Task<Result<T>> resultTask)
     {
         var result = await resultTask;
         return result.ToOkOrProblem();
+    }
+
+    public static Results<Ok, ProblemHttpResult> ToOkOrProblem(this Result<Empty> result)
+    {
+        if (result.IsSuccess)
+        {
+            return TypedResults.Ok();
+        }
+        else
+        {
+            return ToProblemResult(result.Errors);
+        }
     }
 
     public static Results<Ok<T>, ProblemHttpResult> ToOkOrProblem<T>(this Result<T> result)

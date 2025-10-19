@@ -2,7 +2,7 @@
 
 internal static class RoleNames
 {
-    public const string ClaimType = "role";
+    public const string ClaimType = "Role";
 
     public static string RoleName(Roles roles)
     {

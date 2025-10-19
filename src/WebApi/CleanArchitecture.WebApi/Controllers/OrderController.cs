@@ -55,12 +55,12 @@ public class OrderController : BaseController
     [PermissionAuthorize(Permission.RegisterOrder)]
     [HttpPost]
     public
-        Task<Results<NoContent, ProblemHttpResult>>
+        Task<Results<Ok, ProblemHttpResult>>
         Add(ICommandService commandService, RegisterOrder.Command command, CancellationToken cancellationToken)
     {
         return
             commandService
             .Handle(command, cancellationToken)
-            .ToNoContentOrProblem();
+            .ToOkOrProblem();
     }
 }
