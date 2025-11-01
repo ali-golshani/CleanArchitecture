@@ -9,10 +9,24 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
     SubscriberBase(commandService),
     ICapSubscribe
 {
-    [CapSubscribe(OrderStatusChangedEvent.EventTopic)]
-    public Task Handle(OrderStatusChangedEvent @event, CancellationToken cancellationToken)
+    [CapSubscribe(OrderStatusChangedEvent.EventTopic, Group = "Group-A")]
+    public Task Handle_A(OrderStatusChangedEvent @event, CancellationToken cancellationToken)
     {
-        Console.WriteLine($"{GetType().Name}: Order-Id = {@event.OrderId}");
+        Console.WriteLine($"{GetType().Name} A: Order-Id = {@event.OrderId}");
+
+        var command = new Commands.Example.Command
+        {
+            Id = @event.OrderId,
+        }
+        .WithCorrelationId(@event.CorrelationId);
+
+        return Handle(command, cancellationToken);
+    }
+
+    [CapSubscribe(OrderStatusChangedEvent.EventTopic, Group = "Group-B")]
+    public Task Handle_B(OrderStatusChangedEvent @event, CancellationToken cancellationToken)
+    {
+        Console.WriteLine($"{GetType().Name} B: Order-Id = {@event.OrderId}");
 
         var command = new Commands.Example.Command
         {
