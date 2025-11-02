@@ -1,8 +1,8 @@
 {
   "Cap": {
-    "FailedRetryCount": 4,
+    "FailedRetryCount": 5,
     "FailedRetryInterval": 90,
-    "ConsumerThreadCount": 5
+    "ConsumerThreadCount": 1
   },
   "Cors": {
     "Origins": [

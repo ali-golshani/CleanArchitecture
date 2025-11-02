@@ -1,6 +1,6 @@
 ﻿namespace Framework.Cap;
 
-public class CapOptions
+public sealed class CapOptions
 {
     public static readonly CapOptions Default = new();
 
@@ -8,19 +8,19 @@ public class CapOptions
     /// The number of message retries, the retry will stop when the threshold is reached.
     /// Default is 50 times.
     /// </summary>
-    public int? FailedRetryCount { get; set; } = 5;
+    public int? FailedRetryCount { get; set; }
 
     /// <summary>
     /// Failed messages polling delay time.
     /// Default is 60 seconds.
     /// </summary>
-    public int? FailedRetryInterval { get; set; } = 5 * 60;
+    public int? FailedRetryInterval { get; set; }
 
     /// <summary>
     /// The number of consumer thread connections.
     /// Default is 1
     /// </summary>
-    public int? ConsumerThreadCount { get; set; } = 1;
+    public int? ConsumerThreadCount { get; set; }
 
     /// <summary>
     /// Sent or received succeed message after time span of due, then the message will be deleted at due time.
