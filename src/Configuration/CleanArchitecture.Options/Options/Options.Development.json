@@ -1,6 +1,6 @@
 {
   "Cap": {
-    "FailedRetryCount": 3,
+    "FailedRetryCount": 4,
     "FailedRetryInterval": 90,
     "ConsumerThreadCount": 5
   },

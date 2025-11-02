@@ -2,7 +2,7 @@
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Savorboard.CAP.InMemoryMessageQueue;
+using Framework.Cap.InMemoryTransport;
 
 namespace CleanArchitecture.ServicesConfigurations.Configs;
 
