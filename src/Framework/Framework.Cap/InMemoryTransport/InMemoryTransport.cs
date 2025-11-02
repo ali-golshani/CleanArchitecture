@@ -8,6 +8,7 @@ namespace Framework.Cap.InMemoryTransport;
 
 internal sealed class InMemoryTransport(InMemoryQueue queue, ILogger<InMemoryTransport> logger) : ITransport
 {
+    private readonly InMemoryQueue queue = queue;
     private readonly ILogger logger = logger;
 
     public BrokerAddress BrokerAddress => new("InMemory", string.Empty);

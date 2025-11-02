@@ -10,18 +10,18 @@ internal sealed class InMemoryQueue
     /// <summary>
     /// GroupName => ConsumerGroup
     /// </summary>
-    private readonly Dictionary<string, InMemoryConsumerGroup> consumerGroups = [];
-    private ImmutableList<InMemoryConsumerGroup> consumerGroupsList = [];
+    private readonly Dictionary<string, InMemoryConsumerGroup> consumerGroupsDictionary = [];
+    private ImmutableList<InMemoryConsumerGroup> consumerGroups = [];
 
     public InMemoryConsumer CreateConsumer(string groupName)
     {
         lock (Lock)
         {
-            if (!consumerGroups.TryGetValue(groupName, out var consumerGroup))
+            if (!consumerGroupsDictionary.TryGetValue(groupName, out var consumerGroup))
             {
                 consumerGroup = new InMemoryConsumerGroup(groupName);
-                consumerGroups.Add(groupName, consumerGroup);
-                consumerGroupsList = consumerGroupsList.Add(consumerGroup);
+                consumerGroupsDictionary.Add(groupName, consumerGroup);
+                consumerGroups = consumerGroups.Add(consumerGroup);
             }
 
             return consumerGroup.CreateConsumer();
@@ -31,25 +31,10 @@ internal sealed class InMemoryQueue
     public async Task Send(TransportMessage message)
     {
         var topic = message.GetName();
-        foreach (var consumerGroup in consumerGroupsList)
+        foreach (var consumerGroup in consumerGroups)
         {
-            var messageCopy = Copy(message, consumerGroup.GroupName);
+            var messageCopy = MessageUtility.Copy(message, consumerGroup.GroupName);
             await consumerGroup.Consume(messageCopy, topic);
         }
-    }
-
-    private static TransportMessage Copy(TransportMessage message, string groupName)
-    {
-        return new TransportMessage
-        (
-            message.Headers.ToDictionary(o => o.Key, o => o.Value),
-            message.Body
-        )
-        {
-            Headers =
-            {
-                [Headers.Group] = groupName,
-            }
-        };
     }
 }

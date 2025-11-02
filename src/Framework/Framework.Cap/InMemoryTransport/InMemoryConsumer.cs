@@ -11,8 +11,8 @@ internal sealed class InMemoryConsumer(InMemoryConsumerGroup group) : IConsumerC
 
     public Action<LogMessageEventArgs>? OnLogCallback { get; set; }
     public Func<TransportMessage, object?, Task>? OnMessageCallback { get; set; }
-    public BrokerAddress BrokerAddress => new("InMemory", string.Empty);
 
+    public BrokerAddress BrokerAddress => new("InMemory", string.Empty);
     public bool IsSubscribed(string topic) => subscribedTopics.Contains(topic);
 
     public void Subscribe(IEnumerable<string> topics)
