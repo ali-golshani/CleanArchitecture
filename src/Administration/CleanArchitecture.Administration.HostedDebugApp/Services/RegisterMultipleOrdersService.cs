@@ -4,6 +4,9 @@ namespace CleanArchitecture.Administration.HostedDebugApp.Services;
 
 internal class RegisterMultipleOrdersService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
+    private int orderId = 0;
+    private int NextOrderId => Interlocked.Increment(ref orderId);
+
     public virtual async Task Run()
     {
         var commandService = CommandService();
@@ -24,13 +27,31 @@ internal class RegisterMultipleOrdersService(IServiceProvider serviceProvider) :
         var orders = getOrdersResult.Value!.Items;
         var order = orders.FirstOrDefault();
 
-        var orderId = order?.OrderId ?? 1;
+        orderId = order?.OrderId ?? 1;
 
-        for (int i = 0; i < 1000; i++)
+        Console.Write("Press Enter to start ...");
+        Console.ReadLine();
+
+        var tasks = new Task[10];
+        for (int i = 0; i < tasks.Length; i++)
         {
+            tasks[i] = InsertOrders(commandService);
+        }
+
+        await Task.WhenAll(tasks);
+
+        WaitingForUserInput("Press Enter to Exit ...");
+    }
+
+    private async Task InsertOrders(Ordering.Commands.ICommandService commandService)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            var orderId = NextOrderId;
+
             var result = await commandService.Handle(new Command
             {
-                OrderId = orderId + i + 1,
+                OrderId = orderId,
                 BrokerId = 1,
                 CommodityId = 1,
                 CustomerId = 1,
@@ -43,7 +64,5 @@ internal class RegisterMultipleOrdersService(IServiceProvider serviceProvider) :
                 Console.WriteLine(result.Errors);
             }
         }
-
-        WaitingForUserInput("Press Enter to Exit ...");
     }
 }
