@@ -46,7 +46,7 @@ public static class Configuration
         services.AddMessaging(configuration, connectionStrings);
         services.AddOrderingModule(connectionStrings);
         services.AddQuerying(connectionStrings);
-        services.AddProcessManager();
+        services.AddProcessManager(configuration, connectionStrings);
         services.AddActorAuthorization();
         services.AddScheduling();
     }
