@@ -7,6 +7,8 @@ namespace CleanArchitecture.ServicesConfigurations.Configs;
 
 internal static class DurableTaskConfigs
 {
+    private const string TaskHubname = "CleanArchitectureTaskHub";
+
     public static void RegisterDurableTask(
         IServiceCollection services,
         IConfiguration configuration,
@@ -15,7 +17,7 @@ internal static class DurableTaskConfigs
         var options = DurableTaskOptions(configuration);
         var sqlOptions = new SqlOptions { ConnectionString = connectionString };
 
-        ServiceConfigurations.RegisterOrchestrationService(services, sqlOptions, options);
+        ServiceConfigurations.RegisterOrchestrationService(services, sqlOptions, options, TaskHubname);
         ServiceConfigurations.RegisterTaskHubWorker(services, new OrchestrationsRegistrar());
         ServiceConfigurations.RegisterTaskHubClient(services);
         ServiceConfigurations.RegisterHostedServices(services);

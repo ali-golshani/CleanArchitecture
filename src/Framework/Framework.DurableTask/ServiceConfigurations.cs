@@ -6,11 +6,11 @@ namespace Framework.DurableTask;
 
 public static class ServiceConfigurations
 {
-    public static void RegisterOrchestrationService(IServiceCollection services, SqlOptions sqlOptions, DurableTaskOptions options)
+    public static void RegisterOrchestrationService(IServiceCollection services, SqlOptions sqlOptions, DurableTaskOptions options, string taskHubname)
     {
         services.AddSingleton(sp =>
         {
-            return OrchestrationServiceFactory.GetSqlOrchestrationService(sqlOptions, options);
+            return OrchestrationServiceFactory.GetSqlOrchestrationService(sqlOptions, options, taskHubname);
         });
     }
 

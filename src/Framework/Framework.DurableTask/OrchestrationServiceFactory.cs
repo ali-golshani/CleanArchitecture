@@ -4,12 +4,12 @@ namespace Framework.DurableTask;
 
 internal static class OrchestrationServiceFactory
 {
-    public static SqlOrchestrationService GetSqlOrchestrationService(SqlOptions sqlOptions, DurableTaskOptions options)
+    public static SqlOrchestrationService GetSqlOrchestrationService(SqlOptions sqlOptions, DurableTaskOptions options, string taskHubname)
     {
         var storageSettings = new SqlOrchestrationServiceSettings
         (
             connectionString: sqlOptions.ConnectionString,
-            taskHubName: Settings.TaskHubName,
+            taskHubName: taskHubname,
             schemaName: Settings.Persistence.SchemaName
         )
         {
