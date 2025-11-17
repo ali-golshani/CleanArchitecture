@@ -1,12 +1,9 @@
-﻿using DurableTask.Core;
+﻿namespace CleanArchitecture.Administration.HostedDebugApp.Services;
 
-namespace CleanArchitecture.Administration.HostedDebugApp.Services;
-
-internal class TestService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
+internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) : ServiceBase(serviceProvider)
 {
     public virtual async Task Run()
     {
-        var service = CommandService();
         var queryService = QueryService();
 
         var getOrdersResult = await queryService.Handle(new Ordering.Queries.Orders.GetOrders.Query
@@ -26,9 +23,8 @@ internal class TestService(IServiceProvider serviceProvider) : ServiceBase(servi
 
         var orderId = (order?.OrderId ?? 0) + 1;
 
-        var client = Service<TaskHubClient>();
-        await client.CreateOrchestrationInstanceAsync(
-            typeof(ProcessManager.RegisterAndApproveOrder.Orchestration),
+        var service = Service<ProcessManager.RegisterAndApproveOrder.IService>();
+        await service.Handle(
             new ProcessManager.RegisterAndApproveOrder.Request
             {
                 OrderId = orderId,
@@ -37,7 +33,7 @@ internal class TestService(IServiceProvider serviceProvider) : ServiceBase(servi
                 CustomerId = 1,
                 Price = 110,
                 Quantity = 10,
-            });
+            }, cancellationToken: default);
 
         WaitingForUserInput("Press Enter to Exit ...");
     }

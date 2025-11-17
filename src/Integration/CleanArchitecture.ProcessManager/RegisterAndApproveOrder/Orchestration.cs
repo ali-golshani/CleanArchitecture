@@ -1,9 +1,8 @@
 ﻿using DurableTask.Core;
-using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
-public sealed class Orchestration : TaskOrchestration<bool, Request>
+internal sealed class Orchestration : TaskOrchestration<bool, Request>
 {
     public static void Register(IServiceProvider serviceProvider, TaskHubWorker worker)
     {
@@ -11,25 +10,18 @@ public sealed class Orchestration : TaskOrchestration<bool, Request>
         worker.AddTaskActivitiesFromInterfaceV2<IOrchestrationService>(new OrchestrationService(serviceProvider));
     }
 
-    private static void Write(object text)
-    {
-        Console.WriteLine();
-        Console.WriteLine(new string('-', 80));
-        Console.WriteLine(text);
-    }
-
     public override async Task<bool> RunTask(OrchestrationContext context, Request input)
     {
-        Write("Start");
+        Write("Start Orchestration");
         var client = context.CreateClientV2<IOrchestrationService>();
 
         var rollback = false;
 
         try
         {
-            Write("A");
+            Write("Before Register");
             var registerResult = await client.Register(input, default);
-            Write("B");
+            Write($"After Register :: {registerResult}");
 
             if (!registerResult)
             {
@@ -40,28 +32,47 @@ public sealed class Orchestration : TaskOrchestration<bool, Request>
 
             for (int i = 0; i < 3; i++)
             {
-                Write($"C {i}");
-                var approveResult = await client.Approve(input, i, default);
-                Write($"D {i}");
-                if (approveResult)
+                if (await TryApprove(client, input, i))
                 {
                     rollback = false;
                     return true;
                 }
+
                 await context.CreateTimer(context.CurrentUtcDateTime.AddSeconds(1), i);
             }
 
-            Write("E");
             return false;
         }
         finally
         {
             if (rollback)
             {
-                Write("F");
+                Write("Before Rollback");
                 await client.ControlOrderStatus(input, default);
-                Write("G");
+                Write("After Rollback");
             }
         }
+    }
+
+    private static async Task<bool> TryApprove(IOrchestrationService client, Request input, int tryCount)
+    {
+        try
+        {
+            Write($"Before Approve :: Try Count = {tryCount}");
+            var approveResult = await client.Approve(input, tryCount, default);
+            Write($"After Approve :: Try Count = {tryCount}");
+            return approveResult;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+    private static void Write(object text)
+    {
+        Console.WriteLine();
+        Console.Write(":: ");
+        Console.WriteLine(text);
     }
 }

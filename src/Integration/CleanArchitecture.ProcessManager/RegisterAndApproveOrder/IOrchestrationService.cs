@@ -1,6 +1,4 @@
-﻿using Framework.Results;
-
-namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
+﻿namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
 public interface IOrchestrationService
 {

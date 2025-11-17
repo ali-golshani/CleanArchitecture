@@ -25,8 +25,6 @@ public sealed class Result<T>
     public static Result<T> Success(T value) => new(true, value, [], null);
     public static Result<T> Failure(Error[] errors, string? correlationId = null) => new(false, default, errors, correlationId);
 
-    public Result() { }
-
     private Result(bool isSuccess, T? value, Error[] errors, string? correlationId)
     {
         IsSuccess = isSuccess;
