@@ -13,7 +13,7 @@ internal class HostedService(IServiceScopeFactory serviceScopeFactory) : IHosted
         Console.OutputEncoding = System.Text.Encoding.UTF8;
 
         using var scope = serviceScopeFactory.CreateScope();
-        var app = new RegisterOrderService(scope.ServiceProvider);
+        var app = new TestService(scope.ServiceProvider);
         await app.Run();
     }
 
