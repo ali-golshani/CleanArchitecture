@@ -23,7 +23,7 @@ internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) 
 
         var orderId = (order?.OrderId ?? 0) + 1;
 
-        var service = Service<ProcessManager.RegisterAndApproveOrder.IService>();
+        var service = Service<ProcessManager.RegisterAndApproveOrder.ISchedulingService>();
         await service.Schedule(
             new ProcessManager.RegisterAndApproveOrder.Request
             {

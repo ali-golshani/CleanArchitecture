@@ -16,6 +16,7 @@ public static class ServiceConfigurations
 
         services.AddTransient<RegisterAndApproveOrder.Handler>();
         services.AddTransient<RegisterAndApproveOrder.IService, RegisterAndApproveOrder.Service>();
+        services.AddTransient<RegisterAndApproveOrder.ISchedulingService, RegisterAndApproveOrder.SchedulingService>();
     }
 
     public static void RegisterOrchestrations(IServiceProvider serviceProvider, TaskHubWorker worker)

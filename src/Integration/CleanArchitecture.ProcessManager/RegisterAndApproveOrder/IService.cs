@@ -1,6 +1,8 @@
-﻿namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
+﻿using Framework.Results;
+
+namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
 public interface IService
 {
-    Task Schedule(Request request);
+    Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken);
 }
