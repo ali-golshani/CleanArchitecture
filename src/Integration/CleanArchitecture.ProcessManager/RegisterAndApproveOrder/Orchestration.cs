@@ -20,13 +20,8 @@ internal sealed class Orchestration : TaskOrchestration<bool, Request>
         try
         {
             Write("Before Register");
-            var registerResult = await client.Register(input, default);
-            Write($"After Register :: {registerResult}");
-
-            if (!registerResult)
-            {
-                return false;
-            }
+            await client.Register(input, default);
+            Write($"After Register");
 
             rollback = true;
 
@@ -41,6 +36,10 @@ internal sealed class Orchestration : TaskOrchestration<bool, Request>
                 await context.CreateTimer(context.CurrentUtcDateTime.AddSeconds(1), i);
             }
 
+            return false;
+        }
+        catch
+        {
             return false;
         }
         finally
@@ -59,9 +58,9 @@ internal sealed class Orchestration : TaskOrchestration<bool, Request>
         try
         {
             Write($"Before Approve :: Try Count = {tryCount}");
-            var approveResult = await client.Approve(input, tryCount, default);
+            await client.Approve(input, tryCount, default);
             Write($"After Approve :: Try Count = {tryCount}");
-            return approveResult;
+            return true;
         }
         catch
         {

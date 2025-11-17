@@ -2,7 +2,7 @@
 
 public interface IOrchestrationService
 {
-    Task<bool> Register(Request request, CancellationToken cancellationToken);
-    Task<bool> Approve(Request request, int tryCount, CancellationToken cancellationToken);
-    Task<bool> ControlOrderStatus(Request request, CancellationToken cancellationToken);
+    Task Register(Request request, CancellationToken cancellationToken);
+    Task Approve(Request request, int tryCount, CancellationToken cancellationToken);
+    Task ControlOrderStatus(Request request, CancellationToken cancellationToken);
 }

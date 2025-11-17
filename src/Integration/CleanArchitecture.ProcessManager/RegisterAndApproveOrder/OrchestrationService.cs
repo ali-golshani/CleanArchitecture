@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Commands;
+using Framework.Results.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
@@ -10,7 +11,7 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
 
     private readonly IServiceProvider serviceProvider = serviceProvider;
 
-    public async Task<bool> Register(Request request, CancellationToken cancellationToken)
+    public async Task Register(Request request, CancellationToken cancellationToken)
     {
         var commandService = GetCommandService();
 
@@ -24,15 +25,14 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
             Quantity = request.Quantity,
         };
 
-        var result = await commandService.Handle(Actor, command, cancellationToken);
-        return result.IsSuccess;
+        await commandService.Handle(Actor, command, cancellationToken).ThrowIsFailure();
     }
 
-    public async Task<bool> Approve(Request request, int tryCount, CancellationToken cancellationToken)
+    public async Task Approve(Request request, int tryCount, CancellationToken cancellationToken)
     {
         if (tryCount == 0)
         {
-            return false;
+            throw new InvalidOperationException();
         }
 
         var commandService = GetCommandService();
@@ -42,11 +42,10 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
             Id = request.OrderId
         };
 
-        var result = await commandService.Handle(Actor, command, cancellationToken);
-        return result.IsSuccess;
+        await commandService.Handle(Actor, command, cancellationToken).ThrowIsFailure();
     }
 
-    public async Task<bool> ControlOrderStatus(Request request, CancellationToken cancellationToken)
+    public async Task ControlOrderStatus(Request request, CancellationToken cancellationToken)
     {
         var commandService = GetCommandService();
 
@@ -55,8 +54,7 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
             OrderId = request.OrderId,
         };
 
-        var result = await commandService.Handle(Actor, command, cancellationToken);
-        return result.IsSuccess;
+        await commandService.Handle(Actor, command, cancellationToken).ThrowIsFailure();
     }
 
     private ICommandService GetCommandService()
