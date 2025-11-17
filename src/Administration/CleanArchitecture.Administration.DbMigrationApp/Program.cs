@@ -25,6 +25,7 @@ internal static class Program
             var orderingDb = new OrderingDbMigrationService(serviceProvider);
             var massTransitDb = new MassTransitDbMigrationService(serviceProvider);
             var capDb = new CapDbMigrationService(serviceProvider);
+            var durableTaskDb = new DurableTaskDbMigrationService(serviceProvider);
 
             auditDb.Migrate();
 
@@ -41,6 +42,10 @@ internal static class Program
             Console.WriteLine();
 
             capDb.Migrate();
+
+            Console.WriteLine();
+
+            durableTaskDb.Migrate();
         }
         catch (Exception exp)
         {

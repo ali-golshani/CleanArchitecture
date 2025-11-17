@@ -12,6 +12,12 @@ public static class ConfigurationSections
         public const string Options = "Cap";
     }
 
+    public static class DurableTask
+    {
+        public const string Options = "DurableTask";
+        public const string SqlOptions = "DurableTask:Sql";
+    }
+
     public static class Cors
     {
         public const string Origins = "Cors:Origins";

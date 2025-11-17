@@ -51,8 +51,9 @@ internal static class ServicesRegistration
         Infrastructure.RequestAudit.ServiceConfigurations.RegisterHostedServices(services);
     }
 
-    public static void AddProcessManager(this IServiceCollection services)
+    public static void AddProcessManager(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
+        DurableTaskConfigs.RegisterDurableTask(services, configuration, connectionStrings.CleanArchitectureConnectionString);
         ProcessManager.ServiceConfigurations.RegisterServices(services);
     }
 
