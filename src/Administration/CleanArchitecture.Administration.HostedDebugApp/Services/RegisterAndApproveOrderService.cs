@@ -24,7 +24,7 @@ internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) 
         var orderId = (order?.OrderId ?? 0) + 1;
 
         var service = Service<ProcessManager.RegisterAndApproveOrder.IService>();
-        await service.Handle(
+        await service.Schedule(
             new ProcessManager.RegisterAndApproveOrder.Request
             {
                 OrderId = orderId,
@@ -33,7 +33,7 @@ internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) 
                 CustomerId = 1,
                 Price = 110,
                 Quantity = 10,
-            }, cancellationToken: default);
+            });
 
         WaitingForUserInput("Press Enter to Exit ...");
     }

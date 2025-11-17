@@ -9,7 +9,7 @@ internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) 
         var service = Service<RegisterAndApproveOrder.IService>();
         ResolveActor();
 
-        var result = await service.Handle(new RegisterAndApproveOrder.Request
+        await service.Schedule(new RegisterAndApproveOrder.Request
         {
             OrderId = 1212,
             BrokerId = 5,
@@ -17,12 +17,7 @@ internal class RegisterAndApproveOrderService(IServiceProvider serviceProvider) 
             CustomerId = 13,
             Price = 1000,
             Quantity = 10,
-        }, default);
-
-        if (result.IsFailure)
-        {
-            Console.WriteLine(result.Errors);
-        }
+        });
 
         WaitingForUserInput("Press Enter to Exit ...");
     }
