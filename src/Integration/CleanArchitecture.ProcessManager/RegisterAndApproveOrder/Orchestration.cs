@@ -13,16 +13,16 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
 
     public override async Task<SerializableResult<Empty>> RunTask(OrchestrationContext context, Request input)
     {
-        Write("Start Orchestration");
+        Write(context, "Start Orchestration");
         var client = context.CreateClientV2<IOrchestrationService>();
 
         var rollback = false;
 
         try
         {
-            Write("Before Register");
+            Write(context, "Before Register");
             var registerResult = await client.Register(input, default);
-            Write($"After Register: IsSuccess = {registerResult.IsSuccess}");
+            Write(context, $"After Register: IsSuccess = {registerResult.IsSuccess}");
 
             if (!registerResult.IsSuccess)
             {
@@ -34,7 +34,7 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
 
             for (int i = 0; i < 3; i++)
             {
-                approveResult = await TryApprove(client, input, i);
+                approveResult = await TryApprove(context, client, input, i);
                 if (approveResult.IsSuccess)
                 {
                     rollback = false;
@@ -54,20 +54,24 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
         {
             if (rollback)
             {
-                Write("Before Rollback");
+                Write(context, "Before Rollback");
                 await client.ControlOrderStatus(input, default);
-                Write("After Rollback");
+                Write(context, "After Rollback");
             }
         }
     }
 
-    private static async Task<SerializableResult<Empty>> TryApprove(IOrchestrationService client, Request request, int tryNumber)
+    private static async Task<SerializableResult<Empty>> TryApprove(
+        OrchestrationContext context,
+        IOrchestrationService client, 
+        Request request, 
+        int tryNumber)
     {
         try
         {
-            Write($"Before Approve :: Try Number = {tryNumber}");
+            Write(context, $"Before Approve :: Try Number = {tryNumber}");
             var result = await client.Approve(request, tryNumber, default);
-            Write($"After Approve :: Try Number = {tryNumber}: IsSuccess = {result.IsSuccess}");
+            Write(context, $"After Approve :: Try Number = {tryNumber}: IsSuccess = {result.IsSuccess}");
             return result;
         }
         catch (Exception exp)
@@ -81,10 +85,10 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
         return new SerializableResult<Empty>([exp.Message], request.CorrelationId.ToString());
     }
 
-    private static void Write(object text)
+    private static void Write(OrchestrationContext context, object text)
     {
         Console.WriteLine();
-        Console.Write(":: ");
+        Console.Write($":: IsReplaying = {context.IsReplaying} :: ");
         Console.WriteLine(text);
     }
 }
