@@ -13,7 +13,8 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
 
     public override async Task<SerializableResult<Empty>> RunTask(OrchestrationContext context, Request input)
     {
-        Write(context, "Start Orchestration");
+        Console.WriteLine();
+        Write(context, "Start Orchestration", ConsoleColor.Red);
         var client = context.CreateClientV2<IOrchestrationService>();
 
         var rollback = false;
@@ -63,8 +64,8 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
 
     private static async Task<SerializableResult<Empty>> TryApprove(
         OrchestrationContext context,
-        IOrchestrationService client, 
-        Request request, 
+        IOrchestrationService client,
+        Request request,
         int tryNumber)
     {
         try
@@ -85,10 +86,22 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
         return new SerializableResult<Empty>([exp.Message], request.CorrelationId.ToString());
     }
 
-    private static void Write(OrchestrationContext context, object text)
+    private static void Write(
+        OrchestrationContext context,
+        object text,
+        ConsoleColor color = ConsoleColor.Green,
+        bool logInReplay = true)
     {
-        Console.WriteLine();
-        Console.Write($":: IsReplaying = {context.IsReplaying} :: ");
-        Console.WriteLine(text);
+        var currentColor = Console.ForegroundColor;
+        Console.ForegroundColor = color;
+        if (logInReplay)
+        {
+            Console.WriteLine($":: {text} (Replay = {context.IsReplaying})");
+        }
+        else if (!context.IsReplaying)
+        {
+            Console.WriteLine($":: {text}");
+        }
+        Console.ForegroundColor = currentColor;
     }
 }
