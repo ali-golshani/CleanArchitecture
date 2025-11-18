@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Commands;
+using Framework.Results;
 using Framework.Results.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -11,7 +12,7 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
 
     private readonly IServiceProvider serviceProvider = serviceProvider;
 
-    public async Task Register(Request request, CancellationToken cancellationToken)
+    public async Task<SerializableResult<Empty>> Register(Request request, CancellationToken cancellationToken)
     {
         var commandService = GetCommandService();
 
@@ -25,14 +26,20 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
             Quantity = request.Quantity,
         };
 
-        await commandService.Handle(Actor, command, cancellationToken).ThrowIsFailure();
+        return (await commandService.Handle(Actor, command, cancellationToken)).AsSerializableResult();
     }
 
-    public async Task Approve(Request request, int tryCount, CancellationToken cancellationToken)
+    public async Task<SerializableResult<Empty>> Approve(Request request, int tryCount, CancellationToken cancellationToken)
     {
         if (tryCount == 0)
         {
-            throw new InvalidOperationException();
+            return new SerializableResult<Empty>
+            {
+                IsSuccess = false,
+                Errors = ["Invalid Request"],
+                CorrelationId = request.CorrelationId.ToString(),
+                Value = default
+            };
         }
 
         var commandService = GetCommandService();
@@ -42,10 +49,10 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
             Id = request.OrderId
         };
 
-        await commandService.Handle(Actor, command, cancellationToken).ThrowIsFailure();
+        return (await commandService.Handle(Actor, command, cancellationToken)).AsSerializableResult();
     }
 
-    public async Task ControlOrderStatus(Request request, CancellationToken cancellationToken)
+    public async Task<SerializableResult<Empty>> ControlOrderStatus(Request request, CancellationToken cancellationToken)
     {
         var commandService = GetCommandService();
 
@@ -54,7 +61,7 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
             OrderId = request.OrderId,
         };
 
-        await commandService.Handle(Actor, command, cancellationToken).ThrowIsFailure();
+        return (await commandService.Handle(Actor, command, cancellationToken)).AsSerializableResult();
     }
 
     private ICommandService GetCommandService()

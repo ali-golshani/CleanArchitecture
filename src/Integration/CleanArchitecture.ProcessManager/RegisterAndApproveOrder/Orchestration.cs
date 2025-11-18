@@ -1,8 +1,9 @@
 ﻿using DurableTask.Core;
+using Framework.Results;
 
 namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
-internal sealed class Orchestration : TaskOrchestration<bool, Request>
+internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty>, Request>
 {
     public static void Register(IServiceProvider serviceProvider, TaskHubWorker worker)
     {
@@ -10,7 +11,7 @@ internal sealed class Orchestration : TaskOrchestration<bool, Request>
         worker.AddTaskActivitiesFromInterfaceV2<IOrchestrationService>(new OrchestrationService(serviceProvider));
     }
 
-    public override async Task<bool> RunTask(OrchestrationContext context, Request input)
+    public override async Task<SerializableResult<Empty>> RunTask(OrchestrationContext context, Request input)
     {
         Write("Start Orchestration");
         var client = context.CreateClientV2<IOrchestrationService>();
@@ -20,27 +21,34 @@ internal sealed class Orchestration : TaskOrchestration<bool, Request>
         try
         {
             Write("Before Register");
-            await client.Register(input, default);
-            Write($"After Register");
+            var registerResult = await client.Register(input, default);
+            Write($"After Register: IsSuccess = {registerResult.IsSuccess}");
+
+            if (!registerResult.IsSuccess)
+            {
+                return registerResult;
+            }
 
             rollback = true;
+            SerializableResult<Empty> approveResult = null!;
 
             for (int i = 0; i < 3; i++)
             {
-                if (await TryApprove(client, input, i))
+                approveResult = await TryApprove(client, input, i);
+                if (approveResult.IsSuccess)
                 {
                     rollback = false;
-                    return true;
+                    return approveResult;
                 }
 
                 await context.CreateTimer(context.CurrentUtcDateTime.AddSeconds(1), i);
             }
 
-            return false;
+            return approveResult!;
         }
-        catch
+        catch (Exception exp)
         {
-            return false;
+            return ToResult(exp);
         }
         finally
         {
@@ -53,19 +61,30 @@ internal sealed class Orchestration : TaskOrchestration<bool, Request>
         }
     }
 
-    private static async Task<bool> TryApprove(IOrchestrationService client, Request input, int tryCount)
+    private static async Task<SerializableResult<Empty>> TryApprove(IOrchestrationService client, Request input, int tryNumber)
     {
         try
         {
-            Write($"Before Approve :: Try Count = {tryCount}");
-            await client.Approve(input, tryCount, default);
-            Write($"After Approve :: Try Count = {tryCount}");
-            return true;
+            Write($"Before Approve :: Try Number = {tryNumber}");
+            var result = await client.Approve(input, tryNumber, default);
+            Write($"After Approve :: Try Number = {tryNumber}: IsSuccess = {result.IsSuccess}");
+            return result;
         }
-        catch
+        catch (Exception exp)
         {
-            return false;
+            return ToResult(exp);
         }
+    }
+
+    private static SerializableResult<Empty> ToResult(Exception exp)
+    {
+        return new SerializableResult<Empty>
+        {
+            IsSuccess = false,
+            Value = default,
+            CorrelationId = null,
+            Errors = [exp.Message]
+        };
     }
 
     private static void Write(object text)

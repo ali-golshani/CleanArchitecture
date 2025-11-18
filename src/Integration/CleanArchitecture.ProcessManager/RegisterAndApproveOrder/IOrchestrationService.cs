@@ -1,8 +1,10 @@
-﻿namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
+﻿using Framework.Results;
+
+namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
 public interface IOrchestrationService
 {
-    Task Register(Request request, CancellationToken cancellationToken);
-    Task Approve(Request request, int tryCount, CancellationToken cancellationToken);
-    Task ControlOrderStatus(Request request, CancellationToken cancellationToken);
+    Task<SerializableResult<Empty>> Register(Request request, CancellationToken cancellationToken);
+    Task<SerializableResult<Empty>> Approve(Request request, int tryCount, CancellationToken cancellationToken);
+    Task<SerializableResult<Empty>> ControlOrderStatus(Request request, CancellationToken cancellationToken);
 }
