@@ -33,13 +33,7 @@ internal sealed class OrchestrationService(IServiceProvider serviceProvider) : I
     {
         if (tryCount == 0)
         {
-            return new SerializableResult<Empty>
-            {
-                IsSuccess = false,
-                Errors = ["Invalid Request"],
-                CorrelationId = request.CorrelationId.ToString(),
-                Value = default
-            };
+            return new SerializableResult<Empty>(["Invalid Request"], request.CorrelationId.ToString());
         }
 
         var commandService = GetCommandService();

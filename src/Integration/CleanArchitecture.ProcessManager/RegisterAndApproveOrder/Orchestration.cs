@@ -48,7 +48,7 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
         }
         catch (Exception exp)
         {
-            return ToResult(exp);
+            return ToResult(input, exp);
         }
         finally
         {
@@ -61,30 +61,24 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
         }
     }
 
-    private static async Task<SerializableResult<Empty>> TryApprove(IOrchestrationService client, Request input, int tryNumber)
+    private static async Task<SerializableResult<Empty>> TryApprove(IOrchestrationService client, Request request, int tryNumber)
     {
         try
         {
             Write($"Before Approve :: Try Number = {tryNumber}");
-            var result = await client.Approve(input, tryNumber, default);
+            var result = await client.Approve(request, tryNumber, default);
             Write($"After Approve :: Try Number = {tryNumber}: IsSuccess = {result.IsSuccess}");
             return result;
         }
         catch (Exception exp)
         {
-            return ToResult(exp);
+            return ToResult(request, exp);
         }
     }
 
-    private static SerializableResult<Empty> ToResult(Exception exp)
+    private static SerializableResult<Empty> ToResult(Request request, Exception exp)
     {
-        return new SerializableResult<Empty>
-        {
-            IsSuccess = false,
-            Value = default,
-            CorrelationId = null,
-            Errors = [exp.Message]
-        };
+        return new SerializableResult<Empty>([exp.Message], request.CorrelationId.ToString());
     }
 
     private static void Write(object text)
