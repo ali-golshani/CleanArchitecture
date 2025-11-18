@@ -89,14 +89,15 @@ internal sealed class Orchestration : TaskOrchestration<SerializableResult<Empty
     private static void Write(
         OrchestrationContext context,
         object text,
-        ConsoleColor color = ConsoleColor.Green,
+        ConsoleColor? color = null,
         bool logInReplay = true)
     {
         var currentColor = Console.ForegroundColor;
-        Console.ForegroundColor = color;
+        Console.ForegroundColor = color ?? (context.IsReplaying ? ConsoleColor.Yellow : ConsoleColor.Green);
         if (logInReplay)
         {
-            Console.WriteLine($":: {text} (Replay = {context.IsReplaying})");
+            var replayText = context.IsReplaying ? "(Replay)" : "";
+            Console.WriteLine($":: {text} {replayText}");
         }
         else if (!context.IsReplaying)
         {
