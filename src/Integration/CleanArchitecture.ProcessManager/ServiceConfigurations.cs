@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Authorization;
-using DurableTask.Core;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,11 +15,5 @@ public static class ServiceConfigurations
 
         services.AddTransient<RegisterAndApproveOrder.Handler>();
         services.AddTransient<RegisterAndApproveOrder.IService, RegisterAndApproveOrder.Service>();
-        services.AddTransient<RegisterAndApproveOrder.ISchedulingService, RegisterAndApproveOrder.SchedulingService>();
-    }
-
-    public static void RegisterOrchestrations(IServiceProvider serviceProvider, TaskHubWorker worker)
-    {
-        RegisterAndApproveOrder.Orchestration.Register(serviceProvider, worker);
     }
 }
