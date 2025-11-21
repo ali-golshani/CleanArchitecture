@@ -53,6 +53,7 @@ internal static class ServicesRegistration
 
     public static void AddProcessManager(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
+        DurableTaskConfigs.RegisterDurableTask(services, configuration, connectionStrings.CleanArchitectureConnectionString);
         ProcessManager.ServiceConfigurations.RegisterServices(services);
     }
 

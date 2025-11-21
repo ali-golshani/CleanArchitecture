@@ -10,6 +10,7 @@ internal sealed class AccessControl : AccessControlByPermissionRules<Command>
         return
         [
             new RolesPermissionRule<Command>(Role.Programmer),
+            new RolesPermissionRule<Command>(Role.InternalService),
             new CustomerPermissionRule<Command>(content.CustomerId),
             new BrokerPermissionRule<Command>(content.BrokerId),
         ];

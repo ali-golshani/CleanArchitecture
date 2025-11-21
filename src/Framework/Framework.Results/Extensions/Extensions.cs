@@ -5,11 +5,6 @@ namespace Framework.Results.Extensions;
 
 public static class Extensions
 {
-    public static SerializableResult<T> AsSerializableResult<T>(this Result<T> result)
-    {
-        return SerializableResult<T>.FromResult(result);
-    }
-
     public static HttpStatusCode AsHttpStatusCode(this ErrorType errorType)
     {
         return errorType switch
