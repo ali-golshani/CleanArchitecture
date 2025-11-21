@@ -4,4 +4,6 @@ public static class Versions
 {
     public const double V1 = 1;
     public const double V2 = 2;
+
+    public static readonly string[] AllVersions = ["V1", "V2"];
 }

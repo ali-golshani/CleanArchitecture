@@ -1,17 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OpenApi;
 
 namespace CleanArchitecture.WebApi.Shared.Swagger;
 
-public abstract class ReadOnlyPropertiesFilter<TModel> : IOperationFilter
+public abstract class ReadOnlyPropertiesTransformer<TModel> : IOpenApiOperationTransformer
 {
     protected abstract string[] ReadOnlyProperties { get; }
 
-    public void Apply(OpenApiOperation operation, OperationFilterContext context)
+    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
     {
         var parameters =
-            context.ApiDescription.ParameterDescriptions
+            context.Description.ParameterDescriptions
             .Where(IsReadOnly)
             .ToList();
 
@@ -19,9 +19,11 @@ public abstract class ReadOnlyPropertiesFilter<TModel> : IOperationFilter
         {
             foreach (var parameter in parameters)
             {
-                context.ApiDescription.ParameterDescriptions.Remove(parameter);
+                context.Description.ParameterDescriptions.Remove(parameter);
             }
         }
+
+        return Task.CompletedTask;
     }
 
     private bool IsReadOnly(ApiParameterDescription description)

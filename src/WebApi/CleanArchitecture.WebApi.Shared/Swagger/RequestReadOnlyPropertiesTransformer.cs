@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.WebApi.Shared.Swagger;
 
-internal class RequestPropertiesFilter : ReadOnlyPropertiesFilter<Request>
+internal sealed class RequestReadOnlyPropertiesTransformer : ReadOnlyPropertiesTransformer<Request>
 {
     protected override string[] ReadOnlyProperties { get; } =
     [
