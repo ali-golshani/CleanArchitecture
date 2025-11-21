@@ -7,8 +7,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.4.0" />
-		<PackageReference Include="DotNetCore.CAP.SqlServer" Version="8.4.0" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.4.1" />
+		<PackageReference Include="DotNetCore.CAP.SqlServer" Version="8.4.1" />
 	</ItemGroup>
 
 	<ItemGroup>
