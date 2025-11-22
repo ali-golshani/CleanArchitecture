@@ -6,9 +6,20 @@ namespace CleanArchitecture.WebApi.Shared.Swagger;
 
 public abstract class ReadOnlyPropertiesTransformer<TModel> : IOpenApiOperationTransformer
 {
+    private static readonly Lock Sync = new();
     protected abstract string[] ReadOnlyProperties { get; }
 
     public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
+    {
+        lock (Sync)
+        {
+            Transform(context);
+        }
+
+        return Task.CompletedTask;
+    }
+
+    private void Transform(OpenApiOperationTransformerContext context)
     {
         var parameters =
             context.Description.ParameterDescriptions
@@ -22,8 +33,6 @@ public abstract class ReadOnlyPropertiesTransformer<TModel> : IOpenApiOperationT
                 context.Description.ParameterDescriptions.Remove(parameter);
             }
         }
-
-        return Task.CompletedTask;
     }
 
     private bool IsReadOnly(ApiParameterDescription description)

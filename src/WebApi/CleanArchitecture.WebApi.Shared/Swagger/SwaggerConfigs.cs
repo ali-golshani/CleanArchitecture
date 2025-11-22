@@ -17,7 +17,8 @@ public static class SwaggerConfigs
                 options.AddDocumentTransformer(new DocumentVersionTransformer(version));
             });
         }
-        //services.AddEndpointsApiExplorer();
+
+        services.AddEndpointsApiExplorer();
     }
 
     public static void Configure(WebApplication app)
