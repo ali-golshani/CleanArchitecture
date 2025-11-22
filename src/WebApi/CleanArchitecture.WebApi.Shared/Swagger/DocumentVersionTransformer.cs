@@ -9,12 +9,9 @@ internal sealed class DocumentVersionTransformer(string version) : IOpenApiDocum
 
     public Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
-        document.Info = new OpenApiInfo
-        {
-            Version = version,
-            Title = $"Clean-Architecture API {version}",
-            Description = "Clean-Architecture ASP.NET Core Web API"
-        };
+        document.Info.Version = version;
+        document.Info.Title = $"Clean-Architecture API {version}";
+        document.Info.Description = "Clean-Architecture ASP.NET Core Web API";
         return Task.CompletedTask;
     }
 }
