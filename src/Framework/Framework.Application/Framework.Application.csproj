@@ -1,14 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Framework.Mediator\Framework.Mediator.csproj" />
-    <ProjectReference Include="..\Framework.Persistence\Framework.Persistence.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.Mediator\Framework.Mediator.csproj" />
+		<ProjectReference Include="..\Framework.Persistence\Framework.Persistence.csproj" />
+	</ItemGroup>
 
 </Project>

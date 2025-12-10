@@ -1,34 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-    <OutputType>Library</OutputType>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
-    <PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
-    <PackageReference Include="Hellang.Middleware.ProblemDetails" Version="6.5.1" />
-    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OData" Version="9.4.1" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.0" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.11.0" />
-    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.0.1" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Asp.Versioning.Http"/>
+		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer"/>
+		<PackageReference Include="FluentValidation.AspNetCore"/>
+		<PackageReference Include="Hellang.Middleware.ProblemDetails"/>
+		<PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection"/>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
+		<PackageReference Include="Microsoft.AspNetCore.OData"/>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+		<PackageReference Include="Scalar.AspNetCore"/>
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI"/>
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\Configuration\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.DomainRules\Framework.DomainRules.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
-    <ProjectReference Include="..\..\Shared\CleanArchitecture.Actors.WebApi\CleanArchitecture.Actors.WebApi.csproj" />
-    <ProjectReference Include="..\..\Shared\CleanArchitecture.Authorization.WebApi\CleanArchitecture.Authorization.WebApi.csproj" />
-    <ProjectReference Include="..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
-    <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
-    <ProjectReference Include="..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.DomainRules\Framework.DomainRules.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Actors.WebApi\CleanArchitecture.Actors.WebApi.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Authorization.WebApi\CleanArchitecture.Authorization.WebApi.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
+	</ItemGroup>
 
 </Project>

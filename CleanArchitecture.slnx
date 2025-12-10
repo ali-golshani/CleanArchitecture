@@ -1,0 +1,93 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="SampleTokens.txt" />
+    <File Path="Tasks.txt" />
+  </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/Administration/">
+    <Project Path="src/Administration/CleanArchitecture.Administration.DbMigrationApp/CleanArchitecture.Administration.DbMigrationApp.csproj" />
+    <Project Path="src/Administration/CleanArchitecture.Administration.DebugApp/CleanArchitecture.Administration.DebugApp.csproj" />
+    <Project Path="src/Administration/CleanArchitecture.Administration.HostedDebugApp/CleanArchitecture.Administration.HostedDebugApp.csproj" />
+    <Project Path="src/Administration/EncryptionApp/EncryptionApp.csproj" />
+  </Folder>
+  <Folder Name="/src/Configuration/">
+    <Project Path="src/Configuration/CleanArchitecture.Configurations/CleanArchitecture.Configurations.csproj" />
+    <Project Path="src/Configuration/CleanArchitecture.Options/CleanArchitecture.Options.csproj" />
+    <Project Path="src/Configuration/CleanArchitecture.Secrets/CleanArchitecture.Secrets.csproj" />
+    <Project Path="src/Configuration/CleanArchitecture.ServicesConfigurations/CleanArchitecture.ServicesConfigurations.csproj" />
+  </Folder>
+  <Folder Name="/src/Framework/">
+    <Project Path="src/Framework/Framework.Application/Framework.Application.csproj" />
+    <Project Path="src/Framework/Framework.Cap/Framework.Cap.csproj" />
+    <Project Path="src/Framework/Framework.Collections/Framework.Collections.csproj" />
+    <Project Path="src/Framework/Framework.Commands/Framework.Commands.csproj" />
+    <Project Path="src/Framework/Framework.DependencyInjection/Framework.DependencyInjection.csproj" />
+    <Project Path="src/Framework/Framework.Domain/Framework.Domain.csproj" />
+    <Project Path="src/Framework/Framework.DomainRules/Framework.DomainRules.csproj" />
+    <Project Path="src/Framework/Framework.DurableTask/Framework.DurableTask.csproj" />
+    <Project Path="src/Framework/Framework.Exceptions/Framework.Exceptions.csproj" />
+    <Project Path="src/Framework/Framework.Json/Framework.Json.csproj" />
+    <Project Path="src/Framework/Framework.Logging/Framework.Logging.csproj" />
+    <Project Path="src/Framework/Framework.MassTransit/Framework.MassTransit.csproj" />
+    <Project Path="src/Framework/Framework.Mediator/Framework.Mediator.csproj" />
+    <Project Path="src/Framework/Framework.Persistence/Framework.Persistence.csproj" />
+    <Project Path="src/Framework/Framework.Queries/Framework.Queries.csproj" />
+    <Project Path="src/Framework/Framework.Results/Framework.Results.csproj" />
+    <Project Path="src/Framework/Framework.Scheduling/Framework.Scheduling.csproj" />
+    <Project Path="src/Framework/Framework.Security/Framework.Security.csproj" />
+    <Project Path="src/Framework/Framework.Specification/Framework.Specification.csproj" />
+    <Project Path="src/Framework/Framework.Test/Framework.Test.csproj" />
+    <Project Path="src/Framework/Framework.Threading/Framework.Threading.csproj" />
+    <Project Path="src/Framework/Framework.Utilities/Framework.Utilities.csproj" />
+    <Project Path="src/Framework/Framework.Validation/Framework.Validation.csproj" />
+    <Project Path="src/Framework/Framework.WebApi/Framework.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/" />
+  <Folder Name="/src/Infrastructure/CommoditySystem/">
+    <Project Path="src/Infrastructure/CommoditySystem/Infrastructure.CommoditySystem.Contract/Infrastructure.CommoditySystem.Contract.csproj" />
+    <Project Path="src/Infrastructure/CommoditySystem/Infrastructure.CommoditySystem.Mock/Infrastructure.CommoditySystem.Mock.csproj" />
+    <Project Path="src/Infrastructure/CommoditySystem/Infrastructure.CommoditySystem/Infrastructure.CommoditySystem.csproj" />
+  </Folder>
+  <Folder Name="/src/Infrastructure/RequestAudit/">
+    <Project Path="src/Infrastructure/RequestAudit/Infrastructure.RequestAudit/Infrastructure.RequestAudit.csproj" />
+  </Folder>
+  <Folder Name="/src/Integration/">
+    <Project Path="src/Integration/CleanArchitecture.ProcessManager/CleanArchitecture.ProcessManager.csproj" />
+    <Project Path="src/Integration/CleanArchitecture.Querying/CleanArchitecture.Querying.csproj" />
+    <Project Path="src/Integration/CleanArchitecture.Scheduling/CleanArchitecture.Scheduling.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/" />
+  <Folder Name="/src/Modules/Ordering/">
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.Cap.Subscribers/CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.MassTransit.Consumers/CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application/CleanArchitecture.Ordering.Application.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Commands/CleanArchitecture.Ordering.Commands.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain.Services/CleanArchitecture.Ordering.Domain.Services.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain/CleanArchitecture.Ordering.Domain.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.IntegrationEvents/CleanArchitecture.Ordering.IntegrationEvents.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Persistence/CleanArchitecture.Ordering.Persistence.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Queries/CleanArchitecture.Ordering.Queries.csproj" />
+  </Folder>
+  <Folder Name="/src/Shared/">
+    <Project Path="src/Shared/CleanArchitecture.Actors.WebApi/CleanArchitecture.Actors.WebApi.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Actors/CleanArchitecture.Actors.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Authorization.WebApi/CleanArchitecture.Authorization.WebApi.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Authorization/CleanArchitecture.Authorization.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Constants/CleanArchitecture.Constants.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Exceptions/CleanArchitecture.Exceptions.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Mediator.Middlewares/CleanArchitecture.Mediator.Middlewares.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Mediator/CleanArchitecture.Mediator.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Shared/CleanArchitecture.Shared.csproj" />
+  </Folder>
+  <Folder Name="/src/WebApi/">
+    <Project Path="src/WebApi/CleanArchitecture.WebApi.OData/CleanArchitecture.WebApi.OData.csproj" />
+    <Project Path="src/WebApi/CleanArchitecture.WebApi.Shared/CleanArchitecture.WebApi.Shared.csproj" />
+    <Project Path="src/WebApi/CleanArchitecture.WebApi/CleanArchitecture.WebApi.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/CleanArchitecture.IntegrationTests/CleanArchitecture.IntegrationTests.csproj" />
+  </Folder>
+</Solution>

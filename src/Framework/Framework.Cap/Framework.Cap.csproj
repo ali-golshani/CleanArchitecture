@@ -1,18 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.4.1" />
-		<PackageReference Include="DotNetCore.CAP.SqlServer" Version="8.4.1" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard"/>
+		<PackageReference Include="DotNetCore.CAP.SqlServer"/>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Framework.Application\Framework.Application.csproj" />
+		<ProjectReference Include="..\Framework.Application\Framework.Application.csproj" />
 	</ItemGroup>
 
 </Project>

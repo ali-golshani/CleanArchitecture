@@ -1,29 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
 	<ItemGroup>
-	  <ProjectReference Include="..\..\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj" />
-	  <ProjectReference Include="..\Infrastructure.CommoditySystem.Contract\Infrastructure.CommoditySystem.Contract.csproj" />
+		<ProjectReference Include="..\..\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj" />
+		<ProjectReference Include="..\Infrastructure.CommoditySystem.Contract\Infrastructure.CommoditySystem.Contract.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Resources\Messages.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>Messages.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Resources\Messages.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Messages.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\Messages.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>Messages.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Resources\Messages.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Messages.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>

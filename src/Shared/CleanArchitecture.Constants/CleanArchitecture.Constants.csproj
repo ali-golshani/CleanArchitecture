@@ -1,25 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-    <RootNamespace>CleanArchitecture</RootNamespace>
+		<RootNamespace>CleanArchitecture</RootNamespace>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Update="Resources\PersianDictionary.Designer.cs">
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	    <DependentUpon>PersianDictionary.resx</DependentUpon>
-	  </Compile>
+		<Compile Update="Resources\PersianDictionary.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>PersianDictionary.resx</DependentUpon>
+		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Update="Resources\PersianDictionary.resx">
-	    <Generator>ResXFileCodeGenerator</Generator>
-	    <LastGenOutput>PersianDictionary.Designer.cs</LastGenOutput>
-	  </EmbeddedResource>
+		<EmbeddedResource Update="Resources\PersianDictionary.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>PersianDictionary.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
 	</ItemGroup>
 
 </Project>

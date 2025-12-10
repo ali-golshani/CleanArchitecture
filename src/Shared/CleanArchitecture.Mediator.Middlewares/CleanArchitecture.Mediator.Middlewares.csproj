@@ -1,19 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net10.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.Logging\Framework.Logging.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
-    <ProjectReference Include="..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
-    <ProjectReference Include="..\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\Framework\Framework.Domain\Framework.Domain.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Logging\Framework.Logging.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Persistence\Framework.Persistence.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+	</ItemGroup>
 
 </Project>

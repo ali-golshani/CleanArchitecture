@@ -1,16 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net10.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
-
 	<ItemGroup>
-	  <ProjectReference Include="..\..\Framework\Framework.DurableTask\Framework.DurableTask.csproj" />
-	  <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Commands\CleanArchitecture.Ordering.Commands.csproj" />
-	  <ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Queries\CleanArchitecture.Ordering.Queries.csproj" />
-	  <ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator.Middlewares\CleanArchitecture.Mediator.Middlewares.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.DurableTask\Framework.DurableTask.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Commands\CleanArchitecture.Ordering.Commands.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Queries\CleanArchitecture.Ordering.Queries.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator.Middlewares\CleanArchitecture.Mediator.Middlewares.csproj" />
 	</ItemGroup>
 
 </Project>
