@@ -7,7 +7,6 @@
 	<ItemGroup>
 		<PackageReference Include="Asp.Versioning.Http"/>
 		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer"/>
-		<PackageReference Include="FluentValidation.AspNetCore"/>
 		<PackageReference Include="Hellang.Middleware.ProblemDetails"/>
 		<PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection"/>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
