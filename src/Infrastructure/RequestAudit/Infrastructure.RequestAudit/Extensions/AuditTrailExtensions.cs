@@ -44,6 +44,11 @@ internal static class AuditTrailExtensions
             return null;
         }
 
+        if (response is IAuditableResponse auditableResponse)
+        {
+            return auditableResponse.AuditTrailString();
+        }
+
         if (response.GetType().IsPrimitive)
         {
             return response.ToString();
