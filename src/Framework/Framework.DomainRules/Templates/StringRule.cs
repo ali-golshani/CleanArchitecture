@@ -2,7 +2,7 @@
 
 namespace Framework.DomainRules.Templates;
 
-public sealed class StringRule(
+public class StringRule(
     string? value,
     string source,
     bool acceptEmptyValue = false,
