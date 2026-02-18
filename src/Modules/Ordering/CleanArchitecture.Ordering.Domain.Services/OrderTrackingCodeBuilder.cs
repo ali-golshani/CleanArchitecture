@@ -1,11 +1,11 @@
 ﻿namespace CleanArchitecture.Ordering.Domain.Services;
 
-internal sealed class OrderTrackingCodeBuilder(IDateTime dateTime) : IOrderTrackingCodeBuilder
+internal sealed class OrderTrackingCodeBuilder(IClock clock) : IOrderTrackingCodeBuilder
 {
-    private readonly IDateTime dateTime = dateTime;
+    private readonly IClock clock = clock;
 
     public string Build()
     {
-        return dateTime.Now.Ticks.ToString();
+        return clock.Now.Ticks.ToString();
     }
 }

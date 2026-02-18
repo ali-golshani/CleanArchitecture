@@ -66,7 +66,7 @@ public sealed class AuditTrail
         Parameters = parameters;
         Response = null;
         IsSuccess = false;
-        RequestTime = SystemDateTime.Now;
+        RequestTime = SystemClock.Now;
         ResponseTime = TimeSpan.Zero;
     }
 }

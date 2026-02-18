@@ -36,7 +36,7 @@ public static class Configuration
     {
         var connectionStrings = new ConnectionStrings(configuration.CleanArchitectureConnectionString());
 
-        services.AddSingleton<IDateTime, SystemDateTime>();
+        services.AddSingleton<IClock, SystemClock>();
         services.AddSingleton(_ => SystemEnvironment.Environment);
 
         services.AddDbInterceptors();

@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Shared;
 
-public interface IDateTime
+public interface IClock
 {
     DateTime Now { get; }
     DateOnly Today { get; }
