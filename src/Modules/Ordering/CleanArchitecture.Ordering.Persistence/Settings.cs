@@ -7,7 +7,6 @@ public static class Settings
     public static class SchemaNames
     {
         public const string Ordering = "ordering";
-        public const string Sequence = "sequence";
     }
 
     public static class TableNames
