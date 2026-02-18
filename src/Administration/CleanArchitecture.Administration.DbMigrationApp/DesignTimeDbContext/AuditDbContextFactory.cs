@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace CleanArchitecture.Administration.DbMigrationApp.DesignTimeDbContext;
 
-public class AuditDbContextFactory : IDesignTimeDbContextFactory<AuditDbContext>
+public sealed class AuditDbContextFactory : IDesignTimeDbContextFactory<AuditDbContext>
 {
     public AuditDbContext CreateDbContext(string[] args)
     {

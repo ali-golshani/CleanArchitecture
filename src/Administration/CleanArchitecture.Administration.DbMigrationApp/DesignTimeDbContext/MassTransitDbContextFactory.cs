@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace CleanArchitecture.Administration.DbMigrationApp.DesignTimeDbContext;
 
-public class MassTransitDbContextFactory : IDesignTimeDbContextFactory<MassTransitDbContext>
+public sealed class MassTransitDbContextFactory : IDesignTimeDbContextFactory<MassTransitDbContext>
 {
     public MassTransitDbContext CreateDbContext(string[] args)
     {

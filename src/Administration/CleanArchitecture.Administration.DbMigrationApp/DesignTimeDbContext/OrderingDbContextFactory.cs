@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace CleanArchitecture.Administration.DbMigrationApp.DesignTimeDbContext;
 
-public class OrderingDbContextFactory : IDesignTimeDbContextFactory<OrderingDbContext>
+public sealed class OrderingDbContextFactory : IDesignTimeDbContextFactory<OrderingDbContext>
 {
     public OrderingDbContext CreateDbContext(string[] args)
     {
