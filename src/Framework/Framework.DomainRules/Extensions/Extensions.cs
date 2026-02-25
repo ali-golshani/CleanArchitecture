@@ -4,7 +4,7 @@ namespace Framework.DomainRules.Extensions;
 
 public static class Extensions
 {
-    public static async Task<List<Error>> Errors(this BusinessPolicy policy)
+    public static async Task<List<Error>> EvaluateAndReturnErrors(this BusinessPolicy policy)
     {
         var result = new List<Error>();
         await foreach (var item in policy.Evaluate().Errors())
