@@ -2,6 +2,7 @@
 using Framework.Exceptions;
 using Framework.Exceptions.Extensions;
 using Framework.WebApi.Extensions;
+using Microsoft.Extensions.Logging;
 
 namespace CleanArchitecture.WebApi.Shared.Middlewares;
 
