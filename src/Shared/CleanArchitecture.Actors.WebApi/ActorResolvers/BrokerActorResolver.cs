@@ -16,7 +16,7 @@ internal sealed class BrokerActorResolver : IActorResolver<BrokerActor>
             return null;
         }
 
-        var isBroker = user.IsInRole(ClaimTypes.BrokerRoles);
+        var isBroker = user.IsInRole(UserClaimTypes.BrokerRoles);
 
         if (!isBroker)
         {
@@ -28,7 +28,7 @@ internal sealed class BrokerActorResolver : IActorResolver<BrokerActor>
 
     private static int? BrokerId(ClaimsPrincipal user)
     {
-        if (int.TryParse(user.FindFirst(ClaimTypes.BrokerId)?.Value, out var brokerId) && brokerId > 0)
+        if (int.TryParse(user.FindFirst(UserClaimTypes.BrokerId)?.Value, out var brokerId) && brokerId > 0)
         {
             return brokerId;
         }

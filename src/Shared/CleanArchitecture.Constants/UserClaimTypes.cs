@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture.Actors.WebApi;
+﻿namespace CleanArchitecture;
 
-public static class ClaimTypes
+public static class UserClaimTypes
 {
     public const string Role = "role";
     public const string Username = "name";

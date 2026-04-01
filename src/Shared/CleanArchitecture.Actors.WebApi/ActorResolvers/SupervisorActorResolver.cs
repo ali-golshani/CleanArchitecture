@@ -7,7 +7,7 @@ internal sealed class SupervisorActorResolver : IActorResolver<SupervisorActor>
         string username = user.Username;
         string displayName = user.DisplayName;
 
-        var isSupervisor = user.IsInRole(ClaimTypes.SupervisorRoles);
+        var isSupervisor = user.IsInRole(UserClaimTypes.SupervisorRoles);
 
         if (!isSupervisor)
         {

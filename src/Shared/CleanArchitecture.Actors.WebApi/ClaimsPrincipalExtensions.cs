@@ -15,7 +15,7 @@ internal static class ClaimsPrincipalExtensions
 
         var roles =
             user
-            .FindAll(x => MatchClaimType(x, ClaimTypes.Role))
+            .FindAll(x => MatchClaimType(x, UserClaimTypes.Role))
             .ToList();
 
         string? username = user.Identity?.Name;
@@ -24,13 +24,13 @@ internal static class ClaimsPrincipalExtensions
         {
             username =
                 user
-                .FindFirst(x => MatchClaimType(x, ClaimTypes.Username))
+                .FindFirst(x => MatchClaimType(x, UserClaimTypes.Username))
                 ?.Value ?? Question;
         }
 
         string displayName =
             user
-            .FindFirst(x => MatchClaimType(x, ClaimTypes.DisplayName))
+            .FindFirst(x => MatchClaimType(x, UserClaimTypes.DisplayName))
             ?.Value ?? Question;
 
         return new User(user, roles, username, displayName);

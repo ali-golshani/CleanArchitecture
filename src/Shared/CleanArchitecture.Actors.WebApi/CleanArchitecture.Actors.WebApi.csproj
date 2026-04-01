@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Http"/>
+		<PackageReference Include="Microsoft.AspNetCore.Http" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
 	</ItemGroup>
 
 </Project>

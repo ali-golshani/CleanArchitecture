@@ -7,7 +7,7 @@ internal sealed class ProgrammerResolver : IActorResolver<Programmer>
         string username = user.Username;
         string displayName = user.DisplayName;
 
-        var isProgrammer = user.IsInRole(ClaimTypes.ProgrammerRoles);
+        var isProgrammer = user.IsInRole(UserClaimTypes.ProgrammerRoles);
 
         if (!isProgrammer)
         {

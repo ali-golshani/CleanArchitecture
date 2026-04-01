@@ -9,7 +9,7 @@ internal sealed class CustomerActorResolver : IActorResolver<CustomerActor>
         string username = user.Username;
         string displayName = user.DisplayName;
 
-        var isCustomer = user.IsInRole(ClaimTypes.CustomerRoles);
+        var isCustomer = user.IsInRole(UserClaimTypes.CustomerRoles);
 
         if (!isCustomer)
         {
@@ -28,7 +28,7 @@ internal sealed class CustomerActorResolver : IActorResolver<CustomerActor>
 
     private static int? CustomerId(ClaimsPrincipal user)
     {
-        if (int.TryParse(user.FindFirst(ClaimTypes.CustomerId)?.Value, out var customerId) && customerId > 0)
+        if (int.TryParse(user.FindFirst(UserClaimTypes.CustomerId)?.Value, out var customerId) && customerId > 0)
         {
             return customerId;
         }
