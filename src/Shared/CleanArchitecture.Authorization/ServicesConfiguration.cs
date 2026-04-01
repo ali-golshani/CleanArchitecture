@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Authorization;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterServices(this IServiceCollection services)
     {

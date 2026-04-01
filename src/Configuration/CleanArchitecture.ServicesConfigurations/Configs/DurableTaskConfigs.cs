@@ -17,10 +17,10 @@ internal static class DurableTaskConfigs
         var options = DurableTaskOptions(configuration);
         var sqlOptions = new SqlOptions { ConnectionString = connectionString };
 
-        ServiceConfigurations.RegisterOrchestrationService(services, sqlOptions, options, TaskHubname);
-        ServiceConfigurations.RegisterTaskHubWorker(services, new OrchestrationsRegistrar());
-        ServiceConfigurations.RegisterTaskHubClient(services);
-        ServiceConfigurations.RegisterHostedServices(services);
+        ServicesConfiguration.RegisterOrchestrationService(services, sqlOptions, options, TaskHubname);
+        ServicesConfiguration.RegisterTaskHubWorker(services, new OrchestrationsRegistrar());
+        ServicesConfiguration.RegisterTaskHubClient(services);
+        ServicesConfiguration.RegisterHostedServices(services);
     }
 
     private static DurableTaskOptions DurableTaskOptions(IConfiguration configuration)
@@ -34,7 +34,7 @@ internal static class DurableTaskConfigs
     {
         public void RegisterOrchestrations(IServiceProvider serviceProvider, TaskHubWorker worker)
         {
-            ProcessManager.ServiceConfigurations.RegisterOrchestrations(serviceProvider, worker);
+            ProcessManager.ServicesConfiguration.RegisterOrchestrations(serviceProvider, worker);
         }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Application;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterServices(IServiceCollection services)
     {

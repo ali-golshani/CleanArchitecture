@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Framework.Mediator;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterServices(IServiceCollection services)
     {

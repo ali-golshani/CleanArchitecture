@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Domain.Services;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterServices(IServiceCollection services)
     {

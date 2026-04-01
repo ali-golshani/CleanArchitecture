@@ -37,7 +37,7 @@ public static class Program
 
         Authentication.AuthenticationConfigs.Configure(configuration, services);
         Authorization.AuthorizationConfigs.Configure(services);
-        Actors.WebApi.ServiceConfigurations.RegisterHttpActorsServices(services);
+        Actors.WebApi.ServicesConfiguration.RegisterHttpActorsServices(services);
 
         services
             .AddControllers(options =>

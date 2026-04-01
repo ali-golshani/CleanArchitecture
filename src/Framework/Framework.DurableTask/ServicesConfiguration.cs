@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Framework.DurableTask;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterOrchestrationService(IServiceCollection services, SqlOptions sqlOptions, DurableTaskOptions options, string taskHubname)
     {

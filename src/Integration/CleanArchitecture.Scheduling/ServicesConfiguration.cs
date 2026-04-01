@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Scheduling;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterJobs(IServiceCollection services)
     {

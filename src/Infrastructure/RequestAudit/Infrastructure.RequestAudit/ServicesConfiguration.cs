@@ -2,7 +2,7 @@
 
 namespace Infrastructure.RequestAudit;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterServices(IServiceCollection services)
     {

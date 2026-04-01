@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Actors.WebApi;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterHttpActorsServices(IServiceCollection services)
     {

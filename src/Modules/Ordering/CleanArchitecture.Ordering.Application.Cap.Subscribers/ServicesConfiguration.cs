@@ -2,7 +2,7 @@
 
 namespace CleanArchitecture.Ordering.Application.Cap.Subscribers;
 
-public static class ServiceConfigurations
+public static class ServicesConfiguration
 {
     public static void RegisterServices(IServiceCollection services)
     {
