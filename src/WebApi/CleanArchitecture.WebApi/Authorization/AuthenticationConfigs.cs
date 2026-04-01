@@ -8,6 +8,6 @@ internal static class AuthorizationConfigs
     {
         services.AddAuthorization();
         PolicyConfigs.RegisterServices(services);
-        services.ConfigureOptions<ConfigureAuthorizationOptions>();
+        services.ConfigureOptions<AuthorizationOptionsSetup>();
     }
 }

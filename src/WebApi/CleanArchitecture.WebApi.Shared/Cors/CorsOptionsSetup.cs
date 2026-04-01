@@ -3,8 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.WebApi.Shared.Cors;
 
-internal sealed class ConfigureCorsOptions(IConfiguration configuration)
-    : IConfigureOptions<CorsOptions>
+internal sealed class CorsOptionsSetup(IConfiguration configuration) : IConfigureOptions<CorsOptions>
 {
     private readonly IConfiguration configuration = configuration;
 

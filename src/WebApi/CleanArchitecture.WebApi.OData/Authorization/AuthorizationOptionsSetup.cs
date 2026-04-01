@@ -4,7 +4,7 @@ using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.WebApi.OData.Authorization;
 
-internal class ConfigureAuthorizationOptions : IConfigureOptions<AuthorizationOptions>
+internal class AuthorizationOptionsSetup : IConfigureOptions<AuthorizationOptions>
 {
     public void Configure(AuthorizationOptions options)
     {

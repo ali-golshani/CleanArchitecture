@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.WebApi.Shared.Versioning;
 
-internal class ConfigureApiExplorerOptions : IConfigureOptions<ApiExplorerOptions>
+internal class ApiExplorerOptionsSetup : IConfigureOptions<ApiExplorerOptions>
 {
     public void Configure(ApiExplorerOptions options)
     {

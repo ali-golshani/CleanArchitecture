@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 
 namespace CleanArchitecture.WebApi.Shared.Versioning;
 
-internal class ConfigureApiVersioningOptions : IConfigureOptions<ApiVersioningOptions>
+internal class ApiVersioningOptionsSetup : IConfigureOptions<ApiVersioningOptions>
 {
     public void Configure(ApiVersioningOptions options)
     {
