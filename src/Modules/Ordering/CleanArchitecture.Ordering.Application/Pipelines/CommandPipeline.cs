@@ -16,7 +16,7 @@ internal static class CommandPipeline
 
     public sealed class Configuration : IKeyedPipelineConfiguration
     {
-        public static string PipelineName { get; } = "OrderingCommandPipeline";
+        public static string PipelineName { get; } = typeof(CommandPipeline).FullName!;
 
         public static Type[] Middlewares()
         {

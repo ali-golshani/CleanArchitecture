@@ -16,7 +16,7 @@ internal static class QueryPipeline
 
     public sealed class Configuration : IKeyedPipelineConfiguration
     {
-        public static string PipelineName { get; } = "OrderingQueryPipeline";
+        public static string PipelineName { get; } = typeof(QueryPipeline).FullName!;
 
         public static Type[] Middlewares()
         {
