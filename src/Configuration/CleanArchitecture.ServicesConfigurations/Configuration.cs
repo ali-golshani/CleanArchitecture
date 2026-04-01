@@ -19,8 +19,10 @@ public static class Configuration
         SystemEnvironment.SetEnvironment(application, stage);
     }
 
-    public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment environment)
+    public static void ConfigureAppConfiguration(IConfigurationBuilder configuration, IEnvironment? environment = null)
     {
+        environment ??= SystemEnvironment.Environment;
+
         configuration.Sources.Clear();
         Options.OptionsConfigs.Configure(configuration, environment);
         Secrets.SecretsConfigs.Configure(configuration, environment);
@@ -32,8 +34,10 @@ public static class Configuration
         configuration.AddJsonFile($"appsettings.{environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
     }
 
-    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IEnvironment environment)
+    public static void ConfigureServices(IServiceCollection services, IConfiguration configuration, IEnvironment? environment = null)
     {
+        environment ??= SystemEnvironment.Environment;
+
         var connectionStrings = new ConnectionStrings(configuration.CleanArchitectureConnectionString());
 
         services.AddSingleton<IClock, SystemClock>();

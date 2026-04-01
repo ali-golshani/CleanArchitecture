@@ -28,12 +28,12 @@ internal static class Program
 
     private static void ConfigureAppConfiguration(HostBuilderContext hostingContext, IConfigurationBuilder configuration)
     {
-        Configuration.ConfigureAppConfiguration(configuration, SystemEnvironment.Environment);
+        Configuration.ConfigureAppConfiguration(configuration);
     }
 
     private static void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        Configuration.ConfigureServices(services, context.Configuration, SystemEnvironment.Environment);
+        Configuration.ConfigureServices(services, context.Configuration);
         services.RegisterAsSelf<IService>(typeof(Program).Assembly);
         services.AddHostedService<HostedService>();
     }

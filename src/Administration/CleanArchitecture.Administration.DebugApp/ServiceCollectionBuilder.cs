@@ -15,11 +15,11 @@ public static class ServiceCollectionBuilder
     {
         var configurationBuilder = new ConfigurationBuilder();
         configurationBuilder.SetBasePath(AppPath);
-        Configuration.ConfigureAppConfiguration(configurationBuilder, SystemEnvironment.Environment);
+        Configuration.ConfigureAppConfiguration(configurationBuilder);
         configuration = configurationBuilder.Build();
 
         var services = new ServiceCollection();
-        Configuration.ConfigureServices(services, configuration, SystemEnvironment.Environment);
+        Configuration.ConfigureServices(services, configuration);
         services.AddLogging(Configuration.ConfigureLogging);
         services.RegisterAsSelf<IService>(typeof(Program).Assembly);
 
