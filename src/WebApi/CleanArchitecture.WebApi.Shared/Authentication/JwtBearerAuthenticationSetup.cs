@@ -7,29 +7,32 @@ using System.Text;
 
 namespace CleanArchitecture.WebApi.Shared.Authentication;
 
-public sealed class JwtBearerAuthenticationSettings
+public sealed class JwtBearerAuthenticationSetup(string authenticationScheme)
 {
+    private readonly string authenticationScheme = authenticationScheme;
+
     public string? SecurityKey { get; set; }
     public string? IntrospectionScheme { get; set; }
 
     private bool IsReferenceToken => !string.IsNullOrEmpty(IntrospectionScheme);
 
-    public void Configure(
-        IConfigurationSection configurationSection,
-        AuthenticationBuilder builder,
-        string authenticationScheme)
+    public void Configure(AuthenticationBuilder builder, IConfiguration configuration)
     {
+        string sectionPath = ConfigurationSections.Authentication.Scheme(authenticationScheme);
+        var schemeSection = configuration.GetRequiredSection(sectionPath);
+        schemeSection.Bind(this);
+
         if (IsReferenceToken)
         {
             builder
             .AddJwtBearer(authenticationScheme, options =>
             {
-                Configure(configurationSection, options);
+                Configure(schemeSection, options);
                 options.ForwardDefaultSelector = _ => IntrospectionScheme!;
             })
             .AddOAuth2Introspection(IntrospectionScheme, options =>
             {
-                Configure(configurationSection, options);
+                Configure(schemeSection, options);
             });
         }
         else
@@ -37,15 +40,15 @@ public sealed class JwtBearerAuthenticationSettings
             builder
             .AddJwtBearer(authenticationScheme, options =>
             {
-                Configure(configurationSection, options);
+                Configure(schemeSection, options);
             });
         }
     }
 
-    private void Configure(IConfigurationSection settingsSection, JwtBearerOptions options)
+    private void Configure(IConfigurationSection schemeSection, JwtBearerOptions options)
     {
         var sectionPath = ConfigurationSections.Authentication.JwtBearerOptions;
-        var section = settingsSection.GetSection(sectionPath);
+        var section = schemeSection.GetSection(sectionPath);
         section.Bind(options);
 
         if (!string.IsNullOrEmpty(SecurityKey))
@@ -55,10 +58,10 @@ public sealed class JwtBearerAuthenticationSettings
         }
     }
 
-    private static void Configure(IConfigurationSection settingsSection, OAuth2IntrospectionOptions options)
+    private static void Configure(IConfigurationSection schemeSection, OAuth2IntrospectionOptions options)
     {
         var sectionPath = ConfigurationSections.Authentication.OAuth2IntrospectionOptions;
-        var section = settingsSection.GetSection(sectionPath);
+        var section = schemeSection.GetSection(sectionPath);
         section.Bind(options);
     }
 }

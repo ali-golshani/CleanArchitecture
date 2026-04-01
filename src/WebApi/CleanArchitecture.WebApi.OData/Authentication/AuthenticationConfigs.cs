@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.WebApi.OData.Authentication;
+﻿using CleanArchitecture.WebApi.Shared.Authentication;
+
+namespace CleanArchitecture.WebApi.OData.Authentication;
 
 internal static class AuthenticationConfigs
 {
@@ -12,12 +14,7 @@ internal static class AuthenticationConfigs
 
         foreach (var scheme in AuthenticationSchemes.Schemes.Select(x => x.Name))
         {
-            Shared.Authentication.AuthenticationSchemeConfigs.Configure
-            (
-                configuration,
-                authenticationBuilder,
-                scheme
-            );
+            new JwtBearerAuthenticationSetup(scheme).Configure(authenticationBuilder, configuration);
         }
     }
 }
