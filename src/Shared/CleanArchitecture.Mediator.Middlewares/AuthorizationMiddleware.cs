@@ -23,11 +23,6 @@ public sealed class AuthorizationMiddleware<TRequest, TResponse> :
     {
         var actor = actorResolver.Actor;
 
-        if (actor is null)
-        {
-            return UnauthorizedError.Default;
-        }
-
         var accessLevel = await accessResolver.AccessLevel(actor, context.Request);
 
         if (accessLevel == AccessLevel.Denied)
