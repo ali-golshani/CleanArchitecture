@@ -6,7 +6,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Configuration\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
-		<ProjectReference Include="..\..\Integration\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
 	</ItemGroup>
 
 </Project>

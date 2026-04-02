@@ -122,8 +122,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Scheduling", "src\Integration\CleanArchitecture.Scheduling\CleanArchitecture.Scheduling.csproj", "{37944B51-F97A-4371-9FED-6C3E7149D127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.ProcessManager", "src\Integration\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj", "{74158D0A-11FF-478E-8FF3-72294FBB5479}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{D8C3E0DC-5BC2-4E7A-A403-BDD044E3441B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.Domain", "src\Modules\Ordering\CleanArchitecture.Ordering.Domain\CleanArchitecture.Ordering.Domain.csproj", "{E6AECB67-7E86-450E-A9E6-72E00BCC9DBA}"
@@ -163,6 +161,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Querying", "src\Integration\Querying\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj", "{FAC8238D-7437-5812-2835-0B7300A995BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Querying.Endpoints", "src\Integration\Querying\CleanArchitecture.Querying.Endpoints\CleanArchitecture.Querying.Endpoints.csproj", "{48A57286-D366-4147-AE41-AECE9D40A2EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ProcessManager", "ProcessManager", "{8EE65307-89AF-4529-8ED1-8C19B5A9E368}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.ProcessManager", "src\Integration\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj", "{5235FED9-C669-40F8-EF7A-5802CDF482F8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.ProcessManager.Endpoints", "src\Integration\ProcessManager\CleanArchitecture.ProcessManager.Endpoints\CleanArchitecture.ProcessManager.Endpoints.csproj", "{9DEF3939-DCAD-4389-9055-5905283A38D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -346,10 +350,6 @@ Global
 		{37944B51-F97A-4371-9FED-6C3E7149D127}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{37944B51-F97A-4371-9FED-6C3E7149D127}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{37944B51-F97A-4371-9FED-6C3E7149D127}.Release|Any CPU.Build.0 = Release|Any CPU
-		{74158D0A-11FF-478E-8FF3-72294FBB5479}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74158D0A-11FF-478E-8FF3-72294FBB5479}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74158D0A-11FF-478E-8FF3-72294FBB5479}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74158D0A-11FF-478E-8FF3-72294FBB5479}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E6AECB67-7E86-450E-A9E6-72E00BCC9DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E6AECB67-7E86-450E-A9E6-72E00BCC9DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6AECB67-7E86-450E-A9E6-72E00BCC9DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -418,6 +418,14 @@ Global
 		{48A57286-D366-4147-AE41-AECE9D40A2EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48A57286-D366-4147-AE41-AECE9D40A2EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48A57286-D366-4147-AE41-AECE9D40A2EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5235FED9-C669-40F8-EF7A-5802CDF482F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5235FED9-C669-40F8-EF7A-5802CDF482F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5235FED9-C669-40F8-EF7A-5802CDF482F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5235FED9-C669-40F8-EF7A-5802CDF482F8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DEF3939-DCAD-4389-9055-5905283A38D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DEF3939-DCAD-4389-9055-5905283A38D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DEF3939-DCAD-4389-9055-5905283A38D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DEF3939-DCAD-4389-9055-5905283A38D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -476,7 +484,6 @@ Global
 		{96F85FCA-6C27-4D2B-AFC2-130CA6E17F21} = {AFA29777-30FF-406D-8404-B6A5EAE89D4C}
 		{9E942061-9093-4C0A-8B8A-6A18F0B7A9C2} = {645BA2CF-F2A0-43B8-A133-254CEBDF9051}
 		{37944B51-F97A-4371-9FED-6C3E7149D127} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}
-		{74158D0A-11FF-478E-8FF3-72294FBB5479} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}
 		{D8C3E0DC-5BC2-4E7A-A403-BDD044E3441B} = {645BA2CF-F2A0-43B8-A133-254CEBDF9051}
 		{E6AECB67-7E86-450E-A9E6-72E00BCC9DBA} = {55FA89C7-CAF1-4D86-9BCD-87C776041011}
 		{59C84DC2-0FD2-4473-ACFB-1630D7F6F239} = {55FA89C7-CAF1-4D86-9BCD-87C776041011}
@@ -497,6 +504,9 @@ Global
 		{C68D0823-6BD7-42BD-A692-A35061FF7D7A} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}
 		{FAC8238D-7437-5812-2835-0B7300A995BF} = {C68D0823-6BD7-42BD-A692-A35061FF7D7A}
 		{48A57286-D366-4147-AE41-AECE9D40A2EB} = {C68D0823-6BD7-42BD-A692-A35061FF7D7A}
+		{8EE65307-89AF-4529-8ED1-8C19B5A9E368} = {9E942061-9093-4C0A-8B8A-6A18F0B7A9C2}
+		{5235FED9-C669-40F8-EF7A-5802CDF482F8} = {8EE65307-89AF-4529-8ED1-8C19B5A9E368}
+		{9DEF3939-DCAD-4389-9055-5905283A38D5} = {8EE65307-89AF-4529-8ED1-8C19B5A9E368}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A6B9D9F-9E78-4DCF-91D0-51B3C5E404EE}

@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OData" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors.WebApi\CleanArchitecture.Actors.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization.WebApi\CleanArchitecture.Authorization.WebApi.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
+  </ItemGroup>
+
+</Project>
