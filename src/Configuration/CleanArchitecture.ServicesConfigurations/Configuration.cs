@@ -50,8 +50,8 @@ public static class Configuration
         services.AddSingleton<IClock, SystemClock>();
         services.AddSingleton(_ => SystemEnvironment.Environment);
 
-        services.AddDbInterceptors();
         services.AddMediator();
+        services.AddDbInterceptors();
         services.AddActorAuthorization();
 
         services.AddCommoditySystem(environment);
@@ -62,8 +62,8 @@ public static class Configuration
 
         services.AddScheduling();
         services.AddIntegrationEventProcessing();
-        services.AddMessaging(configuration, connectionStrings, GlobalSettings.Messaging.MessagingSystem);
         services.AddDurableTasks(configuration, connectionStrings, TaskHubname);
+        services.AddMessaging(configuration, connectionStrings, GlobalSettings.Messaging.MessagingSystem);
     }
 
     public static void ConfigureLogging(ILoggingBuilder builder)

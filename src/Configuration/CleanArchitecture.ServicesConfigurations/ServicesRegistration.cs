@@ -12,10 +12,21 @@ namespace CleanArchitecture.ServicesConfigurations;
 
 internal static class ServicesRegistration
 {
-    public static void AddIntegrationEventProcessing(this IServiceCollection services)
+    public static void AddDbInterceptors(this IServiceCollection services)
     {
-        Ordering.Application.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
-        Ordering.Application.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
+        Framework.Persistence.ServicesConfiguration.RegisterDbInterceptors(services);
+    }
+
+    public static void AddMediator(this IServiceCollection services)
+    {
+        Framework.Mediator.ServicesConfiguration.RegisterServices(services);
+        Mediator.Middlewares.ServicesConfiguration.RegisterServices(services);
+    }
+
+    public static void AddActorAuthorization(this IServiceCollection services)
+    {
+        Actors.ServicesConfiguration.RegisterServices(services);
+        Authorization.ServicesConfiguration.RegisterServices(services);
     }
 
     public static void AddCommoditySystem(this IServiceCollection services, IEnvironment environment)
@@ -30,26 +41,6 @@ internal static class ServicesRegistration
         }
     }
 
-    public static void AddDurableTasks(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings, string taskHubname)
-    {
-        var durableTaskOptions = configuration.DurableTaskOptions();
-        var orchestrationsRegistrar = new DurableTaskOrchestrationsRegistrar();
-
-        services.RegisterDurableTask
-        (
-            taskHubname: taskHubname,
-            dbConnectionString: connectionStrings.CleanArchitectureConnectionString,
-            durableTaskOptions: durableTaskOptions,
-            orchestrationsRegistrar: orchestrationsRegistrar
-        );
-    }
-
-    public static void AddMediator(this IServiceCollection services)
-    {
-        Framework.Mediator.ServicesConfiguration.RegisterServices(services);
-        Mediator.Middlewares.ServicesConfiguration.RegisterServices(services);
-    }
-
     public static void AddScheduling(this IServiceCollection services)
     {
         Framework.Scheduling.ServicesConfiguration.RegisterServices(services);
@@ -57,15 +48,10 @@ internal static class ServicesRegistration
         Scheduling.ServicesConfiguration.RegisterJobs(services);
     }
 
-    public static void AddDbInterceptors(this IServiceCollection services)
+    public static void AddIntegrationEventProcessing(this IServiceCollection services)
     {
-        Framework.Persistence.ServicesConfiguration.RegisterDbInterceptors(services);
-    }
-
-    public static void AddActorAuthorization(this IServiceCollection services)
-    {
-        Actors.ServicesConfiguration.RegisterServices(services);
-        Authorization.ServicesConfiguration.RegisterServices(services);
+        Ordering.Application.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
+        Ordering.Application.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
     }
 
     public static void AddMessaging(
@@ -84,5 +70,23 @@ internal static class ServicesRegistration
         {
             services.AddMassTransitMessaging(connectionStrings.CleanArchitectureConnectionString);
         }
+    }
+
+    public static void AddDurableTasks(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        ConnectionStrings connectionStrings,
+        string taskHubname)
+    {
+        var durableTaskOptions = configuration.DurableTaskOptions();
+        var orchestrationsRegistrar = new DurableTaskOrchestrationsRegistrar();
+
+        services.RegisterDurableTask
+        (
+            taskHubname: taskHubname,
+            dbConnectionString: connectionStrings.CleanArchitectureConnectionString,
+            durableTaskOptions: durableTaskOptions,
+            orchestrationsRegistrar: orchestrationsRegistrar
+        );
     }
 }
