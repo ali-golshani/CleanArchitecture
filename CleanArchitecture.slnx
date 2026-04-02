@@ -55,9 +55,15 @@
     <Project Path="src/Infrastructure/RequestAudit/Infrastructure.RequestAudit/Infrastructure.RequestAudit.csproj" />
   </Folder>
   <Folder Name="/src/Integration/">
-    <Project Path="src/Integration/CleanArchitecture.ProcessManager/CleanArchitecture.ProcessManager.csproj" />
-    <Project Path="src/Integration/CleanArchitecture.Querying/CleanArchitecture.Querying.csproj" />
     <Project Path="src/Integration/CleanArchitecture.Scheduling/CleanArchitecture.Scheduling.csproj" />
+  </Folder>
+  <Folder Name="/src/Integration/ProcessManager/">
+    <Project Path="src/Integration/ProcessManager/CleanArchitecture.ProcessManager.Endpoints/CleanArchitecture.ProcessManager.Endpoints.csproj" />
+    <Project Path="src/Integration/ProcessManager/CleanArchitecture.ProcessManager/CleanArchitecture.ProcessManager.csproj" />
+  </Folder>
+  <Folder Name="/src/Integration/Querying/">
+    <Project Path="src/Integration/Querying/CleanArchitecture.Querying.Endpoints/CleanArchitecture.Querying.Endpoints.csproj" />
+    <Project Path="src/Integration/Querying/CleanArchitecture.Querying/CleanArchitecture.Querying.csproj" />
   </Folder>
   <Folder Name="/src/Modules/" />
   <Folder Name="/src/Modules/Ordering/">
@@ -67,9 +73,14 @@
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Commands/CleanArchitecture.Ordering.Commands.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain.Services/CleanArchitecture.Ordering.Domain.Services.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain/CleanArchitecture.Ordering.Domain.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Endpoints/CleanArchitecture.Ordering.Endpoints.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.IntegrationEvents/CleanArchitecture.Ordering.IntegrationEvents.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Persistence/CleanArchitecture.Ordering.Persistence.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Queries/CleanArchitecture.Ordering.Queries.csproj" />
+  </Folder>
+  <Folder Name="/src/Modules/UserManagement/">
+    <Project Path="src/Modules/UserManagement/CleanArchitecture.UserManagement.Endpoints/CleanArchitecture.UserManagement.Endpoints.csproj" />
+    <Project Path="src/Modules/UserManagement/CleanArchitecture.UserManagement/CleanArchitecture.UserManagement.csproj" />
   </Folder>
   <Folder Name="/src/Shared/">
     <Project Path="src/Shared/CleanArchitecture.Actors.WebApi/CleanArchitecture.Actors.WebApi.csproj" />
@@ -83,7 +94,6 @@
     <Project Path="src/Shared/CleanArchitecture.Shared/CleanArchitecture.Shared.csproj" />
   </Folder>
   <Folder Name="/src/WebApi/">
-    <Project Path="src/WebApi/CleanArchitecture.WebApi.OData/CleanArchitecture.WebApi.OData.csproj" />
     <Project Path="src/WebApi/CleanArchitecture.WebApi.Shared/CleanArchitecture.WebApi.Shared.csproj" />
     <Project Path="src/WebApi/CleanArchitecture.WebApi/CleanArchitecture.WebApi.csproj" />
   </Folder>
