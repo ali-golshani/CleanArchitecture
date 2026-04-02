@@ -160,6 +160,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework.DurableTask", "src\Framework\Framework.DurableTask\Framework.DurableTask.csproj", "{0549D817-24A2-DC07-1DF1-100D94E9B0CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Ordering.Endpoints", "src\Modules\Ordering\CleanArchitecture.Ordering.Endpoints\CleanArchitecture.Ordering.Endpoints.csproj", "{A0E06CEC-DDF5-4B91-8442-DC06A412AA36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -410,6 +412,10 @@ Global
 		{0549D817-24A2-DC07-1DF1-100D94E9B0CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0549D817-24A2-DC07-1DF1-100D94E9B0CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0549D817-24A2-DC07-1DF1-100D94E9B0CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0E06CEC-DDF5-4B91-8442-DC06A412AA36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0E06CEC-DDF5-4B91-8442-DC06A412AA36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0E06CEC-DDF5-4B91-8442-DC06A412AA36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0E06CEC-DDF5-4B91-8442-DC06A412AA36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -487,6 +493,7 @@ Global
 		{030DCF9B-2241-469B-95BF-2F1E57DD8623} = {210D67E1-55AA-43B0-B927-947E688FD16F}
 		{F5C6A8FE-25C9-4B6B-AF01-0A371F76C4A0} = {55FA89C7-CAF1-4D86-9BCD-87C776041011}
 		{0549D817-24A2-DC07-1DF1-100D94E9B0CB} = {E4395562-331D-4AB0-ABDD-2DD70CC91C77}
+		{A0E06CEC-DDF5-4B91-8442-DC06A412AA36} = {55FA89C7-CAF1-4D86-9BCD-87C776041011}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A6B9D9F-9E78-4DCF-91D0-51B3C5E404EE}
