@@ -17,6 +17,7 @@ public static class ServicesConfiguration
         services.ConfigureOptions<JwtBearerOptionsSetup>();
 
         services.AddScoped<JwtService>();
+        services.AddScoped<SeedData>();
 
         services.AddTransient<IUserRepository, UserRepository>();
 

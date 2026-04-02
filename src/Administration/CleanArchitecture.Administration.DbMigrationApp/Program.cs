@@ -5,17 +5,24 @@ namespace CleanArchitecture.Administration.DbMigrationApp;
 
 internal static class Program
 {
-    public static void Main()
+    public static async Task Main()
     {
         var services = ServiceCollectionBuilder.Build(out _);
         var rootServiceProvider = services.BuildServiceProvider();
 
         using var scope = rootServiceProvider.CreateScope();
         var serviceProvider = scope.ServiceProvider;
+
         MigrateAll(serviceProvider);
 
-        Exit();
+        await Exit();
     }
+
+    public static async Task SeedAdminUser(IServiceProvider serviceProvider)
+    {
+        await serviceProvider.GetRequiredService<UserManagement.Persistence.SeedData>().SeedAdminUser();
+    }
+
 
     public static void MigrateAll(IServiceProvider serviceProvider)
     {
@@ -58,10 +65,10 @@ internal static class Program
         }
     }
 
-    private static void Exit()
+    private static async Task Exit()
     {
         Console.WriteLine("Please Wait...");
-        Thread.Sleep(1000);
+        await Task.Delay(1000);
         Console.Write("Press Ctrl + C to exit ...");
     }
 }
