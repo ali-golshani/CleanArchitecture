@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization.WebApi\CleanArchitecture.Authorization.WebApi.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.UserManagement\CleanArchitecture.UserManagement.csproj" />
+  </ItemGroup>
+
+</Project>

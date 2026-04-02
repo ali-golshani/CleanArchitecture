@@ -7,4 +7,6 @@ public enum Permission
     RegisterOrder = 2,
     CancelOrder = 3,
     RejectOrder = 4,
+
+    UserManagement = 5,
 }
