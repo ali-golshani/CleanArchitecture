@@ -6,7 +6,7 @@ public sealed class SeedData(UserManagementDbContext db)
 {
     private readonly UserManagementDbContext db = db;
 
-    public async Task SeedAdminUser()
+    public async Task SeedAdmin()
     {
         var username = "admin";
         var password = "@admin";
@@ -22,15 +22,23 @@ public sealed class SeedData(UserManagementDbContext db)
             passwordHash: hashedPassword
         );
 
-        var claim = new UserClaim
+        var roleClaim = new UserClaim
         {
             UserId = user.Id,
             ClaimType = UserClaimTypes.Role,
             ClaimValue = "developer"
         };
 
+        var permissionClaim = new UserClaim
+        {
+            UserId = user.Id,
+            ClaimType = UserClaimTypes.Permission,
+            ClaimValue = "UserManagement"
+        };
+
         db.Set<User>().Add(user);
-        db.Set<UserClaim>().Add(claim);
+        db.Set<UserClaim>().Add(roleClaim);
+        db.Set<UserClaim>().Add(permissionClaim);
 
         await db.SaveChangesAsync();
     }

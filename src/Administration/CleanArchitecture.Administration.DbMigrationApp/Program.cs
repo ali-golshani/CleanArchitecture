@@ -20,7 +20,7 @@ internal static class Program
 
     public static async Task SeedAdminUser(IServiceProvider serviceProvider)
     {
-        await serviceProvider.GetRequiredService<UserManagement.Persistence.SeedData>().SeedAdminUser();
+        await serviceProvider.GetRequiredService<UserManagement.Persistence.SeedData>().SeedAdmin();
     }
 
     public static void MigrateAll(IServiceProvider serviceProvider)

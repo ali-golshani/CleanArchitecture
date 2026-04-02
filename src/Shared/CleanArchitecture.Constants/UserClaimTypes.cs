@@ -6,6 +6,7 @@ public static class UserClaimTypes
     public const string Username = "name";
     public const string UserId = System.Security.Claims.ClaimTypes.NameIdentifier;
     public const string DisplayName = "displayName";
+    public const string Permission = "permission";
 
     public const string BrokerId = "brokerId";
     public const string CustomerId = "customerId";

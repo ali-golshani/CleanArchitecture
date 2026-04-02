@@ -10,6 +10,7 @@
 		<ProjectReference Include="..\..\Integration\ProcessManager\CleanArchitecture.ProcessManager.Endpoints\CleanArchitecture.ProcessManager.Endpoints.csproj" />
 		<ProjectReference Include="..\..\Integration\Querying\CleanArchitecture.Querying.Endpoints\CleanArchitecture.Querying.Endpoints.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Endpoints\CleanArchitecture.Ordering.Endpoints.csproj" />
+		<ProjectReference Include="..\..\Modules\UserManagement\CleanArchitecture.UserManagement.Endpoints\CleanArchitecture.UserManagement.Endpoints.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.WebApi.Shared\CleanArchitecture.WebApi.Shared.csproj" />
 	</ItemGroup>
 
