@@ -1,24 +1,16 @@
-﻿using Framework.Cap;
-using MassTransit;
-using Microsoft.Extensions.Configuration;
+﻿using Framework.Cap.InMemoryTransport;
 using Microsoft.Extensions.DependencyInjection;
-using Framework.Cap.InMemoryTransport;
 
-namespace CleanArchitecture.ServicesConfigurations.Configs;
+namespace Framework.Cap;
 
-internal static class CapConfigs
+public static class ServicesRegistration
 {
-    public static void RegisterCap(
-        IServiceCollection services,
-        IConfiguration configuration,
-        string connectionString)
+    public static void AddCapMessaging(this IServiceCollection services, CapOptions options, string dbConnectionString)
     {
-        var options = CapOptions(configuration);
-
         services.AddCap(
             x =>
             {
-                x.UseSqlServer(connectionString);
+                x.UseSqlServer(dbConnectionString);
                 x.UseInMemoryMessageQueue();
                 x.UseDashboard();
 
@@ -33,12 +25,7 @@ internal static class CapConfigs
                 x.SchedulerBatchSize = options.SchedulerBatchSize ?? x.SchedulerBatchSize;
                 x.UseStorageLock = options.UseStorageLock ?? x.UseStorageLock;
             });
-    }
 
-    public static CapOptions CapOptions(IConfiguration configuration)
-    {
-        var section = configuration.GetSection(Configurations.ConfigurationSections.Cap.Options);
-        var options = section.Get<CapOptions>();
-        return options ?? Framework.Cap.CapOptions.Default;
+        ServicesConfiguration.RegisterCapEventOutbox(services);
     }
 }

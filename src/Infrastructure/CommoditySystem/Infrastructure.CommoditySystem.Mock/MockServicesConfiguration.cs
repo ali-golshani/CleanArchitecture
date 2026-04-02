@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Infrastructure.CommoditySystem;
 
-public static class MockServiceConfigurations
+public static class MockServicesConfiguration
 {
     public static void RegisterMockServices(IServiceCollection services)
     {

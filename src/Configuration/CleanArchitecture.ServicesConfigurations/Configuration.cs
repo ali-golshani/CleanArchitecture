@@ -1,5 +1,9 @@
 ﻿using CleanArchitecture.Configurations;
+using CleanArchitecture.Ordering.Application;
+using CleanArchitecture.ProcessManager;
+using CleanArchitecture.Querying;
 using CleanArchitecture.Shared;
+using Infrastructure.RequestAudit;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -45,14 +49,18 @@ public static class Configuration
 
         services.AddDbInterceptors();
         services.AddMediator();
-        services.AddRequestAudit(connectionStrings);
-        services.AddCommoditySystem(environment);
-        services.AddMessaging(configuration, connectionStrings);
-        services.AddOrderingModule(connectionStrings);
-        services.AddQuerying(connectionStrings);
-        services.AddProcessManager(configuration, connectionStrings);
         services.AddActorAuthorization();
+
+        services.AddCommoditySystem(environment);
+        services.AddRequestAudit(connectionStrings.CleanArchitectureConnectionString);
+        services.AddOrderingModule(connectionStrings.CleanArchitectureConnectionString);
+        services.AddQueryingModule(connectionStrings.CleanArchitectureConnectionString);
+        services.AddProcessManagerModule();
+
         services.AddScheduling();
+        services.AddIntegrationEventProcessing();
+        services.AddMessaging(configuration, connectionStrings, GlobalSettings.Messaging.MessagingSystem);
+        services.AddDurableTasks(configuration, connectionStrings);
     }
 
     public static void ConfigureLogging(ILoggingBuilder builder)

@@ -1,7 +1,8 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.ServicesConfigurations.Configs;
-using Framework.Persistence.Interceptors;
-using Microsoft.EntityFrameworkCore;
+using Framework.Cap;
+using Framework.MassTransit;
+using Infrastructure.CommoditySystem;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -9,21 +10,8 @@ namespace CleanArchitecture.ServicesConfigurations;
 
 internal static class ServicesRegistration
 {
-    public static void AddOrderingModule(this IServiceCollection services, ConnectionStrings connectionStrings)
+    public static void AddIntegrationEventProcessing(this IServiceCollection services)
     {
-        services
-            .AddDbContext<Ordering.Persistence.OrderingDbContext>((sp, optionsBuilder) =>
-            {
-                SqlConfigs.Configure(optionsBuilder, connectionStrings.CleanArchitectureConnectionString, Ordering.Persistence.Settings.SchemaNames.Ordering);
-                optionsBuilder.AddInterceptors(sp.GetRequiredService<CorrelationIdInterceptor>());
-            },
-            ServiceLifetime.Scoped);
-
-        Ordering.Domain.Services.ServicesConfiguration.RegisterServices(services);
-        Ordering.Persistence.ServicesConfiguration.RegisterServices(services);
-        Ordering.Queries.ServicesConfiguration.RegisterServices(services);
-        Ordering.Commands.ServicesConfiguration.RegisterServices(services);
-        Ordering.Application.ServicesConfiguration.RegisterServices(services);
         Ordering.Application.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
         Ordering.Application.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
     }
@@ -32,38 +20,17 @@ internal static class ServicesRegistration
     {
         if (environment.DeploymentStage == DeploymentStage.Staging)
         {
-            Infrastructure.CommoditySystem.MockServiceConfigurations.RegisterMockServices(services);
+            services.AddMockCommoditySystem();
         }
         else
         {
-            Infrastructure.CommoditySystem.ServicesConfiguration.RegisterServices(services);
+            services.AddCommoditySystem();
         }
     }
 
-    public static void AddRequestAudit(this IServiceCollection services, ConnectionStrings connectionStrings)
-    {
-        services
-            .AddDbContext<Infrastructure.RequestAudit.Persistence.AuditDbContext>(optionsBuilder =>
-            SqlConfigs.Configure(optionsBuilder, connectionStrings.CleanArchitectureConnectionString, Infrastructure.RequestAudit.Settings.Persistence.SchemaNames.Audit),
-            ServiceLifetime.Scoped);
-
-        Infrastructure.RequestAudit.ServicesConfiguration.RegisterServices(services);
-        Infrastructure.RequestAudit.ServicesConfiguration.RegisterHostedServices(services);
-    }
-
-    public static void AddProcessManager(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    public static void AddDurableTasks(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
     {
         DurableTaskConfigs.RegisterDurableTask(services, configuration, connectionStrings.CleanArchitectureConnectionString);
-        ProcessManager.ServicesConfiguration.RegisterServices(services);
-    }
-
-    public static void AddQuerying(this IServiceCollection services, ConnectionStrings connectionStrings)
-    {
-        services
-            .AddDbContext<Querying.Persistence.EmptyDbContext>(
-            optionsBuilder => optionsBuilder.UseSqlServer(connectionStrings.CleanArchitectureConnectionString));
-
-        Querying.ServicesConfiguration.RegisterServices(services);
     }
 
     public static void AddMediator(this IServiceCollection services)
@@ -90,35 +57,21 @@ internal static class ServicesRegistration
         Authorization.ServicesConfiguration.RegisterServices(services);
     }
 
-    public static void AddMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    public static void AddMessaging(
+        this IServiceCollection services,
+        IConfiguration configuration,
+        ConnectionStrings connectionStrings,
+        MessagingSystem messagingSystem)
     {
-        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.Cap)
+        if (messagingSystem == MessagingSystem.Cap)
         {
-            services.AddCapMessaging(configuration, connectionStrings);
+            var capOptions = configuration.CapOptions();
+            services.AddCapMessaging(capOptions, connectionStrings.CleanArchitectureConnectionString);
         }
 
-        if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.MassTransit)
+        if (messagingSystem == MessagingSystem.MassTransit)
         {
-            services.AddMassTransitMessaging(connectionStrings);
+            services.AddMassTransitMessaging(connectionStrings.CleanArchitectureConnectionString);
         }
-    }
-
-    private static void AddCapMessaging(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
-    {
-        CapConfigs.RegisterCap(services, configuration, connectionStrings.CleanArchitectureConnectionString);
-        Framework.Cap.ServicesConfiguration.RegisterCapEventOutbox(services);
-    }
-
-    private static void AddMassTransitMessaging(this IServiceCollection services, ConnectionStrings connectionStrings)
-    {
-        services
-            .AddDbContext<Framework.MassTransit.MassTransitDbContext>(
-            optionsBuilder => SqlConfigs.Configure(optionsBuilder, connectionStrings.CleanArchitectureConnectionString, Framework.MassTransit.Settings.Persistence.SchemaNames.MassTransit),
-            ServiceLifetime.Scoped);
-
-        MassTransitConfigs.RegisterMassTransitOutboxAndTransport(services, connectionStrings.CleanArchitectureConnectionString);
-        services.AddHostedService<Framework.MassTransit.BusHostedService>();
-
-        Framework.MassTransit.ServicesConfiguration.RegisterEventOutbox(services);
     }
 }

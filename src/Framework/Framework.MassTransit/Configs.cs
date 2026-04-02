@@ -1,15 +1,15 @@
 ﻿using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.ServicesConfigurations.Configs;
+namespace Framework.MassTransit;
 
-internal static class MassTransitConfigs
+internal static class Configs
 {
     public static void RegisterMassTransitOutbox(IServiceCollection services)
     {
         services.AddMassTransit(cfg =>
         {
-            cfg.AddEntityFrameworkOutbox<Framework.MassTransit.MassTransitDbContext>(o =>
+            cfg.AddEntityFrameworkOutbox<MassTransitDbContext>(o =>
             {
                 o.UseSqlServer();
                 o.UseBusOutbox();
@@ -23,7 +23,7 @@ internal static class MassTransitConfigs
         {
             cfg.AddSqlMessageScheduler();
 
-            cfg.AddEntityFrameworkOutbox<Framework.MassTransit.MassTransitDbContext>(o =>
+            cfg.AddEntityFrameworkOutbox<MassTransitDbContext>(o =>
             {
                 o.UseSqlServer();
                 o.UseBusOutbox();
