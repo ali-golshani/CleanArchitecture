@@ -23,7 +23,6 @@ internal static class Program
         await serviceProvider.GetRequiredService<UserManagement.Persistence.SeedData>().SeedAdminUser();
     }
 
-
     public static void MigrateAll(IServiceProvider serviceProvider)
     {
         try
