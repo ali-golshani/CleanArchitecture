@@ -16,6 +16,12 @@ public static class UserClaimTypes
         "programmer",
     ];
 
+    public static readonly List<string> AdministratorRoles =
+    [
+        "admin",
+        "administrator",
+    ];
+
     public static readonly List<string> SupervisorRoles =
     [
         "overseer",

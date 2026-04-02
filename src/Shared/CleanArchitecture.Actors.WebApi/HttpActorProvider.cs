@@ -54,6 +54,7 @@ internal sealed class HttpActorProvider(IHttpContextAccessor httpContextAccessor
         var resolvers = new IActorResolver<Actor>[]
         {
             new ProgrammerResolver(),
+            new AdministratorResolver(),
             new SupervisorActorResolver(),
             new BrokerActorResolver(),
             new CustomerActorResolver(),
