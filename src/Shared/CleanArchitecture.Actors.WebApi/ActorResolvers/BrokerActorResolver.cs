@@ -23,7 +23,7 @@ internal sealed class BrokerActorResolver : IActorResolver<BrokerActor>
             return null;
         }
 
-        return new BrokerActor(brokerId.Value, username, displayName, true);
+        return new BrokerActor(brokerId.Value, username, displayName);
     }
 
     private static int? BrokerId(ClaimsPrincipal user)

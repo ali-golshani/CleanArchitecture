@@ -34,7 +34,7 @@ internal sealed class Handler(IUserRepository userRepository) : IRequestHandler<
 
         var claims = new List<UserClaim>
         {
-            new UserClaim
+            new()
             {
                 UserId = user.Id,
                 ClaimType = UserClaimTypes.Role,

@@ -24,9 +24,7 @@ public static class UserClaimTypes
 
     public static readonly List<string> BrokerRoles =
     [
-        "broker.clerk",
-        "broker.trader",
-        "broker.manager"
+        "broker",
     ];
 
     public static readonly List<string> CustomerRoles =
