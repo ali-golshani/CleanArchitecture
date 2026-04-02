@@ -2,12 +2,12 @@
 
 namespace CleanArchitecture.Administration.DbMigrationApp.Services;
 
-internal sealed class OrderingDbMigrationService(IServiceProvider serviceProvider) : DbMigrationServiceBase(serviceProvider)
+internal sealed class UserManagementDbMigrationService(IServiceProvider serviceProvider) : DbMigrationServiceBase(serviceProvider)
 {
     public void Migrate()
     {
-        Console.WriteLine("OrderingDbContext ...");
-        using (var db = Service<Ordering.Persistence.OrderingDbContext>())
+        Console.WriteLine("UserManagementDbContext ...");
+        using (var db = Service<UserManagement.Persistence.UserManagementDbContext>())
         {
             PrintMigrationInfo(db.Database);
             db.Database.Migrate();

@@ -12,6 +12,7 @@
 		<ProjectReference Include="..\..\Integration\CleanArchitecture.Scheduling\CleanArchitecture.Scheduling.csproj" />
 		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Options\CleanArchitecture.Options.csproj" />
 		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Secrets\CleanArchitecture.Secrets.csproj" />
+		<ProjectReference Include="..\..\Modules\UserManagement\CleanArchitecture.UserManagement\CleanArchitecture.UserManagement.csproj" />
 	</ItemGroup>
 
 </Project>

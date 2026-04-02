@@ -12,11 +12,11 @@ namespace CleanArchitecture.UserManagement.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "UserManagement");
+                name: "um");
 
             migrationBuilder.CreateTable(
                 name: "User",
-                schema: "UserManagement",
+                schema: "um",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -36,7 +36,7 @@ namespace CleanArchitecture.UserManagement.Migrations
 
             migrationBuilder.CreateTable(
                 name: "UserClaim",
-                schema: "UserManagement",
+                schema: "um",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -52,7 +52,7 @@ namespace CleanArchitecture.UserManagement.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Username",
-                schema: "UserManagement",
+                schema: "um",
                 table: "User",
                 column: "Username",
                 unique: true);
@@ -63,11 +63,11 @@ namespace CleanArchitecture.UserManagement.Migrations
         {
             migrationBuilder.DropTable(
                 name: "User",
-                schema: "UserManagement");
+                schema: "um");
 
             migrationBuilder.DropTable(
                 name: "UserClaim",
-                schema: "UserManagement");
+                schema: "um");
         }
     }
 }

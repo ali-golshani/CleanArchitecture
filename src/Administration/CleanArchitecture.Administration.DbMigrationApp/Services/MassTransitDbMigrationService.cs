@@ -10,8 +10,7 @@ internal sealed class MassTransitDbMigrationService(IServiceProvider serviceProv
         Console.WriteLine("MassTransitDbContext ...");
         using (var db = Service<Framework.MassTransit.MassTransitDbContext>())
         {
-            var cs = db.Database.GetConnectionString();
-            PrintConnectionString(cs);
+            PrintMigrationInfo(db.Database);
             db.Database.Migrate();
         }
         Console.WriteLine("Migration Finished .");

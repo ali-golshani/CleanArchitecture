@@ -8,7 +8,7 @@ internal sealed class UserClaimConfiguration : IEntityTypeConfiguration<UserClai
 {
     public void Configure(EntityTypeBuilder<UserClaim> builder)
     {
-        builder.ToTable("UserClaim", "UserManagement");
+        builder.ToTable("UserClaim", Settings.SchemaNames.UserManagement);
 
         builder.HasKey(x => x.Id);
 

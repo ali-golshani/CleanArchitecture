@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.Ordering.Application;
 using CleanArchitecture.ProcessManager;
+using CleanArchitecture.UserManagement.Application;
 using CleanArchitecture.Querying;
 using CleanArchitecture.ServicesConfigurations.OptionsProviders;
 using CleanArchitecture.Shared;
@@ -57,6 +58,7 @@ public static class Configuration
         services.AddCommoditySystem(environment);
         services.AddRequestAudit(connectionStrings.CleanArchitectureConnectionString);
         services.AddOrderingModule(connectionStrings.CleanArchitectureConnectionString);
+        services.AddUserManagementModule(connectionStrings.CleanArchitectureConnectionString);
         services.AddQueryingModule(connectionStrings.CleanArchitectureConnectionString);
         services.AddProcessManagerModule();
 

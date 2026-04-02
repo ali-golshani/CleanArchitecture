@@ -10,8 +10,7 @@ internal sealed class AuditDbMigrationService(IServiceProvider serviceProvider) 
         Console.WriteLine("AuditDbContext ...");
         using (var db = Service<AuditDbContext>())
         {
-            var cs = db.Database.GetConnectionString();
-            PrintConnectionString(cs);
+            PrintMigrationInfo(db.Database);
             db.Database.Migrate();
         }
         Console.WriteLine("Migration Finished .");

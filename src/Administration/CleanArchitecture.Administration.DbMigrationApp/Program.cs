@@ -26,12 +26,17 @@ internal static class Program
             var massTransitDb = new MassTransitDbMigrationService(serviceProvider);
             var capDb = new CapDbMigrationService(serviceProvider);
             var durableTaskDb = new DurableTaskDbMigrationService(serviceProvider);
+            var userManagementDb = new UserManagementDbMigrationService(serviceProvider);
 
             auditDb.Migrate();
 
             Console.WriteLine();
 
             orderingDb.Migrate();
+
+            Console.WriteLine();
+
+            userManagementDb.Migrate();
 
             Console.WriteLine();
 
