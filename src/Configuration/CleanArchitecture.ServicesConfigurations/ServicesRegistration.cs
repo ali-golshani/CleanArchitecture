@@ -1,6 +1,8 @@
 ﻿using CleanArchitecture.Configurations;
-using CleanArchitecture.ServicesConfigurations.Configs;
+using CleanArchitecture.ProcessManager;
+using CleanArchitecture.ServicesConfigurations.OptionsProviders;
 using Framework.Cap;
+using Framework.DurableTask;
 using Framework.MassTransit;
 using Infrastructure.CommoditySystem;
 using Microsoft.Extensions.Configuration;
@@ -28,9 +30,18 @@ internal static class ServicesRegistration
         }
     }
 
-    public static void AddDurableTasks(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings)
+    public static void AddDurableTasks(this IServiceCollection services, IConfiguration configuration, ConnectionStrings connectionStrings, string taskHubname)
     {
-        DurableTaskConfigs.RegisterDurableTask(services, configuration, connectionStrings.CleanArchitectureConnectionString);
+        var durableTaskOptions = configuration.DurableTaskOptions();
+        var orchestrationsRegistrar = new DurableTaskOrchestrationsRegistrar();
+
+        services.RegisterDurableTask
+        (
+            taskHubname: taskHubname,
+            dbConnectionString: connectionStrings.CleanArchitectureConnectionString,
+            durableTaskOptions: durableTaskOptions,
+            orchestrationsRegistrar: orchestrationsRegistrar
+        );
     }
 
     public static void AddMediator(this IServiceCollection services)

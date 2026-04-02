@@ -1,7 +1,7 @@
 ﻿using Framework.Cap;
 using Microsoft.Extensions.Configuration;
 
-namespace CleanArchitecture.ServicesConfigurations;
+namespace CleanArchitecture.ServicesConfigurations.OptionsProviders;
 
 internal static class CapOptionsProvider
 {

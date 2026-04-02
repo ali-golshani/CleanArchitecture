@@ -2,6 +2,7 @@
 using CleanArchitecture.Ordering.Application;
 using CleanArchitecture.ProcessManager;
 using CleanArchitecture.Querying;
+using CleanArchitecture.ServicesConfigurations.OptionsProviders;
 using CleanArchitecture.Shared;
 using Infrastructure.RequestAudit;
 using Microsoft.AspNetCore.Hosting;
@@ -13,6 +14,8 @@ namespace CleanArchitecture.ServicesConfigurations;
 
 public static class Configuration
 {
+    private const string TaskHubname = "CleanArchitectureTaskHub";
+
     public static void SetEnvironment(ApplicationFlavor application, IWebHostEnvironment environment)
     {
         SystemEnvironment.SetEnvironment(application, environment.DeploymentStage());
@@ -42,7 +45,7 @@ public static class Configuration
     {
         environment ??= SystemEnvironment.Environment;
 
-        var connectionStrings = new ConnectionStrings(configuration.CleanArchitectureConnectionString());
+        var connectionStrings = configuration.ConnectionStrings();
 
         services.AddSingleton<IClock, SystemClock>();
         services.AddSingleton(_ => SystemEnvironment.Environment);
@@ -60,7 +63,7 @@ public static class Configuration
         services.AddScheduling();
         services.AddIntegrationEventProcessing();
         services.AddMessaging(configuration, connectionStrings, GlobalSettings.Messaging.MessagingSystem);
-        services.AddDurableTasks(configuration, connectionStrings);
+        services.AddDurableTasks(configuration, connectionStrings, TaskHubname);
     }
 
     public static void ConfigureLogging(ILoggingBuilder builder)
