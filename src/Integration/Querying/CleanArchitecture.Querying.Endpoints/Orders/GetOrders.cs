@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.Routing;
 
-namespace CleanArchitecture.Querying.Endpoints;
+namespace CleanArchitecture.Querying.Endpoints.Orders;
 
 public sealed class GetOrders : IMinimalEndpoint
 {

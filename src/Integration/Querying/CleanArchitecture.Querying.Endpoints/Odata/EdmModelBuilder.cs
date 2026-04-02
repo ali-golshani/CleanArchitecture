@@ -2,7 +2,7 @@
 using Microsoft.OData.Edm;
 using Microsoft.OData.ModelBuilder;
 
-namespace CleanArchitecture.Querying.Odata;
+namespace CleanArchitecture.Querying.Endpoints.Odata;
 
 internal static class EdmModelBuilder
 {

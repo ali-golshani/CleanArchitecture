@@ -7,7 +7,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Configuration\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
-		<ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
+		<ProjectReference Include="..\..\Integration\Querying\CleanArchitecture.Querying.Endpoints\CleanArchitecture.Querying.Endpoints.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Endpoints\CleanArchitecture.Ordering.Endpoints.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.WebApi.Shared\CleanArchitecture.WebApi.Shared.csproj" />
 	</ItemGroup>

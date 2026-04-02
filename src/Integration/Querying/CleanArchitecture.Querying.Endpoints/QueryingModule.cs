@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.Querying.Odata;
+﻿using CleanArchitecture.Querying.Endpoints.Odata;
 using Framework.WebApi;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -16,7 +16,7 @@ public sealed class QueryingModule : IModule
 
     public void RegisterEndpoints(IEndpointRouteBuilder app)
     {
-        app.Map<GetOrders>();
+        app.Map<Orders.GetOrders>();
     }
 
     public IEndpointRouteBuilder RouteBuilder(IEndpointRouteBuilder app)
