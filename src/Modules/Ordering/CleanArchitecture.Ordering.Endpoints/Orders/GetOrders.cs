@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
 using Framework.Queries;
-using Microsoft.AspNetCore.Mvc;
 
 namespace CleanArchitecture.Ordering.Endpoints.Orders;
 
