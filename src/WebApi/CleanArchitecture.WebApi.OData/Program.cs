@@ -29,7 +29,7 @@ public static class Program
 
         CorsConfigs.Configure(services);
         RateLimitationConfigs.Configure(services, RateLimiters.Fixed);
-        SwaggerConfigs.Configure(services);
+        SwaggerConfigs.Configure(services, []);
         ResponseCompressionConfigs.Configure(services);
         ProblemDetailsConfigs.Configure(services, isDevelopment);
 
@@ -51,7 +51,7 @@ public static class Program
 
         if (isDevelopment)
         {
-            SwaggerConfigs.Configure(app);
+            SwaggerConfigs.Configure(app, []);
         }
 
         app.UseHttpsRedirection();

@@ -6,6 +6,8 @@ namespace CleanArchitecture.WebApi.Shared.Swagger;
 
 public static class SwaggerConfigs
 {
+    private const string DefaultDocumentName = "Default";
+
     public static void Configure(IServiceCollection services, IModule[] modules)
     {
         foreach (var module in modules)
@@ -24,7 +26,24 @@ public static class SwaggerConfigs
             });
         }
 
+        AddDefaultDocument(services);
+
         services.AddEndpointsApiExplorer();
+    }
+
+    private static void AddDefaultDocument(IServiceCollection services)
+    {
+        services.AddOpenApi(DefaultDocumentName, options =>
+        {
+            var defaultSchemaReferenceId = options.CreateSchemaReferenceId;
+            options.CreateSchemaReferenceId = typeInfo => SchemaReferenceId(typeInfo, defaultSchemaReferenceId);
+
+            options.ShouldInclude = x => x.GroupName is null;
+
+            options.AddSchemaTransformer<EnumSchemaTransformer>();
+            options.AddSchemaTransformer<RequestReadOnlyPropertiesTransformer>();
+            options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
+        });
     }
 
     public static void Configure(WebApplication app, IModule[] modules)
@@ -36,6 +55,8 @@ public static class SwaggerConfigs
             {
                 options.AddDocument(module.Name);
             }
+
+            options.AddDocument(DefaultDocumentName);
         });
         app.UseSwaggerUI(options =>
         {
@@ -43,6 +64,11 @@ public static class SwaggerConfigs
             {
                 var url = $"/openapi/{module.Name}.json";
                 options.SwaggerEndpoint(url, module.Name);
+            }
+
+            {
+                var url = $"/openapi/{DefaultDocumentName}.json";
+                options.SwaggerEndpoint(url, DefaultDocumentName);
             }
         });
     }
@@ -60,30 +86,5 @@ public static class SwaggerConfigs
 
         return defaultSchemaReferenceId(typeInfo);
     }
-
-    public static void Configure(IServiceCollection services)
-    {
-        services.AddOpenApi("CleanArchitecture", options =>
-        {
-            options.AddSchemaTransformer<EnumSchemaTransformer>();
-            options.AddSchemaTransformer<RequestReadOnlyPropertiesTransformer>();
-            options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
-        });
-
-        services.AddEndpointsApiExplorer();
-    }
-
-    public static void Configure(WebApplication app)
-    {
-        app.MapOpenApi();
-        app.MapScalarApiReference(options =>
-        {
-            options.AddDocument("CleanArchitecture");
-        });
-        app.UseSwaggerUI(options =>
-        {
-            var url = $"/openapi/CleanArchitecture.json";
-            options.SwaggerEndpoint(url, "CleanArchitecture");
-        });
-    }
 }
+
