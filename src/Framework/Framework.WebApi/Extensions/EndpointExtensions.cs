@@ -10,7 +10,7 @@ public static class EndpointExtensions
 
     public static void RegisterModule(this IEndpointRouteBuilder app, IModule module)
     {
-        var route = app.MapGroup(module.RoutePrefix).WithGroupName(module.Name);
+        var route = module.RouteBuilder(app);
         module.RegisterEndpoints(route);
     }
 }

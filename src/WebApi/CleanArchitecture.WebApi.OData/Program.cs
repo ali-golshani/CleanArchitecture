@@ -6,6 +6,8 @@ using CleanArchitecture.WebApi.Shared.Filters;
 using CleanArchitecture.WebApi.Shared.Middlewares;
 using CleanArchitecture.WebApi.Shared.RateLimitation;
 using CleanArchitecture.WebApi.Shared.Swagger;
+using Framework.WebApi;
+using Framework.WebApi.Extensions;
 using Hellang.Middleware.ProblemDetails;
 
 namespace CleanArchitecture.WebApi.OData;
@@ -29,7 +31,6 @@ public static class Program
 
         CorsConfigs.Configure(services);
         RateLimitationConfigs.Configure(services, RateLimiters.Fixed);
-        SwaggerConfigs.Configure(services, []);
         ResponseCompressionConfigs.Configure(services);
         ProblemDetailsConfigs.Configure(services, isDevelopment);
 
@@ -47,11 +48,18 @@ public static class Program
 
         services.AddDistributedMemoryCache();
 
+        var modules = new IModule[]
+        {
+            new Querying.Endpoints.QueryingModule()
+        };
+
+        SwaggerConfigs.Configure(services, modules);
+
         var app = builder.Build();
 
         if (isDevelopment)
         {
-            SwaggerConfigs.Configure(app, []);
+            SwaggerConfigs.Configure(app, modules);
         }
 
         app.UseHttpsRedirection();
@@ -62,6 +70,11 @@ public static class Program
         app.UseAuthentication();
         app.UseAuthorization();
         app.MapControllers();
+
+        foreach (var module in modules)
+        {
+            app.RegisterModule(module);
+        }
 
         await app.RunAsync();
     }

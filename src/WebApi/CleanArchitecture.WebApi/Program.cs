@@ -50,6 +50,7 @@ public static class Program
         {
             new Ordering.Endpoints.OrderingModule(),
             new Ordering.Endpoints.OrderingModuleV2(),
+            new Querying.Endpoints.QueryingModule(),
         };
 
         SwaggerConfigs.Configure(services, modules);

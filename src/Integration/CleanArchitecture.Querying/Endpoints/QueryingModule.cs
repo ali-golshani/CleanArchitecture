@@ -1,0 +1,53 @@
+﻿using Framework.WebApi;
+using Framework.WebApi.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.OData;
+using Microsoft.AspNetCore.Routing;
+
+namespace CleanArchitecture.Querying.Endpoints;
+
+public sealed class QueryingModule : IModule
+{
+    public string Name => "Querying";
+    public string Title => "Querying";
+    public string Version => "1.0.0";
+    public string RoutePrefix => "api/querying/";
+
+    public void RegisterEndpoints(IEndpointRouteBuilder app)
+    {
+        app.Map<GetOrders>();
+    }
+
+    public IEndpointRouteBuilder RouteBuilder(IEndpointRouteBuilder app)
+    {
+        return
+            app
+            .MapGroup(RoutePrefix)
+            .WithGroupName(Name)
+            .WithODataModel(EdmModelBuilder.EdmModel())
+            .AddODataQueryEndpointFilter
+            (
+                validationSetup: validationSettings =>
+                {
+                    validationSettings.MaxTop = 1000;
+                    validationSettings.MaxExpansionDepth = 5;
+                },
+                querySetup: querySettings =>
+                {
+                    querySettings.PageSize = 10;
+                }
+            )
+            .WithODataOptions(options =>
+            {
+                options
+                    .Select()
+                    .Filter()
+                    .OrderBy()
+                    .Expand()
+                    .Count()
+                    .SetMaxTop(1000)
+                    ;
+            })
+            ;
+    }
+}

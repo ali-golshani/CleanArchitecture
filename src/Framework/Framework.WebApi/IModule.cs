@@ -8,4 +8,9 @@ public interface IModule
     string RoutePrefix { get; }
 
     void RegisterEndpoints(IEndpointRouteBuilder app);
+
+    IEndpointRouteBuilder RouteBuilder(IEndpointRouteBuilder app)
+    {
+        return app.MapGroup(RoutePrefix).WithGroupName(Name);
+    }
 }
