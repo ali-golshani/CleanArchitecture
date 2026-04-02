@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.Querying.Services;
+﻿using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
+using CleanArchitecture.Querying.Services;
 using Framework.Results.Extensions;
 using Framework.WebApi;
 using Microsoft.AspNetCore.Builder;
@@ -17,7 +18,7 @@ public sealed class GetOrders : IMinimalEndpoint
             .WithTags("Orders")
             .WithDescription("Query Orders")
             .WithODataResult()
-            //.RequireAuthorization(new PermissionAuthorizeAttribute(Permission.ReadOrders))
+            .RequireAuthorization(new PermissionAuthorizeAttribute(Permission.ReadOrders))
             ;
     }
 
