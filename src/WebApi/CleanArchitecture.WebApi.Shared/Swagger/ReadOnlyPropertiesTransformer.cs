@@ -1,46 +1,34 @@
-﻿using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.OpenApi;
+﻿using Microsoft.AspNetCore.OpenApi;
+using Microsoft.OData.ModelBuilder;
 using Microsoft.OpenApi;
 
 namespace CleanArchitecture.WebApi.Shared.Swagger;
 
-public abstract class ReadOnlyPropertiesTransformer<TModel> : IOpenApiOperationTransformer
+public abstract class ReadOnlyPropertiesTransformer<TModel> : IOpenApiSchemaTransformer
 {
-    private static readonly Lock Sync = new();
+    private static readonly LowerCamelCaser camelCaser = new();
     protected abstract string[] ReadOnlyProperties { get; }
 
-    public Task TransformAsync(OpenApiOperation operation, OpenApiOperationTransformerContext context, CancellationToken cancellationToken)
+    public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
     {
-        lock (Sync)
+        if (context.JsonTypeInfo.Type.IsAssignableTo(typeof(TModel)))
         {
-            Transform(context);
+            if (schema.Properties is null)
+            {
+                return Task.CompletedTask;
+            }
+
+            foreach (var property in ReadOnlyProperties)
+            {
+                schema.Properties.Remove(ToLowerCamelCase(property));
+            }
         }
 
         return Task.CompletedTask;
     }
 
-    private void Transform(OpenApiOperationTransformerContext context)
+    protected static string ToLowerCamelCase(string value)
     {
-        var parameters =
-            context.Description.ParameterDescriptions
-            .Where(IsReadOnly)
-            .ToList();
-
-        if (parameters.Count > 0)
-        {
-            foreach (var parameter in parameters)
-            {
-                context.Description.ParameterDescriptions.Remove(parameter);
-            }
-        }
-    }
-
-    private bool IsReadOnly(ApiParameterDescription description)
-    {
-        var isTModel = description.ModelMetadata?.ContainerType?.IsAssignableTo(typeof(TModel));
-
-        return
-            isTModel == true &&
-            ReadOnlyProperties.Contains(description.Name);
+        return camelCaser.ToLowerCamelCase(value);
     }
 }

@@ -14,7 +14,7 @@ public sealed class EnumSchemaTransformer : IOpenApiSchemaTransformer
             foreach (var value in Enum.GetValuesAsUnderlyingType(context.JsonTypeInfo.Type))
             {
                 var name = Enum.GetName(context.JsonTypeInfo.Type, value);
-                var item = $"{name}: {value}";
+                var item = $"{name} = {value}";
                 schema.Enum.Add(item);
             }
         }

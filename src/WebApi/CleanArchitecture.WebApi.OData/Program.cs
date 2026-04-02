@@ -6,7 +6,6 @@ using CleanArchitecture.WebApi.Shared.Filters;
 using CleanArchitecture.WebApi.Shared.Middlewares;
 using CleanArchitecture.WebApi.Shared.RateLimitation;
 using CleanArchitecture.WebApi.Shared.Swagger;
-using CleanArchitecture.WebApi.Shared.Versioning;
 using Hellang.Middleware.ProblemDetails;
 
 namespace CleanArchitecture.WebApi.OData;
@@ -28,7 +27,6 @@ public static class Program
 
         services.AddLogging(ServicesConfigurations.Configuration.ConfigureLogging);
 
-        VersioningConfigs.Configure(services);
         CorsConfigs.Configure(services);
         RateLimitationConfigs.Configure(services, RateLimiters.Fixed);
         SwaggerConfigs.Configure(services);
