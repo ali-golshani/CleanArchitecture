@@ -6,8 +6,7 @@ namespace CleanArchitecture.WebApi.Shared.Swagger;
 internal sealed class BearerSecuritySchemeTransformer : IOpenApiDocumentTransformer
 {
     private const string Lines = "\r\n\r\n";
-    private const string SampleTokenA = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NjA3MzI4NDAsImV4cCI6MTkxODQ5OTI0MCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJSb2xlIjoicHJvZ3JhbW1lciIsIm5hbWUiOiJhbGlnb2xzaGFuaSIsImRpc3BsYXlOYW1lIjoiQWxpIEdvbHNoYW5pIiwicGVybWlzc2lvbiI6WyJSZWFkT3JkZXJzIiwiUmVnaXN0ZXJPcmRlciJdfQ.D5AF-lUqVOF3ZKJJzSXAV83t97YcvZlOzKwucAG3N6Q";
-    private const string SampleTokenB = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NjA3MzI4NDAsImV4cCI6MTkxODQ5OTI0MCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJSb2xlIjoicHJvZ3JhbW1lciIsIm5hbWUiOiJhbGlnb2xzaGFuaSIsImRpc3BsYXlOYW1lIjoiQWxpIEdvbHNoYW5pIiwicGVybWlzc2lvbiI6WyJSZWFkT3JkZXJzIiwiUmVnaXN0ZXJPcmRlciJdfQ.W6Dta8f8fsgrMKk6mVAgft0Gk9MxJQytj_0TC4deYfY";
+    private const string SampleTokenB = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NzUxNjE3NDQsImV4cCI6MTgzODMyMDE0NCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJwcm9ncmFtbWVyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6ImFsaWdvbHNoYW5pIiwiZGlzcGxheU5hbWUiOiJBbGkgR29sc2hhbmkiLCJwZXJtaXNzaW9uIjpbIlJlYWRPcmRlcnMiLCJSZWdpc3Rlck9yZGVyIl19.n1e8_g0fN0SMCIlukrXeTkzTzWLF7I1GI8qiYoec6SE";
 
     public async Task TransformAsync(OpenApiDocument document, OpenApiDocumentTransformerContext context, CancellationToken cancellationToken)
     {
@@ -39,7 +38,7 @@ internal sealed class BearerSecuritySchemeTransformer : IOpenApiDocumentTransfor
             Scheme = "Bearer",
             Description =
                 $"Input bearer token to access this API. Example:" +
-                $"{Lines}Schema-A:{Lines}{SampleTokenA}{Lines}Schema-B:{Lines}{SampleTokenB}",
+                $"{Lines}Schema-B:{Lines}{SampleTokenB}",
         };
     }
 }

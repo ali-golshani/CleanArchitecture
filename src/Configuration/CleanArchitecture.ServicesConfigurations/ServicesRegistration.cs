@@ -48,28 +48,28 @@ internal static class ServicesRegistration
         Scheduling.ServicesConfiguration.RegisterJobs(services);
     }
 
-    public static void AddIntegrationEventProcessing(this IServiceCollection services)
+    public static void AddIntegrationEventProcessing(this IServiceCollection services, MessagingSystem messagingSystem)
     {
-        Ordering.Application.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
-        Ordering.Application.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
+        if (messagingSystem == MessagingSystem.Cap)
+        {
+            Ordering.Application.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
+        }
+
+        if (messagingSystem == MessagingSystem.MassTransit)
+        {
+            Ordering.Application.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
+        }
     }
 
     public static void AddMessaging(
         this IServiceCollection services,
         IConfiguration configuration,
-        ConnectionStrings connectionStrings,
-        MessagingSystem messagingSystem)
+        ConnectionStrings connectionStrings)
     {
-        if (messagingSystem == MessagingSystem.Cap)
-        {
-            var capOptions = configuration.CapOptions();
-            services.AddCapMessaging(capOptions, connectionStrings.CleanArchitectureConnectionString);
-        }
+        var capOptions = configuration.CapOptions();
+        services.AddCapMessaging(capOptions, connectionStrings.CleanArchitectureConnectionString);
 
-        if (messagingSystem == MessagingSystem.MassTransit)
-        {
-            services.AddMassTransitMessaging(connectionStrings.CleanArchitectureConnectionString);
-        }
+        services.AddMassTransitMessaging(connectionStrings.CleanArchitectureConnectionString);
     }
 
     public static void AddDurableTasks(

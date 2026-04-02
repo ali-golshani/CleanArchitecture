@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.UserManagement.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.UserManagement.Persistence;
 
@@ -8,13 +9,20 @@ public sealed class SeedData(UserManagementDbContext db)
 
     public async Task SeedAdmin()
     {
+        var userId = Guid.Parse("565A3A39-ED6F-4B00-9999-62F516032F3A");
         var username = "admin";
         var password = "@admin";
+
+        if (await db.Set<User>().AnyAsync(x => x.Id == userId))
+        {
+            return;
+        }
 
         var hashedPassword = Utilities.PasswordHasher.Hash(username, password);
 
         var user = new User
         (
+            id: userId,
             username: username,
             firstName: "Ali",
             lastName: "Golshani",

@@ -2,7 +2,14 @@
 
 public static class AuthenticationSchemes
 {
+    /// <summary>
+    /// By User Management
+    /// </summary>
     public const string SchemeA = "SchemeA";
+
+    /// <summary>
+    /// http://jwtbuilder.jamiekurtz.com
+    /// </summary>
     public const string SchemeB = "SchemeB";
 
     public const string SchemeAPolicy = "AuthenticationSchemeA";

@@ -10,15 +10,20 @@ internal static class Program
         var services = ServiceCollectionBuilder.Build(out _);
         var rootServiceProvider = services.BuildServiceProvider();
 
-        using var scope = rootServiceProvider.CreateScope();
-        var serviceProvider = scope.ServiceProvider;
+        using (var scope = rootServiceProvider.CreateScope())
+        {
+            MigrateAll(scope.ServiceProvider);
+        }
 
-        MigrateAll(serviceProvider);
+        using (var scope = rootServiceProvider.CreateScope())
+        {
+            await SeedAdmin(scope.ServiceProvider);
+        }
 
         await Exit();
     }
 
-    public static async Task SeedAdminUser(IServiceProvider serviceProvider)
+    public static async Task SeedAdmin(IServiceProvider serviceProvider)
     {
         await serviceProvider.GetRequiredService<UserManagement.Persistence.SeedData>().SeedAdmin();
     }

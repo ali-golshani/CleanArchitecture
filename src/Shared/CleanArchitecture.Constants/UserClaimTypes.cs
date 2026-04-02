@@ -2,8 +2,8 @@
 
 public static class UserClaimTypes
 {
-    public const string Role = "role";
-    public const string Username = "name";
+    public const string Role = System.Security.Claims.ClaimTypes.Role;
+    public const string Username = System.Security.Claims.ClaimTypes.Name;
     public const string UserId = System.Security.Claims.ClaimTypes.NameIdentifier;
     public const string DisplayName = "displayName";
     public const string Permission = "permission";

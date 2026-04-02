@@ -10,8 +10,24 @@ internal sealed class User
         string lastName,
         string phoneNumber,
         string passwordHash)
+        : this(
+              id: Guid.NewGuid(),
+              username: username,
+              firstName: firstName,
+              lastName: lastName,
+              phoneNumber: phoneNumber,
+              passwordHash: passwordHash)
+    { }
+
+    internal User(
+        Guid id,
+        string username,
+        string firstName,
+        string lastName,
+        string phoneNumber,
+        string passwordHash)
     {
-        Id = Guid.NewGuid();
+        Id = id;
         Username = username;
         FirstName = firstName;
         LastName = lastName;
