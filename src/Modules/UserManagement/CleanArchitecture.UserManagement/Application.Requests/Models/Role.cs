@@ -2,6 +2,8 @@
 
 public enum Role
 {
-    Employee,
+    Broker,
+    Customer,
+    Supervisor,
     Administrator,
 }

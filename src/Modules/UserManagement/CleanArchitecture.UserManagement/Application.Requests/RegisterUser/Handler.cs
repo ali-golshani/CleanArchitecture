@@ -30,15 +30,51 @@ internal sealed class Handler(IUserRepository userRepository) : IRequestHandler<
             passwordHash: hashedPassword
         );
 
-        var claim = new UserClaim
+        await userRepository.Add(user);
+
+        var claims = new List<UserClaim>
         {
-            UserId = user.Id,
-            ClaimType = UserClaimTypes.Role,
-            ClaimValue = request.Role.ToString()
+            new UserClaim
+            {
+                UserId = user.Id,
+                ClaimType = UserClaimTypes.Role,
+                ClaimValue = request.Role.ToString()
+            }
         };
 
-        await userRepository.Add(user);
-        await userRepository.Add(claim);
+        if (request.BrokerId is not null)
+        {
+            var claim = new UserClaim
+            {
+                UserId = user.Id,
+                ClaimType = UserClaimTypes.BrokerId,
+                ClaimValue = request.BrokerId.Value.ToString()
+            };
+
+            claims.Add(claim);
+        }
+
+        if (request.CustomerId is not null)
+        {
+            var claim = new UserClaim
+            {
+                UserId = user.Id,
+                ClaimType = UserClaimTypes.CustomerId,
+                ClaimValue = request.CustomerId.Value.ToString()
+            };
+
+            claims.Add(claim);
+        }
+
+        foreach (var claim in claims)
+        {
+            await userRepository.Add(claim);
+        }
+
+        if (true)
+        {
+
+        }
 
         return Empty.Value;
     }

@@ -12,6 +12,8 @@ public sealed class Request : RequestBase, IRequest<Request, Empty>
     public required string LastName { get; init; }
     public required string PhoneNumber { get; init; }
     public required Models.Role Role { get; init; }
+    public required int? BrokerId { get; init;  }
+    public required int? CustomerId { get; init; }
 
     [JsonIgnore(Condition = JsonIgnoreCondition.WhenWriting)]
     public required string Password { get; init; }
