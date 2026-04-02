@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.OData.Query.Validator;
 
 namespace CleanArchitecture.Querying.Odata;
 
-internal static class ODataQueryFilters
+internal static class ODataConfigs
 {
     public static void QuerySetup(ODataQuerySettings querySettings)
     {

@@ -26,8 +26,8 @@ public sealed class QueryingModule : IModule
             .MapGroup(RoutePrefix)
             .WithGroupName(Name)
             .WithODataModel(EdmModelBuilder.EdmModel())
-            .AddODataQueryEndpointFilter(ODataQueryFilters.ValidationSetup, ODataQueryFilters.QuerySetup)
-            .WithODataOptions(ODataQueryFilters.OptionsSetup)
+            .AddODataQueryEndpointFilter(ODataConfigs.ValidationSetup, ODataConfigs.QuerySetup)
+            .WithODataOptions(ODataConfigs.OptionsSetup)
             ;
     }
 }
