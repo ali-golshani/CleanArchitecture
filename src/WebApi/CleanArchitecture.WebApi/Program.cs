@@ -49,7 +49,7 @@ public static class Program
         var modules = new IModule[]
         {
             new Ordering.Endpoints.OrderingModule(),
-            new Ordering.Endpoints.OrderingModuleV2(),
+            new Ordering.Endpoints.OrderingModule_V2(),
             new Querying.Endpoints.QueryingModule(),
             new ProcessManager.Endpoints.ProcessManagerModule(),
         };
