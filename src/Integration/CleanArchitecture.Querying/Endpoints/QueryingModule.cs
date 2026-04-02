@@ -1,4 +1,5 @@
-﻿using Framework.WebApi;
+﻿using CleanArchitecture.Querying.Odata;
+using Framework.WebApi;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.OData;
@@ -25,29 +26,8 @@ public sealed class QueryingModule : IModule
             .MapGroup(RoutePrefix)
             .WithGroupName(Name)
             .WithODataModel(EdmModelBuilder.EdmModel())
-            .AddODataQueryEndpointFilter
-            (
-                validationSetup: validationSettings =>
-                {
-                    validationSettings.MaxTop = 1000;
-                    validationSettings.MaxExpansionDepth = 5;
-                },
-                querySetup: querySettings =>
-                {
-                    querySettings.PageSize = 10;
-                }
-            )
-            .WithODataOptions(options =>
-            {
-                options
-                    .Select()
-                    .Filter()
-                    .OrderBy()
-                    .Expand()
-                    .Count()
-                    .SetMaxTop(1000)
-                    ;
-            })
+            .AddODataQueryEndpointFilter(ODataQueryFilters.ValidationSetup, ODataQueryFilters.QuerySetup)
+            .WithODataOptions(ODataQueryFilters.OptionsSetup)
             ;
     }
 }
