@@ -1,4 +1,5 @@
 ﻿using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
+using CleanArchitecture.Querying.GetOrders;
 using CleanArchitecture.Querying.Services;
 using Framework.Results.Extensions;
 using Framework.WebApi;
@@ -22,9 +23,9 @@ public sealed class GetOrders : IMinimalEndpoint
             ;
     }
 
-    private static async Task<IQueryable<Querying.GetOrders.Order>> Handle(
+    private static async Task<IQueryable<Order>> Handle(
         IQueryService queryService,
-        [AsParameters] Querying.GetOrders.Query query,
+        [AsParameters] Query query,
         CancellationToken cancellationToken)
     {
         return await

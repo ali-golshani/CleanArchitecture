@@ -14,11 +14,6 @@ public sealed class QueryingModule : IModule
     public string Version => "1.0.0";
     public string RoutePrefix => "api/querying/";
 
-    public void RegisterEndpoints(IEndpointRouteBuilder app)
-    {
-        app.Map<Orders.GetOrders>();
-    }
-
     public IEndpointRouteBuilder RouteBuilder(IEndpointRouteBuilder app)
     {
         return
@@ -29,5 +24,10 @@ public sealed class QueryingModule : IModule
             .WithODataOptions(ODataConfigs.OptionsSetup)
             .AddODataQueryEndpointFilter(ODataConfigs.ValidationSetup, ODataConfigs.QuerySetup)
             ;
+    }
+
+    public void RegisterEndpoints(IEndpointRouteBuilder app)
+    {
+        app.Map<Orders.GetOrders>();
     }
 }
