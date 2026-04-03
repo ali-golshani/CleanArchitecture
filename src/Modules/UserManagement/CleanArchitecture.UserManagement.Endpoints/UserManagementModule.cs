@@ -23,6 +23,7 @@ public sealed class UserManagementModule : IModule
         app.Map<GetUser>();
         app.Map<RegisterUser>();
         app.Map<UpdateUser>();
+        app.Map<UpdateUserClaims>();
         app.Map<ResetPassword>();
     }
 }

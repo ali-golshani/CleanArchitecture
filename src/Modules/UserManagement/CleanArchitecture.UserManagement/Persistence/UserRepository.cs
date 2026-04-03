@@ -25,14 +25,19 @@ internal sealed class UserRepository(UserManagementDbContext db) : IUserReposito
             .FirstOrDefaultAsync();
     }
 
-    public async Task Add(User user)
+    public void Add(User user)
     {
-        await db.Set<User>().AddAsync(user);
+        db.Set<User>().Add(user);
     }
 
-    public async Task Add(UserClaim userClaim)
+    public void Add(UserClaim userClaim)
     {
-        await db.Set<UserClaim>().AddAsync(userClaim);
+        db.Set<UserClaim>().Add(userClaim);
+    }
+
+    public void Remove(UserClaim userClaim)
+    {
+        db.Set<UserClaim>().Remove(userClaim);
     }
 
     public async Task<IReadOnlyCollection<UserClaim>> UserClaims(Guid userId)

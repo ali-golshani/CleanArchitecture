@@ -10,9 +10,9 @@ internal sealed class AccessControl(IUserRepository userRepository) : AccessCont
 
     protected override IPermissionRule<Request>[] PermissionRules(Request content)
     {
-        var selfPermission = new ContactPermissionRule(userRepository);
+        var contactPermission = new ContactPermissionRule(userRepository);
         var adminPermission = new RolesPermissionRule<Request>([Role.Administrator, Role.Programmer]);
 
-        return [selfPermission, adminPermission];
+        return [contactPermission, adminPermission];
     }
 }
