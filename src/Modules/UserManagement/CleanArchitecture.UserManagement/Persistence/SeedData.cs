@@ -34,7 +34,7 @@ public sealed class SeedData(UserManagementDbContext db)
         {
             UserId = user.Id,
             ClaimType = UserClaimTypes.Role,
-            ClaimValue = "developer"
+            ClaimValue = "programmer"
         };
 
         var permissionClaim = new UserClaim
