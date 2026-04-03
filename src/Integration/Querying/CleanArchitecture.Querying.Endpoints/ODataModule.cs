@@ -7,12 +7,12 @@ using Microsoft.AspNetCore.Routing;
 
 namespace CleanArchitecture.Querying.Endpoints;
 
-public sealed class QueryingModule : IModule
+public sealed class ODataModule : IModule
 {
-    public string Name => "Querying";
-    public string Title => "Querying";
+    public string Name => "OData";
+    public string Title => "OData";
     public string Version => "1.0.0";
-    public string RoutePrefix => "api/querying/";
+    public string RoutePrefix => "api/odata/";
 
     public IEndpointRouteBuilder RouteBuilder(IEndpointRouteBuilder app)
     {
