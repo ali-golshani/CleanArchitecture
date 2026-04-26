@@ -1,0 +1,22 @@
+﻿﻿-- login/<login-method> ::
+POST /api/auth/login/password { username, password }
+POST /api/auth/login/otp { otp-id, otp-code }
+POST /api/auth/login/ott { ott }
+POST /api/auth/login/totp { totp }
+
+POST /api/auth/logout { refresh-token }
+POST /api/auth/tokens/refresh { refresh-token }
+
+-- otp/<otp-purpose>/<otp-channel> ::
+POST /api/auth/otp/login/sms { mobile }
+POST /api/auth/otp/mfa-login/sms { username, password }
+POST /api/auth/otp/forget-password/sms { mobile }
+POST /api/auth/otp/forget-password/email { email }
+
+-- ott :: <ott-purpose>/<ott-source> ::
+POST /api/auth/forget-password/email { email }
+POST /api/auth/forget-password/otp { otp-id, otp-code }
+POST /api/auth/forget-password/totp
+POST /api/auth/forget-password/security-question
+
+POST /api/auth/reset-password { ott, password }
