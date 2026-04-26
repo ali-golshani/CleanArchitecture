@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="FluentValidation"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.DependencyInjection\Framework.DependencyInjection.csproj" />
+		<ProjectReference Include="..\Framework.Results\Framework.Results.csproj" />
+	</ItemGroup>
+
+</Project>

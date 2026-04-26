@@ -1,0 +1,21 @@
+{
+  "Cap": {
+    "FailedRetryCount": 5,
+    "FailedRetryInterval": 900,
+    "ConsumerThreadCount": 5
+  },
+  "UserManagement": {
+    "TokenLifetimes": {
+      "SmsOtpLifetimeSeconds": 300, // 60 * 5 = 5 minutes
+      "EmailOtpLifetimeSeconds": 3600, // 60 * 60 * 1 = 1 hour
+      "TokenLifetimeSeconds": 86400, // 60 * 60 * 24 = 24 hours
+      "RefreshTokenLifetimeHours": 168 // 24 * 7 = 7 days
+    }
+  },
+  "Cors": {
+    "Origins": [
+      "https://example.com",
+      "https://anotherdomain.com"
+    ]
+  }
+}

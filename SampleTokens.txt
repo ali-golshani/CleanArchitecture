@@ -1,0 +1,24 @@
+http://jwtbuilder.jamiekurtz.com/
+
+Ali-Golshani: Programmer
+{
+    "iss": "Online JWT Builder",
+    "iat": 1775161744,
+    "exp": 1838320144,
+    "aud": "www.example.com",
+    "sub": "aligolshani",
+    "http://schemas.microsoft.com/ws/2008/06/identity/claims/role": "programmer",
+    "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name": "aligolshani",
+    "displayName": "Ali Golshani",
+    "permission": [
+        "ReadOrders",
+        "RegisterOrder"
+    ]
+}
+
+Scheme SchemeA: by User-Management
+------------------------------------
+Scheme SchemeB:
+"SecurityKey": "qwertyuiopasdfghjklzcdebab654321"
+eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJPbmxpbmUgSldUIEJ1aWxkZXIiLCJpYXQiOjE3NzUxNjE3NDQsImV4cCI6MTgzODMyMDE0NCwiYXVkIjoid3d3LmV4YW1wbGUuY29tIiwic3ViIjoiYWxpZ29sc2hhbmkiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJwcm9ncmFtbWVyIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6ImFsaWdvbHNoYW5pIiwiZGlzcGxheU5hbWUiOiJBbGkgR29sc2hhbmkiLCJwZXJtaXNzaW9uIjpbIlJlYWRPcmRlcnMiLCJSZWdpc3Rlck9yZGVyIl19.n1e8_g0fN0SMCIlukrXeTkzTzWLF7I1GI8qiYoec6SE
+

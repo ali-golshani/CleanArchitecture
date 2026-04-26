@@ -1,0 +1,17 @@
+﻿using Bogus;
+using CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
+
+namespace CleanArchitecture.IntegrationTests.Fakers.Commands;
+
+internal sealed class RegisterOrder : Faker<Command>
+{
+    public RegisterOrder(int orderId, int customerId, int commodityId)
+    {
+        RuleFor(x => x.OrderId, orderId);
+        RuleFor(x => x.CustomerId, customerId);
+        RuleFor(x => x.CommodityId, commodityId);
+        RuleFor(x => x.BrokerId, x => x.Random.Number(10, 90));
+        RuleFor(x => x.Price, x => x.Random.Decimal(1000, 100_000));
+        RuleFor(x => x.Quantity, x => x.Random.Number(100, 1000));
+    }
+}

@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Quartz"/>
+		<PackageReference Include="Quartz.Extensions.Hosting"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.Exceptions\Framework.Exceptions.csproj" />
+		<ProjectReference Include="..\Framework.Logging\Framework.Logging.csproj" />
+	</ItemGroup>
+
+</Project>

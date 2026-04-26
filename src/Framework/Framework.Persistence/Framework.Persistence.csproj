@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Azure.Identity"/>
+		<PackageReference Include="DistributedLock.SqlServer"/>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.Domain\Framework.Domain.csproj" />
+		<ProjectReference Include="..\Framework.Exceptions\Framework.Exceptions.csproj" />
+		<ProjectReference Include="..\Framework.Queries\Framework.Queries.csproj" />
+		<ProjectReference Include="..\Framework.Threading\Framework.Threading.csproj" />
+	</ItemGroup>
+
+</Project>

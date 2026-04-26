@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows7.0</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<ApplicationIcon>Security.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Security.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Prism.Wpf"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Framework\Framework.Security\Framework.Security.csproj" />
+	</ItemGroup>
+
+</Project>

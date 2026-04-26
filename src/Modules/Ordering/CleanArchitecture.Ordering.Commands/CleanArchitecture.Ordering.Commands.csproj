@@ -1,0 +1,34 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Utilities\Framework.Utilities.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.Domain.Services\CleanArchitecture.Ordering.Domain.Services.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Ordering.IntegrationEvents\CleanArchitecture.Ordering.IntegrationEvents.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Update="Resources\ErrorMessages.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ErrorMessages.resx</DependentUpon>
+		</Compile>
+		<Compile Update="Resources\ValidationMessages.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>ValidationMessages.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\ErrorMessages.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ErrorMessages.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\ValidationMessages.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>ValidationMessages.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+</Project>

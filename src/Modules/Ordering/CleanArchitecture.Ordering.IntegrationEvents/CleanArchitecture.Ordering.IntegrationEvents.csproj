@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Framework\Framework.Mediator\Framework.Mediator.csproj" />
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
+	</ItemGroup>
+
+</Project>

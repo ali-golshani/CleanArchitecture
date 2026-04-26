@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\CleanArchitecture.Actors\CleanArchitecture.Actors.csproj" />
+		<ProjectReference Include="..\CleanArchitecture.Authorization.Claims\CleanArchitecture.Authorization.Claims.csproj" />
+	</ItemGroup>
+
+</Project>

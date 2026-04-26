@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="DotNetCore.CAP.Dashboard"/>
+		<PackageReference Include="DotNetCore.CAP.SqlServer"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.Application\Framework.Application.csproj" />
+	</ItemGroup>
+
+</Project>

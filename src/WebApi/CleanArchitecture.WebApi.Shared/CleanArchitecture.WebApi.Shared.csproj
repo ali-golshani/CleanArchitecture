@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Asp.Versioning.Http"/>
+		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer"/>
+		<PackageReference Include="Hellang.Middleware.ProblemDetails"/>
+		<PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection"/>
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
+		<PackageReference Include="Microsoft.AspNetCore.OData"/>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
+		<PackageReference Include="Scalar.AspNetCore"/>
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI"/>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Configurations\CleanArchitecture.Configurations.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.DomainRules\Framework.DomainRules.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Actors.WebApi\CleanArchitecture.Actors.WebApi.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Authorization.WebApi\CleanArchitecture.Authorization.WebApi.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+		<ProjectReference Include="..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

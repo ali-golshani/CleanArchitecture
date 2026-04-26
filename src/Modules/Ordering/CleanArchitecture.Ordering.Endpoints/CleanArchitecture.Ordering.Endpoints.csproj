@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Framework\Framework.WebApi\Framework.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Actors.WebApi\CleanArchitecture.Actors.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization.WebApi\CleanArchitecture.Authorization.WebApi.csproj" />
+    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Shared\CleanArchitecture.Shared.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Commands\CleanArchitecture.Ordering.Commands.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Queries\CleanArchitecture.Ordering.Queries.csproj" />
+  </ItemGroup>
+
+</Project>

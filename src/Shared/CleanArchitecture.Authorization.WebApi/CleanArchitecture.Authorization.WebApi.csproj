@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Authorization" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\CleanArchitecture.Authorization.Claims\CleanArchitecture.Authorization.Claims.csproj" />
+	</ItemGroup>
+
+</Project>

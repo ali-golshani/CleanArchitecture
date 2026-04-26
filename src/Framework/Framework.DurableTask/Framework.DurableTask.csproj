@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.DurableTask.SqlServer" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
+		<PackageReference Include="System.Drawing.Common" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.DependencyInjection\Framework.DependencyInjection.csproj" />
+		<ProjectReference Include="..\Framework.Results\Framework.Results.csproj" />
+	</ItemGroup>
+
+</Project>

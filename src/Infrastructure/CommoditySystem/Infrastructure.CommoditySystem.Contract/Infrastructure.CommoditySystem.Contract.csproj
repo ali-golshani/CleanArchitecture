@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<RootNamespace>Infrastructure.CommoditySystem</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\Shared\CleanArchitecture.Mediator\CleanArchitecture.Mediator.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,2 @@
+﻿CleanArchitecture.EKey
+A138D42E-FE8A-4ADC-95B9-E4024E322B4B

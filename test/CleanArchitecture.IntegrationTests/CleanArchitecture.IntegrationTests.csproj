@@ -1,0 +1,28 @@
+﻿<Project Sdk="MSTest.Sdk/3.6.1">
+
+	<PropertyGroup>
+		<UseVSTest>true</UseVSTest>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\src\Configuration\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Update="Microsoft.NET.Test.Sdk">
+		  <VersionOverride>18.4.0</VersionOverride>
+		</PackageReference>
+		<PackageReference Update="MSTest.Analyzers">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+			<VersionOverride>4.2.1</VersionOverride>
+		</PackageReference>
+		<PackageReference Update="MSTest.TestAdapter">
+		  <VersionOverride>4.2.1</VersionOverride>
+		</PackageReference>
+		<PackageReference Update="MSTest.TestFramework">
+		  <VersionOverride>4.2.1</VersionOverride>
+		</PackageReference>
+	</ItemGroup>
+
+</Project>

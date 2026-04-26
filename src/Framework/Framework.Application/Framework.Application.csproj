@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\Framework.Mediator\Framework.Mediator.csproj" />
+		<ProjectReference Include="..\Framework.Persistence\Framework.Persistence.csproj" />
+	</ItemGroup>
+
+</Project>

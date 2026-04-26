@@ -1,0 +1,72 @@
+﻿using CleanArchitecture.Authorization.Claims;
+using CleanArchitecture.UserManagement.Domain;
+using CleanArchitecture.UserManagement.Domain.Repositories;
+using CleanArchitecture.UserManagement.Errors;
+using CleanArchitecture.UserManagement.Utilities;
+using Framework.Mediator;
+using Framework.Results;
+
+namespace CleanArchitecture.UserManagement.Application.Requests.Users.RegisterUser;
+
+internal sealed class Handler(IUserRepository userRepository) : IRequestHandler<Request, Empty>
+{
+    private readonly IUserRepository userRepository = userRepository;
+
+    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
+    {
+        var exists = await userRepository.DoesUsernameExist(request.Username);
+
+        if (exists)
+        {
+            return new UsernameAlreadyExistsError();
+        }
+
+        var hashedPassword = PasswordHasher.Hash(request.Username, request.Password!);
+
+        var user = new User
+        (
+            firstName: request.FirstName,
+            lastName: request.LastName,
+            phoneNumber: request.PhoneNumber,
+            username: request.Username,
+            passwordHash: hashedPassword
+        );
+
+        userRepository.Add(user);
+
+        var roleClaim = new UserClaim
+        {
+            UserId = user.Id,
+            ClaimType = UserClaimTypes.Role,
+            ClaimValue = request.Role.ToString()
+        };
+
+        userRepository.Add(roleClaim);
+
+        if (request.BrokerId is not null)
+        {
+            var brokerClaim = new UserClaim
+            {
+                UserId = user.Id,
+                ClaimType = UserClaimTypes.BrokerId,
+                ClaimValue = request.BrokerId.Value.ToString()
+            };
+
+            userRepository.Add(brokerClaim);
+        }
+
+        if (request.CustomerId is not null)
+        {
+            var customerClaim = new UserClaim
+            {
+                UserId = user.Id,
+                ClaimType = UserClaimTypes.CustomerId,
+                ClaimValue = request.CustomerId.Value.ToString()
+            };
+
+            userRepository.Add(customerClaim);
+        }
+
+        return Empty.Value;
+    }
+}

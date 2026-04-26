@@ -1,0 +1,135 @@
+﻿using CleanArchitecture.Ordering.Commands.Errors;
+using CleanArchitecture.Ordering.Domain.Repositories;
+using CleanArchitecture.Ordering.Domain.Services;
+using Framework.Mediator;
+using Framework.Mediator.IntegrationEvents;
+using Framework.Mediator.Notifications;
+using Framework.Results;
+using Framework.Results.Extensions;
+using Infrastructure.CommoditySystem;
+using Infrastructure.CommoditySystem.Models;
+using Infrastructure.CommoditySystem.Requests;
+
+namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
+
+internal sealed class Handler : IRequestHandler<Command, Empty>
+{
+    private readonly IOrderRepository orderRepository;
+    private readonly IBuildOrderService buildOrderService;
+    private readonly ICommoditySystem commoditySystem;
+    private readonly INotificationPublisher notificationPublisher;
+    private readonly IIntegrationEventBus integrationEventBus;
+
+    public Handler(
+        IOrderRepository orderRepository,
+        IBuildOrderService buildOrderService,
+        ICommoditySystem commoditySystem,
+        INotificationPublisher notificationPublisher,
+        IIntegrationEventBus integrationEventBus)
+    {
+        this.orderRepository = orderRepository;
+        this.buildOrderService = buildOrderService;
+        this.commoditySystem = commoditySystem;
+        this.notificationPublisher = notificationPublisher;
+        this.integrationEventBus = integrationEventBus;
+    }
+
+    public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
+    {
+        if (await orderRepository.Exists(request.OrderId))
+        {
+            return new DuplicateOrderError(request.OrderId);
+        }
+
+        var commodityResult = await GetCommodity(request.CommodityId, cancellationToken);
+
+        if (commodityResult.IsFailure)
+        {
+            return commodityResult.Errors;
+        }
+
+        var commodity = commodityResult.Value!;
+
+        var orderResult = await BuildOrder(request, commodity);
+
+        if (orderResult.IsFailure)
+        {
+            return orderResult.Errors;
+        }
+
+        var order = orderResult.Value!;
+
+        orderRepository.Add(order);
+
+        return await OnOrderRegistered(order, request.CorrelationId, cancellationToken);
+    }
+
+    public async Task<Result<Empty>> HandleB(Command request, CancellationToken cancellationToken)
+    {
+        if (await orderRepository.Exists(request.OrderId))
+        {
+            return new DuplicateOrderError(request.OrderId);
+        }
+
+        return await
+            GetCommodity(request.CommodityId, cancellationToken)
+            .Then(commodity => BuildOrder(request, commodity))
+            .Then(order =>
+            {
+                orderRepository.Add(order);
+                return OnOrderRegistered(order, request.CorrelationId, cancellationToken);
+            });
+    }
+
+    private async Task<Result<Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
+    {
+        var request = new GetCommodityRequest
+        {
+            CommodityId = commodityId
+        };
+
+        return await
+            commoditySystem
+            .Handle(request, cancellationToken)
+            .NotFoundIfNull(new CommodityNotFoundError(commodityId));
+    }
+
+    private Task<Result<Domain.Orders.Order>> BuildOrder(Command request, Commodity commodity)
+    {
+        return buildOrderService.BuildOrder(new BuildOrderRequest
+        {
+            OrderId = request.OrderId,
+            Quantity = request.Quantity,
+            Price = request.Price,
+            CustomerId = request.CustomerId,
+            BrokerId = request.BrokerId,
+            Commodity = new Domain.Orders.Commodity(commodity.CommodityId, commodity.CommodityName)
+        });
+    }
+
+    private async Task<Result<Empty>> OnOrderRegistered(
+        Domain.Orders.Order order,
+        Guid? correlationId,
+        CancellationToken cancellationToken)
+    {
+        var result = await notificationPublisher.Publish
+        (
+            new Notifications.OrderRegistered.Notification { OrderId = order.OrderId },
+            cancellationToken
+        );
+
+        if (result.IsFailure)
+        {
+            return result;
+        }
+
+        await integrationEventBus.Post(new IntegrationEvents.OrderStatusChangedEvent
+        {
+            CorrelationId = correlationId,
+            OrderId = order.OrderId,
+            OrderStatus = order.Status
+        });
+
+        return Empty.Value;
+    }
+}

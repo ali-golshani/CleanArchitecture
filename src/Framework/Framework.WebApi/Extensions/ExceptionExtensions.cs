@@ -1,0 +1,45 @@
+﻿using Framework.Exceptions;
+using Framework.Exceptions.Extensions;
+using Framework.Results;
+using Framework.WebApi.Results;
+using Microsoft.AspNetCore.Mvc;
+
+namespace Framework.WebApi.Extensions;
+
+public static class ExceptionExtensions
+{
+    public static ProblemDetails AsProblemDetails(this Exception exp)
+    {
+        var errors = ErrorMessages(exp);
+
+        return new ResultProblemDetails
+        {
+            Status = StatusCodes.Status500InternalServerError,
+            Title = ErrorType.Failure.ToString(),
+            Detail = errors[0],
+            ErrorMessages = errors,
+        };
+    }
+
+    private static string[] ErrorMessages(Exception exp)
+    {
+        var errors = Errors(exp).ToArray();
+
+        if (errors.Length == 0)
+        {
+            errors = [Resources.Messages.UnknownException];
+        }
+
+        return errors;
+
+        static IReadOnlyCollection<string> Errors(Exception exp)
+        {
+            exp = exp.UnwrapAll();
+            return exp switch
+            {
+                BaseSystemException systemException => systemException.Messages,
+                _ => [],
+            };
+        }
+    }
+}

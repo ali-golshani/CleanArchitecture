@@ -1,0 +1,41 @@
+﻿using CleanArchitecture.Authorization.Claims;
+using System.Security.Claims;
+
+namespace CleanArchitecture.Actors.WebApi.ActorResolvers;
+
+internal sealed class CustomerActorResolver : IActorResolver<CustomerActor>
+{
+    public CustomerActor? Resolve(User user)
+    {
+        string username = user.Username;
+        string displayName = user.DisplayName;
+
+        var isCustomer = user.IsInRole(UserClaimTypes.CustomerRoles);
+
+        if (!isCustomer)
+        {
+            return null;
+        }
+
+        var customerId = CustomerId(user.Principal);
+
+        if (customerId == null)
+        {
+            return null;
+        }
+
+        return new CustomerActor(customerId.Value, username, displayName);
+    }
+
+    private static int? CustomerId(ClaimsPrincipal user)
+    {
+        if (int.TryParse(user.FindFirst(UserClaimTypes.CustomerId)?.Value, out var customerId) && customerId > 0)
+        {
+            return customerId;
+        }
+        else
+        {
+            return null;
+        }
+    }
+}

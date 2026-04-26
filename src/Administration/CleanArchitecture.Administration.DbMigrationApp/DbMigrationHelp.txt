@@ -1,0 +1,8 @@
+﻿in Developer PowerShell:
+goto persistence project:
+dotnet ef migrations add {ModuleName}_{MigrationName}
+
+dotnet ef migrations add MassTransit_Initial
+dotnet ef migrations add Audit_Initial
+dotnet ef migrations add Ordering_Initial
+dotnet ef migrations add UserManagement_Initial

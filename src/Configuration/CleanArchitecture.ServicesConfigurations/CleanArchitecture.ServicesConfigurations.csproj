@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Framework\Framework.DurableTask\Framework.DurableTask.csproj" />
+		<ProjectReference Include="..\..\Integration\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
+		<ProjectReference Include="..\..\Integration\Querying\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application\CleanArchitecture.Ordering.Application.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.Cap.Subscribers\CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.MassTransit.Consumers\CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj" />
+		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />
+		<ProjectReference Include="..\..\Integration\CleanArchitecture.Scheduling\CleanArchitecture.Scheduling.csproj" />
+		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Options\CleanArchitecture.Options.csproj" />
+		<ProjectReference Include="..\..\Configuration\CleanArchitecture.Secrets\CleanArchitecture.Secrets.csproj" />
+		<ProjectReference Include="..\..\Modules\UserManagement\CleanArchitecture.UserManagement\CleanArchitecture.UserManagement.csproj" />
+	</ItemGroup>
+
+</Project>

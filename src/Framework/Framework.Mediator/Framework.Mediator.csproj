@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Framework\Framework.DependencyInjection\Framework.DependencyInjection.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Results\Framework.Results.csproj" />
+	</ItemGroup>
+
+</Project>

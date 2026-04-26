@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Nito.AsyncEx"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Collections\Framework.Collections.csproj" />
+  </ItemGroup>
+
+</Project>
