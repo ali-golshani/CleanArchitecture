@@ -1,5 +1,5 @@
 ﻿using CleanArchitecture.Configurations;
-using IdentityModel.AspNetCore.OAuth2Introspection;
+using Duende.AspNetCore.Authentication.OAuth2Introspection;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -30,7 +30,7 @@ public sealed class JwtBearerAuthenticationSetup(string authenticationScheme)
                 Configure(schemeSection, options);
                 options.ForwardDefaultSelector = _ => IntrospectionScheme!;
             })
-            .AddOAuth2Introspection(IntrospectionScheme, options =>
+            .AddOAuth2Introspection(IntrospectionScheme!, options =>
             {
                 Configure(schemeSection, options);
             });

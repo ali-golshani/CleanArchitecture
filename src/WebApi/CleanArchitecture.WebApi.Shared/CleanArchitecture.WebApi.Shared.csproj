@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<PackageReference Include="Hellang.Middleware.ProblemDetails"/>
-		<PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection"/>
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>
-		<PackageReference Include="Microsoft.AspNetCore.OData"/>
-		<PackageReference Include="Microsoft.AspNetCore.OpenApi"/>
-		<PackageReference Include="Scalar.AspNetCore"/>
-		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI"/>
+		<PackageReference Include="Duende.AspNetCore.Authentication.OAuth2Introspection" />
+		<PackageReference Include="Hellang.Middleware.ProblemDetails" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+		<PackageReference Include="Microsoft.AspNetCore.OData" />
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+		<PackageReference Include="Scalar.AspNetCore" />
+		<PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" />
 	</ItemGroup>
 
 	<ItemGroup>
