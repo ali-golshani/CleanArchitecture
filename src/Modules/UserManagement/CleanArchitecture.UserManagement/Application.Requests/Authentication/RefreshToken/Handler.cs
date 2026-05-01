@@ -41,6 +41,11 @@ internal sealed class Handler(
             return new Errors.UserNotFoundError();
         }
 
+        if (!user.IsActive)
+        {
+            return new Errors.UserIsLockedOutError();
+        }
+
         var userClaims = await userRepository.GetUserClaims(user.Id);
         var claims = userClaims.Select(x => (x.ClaimType, x.ClaimValue)).ToList();
 

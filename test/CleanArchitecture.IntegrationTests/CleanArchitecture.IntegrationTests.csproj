@@ -10,18 +10,18 @@
 
 	<ItemGroup>
 		<PackageReference Update="Microsoft.NET.Test.Sdk">
-		  <VersionOverride>18.4.0</VersionOverride>
+		  <VersionOverride>18.5.1</VersionOverride>
 		</PackageReference>
 		<PackageReference Update="MSTest.Analyzers">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-			<VersionOverride>4.2.1</VersionOverride>
+			<VersionOverride>4.2.2</VersionOverride>
 		</PackageReference>
 		<PackageReference Update="MSTest.TestAdapter">
-		  <VersionOverride>4.2.1</VersionOverride>
+		  <VersionOverride>4.2.2</VersionOverride>
 		</PackageReference>
 		<PackageReference Update="MSTest.TestFramework">
-		  <VersionOverride>4.2.1</VersionOverride>
+		  <VersionOverride>4.2.2</VersionOverride>
 		</PackageReference>
 	</ItemGroup>
 

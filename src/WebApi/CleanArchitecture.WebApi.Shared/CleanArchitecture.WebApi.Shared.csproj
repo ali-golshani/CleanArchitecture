@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<PackageReference Include="Asp.Versioning.Http"/>
-		<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer"/>
 		<PackageReference Include="Hellang.Middleware.ProblemDetails"/>
 		<PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection"/>
 		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer"/>

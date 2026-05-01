@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.Azure.DurableTask.Core" />
 		<PackageReference Include="Microsoft.DurableTask.SqlServer" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" />
 		<PackageReference Include="System.Drawing.Common" />
