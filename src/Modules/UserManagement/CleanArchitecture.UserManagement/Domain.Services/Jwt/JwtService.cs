@@ -30,14 +30,14 @@ internal sealed class JwtService(
             audience: jwtOptions.Audience,
             claims: Claims(request),
             notBefore: time,
-            expires: lifetimeService.TokenExpirationTime(time),
+            expires: lifetimeService.AccessTokenExpirationTime(time),
             signingCredentials: signingCredentials);
 
         var token = new JwtSecurityTokenHandler().WriteToken(securityToken);
 
         return await Task.FromResult(new JwtResponse
         {
-            LifetimeSeconds = lifetimeService.TokenLifetimeSeconds,
+            LifetimeSeconds = lifetimeService.AccessTokenLifetimeSeconds,
             Token = token,
         });
     }

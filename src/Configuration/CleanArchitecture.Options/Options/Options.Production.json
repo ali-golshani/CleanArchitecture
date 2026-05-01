@@ -8,7 +8,7 @@
     "TokenLifetimes": {
       "SmsOtpLifetimeSeconds": 120, // 60 * 2 = 2 minutes
       "EmailOtpLifetimeSeconds": 3600, // 60 * 60 * 1 = 1 hour
-      "TokenLifetimeSeconds": 86400, // 60 * 60 = 1 hour
+      "AccessTokenLifetimeSeconds": 86400, // 60 * 60 = 1 hour
       "RefreshTokenLifetimeHours": 168 // 24 * 2 = 7 days
     }
   },

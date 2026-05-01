@@ -65,7 +65,7 @@ internal sealed class Handler(
 
         return new Response
         {
-            Token = jwtResponse.Token,
+            AccessToken = jwtResponse.Token,
             RefreshToken = refreshToken
         };
     }

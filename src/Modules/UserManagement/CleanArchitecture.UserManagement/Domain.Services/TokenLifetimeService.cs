@@ -7,7 +7,7 @@ internal sealed class TokenLifetimeService(IOptions<TokenLifetimeOptions> option
 {
     private readonly TokenLifetimeOptions options = options.Value;
 
-    public int TokenLifetimeSeconds => options.TokenLifetimeSeconds;
+    public int AccessTokenLifetimeSeconds => options.AccessTokenLifetimeSeconds;
 
     public DateTime SmsOtpExpirationTime(DateTime otpTime)
     {
@@ -19,9 +19,9 @@ internal sealed class TokenLifetimeService(IOptions<TokenLifetimeOptions> option
         return otpTime.AddSeconds(options.EmailOtpLifetimeSeconds);
     }
 
-    public DateTime TokenExpirationTime(DateTime tokenTime)
+    public DateTime AccessTokenExpirationTime(DateTime tokenTime)
     {
-        return tokenTime.AddSeconds(options.TokenLifetimeSeconds);
+        return tokenTime.AddSeconds(options.AccessTokenLifetimeSeconds);
     }
 
     public DateTime RefreshTokenExpirationTime(DateTime tokenTime)
