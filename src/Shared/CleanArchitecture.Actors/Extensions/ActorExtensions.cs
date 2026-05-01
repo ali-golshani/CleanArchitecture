@@ -3,9 +3,9 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Actors.Extensions;
 
-public static class ActorExtensions
+internal static class ActorExtensions
 {
-    public static void ResolveActor(this IServiceProvider serviceProvider, Actor actor)
+    public static void UseActor(this IServiceProvider serviceProvider, Actor actor)
     {
         serviceProvider.GetRequiredService<FixedActorProvider>().SetActor(actor);
     }

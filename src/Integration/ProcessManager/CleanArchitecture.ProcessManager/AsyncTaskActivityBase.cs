@@ -21,7 +21,6 @@ public abstract class AsyncTaskActivityBase<TRequest, TResponse> : AsyncTaskActi
     protected override async Task<TResponse> ExecuteAsync(TaskContext context, TRequest input)
     {
         using var scope = serviceProvider.CreateScope();
-        scope.ServiceProvider.ResolveActor(Actor);
         return await ExecuteAsync(scope.ServiceProvider, input);
     }
 }

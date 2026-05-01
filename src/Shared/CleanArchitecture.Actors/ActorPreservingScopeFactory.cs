@@ -17,7 +17,7 @@ public sealed class ActorPreservingScopeFactory(IServiceProvider serviceProvider
 
         if (actor is not null)
         {
-            scope.ServiceProvider.ResolveActor(actor);
+            scope.ServiceProvider.UseActor(actor);
         }
 
         return scope;

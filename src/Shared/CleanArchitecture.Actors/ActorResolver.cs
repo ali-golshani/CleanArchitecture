@@ -2,14 +2,9 @@
 
 namespace CleanArchitecture.Actors;
 
-internal class ActorResolver : IActorResolver
+internal sealed class ActorResolver(IEnumerable<IActorProvider>? providers) : IActorResolver
 {
-    private readonly IEnumerable<IActorProvider>? providers;
-
-    public ActorResolver(IEnumerable<IActorProvider>? providers)
-    {
-        this.providers = providers;
-    }
+    private readonly IEnumerable<IActorProvider>? providers = providers;
 
     public Actor? Actor => CurrentActor();
 
