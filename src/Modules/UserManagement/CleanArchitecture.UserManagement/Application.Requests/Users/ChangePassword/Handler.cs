@@ -19,9 +19,14 @@ internal sealed class Handler(IUserRepository userRepository) : IRequestHandler<
             return new UserNotFoundError();
         }
 
-        var oldHashedPassword = PasswordHasher.Hash(user.Username, request.OldPassword);
+        if (!user.IsActive)
+        {
+            return new UserIsLockedOutError();
+        }
 
-        if (oldHashedPassword != user.PasswordHash)
+        var checkPassword = PasswordHasher.Verify(user.Username, user.PasswordHash, request.OldPassword);
+
+        if (!checkPassword)
         {
             return new InvalidPassworError();
         }
