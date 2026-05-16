@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Framework.WebApi.Extensions;
 
-public static class ResultExtensions
+public static class HttpResultsExtensions
 {
     public static async Task<NoContent> ToNoContent(this Task task)
     {
@@ -12,11 +12,11 @@ public static class ResultExtensions
         return TypedResults.NoContent();
     }
 
-    public static Results<Ok<T>, NotFound> ToOkOrNotFound<T>(this T? value)
+    public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFound<T>(this T? value)
     {
         if (value is null)
         {
-            return TypedResults.NotFound();
+            return Problems.NotFoundProblem;
         }
         else
         {
@@ -24,19 +24,19 @@ public static class ResultExtensions
         }
     }
 
-    public static async Task<Results<Ok<T>, NotFound>> ToOkOrNotFound<T>(this Task<T?> valueTask)
+    public static async Task<Results<Ok<T>, ProblemHttpResult>> ToOkOrNotFound<T>(this Task<T?> valueTask)
     {
         return (await valueTask).ToOkOrNotFound();
     }
 
-    public static Results<Ok<T>, NotFound, ProblemHttpResult> ToOkOrNotFoundOrProblem<T>(this Result<T?> result)
+    public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFoundOrProblem<T>(this Result<T?> result)
     {
         if (result.IsSuccess)
         {
             var value = result.Value;
             if (value is null)
             {
-                return TypedResults.NotFound();
+                return Problems.NotFoundProblem;
             }
             else
             {
@@ -49,7 +49,7 @@ public static class ResultExtensions
         }
     }
 
-    public static async Task<Results<Ok<T>, NotFound, ProblemHttpResult>> ToOkOrNotFoundOrProblem<T>(this Task<Result<T?>> resultTask)
+    public static async Task<Results<Ok<T>, ProblemHttpResult>> ToOkOrNotFoundOrProblem<T>(this Task<Result<T?>> resultTask)
     {
         var result = await resultTask;
         return result.ToOkOrNotFoundOrProblem();

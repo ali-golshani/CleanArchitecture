@@ -11,26 +11,26 @@ namespace CleanArchitecture.WebApi.Controllers;
 public class AdminController : BaseController
 {
     [HttpGet("get-actor")]
-    public Results<Ok<Actor>, NotFound> GetActor(IActorResolver actorResolver)
+    public Results<Ok<Actor>, ProblemHttpResult> GetActor(IActorResolver actorResolver)
     {
         return Get(actorResolver);
     }
 
     [HttpGet("authorize-schema-a")]
     [Authorize(AuthenticationSchemes.SchemeAPolicy)]
-    public Results<Ok<Actor>, NotFound> GetImeActor(IActorResolver actorResolver)
+    public Results<Ok<Actor>, ProblemHttpResult> GetImeActor(IActorResolver actorResolver)
     {
         return Get(actorResolver);
     }
 
     [HttpGet("authorize-schema-b")]
     [Authorize(AuthenticationSchemes.SchemeBPolicy)]
-    public Results<Ok<Actor>, NotFound> GetOnlineActor(IActorResolver actorResolver)
+    public Results<Ok<Actor>, ProblemHttpResult> GetOnlineActor(IActorResolver actorResolver)
     {
         return Get(actorResolver);
     }
 
-    private static Results<Ok<Actor>, NotFound> Get(IActorResolver actorResolver)
+    private static Results<Ok<Actor>, ProblemHttpResult> Get(IActorResolver actorResolver)
     {
         return actorResolver.Actor.ToOkOrNotFound();
     }

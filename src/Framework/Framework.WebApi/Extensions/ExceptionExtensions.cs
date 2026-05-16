@@ -8,7 +8,7 @@ namespace Framework.WebApi.Extensions;
 
 public static class ExceptionExtensions
 {
-    public static ProblemDetails AsProblemDetails(this Exception exp)
+    public static ProblemDetails AsInternalServerProblemDetails(this Exception exp)
     {
         var errors = ErrorMessages(exp);
 
@@ -19,18 +19,18 @@ public static class ExceptionExtensions
             Detail = errors[0],
             ErrorMessages = errors,
         };
-    }
 
-    private static string[] ErrorMessages(Exception exp)
-    {
-        var errors = Errors(exp).ToArray();
-
-        if (errors.Length == 0)
+        static string[] ErrorMessages(Exception exp)
         {
-            errors = [Resources.Messages.UnknownException];
-        }
+            var errors = Errors(exp).ToArray();
 
-        return errors;
+            if (errors.Length == 0)
+            {
+                errors = [Resources.Messages.UnknownException];
+            }
+
+            return errors;
+        }
 
         static IReadOnlyCollection<string> Errors(Exception exp)
         {

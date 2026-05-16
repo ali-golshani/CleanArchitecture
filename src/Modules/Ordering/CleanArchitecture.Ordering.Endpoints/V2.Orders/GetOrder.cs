@@ -13,7 +13,7 @@ public sealed class GetOrder : IMinimalEndpoint
     }
 
     private static async
-        Task<Results<Ok<Order>, NotFound, ProblemHttpResult>>
+        Task<Results<Ok<Order>, ProblemHttpResult>>
         Handle(IQueryService queryService, int orderId, CancellationToken cancellationToken)
     {
         var query = new Queries.Orders.GetOrder.Query
@@ -29,7 +29,7 @@ public sealed class GetOrder : IMinimalEndpoint
         }
         else if (result.Value is null)
         {
-            return TypedResults.NotFound();
+            return Problems.NotFoundProblem;
         }
         else
         {

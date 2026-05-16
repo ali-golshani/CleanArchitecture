@@ -21,7 +21,7 @@ internal sealed class GetUser : IMinimalEndpoint
     }
 
     private static
-        Task<Results<Ok<Application.Requests.Models.User>, NotFound, ProblemHttpResult>>
+        Task<Results<Ok<Application.Requests.Models.User>, ProblemHttpResult>>
         Handle(IRequestService requestService, Guid userId, CancellationToken cancellationToken)
     {
         return

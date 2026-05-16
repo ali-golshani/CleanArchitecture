@@ -13,7 +13,7 @@ public sealed class GetOrder : IMinimalEndpoint
     }
 
     private static
-        Task<Results<Ok<Order>, NotFound, ProblemHttpResult>>
+        Task<Results<Ok<Order>, ProblemHttpResult>>
         Handle(IQueryService queryService, int orderId, CancellationToken cancellationToken)
     {
         var query = new Queries.Orders.GetOrder.Query
