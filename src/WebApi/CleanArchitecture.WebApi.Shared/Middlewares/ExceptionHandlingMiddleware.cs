@@ -54,7 +54,7 @@ public class ExceptionHandlingMiddleware
 
     private static async Task WriteAsProblem(HttpContext context, Exception exp)
     {
-        var problem = exp.AsInternalServerProblemDetails();
+        var problem = exp.ToInternalServerProblemDetails();
         context.Response.Clear();
         context.Response.StatusCode = problem.Status!.Value;
         await context.Response.WriteAsJsonAsync(problem);
