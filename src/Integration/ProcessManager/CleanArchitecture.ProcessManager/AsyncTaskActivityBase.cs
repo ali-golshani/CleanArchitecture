@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Actors.Extensions;
 using DurableTask.Core;
 using Microsoft.Extensions.DependencyInjection;
 

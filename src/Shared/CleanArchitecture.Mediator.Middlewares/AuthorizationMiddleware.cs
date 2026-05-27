@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
 using Framework.Mediator.Middlewares;
-using Framework.Results.Errors;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
@@ -27,7 +26,7 @@ public sealed class AuthorizationMiddleware<TRequest, TResponse> :
 
         if (accessLevel == AccessLevel.Denied)
         {
-            return ForbiddenError.Default;
+            return Errors.Forbidden;
         }
 
         return await next.Handle(context);

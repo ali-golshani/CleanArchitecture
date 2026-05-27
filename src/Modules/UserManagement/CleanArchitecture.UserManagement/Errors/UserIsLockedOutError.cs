@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.UserManagement.Resources;
+using Framework.Results;
 
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class UserIsLockedOutError()
-    : Framework.Results.Errors.ForbiddenError(ErrorMessages.UserIsLockedOutError);
+    : Error(ErrorType.Forbidden, ErrorMessages.UserIsLockedOutError);

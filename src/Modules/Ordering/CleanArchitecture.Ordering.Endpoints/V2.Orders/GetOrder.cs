@@ -31,7 +31,7 @@ public sealed class GetOrder : IMinimalEndpoint
         }
         else if (result.Value is null)
         {
-            return Problems.NotFoundProblem(new OrderNotFoundError(orderId));
+            return new OrderNotFoundError(orderId).ToProblemResult();
         }
         else
         {

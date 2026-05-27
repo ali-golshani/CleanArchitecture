@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.UserManagement.Resources;
+using Framework.Results;
 
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class MobileNumberNotFoundError()
-    : Framework.Results.Errors.NotFoundError(ErrorMessages.MobileNumberNotFoundError);
+    : Error(ErrorType.NotFound, ErrorMessages.MobileNumberNotFoundError);

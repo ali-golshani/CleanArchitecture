@@ -1,7 +1,6 @@
 ﻿using Framework.Exceptions;
 using Framework.Exceptions.Extensions;
 using Framework.Mediator.Middlewares;
-using Framework.Results.Errors;
 using Framework.Results.Exceptions;
 using Microsoft.Extensions.Logging;
 
@@ -36,7 +35,7 @@ public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
         return exception switch
         {
             DomainErrorsException domainErrorsException => domainErrorsException.Errors,
-            _ => [.. exception.Messages.Select(x => new FailureError(x))],
+            _ => [.. exception.Messages.Select(x => new Error(ErrorType.Failure, x))],
         };
     }
 }

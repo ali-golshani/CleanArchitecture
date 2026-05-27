@@ -1,5 +1,4 @@
-﻿using Framework.Results.Errors;
-using System.Net;
+﻿using System.Net;
 
 namespace Framework.Results.Extensions;
 
@@ -46,7 +45,7 @@ public static class Extensions
         return result.ThrowIsFailure();
     }
 
-    public static Result<T> NotFoundIfNull<T>(this Result<T?> result, NotFoundError notFound)
+    public static Result<T> NotFoundIfNull<T>(this Result<T?> result, Error notFound)
         where T : class
     {
         if (result.IsFailure)
@@ -62,7 +61,7 @@ public static class Extensions
         return result.Value;
     }
 
-    public static async Task<Result<T>> NotFoundIfNull<T>(this Task<Result<T?>> resultTask, NotFoundError notFound)
+    public static async Task<Result<T>> NotFoundIfNull<T>(this Task<Result<T?>> resultTask, Error notFound)
         where T : class
     {
         var result = await resultTask;

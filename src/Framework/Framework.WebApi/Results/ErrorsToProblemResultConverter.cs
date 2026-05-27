@@ -1,5 +1,4 @@
 ﻿using Framework.Results;
-using Framework.Results.Errors;
 using Framework.Results.Extensions;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -10,18 +9,18 @@ internal static class ErrorsToProblemResultConverter
 {
     public static ProblemHttpResult ToProblemResult(Error[] errors)
     {
-        return TypedResults.Problem(ProblemDetails(errors));
+        return TypedResults.Problem(ToProblemDetails(errors));
     }
 
-    private static ProblemDetails ProblemDetails(Error[] errors)
+    private static ProblemDetails ToProblemDetails(Error[] errors)
     {
-        var error = errors.Length == 0 ? UnexpectedError.Default : errors[0];
+        var error = errors.Length == 0 ? Framework.Results.Errors.Unexpected : errors[0];
 
         if (error.Type == ErrorType.Validation)
         {
             return new ResultValidationProblemDetails(ValidationErrors(errors))
             {
-                ErrorMessages = Errors(errors),
+                ErrorMessages = ErrorMessages(errors),
             };
         }
         else
@@ -31,7 +30,7 @@ internal static class ErrorsToProblemResultConverter
                 Status = StatusCode(error.Type),
                 Title = ErrorTitle(error.Type),
                 Detail = error.Message,
-                ErrorMessages = Errors(errors),
+                ErrorMessages = ErrorMessages(errors),
             };
         }
     }
@@ -43,7 +42,7 @@ internal static class ErrorsToProblemResultConverter
         return type.ToString();
     }
 
-    private static string[] Errors(Error[] errors)
+    private static string[] ErrorMessages(Error[] errors)
     {
         return [.. errors.Select(x => x.Message)];
     }

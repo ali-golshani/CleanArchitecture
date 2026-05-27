@@ -1,5 +1,4 @@
 ﻿using Framework.Results;
-using Framework.Results.Errors;
 using Framework.WebApi.Results;
 using Microsoft.AspNetCore.Http.HttpResults;
 
@@ -7,11 +6,11 @@ namespace Framework.WebApi.Extensions;
 
 public static class HttpResultsExtensions
 {
-    public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFound<T>(this T? value, NotFoundError notFound)
+    public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFound<T>(this T? value, Error notFound)
     {
         if (value is null)
         {
-            return Problems.NotFoundProblem(notFound);
+            return notFound.ToProblemResult();
         }
         else
         {
@@ -19,14 +18,14 @@ public static class HttpResultsExtensions
         }
     }
 
-    public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFoundOrProblem<T>(this Result<T?> result, NotFoundError notFound)
+    public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFoundOrProblem<T>(this Result<T?> result, Error notFound)
     {
         if (result.IsSuccess)
         {
             var value = result.Value;
             if (value is null)
             {
-                return Problems.NotFoundProblem(notFound);
+                return notFound.ToProblemResult();
             }
             else
             {
@@ -78,5 +77,10 @@ public static class HttpResultsExtensions
     public static ProblemHttpResult ToProblemResult(this Error[] errors)
     {
         return ErrorsToProblemResultConverter.ToProblemResult(errors);
+    }
+
+    public static ProblemHttpResult ToProblemResult(this Error error)
+    {
+        return ErrorsToProblemResultConverter.ToProblemResult([error]);
     }
 }

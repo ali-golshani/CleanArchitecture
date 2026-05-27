@@ -1,5 +1,4 @@
-﻿using Framework.Exceptions;
-using Framework.Exceptions.Extensions;
+﻿using Framework.Exceptions.Extensions;
 using Framework.Results;
 using Framework.WebApi.Results;
 using Microsoft.AspNetCore.Mvc;

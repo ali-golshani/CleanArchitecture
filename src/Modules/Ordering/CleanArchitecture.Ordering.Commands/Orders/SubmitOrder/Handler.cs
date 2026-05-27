@@ -4,7 +4,6 @@ using CleanArchitecture.Ordering.IntegrationEvents;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Results;
-using Framework.Results.Errors;
 using Framework.Mediator;
 using CleanArchitecture.Authorization.Extensions;
 
@@ -38,7 +37,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (await new AccessControl().IsAccessDenied(actor, order))
         {
-            return ForbiddenError.Default;
+            return Framework.Results.Errors.Forbidden;
         }
 
         if (order.Submit())

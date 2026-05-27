@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.UserManagement.Resources;
+using Framework.Results;
 
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class ExpiredSessionError()
-    : Framework.Results.Errors.ForbiddenError(ErrorMessages.ExpiredSessionError);
+    : Error(ErrorType.Forbidden, ErrorMessages.ExpiredSessionError);

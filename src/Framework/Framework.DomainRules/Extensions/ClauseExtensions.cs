@@ -27,7 +27,7 @@ public static class ClauseExtensions
     {
         return new Error
         (
-            type: ErrorType.Forbidden,
+            type: ErrorType.Conflict,
             message: clause.Statement,
             sources: [.. clause.Sources.Select(ToErrorSource)]
         );

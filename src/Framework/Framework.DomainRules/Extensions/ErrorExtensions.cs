@@ -7,7 +7,7 @@ public static class ErrorExtensions
         return errors.Select(ToClause);
     }
 
-    public static async IAsyncEnumerable<Clause> Errors(this IAsyncEnumerable<Error> errors)
+    public static async IAsyncEnumerable<Clause> Clauses(this IAsyncEnumerable<Error> errors)
     {
         await foreach (var error in errors)
         {

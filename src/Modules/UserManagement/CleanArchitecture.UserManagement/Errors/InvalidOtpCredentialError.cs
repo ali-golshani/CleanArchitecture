@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.UserManagement.Resources;
+using Framework.Results;
 
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class InvalidOtpCredentialError()
-    : Framework.Results.Errors.ForbiddenError(ErrorMessages.InvalidOtpCredentialError);
+    : Error(ErrorType.Forbidden, ErrorMessages.InvalidOtpCredentialError);

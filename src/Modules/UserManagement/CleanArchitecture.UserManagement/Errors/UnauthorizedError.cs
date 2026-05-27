@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.UserManagement.Resources;
+using Framework.Results;
 
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class UnauthorizedError()
-    : Framework.Results.Errors.UnauthorizedError(ErrorMessages.UnauthorizedError);
+    : Error(ErrorType.Unauthorized, ErrorMessages.UnauthorizedError);

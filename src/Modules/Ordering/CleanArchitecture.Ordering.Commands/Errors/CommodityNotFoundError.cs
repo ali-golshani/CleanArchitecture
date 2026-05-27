@@ -1,9 +1,9 @@
 ﻿using CleanArchitecture.Ordering.Commands.Resources;
-using Framework.Results.Errors;
+using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.Errors;
 
-public class CommodityNotFoundError(int commodityId) : NotFoundError(ErrorMessageBuilder.CommodityNotFound(commodityId))
+public class CommodityNotFoundError(int commodityId) : Error(ErrorType.NotFound, ErrorMessageBuilder.CommodityNotFound(commodityId))
 {
     public int CommodityId { get; } = commodityId;
 }

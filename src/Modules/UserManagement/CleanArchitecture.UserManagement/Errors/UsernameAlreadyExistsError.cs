@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.UserManagement.Resources;
+using Framework.Results;
 
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class UsernameAlreadyExistsError()
-    : Framework.Results.Errors.ForbiddenError(ErrorMessages.UsernameAlreadyExistsError);
+    : Error(ErrorType.Forbidden, ErrorMessages.UsernameAlreadyExistsError);
