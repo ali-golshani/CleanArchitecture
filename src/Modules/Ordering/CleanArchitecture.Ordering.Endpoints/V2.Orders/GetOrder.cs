@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Ordering.Endpoints.V2.Orders;
+﻿using CleanArchitecture.Ordering.Commands.Errors;
+
+namespace CleanArchitecture.Ordering.Endpoints.V2.Orders;
 
 public sealed class GetOrder : IMinimalEndpoint
 {
@@ -29,7 +31,7 @@ public sealed class GetOrder : IMinimalEndpoint
         }
         else if (result.Value is null)
         {
-            return Problems.NotFoundProblem;
+            return Problems.NotFoundProblem(new OrderNotFoundError(orderId));
         }
         else
         {

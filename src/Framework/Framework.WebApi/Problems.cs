@@ -6,11 +6,13 @@ namespace Framework.WebApi;
 
 public static class Problems
 {
-    public static readonly ProblemHttpResult NotFoundProblem = NotFoundProblemResult();
-
-    private static ProblemHttpResult NotFoundProblemResult()
+    public static ProblemHttpResult NotFoundProblem(NotFoundError notFound)
     {
-        return ErrorsToProblemResultConverter.ToProblemResult([NotFoundError.Default]);
+        return NotFoundProblemResult(notFound);
     }
 
+    private static ProblemHttpResult NotFoundProblemResult(NotFoundError notFound)
+    {
+        return ErrorsToProblemResultConverter.ToProblemResult([notFound]);
+    }
 }

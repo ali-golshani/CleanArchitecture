@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Ordering.Endpoints.Orders;
+﻿using CleanArchitecture.Ordering.Commands.Errors;
+
+namespace CleanArchitecture.Ordering.Endpoints.Orders;
 
 public sealed class GetOrder : IMinimalEndpoint
 {
@@ -22,6 +24,6 @@ public sealed class GetOrder : IMinimalEndpoint
         };
 
         var result = await queryService.Handle(query, cancellationToken);
-        return result.ToOkOrNotFoundOrProblem();
+        return result.ToOkOrNotFoundOrProblem(new OrderNotFoundError(orderId));
     }
 }

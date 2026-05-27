@@ -1,5 +1,6 @@
 ﻿using CleanArchitecture.UserManagement.Application.Requests.Users.GetUser;
 using CleanArchitecture.UserManagement.Application.Services;
+using CleanArchitecture.UserManagement.Errors;
 using Framework.WebApi;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -25,6 +26,6 @@ internal sealed class GetUser : IMinimalEndpoint
         Handle(IRequestService requestService, Guid userId, CancellationToken cancellationToken)
     {
         var result = await requestService.Handle(new Request { UserId = userId }, cancellationToken);
-        return result.ToOkOrNotFoundOrProblem();
+        return result.ToOkOrNotFoundOrProblem(new UserNotFoundError());
     }
 }

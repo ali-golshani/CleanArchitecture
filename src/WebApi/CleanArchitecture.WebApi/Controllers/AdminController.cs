@@ -32,6 +32,6 @@ public class AdminController : BaseController
 
     private static Results<Ok<Actor>, ProblemHttpResult> Get(IActorResolver actorResolver)
     {
-        return actorResolver.Actor.ToOkOrNotFound();
+        return actorResolver.Actor.ToOkOrNotFound(Framework.Results.Errors.NotFoundError.Default);
     }
 }
