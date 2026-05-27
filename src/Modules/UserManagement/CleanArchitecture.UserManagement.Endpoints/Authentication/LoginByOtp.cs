@@ -21,12 +21,10 @@ internal sealed class LoginByOtp : IMinimalEndpoint
     }
 
     private static
-        Task<Results<Ok<Response>, ProblemHttpResult>>
+        async Task<Results<Ok<Response>, ProblemHttpResult>>
         Handle(IRequestService requestService, [FromBody] Request request, CancellationToken cancellationToken)
     {
-        return
-            requestService
-            .Handle(request, cancellationToken)
-            .ToOkOrProblem();
+        var result = await requestService.Handle(request, cancellationToken);
+        return result.ToOkOrProblem();
     }
 }

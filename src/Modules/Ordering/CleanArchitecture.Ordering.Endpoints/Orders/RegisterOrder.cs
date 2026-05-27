@@ -18,12 +18,10 @@ public sealed class RegisterOrder : IMinimalEndpoint
     }
 
     private static
-        Task<Results<Ok, ProblemHttpResult>>
+        async Task<Results<Ok, ProblemHttpResult>>
         Handle(ICommandService commandService, [FromBody] Commands.Orders.RegisterOrder.Command command, CancellationToken cancellationToken)
     {
-        return
-            commandService
-            .Handle(command, cancellationToken)
-            .ToOkOrProblem();
+        var result = await commandService.Handle(command, cancellationToken);
+        return result.ToOkOrProblem();
     }
 }

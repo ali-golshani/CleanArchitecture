@@ -2,7 +2,6 @@
 using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
 using CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 using Framework.WebApi;
-using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -27,9 +26,7 @@ public sealed class ScheduleRegisterAndApproveOrder : IMinimalEndpoint
         ISchedulingService schedulingService,
         [FromBody] Request request)
     {
-        return await
-            schedulingService
-            .Schedule(request)
-            .ToNoContent();
+        await schedulingService.Schedule(request);
+        return TypedResults.NoContent();
     }
 }

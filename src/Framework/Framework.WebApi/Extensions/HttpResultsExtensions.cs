@@ -6,12 +6,6 @@ namespace Framework.WebApi.Extensions;
 
 public static class HttpResultsExtensions
 {
-    public static async Task<NoContent> ToNoContent(this Task task)
-    {
-        await task;
-        return TypedResults.NoContent();
-    }
-
     public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFound<T>(this T? value)
     {
         if (value is null)
@@ -22,11 +16,6 @@ public static class HttpResultsExtensions
         {
             return TypedResults.Ok(value);
         }
-    }
-
-    public static async Task<Results<Ok<T>, ProblemHttpResult>> ToOkOrNotFound<T>(this Task<T?> valueTask)
-    {
-        return (await valueTask).ToOkOrNotFound();
     }
 
     public static Results<Ok<T>, ProblemHttpResult> ToOkOrNotFoundOrProblem<T>(this Result<T?> result)
@@ -49,18 +38,6 @@ public static class HttpResultsExtensions
         }
     }
 
-    public static async Task<Results<Ok<T>, ProblemHttpResult>> ToOkOrNotFoundOrProblem<T>(this Task<Result<T?>> resultTask)
-    {
-        var result = await resultTask;
-        return result.ToOkOrNotFoundOrProblem();
-    }
-
-    public static async Task<Results<NoContent, ProblemHttpResult>> ToNoContentOrProblem(this Task<Result<Empty>> resultTask)
-    {
-        var result = await resultTask;
-        return result.ToNoContentOrProblem();
-    }
-
     public static Results<NoContent, ProblemHttpResult> ToNoContentOrProblem(this Result<Empty> result)
     {
         if (result.IsSuccess)
@@ -71,18 +48,6 @@ public static class HttpResultsExtensions
         {
             return ToProblemResult(result.Errors);
         }
-    }
-
-    public static async Task<Results<Ok, ProblemHttpResult>> ToOkOrProblem(this Task<Result<Empty>> resultTask)
-    {
-        var result = await resultTask;
-        return result.ToOkOrProblem();
-    }
-
-    public static async Task<Results<Ok<T>, ProblemHttpResult>> ToOkOrProblem<T>(this Task<Result<T>> resultTask)
-    {
-        var result = await resultTask;
-        return result.ToOkOrProblem();
     }
 
     public static Results<Ok, ProblemHttpResult> ToOkOrProblem(this Result<Empty> result)

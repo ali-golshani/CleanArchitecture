@@ -28,9 +28,7 @@ public sealed class RegisterAndApproveOrder : IMinimalEndpoint
         [FromBody] Request request,
         CancellationToken cancellationToken)
     {
-        return await
-            registerService
-            .Handle(request, cancellationToken)
-            .ToOkOrProblem();
+        var result = await registerService.Handle(request, cancellationToken);
+        return result.ToOkOrProblem();
     }
 }

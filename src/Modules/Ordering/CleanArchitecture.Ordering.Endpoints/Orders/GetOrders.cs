@@ -17,12 +17,10 @@ public sealed class GetOrders : IMinimalEndpoint
     }
 
     private static
-        Task<Results<Ok<PaginatedItems<Order>>, ProblemHttpResult>>
+        async Task<Results<Ok<PaginatedItems<Order>>, ProblemHttpResult>>
         Handle(IQueryService queryService, [AsParameters] Queries.Orders.GetOrders.Query query, CancellationToken cancellationToken)
     {
-        return
-            queryService
-            .Handle(query, cancellationToken)
-            .ToOkOrProblem();
+        var result = await queryService.Handle(query, cancellationToken);
+        return result.ToOkOrProblem();
     }
 }

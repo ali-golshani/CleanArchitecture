@@ -21,12 +21,10 @@ internal sealed class GetUsers : IMinimalEndpoint
     }
 
     private static
-        Task<Results<Ok<IReadOnlyCollection<Application.Requests.Models.User>>, ProblemHttpResult>>
+        async Task<Results<Ok<IReadOnlyCollection<Application.Requests.Models.User>>, ProblemHttpResult>>
         Handle(IRequestService requestService, [AsParameters] Request request, CancellationToken cancellationToken)
     {
-        return
-            requestService
-            .Handle(request, cancellationToken)
-            .ToOkOrProblem();
+        var result = await requestService.Handle(request, cancellationToken);
+        return result.ToOkOrProblem();
     }
 }

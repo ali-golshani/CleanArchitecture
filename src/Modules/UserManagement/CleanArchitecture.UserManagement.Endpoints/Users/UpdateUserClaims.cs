@@ -22,12 +22,10 @@ internal sealed class UpdateUserClaims : IMinimalEndpoint
     }
 
     private static
-        Task<Results<Ok, ProblemHttpResult>>
+        async Task<Results<Ok, ProblemHttpResult>>
         Handle(IRequestService requestService, [FromBody] Request request, CancellationToken cancellationToken)
     {
-        return
-            requestService
-            .Handle(request, cancellationToken)
-            .ToOkOrProblem();
+        var result = await requestService.Handle(request, cancellationToken);
+        return result.ToOkOrProblem();
     }
 }
