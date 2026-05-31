@@ -19,9 +19,9 @@ public readonly struct ErrorSource(string name, object? value)
     {
         if (Value == null)
         {
-            return Name;
+            return $"({Name})";
         }
 
-        return $"({Name}, {Value})";
+        return $"({Name} : {Value})";
     }
 }

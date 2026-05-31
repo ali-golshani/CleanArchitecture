@@ -10,11 +10,7 @@ public class Error(ErrorType type, string message, params ErrorSource[] sources)
 
     public override string ToString()
     {
-        var result =
-            new StringBuilder()
-            .AppendLine($"{Type} Error")
-            .AppendLine(Message)
-            ;
+        var result = new StringBuilder().AppendLine($"{Type} Error : {Message}");
 
         if (Sources?.Length > 0)
         {

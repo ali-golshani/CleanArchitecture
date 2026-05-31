@@ -7,4 +7,12 @@ public class ProgrammerException(string? technicalMessage = null)
 
     public override bool IsFatal => true;
     public override bool ShouldLog => true;
+
+    public override IEnumerable<(string Name, object? Value)> LogProperties
+    {
+        get
+        {
+            yield return (nameof(TechnicalMessage), TechnicalMessage);
+        }
+    }
 }

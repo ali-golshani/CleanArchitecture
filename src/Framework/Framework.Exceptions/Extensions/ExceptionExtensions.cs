@@ -8,32 +8,19 @@ public static class ExceptionExtensions
 {
     public static string? Properties(this BaseSystemException exception)
     {
-        try
+        var result = new StringBuilder().AppendLine($"TraceId : {exception.TraceId}");
+
+        foreach (var message in exception.Messages)
         {
-            return NameValues().Select(x => $"({x.Name} , {x.Value})").MultiLineJoin();
-        }
-        catch
-        {
-            return null;
+            result.AppendLine(message);
         }
 
-        IEnumerable<(string Name, string Value)> NameValues()
+        foreach (var (Name, Value) in exception.LogProperties)
         {
-            yield return new(nameof(exception.TraceId), exception.TraceId);
-
-            var properties = exception.GetType().GetProperties(
-                BindingFlags.Public
-                | BindingFlags.Instance
-                | BindingFlags.DeclaredOnly);
-
-            foreach (var property in properties)
-            {
-                var name = property.Name;
-                var value = Convert.ToString(property.GetValue(exception), Cultures.Default);
-
-                yield return new(name, value ?? "?");
-            }
+            result.AppendLine($"({Name} : {Value})");
         }
+
+        return result.ToString();
     }
 
     public static string StackMessages(this Exception exception)

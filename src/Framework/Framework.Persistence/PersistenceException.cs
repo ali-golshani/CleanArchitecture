@@ -112,4 +112,12 @@ public class PersistenceException : Exceptions.PersistenceException
     {
         return exp.Message.Contains(TransientFailureMessage);
     }
+
+    public override IEnumerable<(string Name, object? Value)> LogProperties
+    {
+        get
+        {
+            yield return (nameof(Reason), Reason);
+        }
+    }
 }
