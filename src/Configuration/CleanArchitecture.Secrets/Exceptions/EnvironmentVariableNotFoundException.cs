@@ -11,4 +11,12 @@ public class EnvironmentVariableNotFoundException : ConfigurationException
     }
 
     public string Variable { get; }
+
+    public override IEnumerable<(string Name, object? Value)> LogProperties
+    {
+        get
+        {
+            yield return (nameof(Variable), Variable);
+        }
+    }
 }

@@ -23,7 +23,7 @@ public readonly struct ClauseSource(string name, object? value = null)
         }
         else
         {
-            return $"({Name} , {Value})";
+            return $"({Name} : {Value})";
         }
     }
 }

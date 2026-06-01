@@ -13,4 +13,6 @@ public abstract class BaseSystemException : Exception
     private protected BaseSystemException() { }
     private protected BaseSystemException(string message) : base(message) { }
     private protected BaseSystemException(string message, Exception innerException) : base(message, innerException) { }
+
+    public virtual IEnumerable<(string Name, object? Value)> LogProperties => [];
 }

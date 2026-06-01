@@ -1,6 +1,4 @@
-﻿using Framework.DomainRules.Extensions;
-
-namespace Framework.DomainRules;
+﻿namespace Framework.DomainRules;
 
 public sealed class Clause(bool isValid, string statement, params ClauseSource[] sources)
 {
@@ -14,9 +12,4 @@ public sealed class Clause(bool isValid, string statement, params ClauseSource[]
     public ClauseSource[] Sources { get; } = sources;
 
     public bool IsInvalid => !IsValid;
-
-    public override string ToString()
-    {
-        return $"{Statement.AppendLine()}{Sources.JoinString()}";
-    }
 }
