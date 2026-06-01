@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Actors.Extensions;
 
-internal static class ActorExtensions
+public static class ActorExtensions
 {
     public static void UseActor(this IServiceProvider serviceProvider, Actor actor)
     {
