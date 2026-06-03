@@ -2,6 +2,7 @@
 using CleanArchitecture.Ordering.Domain.Orders.DomainRules;
 using Framework.Domain;
 using Framework.DomainRules.Extensions;
+using Framework.Results.Extensions;
 
 namespace CleanArchitecture.Ordering.Domain.Orders;
 
@@ -16,11 +17,11 @@ public sealed class Order : CommandAwareEntity
 
     public Order(OrderCreationParameters parameters)
     {
-        new DomainPolicy
-        (
+        new IDomainRule[]
+        {
             new OrderPriceRule(parameters.Price),
             new OrderQuantityRule(parameters.Quantity)
-        ).Evaluate().Throw();
+        }.Evaluate().Throw();
 
         OrderId = parameters.OrderId;
         Quantity = parameters.Quantity;

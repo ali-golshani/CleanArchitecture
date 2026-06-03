@@ -64,23 +64,6 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         return await OnOrderRegistered(order, request.CorrelationId, cancellationToken);
     }
 
-    public async Task<Result<Empty>> HandleB(Command request, CancellationToken cancellationToken)
-    {
-        if (await orderRepository.Exists(request.OrderId))
-        {
-            return new DuplicateOrderError(request.OrderId);
-        }
-
-        return await
-            GetCommodity(request.CommodityId, cancellationToken)
-            .Then(commodity => BuildOrder(request, commodity))
-            .Then(order =>
-            {
-                orderRepository.Add(order);
-                return OnOrderRegistered(order, request.CorrelationId, cancellationToken);
-            });
-    }
-
     private async Task<Result<Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
     {
         var request = new GetCommodityRequest

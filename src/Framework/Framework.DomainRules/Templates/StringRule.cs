@@ -2,27 +2,29 @@
 
 namespace Framework.DomainRules.Templates;
 
-public class StringRule(
-    string? value,
+public abstract class StringRule(
     string source,
+    string? value,
     bool acceptEmptyValue = false,
     int? minLength = 1,
     int? maxLength = null)
     : IDomainRule
 {
+    public string Source { get; } = source;
     public string? Value { get; } = value;
     public int? MinLength { get; } = minLength;
     public int? MaxLength { get; } = maxLength;
-
-    public string Source { get; } = source;
     public bool AcceptEmptyValue { get; } = acceptEmptyValue;
 
-    public IEnumerable<Clause> Evaluate()
+    public IEnumerable<Error> Evaluate()
     {
-        yield return new Clause(
-            isValid: IsValid(),
-            statement: Statement(),
-            (Source, Value));
+        if (!IsValid())
+        {
+            yield return new Error(
+                ErrorType.Validation,
+                Statement(),
+                (Source, Value));
+        }
     }
 
     private string Statement()

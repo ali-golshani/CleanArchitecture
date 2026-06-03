@@ -1,17 +1,15 @@
-﻿using Framework.DomainRules.Extensions;
-
-namespace Framework.DomainRules.Wrappers;
+﻿namespace Framework.DomainRules.Wrappers;
 
 internal sealed class ConditionalDomainRuleWrapper(bool condition, params IDomainRule[] rules) : IDomainRule
 {
     public bool Condition { get; } = condition;
     public IDomainRule[] Rules { get; } = rules;
 
-    public IEnumerable<Clause> Evaluate()
+    public IEnumerable<Error> Evaluate()
     {
         if (Condition)
         {
-            return Rules.Evaluate();
+            return Rules.SelectMany(x => x.Evaluate());
         }
         else
         {

@@ -29,7 +29,7 @@ public abstract class BatchCommandsServiceBase<TCommand>
 
                 if (!parameters.ContinueOnErrors)
                 {
-                    throw new DomainErrorsException(result.Errors);
+                    throw new ErrorsException(result.Errors);
                 }
             }
         }

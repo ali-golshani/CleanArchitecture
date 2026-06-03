@@ -27,11 +27,20 @@ public static class Extensions
         return Result<T>.Success(value);
     }
 
+    public static void Throw(this IEnumerable<Error> errors)
+    {
+        var list = errors.ToArray();
+        if (list.Length > 0)
+        {
+            throw new Exceptions.ErrorsException(list);
+        }
+    }
+
     public static T ThrowIfFailure<T>(this Result<T> result)
     {
         if (result.IsFailure)
         {
-            throw new Exceptions.DomainErrorsException(result.Errors);
+            throw new Exceptions.ErrorsException(result.Errors);
         }
         else
         {

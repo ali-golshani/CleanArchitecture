@@ -2,13 +2,13 @@
 
 namespace Framework.Results.Exceptions;
 
-public sealed class DomainErrorsException : DomainException
+public sealed class ErrorsException : DomainException
 {
-    public DomainErrorsException(params Error[] errors)
+    public ErrorsException(params Error[] errors)
         : this(false, errors)
     { }
 
-    public DomainErrorsException(bool shouldLog, params Error[] errors)
+    public ErrorsException(bool shouldLog, params Error[] errors)
         : base(ErrorMessage(errors))
     {
         Errors = errors;

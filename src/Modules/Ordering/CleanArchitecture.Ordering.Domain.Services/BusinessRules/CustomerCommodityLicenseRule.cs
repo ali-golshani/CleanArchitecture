@@ -1,5 +1,4 @@
-﻿using Framework.DomainRules.Extensions;
-using Infrastructure.CommoditySystem;
+﻿using Infrastructure.CommoditySystem;
 using Infrastructure.CommoditySystem.Requests;
 
 namespace CleanArchitecture.Ordering.Domain.Services.BusinessRules;
@@ -21,7 +20,7 @@ internal sealed class CustomerCommodityLicenseRule : IBusinessRule
         this.inquiry = inquiry;
     }
 
-    public async IAsyncEnumerable<Clause> Evaluate()
+    public async IAsyncEnumerable<Error> Evaluate()
     {
         var result = await commoditySystem.Handle(new VerifyCustomerCommodityLicenseRequest
         {
@@ -33,14 +32,14 @@ internal sealed class CustomerCommodityLicenseRule : IBusinessRule
         {
             foreach (var error in result.Errors)
             {
-                yield return error.ToClause();
+                yield return error;
             }
         }
-        else
+        else if (!result.Value)
         {
-            yield return new Clause
+            yield return new Error
             (
-                result.Value,
+                ErrorType.Conflict,
                 Resources.RuleMessages.CustomerCommodityRelationRule,
                 (nameof(Inquiry.CustomerId), inquiry.CustomerId),
                 (nameof(Inquiry.CommodityId), inquiry.CommodityId)

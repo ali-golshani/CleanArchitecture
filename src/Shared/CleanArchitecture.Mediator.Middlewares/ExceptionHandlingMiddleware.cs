@@ -34,7 +34,7 @@ public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
     {
         return exception switch
         {
-            DomainErrorsException domainErrorsException => domainErrorsException.Errors,
+            ErrorsException domainErrorsException => domainErrorsException.Errors,
             _ => [.. exception.Messages.Select(x => new Error(ErrorType.Failure, x))],
         };
     }

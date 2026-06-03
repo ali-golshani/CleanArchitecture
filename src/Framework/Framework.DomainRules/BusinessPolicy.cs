@@ -13,21 +13,21 @@ public sealed class BusinessPolicy(IDomainRule[] domainRules, params IBusinessRu
         : this([], businessRules)
     { }
 
-    public async IAsyncEnumerable<Clause> Evaluate()
+    public async IAsyncEnumerable<Error> Evaluate()
     {
         foreach (var rule in DomainRules)
         {
-            foreach (var clause in rule.Evaluate())
+            foreach (var error in rule.Evaluate())
             {
-                yield return clause;
+                yield return error;
             }
         }
 
         foreach (var rule in BusinessRules)
         {
-            await foreach (var clause in rule.Evaluate())
+            await foreach (var error in rule.Evaluate())
             {
-                yield return clause;
+                yield return error;
             }
         }
     }

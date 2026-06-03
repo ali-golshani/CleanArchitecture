@@ -4,16 +4,11 @@ public sealed class OrderPriceRule(decimal price) : IDomainRule
 {
     public decimal Price { get; } = price;
 
-    public IEnumerable<Clause> Evaluate()
+    public IEnumerable<Error> Evaluate()
     {
-        return
-        [
-            new Clause
-            (
-                Price > 0,
-                Resources.RuleMessages.OrderPriceRule,
-                (nameof(Price), Price)
-            )
-        ];
+        if (Price <= 0)
+        {
+            yield return new(ErrorType.Validation, Resources.RuleMessages.OrderPriceRule, (nameof(Price), Price));
+        }
     }
 }

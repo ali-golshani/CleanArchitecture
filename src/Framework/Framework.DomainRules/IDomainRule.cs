@@ -2,5 +2,5 @@
 
 public interface IDomainRule
 {
-    IEnumerable<Clause> Evaluate();
+    IEnumerable<Error> Evaluate();
 }

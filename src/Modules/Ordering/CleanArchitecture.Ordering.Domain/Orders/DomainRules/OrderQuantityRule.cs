@@ -4,16 +4,11 @@ public sealed class OrderQuantityRule(int quantity) : IDomainRule
 {
     public int Quantity { get; } = quantity;
 
-    public IEnumerable<Clause> Evaluate()
+    public IEnumerable<Error> Evaluate()
     {
-        return
-        [
-            new Clause
-            (
-                Quantity > 0,
-                Resources.RuleMessages.OrderQuantityRule,
-                (nameof(Quantity), Quantity)
-            )
-        ];
+        if (Quantity <= 0)
+        {
+            yield return new Error(ErrorType.Validation, Resources.RuleMessages.OrderQuantityRule, (nameof(Quantity), Quantity));
+        }
     }
 }

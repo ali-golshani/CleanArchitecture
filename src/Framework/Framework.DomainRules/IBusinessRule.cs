@@ -2,5 +2,5 @@
 
 public interface IBusinessRule
 {
-    IAsyncEnumerable<Clause> Evaluate();
+    IAsyncEnumerable<Error> Evaluate();
 }
