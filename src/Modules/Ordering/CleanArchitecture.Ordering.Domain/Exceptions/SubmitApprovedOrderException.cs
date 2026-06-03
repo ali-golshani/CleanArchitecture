@@ -6,11 +6,11 @@ public class SubmitApprovedOrderException(int orderId) : DomainException(Resourc
 {
     public int OrderId { get; } = orderId;
 
-    public override IEnumerable<(string Name, object? Value)> LogProperties
+    public override IEnumerable<Fact> Facts
     {
         get
         {
-            yield return (nameof(OrderId), OrderId);
+            yield return new(nameof(OrderId), OrderId);
         }
     }
 }

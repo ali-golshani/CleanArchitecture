@@ -8,11 +8,11 @@ public class ProgrammerException(string? technicalMessage = null)
     public override bool IsFatal => true;
     public override bool ShouldLog => true;
 
-    public override IEnumerable<(string Name, object? Value)> LogProperties
+    public override IEnumerable<Fact> Facts
     {
         get
         {
-            yield return (nameof(TechnicalMessage), TechnicalMessage);
+            yield return new(nameof(TechnicalMessage), TechnicalMessage);
         }
     }
 }

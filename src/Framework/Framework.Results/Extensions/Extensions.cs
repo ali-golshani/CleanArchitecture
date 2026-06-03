@@ -27,7 +27,7 @@ public static class Extensions
         return Result<T>.Success(value);
     }
 
-    public static T ThrowIsFailure<T>(this Result<T> result)
+    public static T ThrowIfFailure<T>(this Result<T> result)
     {
         if (result.IsFailure)
         {
@@ -39,10 +39,10 @@ public static class Extensions
         }
     }
 
-    public static async Task<T> ThrowIsFailure<T>(this Task<Result<T>> resultTask)
+    public static async Task<T> ThrowIfFailure<T>(this Task<Result<T>> resultTask)
     {
         var result = await resultTask;
-        return result.ThrowIsFailure();
+        return result.ThrowIfFailure();
     }
 
     public static Result<T> NotFoundIfNull<T>(this Result<T?> result, Error notFound)

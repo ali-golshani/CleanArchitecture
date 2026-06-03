@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Framework.Exceptions;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace Framework.Persistence;
@@ -113,11 +114,11 @@ public class PersistenceException : Exceptions.PersistenceException
         return exp.Message.Contains(TransientFailureMessage);
     }
 
-    public override IEnumerable<(string Name, object? Value)> LogProperties
+    public override IEnumerable<Fact> Facts
     {
         get
         {
-            yield return (nameof(Reason), Reason);
+            yield return new(nameof(Reason), Reason);
         }
     }
 }

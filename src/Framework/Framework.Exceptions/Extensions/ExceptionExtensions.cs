@@ -8,16 +8,19 @@ public static class ExceptionExtensions
 {
     public static string? Properties(this BaseSystemException exception)
     {
-        var result = new StringBuilder().AppendLine($"TraceId : {exception.TraceId}");
+        var result = new StringBuilder();
 
         foreach (var message in exception.Messages)
         {
             result.AppendLine(message);
         }
 
-        foreach (var (Name, Value) in exception.LogProperties)
+        var traceId = new Fact(nameof(BaseSystemException.TraceId), exception.TraceId);
+        result.AppendLine(traceId.ToString());
+
+        foreach (var fact in exception.Facts)
         {
-            result.AppendLine($"({Name} : {Value})");
+            result.AppendLine(fact.ToString());
         }
 
         return result.ToString();

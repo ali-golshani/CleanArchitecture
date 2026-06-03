@@ -12,24 +12,14 @@ public sealed class DomainErrorsException : DomainException
         : base(ErrorMessage(errors))
     {
         Errors = errors;
-        Messages = [.. Errors.Select(x => x.Message)];
         ShouldLog = shouldLog;
+        Messages = [.. Errors.Select(x => x.Message)];
     }
 
     public Error[] Errors { get; }
-    public override IReadOnlyCollection<string> Messages { get; }
     public override bool ShouldLog { get; }
-
-    public override IEnumerable<(string Name, object? Value)> LogProperties
-    {
-        get
-        {
-            foreach (var error in Errors)
-            {
-                yield return (error.Message, string.Join(" ; ", error.Sources));
-            }
-        }
-    }
+    public override IReadOnlyCollection<string> Messages { get; }
+    public override IEnumerable<Fact> Facts => Errors.SelectMany(x => x.Facts);
 
     private static string ErrorMessage(Error[] errors)
     {

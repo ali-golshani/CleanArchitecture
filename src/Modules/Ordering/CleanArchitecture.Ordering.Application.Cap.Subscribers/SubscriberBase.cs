@@ -19,6 +19,6 @@ public abstract class SubscriberBase
         CommandBase,
         ICommand<TRequest, TResponse>
     {
-        await commandService.Handle(actor, command, cancellationToken).ThrowIsFailure();
+        await commandService.Handle(actor, command, cancellationToken).ThrowIfFailure();
     }
 }

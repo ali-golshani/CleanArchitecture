@@ -53,7 +53,7 @@ internal static class ErrorsToProblemResultConverter
 
         foreach (var error in errors)
         {
-            foreach (var item in error.Sources.Select(x => x.Name))
+            foreach (var item in error.Facts.Select(x => x.Name))
             {
                 if (dictionary.TryGetValue(item, out var list))
                 {

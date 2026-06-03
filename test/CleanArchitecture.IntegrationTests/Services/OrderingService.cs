@@ -34,7 +34,7 @@ internal class OrderingService(IQueryService queryService, ICommandService comma
             PageSize = 1
         }, cancellationToken);
 
-        var orders = ordersResult.ThrowIsFailure();
+        var orders = ordersResult.ThrowIfFailure();
 
         var orderId = orders.Items.Count > 0 ? orders.Items.Max(x => x.OrderId) : 1;
         orderId += 1;

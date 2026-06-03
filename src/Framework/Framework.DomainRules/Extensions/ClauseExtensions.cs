@@ -4,14 +4,6 @@ namespace Framework.DomainRules.Extensions;
 
 public static class ClauseExtensions
 {
-    public static IEnumerable<Error> Errors(this IEnumerable<Clause> clauses)
-    {
-        return
-            clauses
-            .Where(x => x.IsInvalid)
-            .Select(ToError);
-    }
-
     public static async IAsyncEnumerable<Error> Errors(this IAsyncEnumerable<Clause> clauses)
     {
         await foreach (var clause in clauses)
@@ -29,13 +21,8 @@ public static class ClauseExtensions
         (
             type: ErrorType.Conflict,
             message: clause.Statement,
-            sources: [.. clause.Sources.Select(ToErrorSource)]
+            facts: clause.Facts
         );
-    }
-
-    private static ErrorSource ToErrorSource(ClauseSource source)
-    {
-        return new ErrorSource(source.Name, source.Value);
     }
 
     public static void Throw(this IEnumerable<Clause> clauses)

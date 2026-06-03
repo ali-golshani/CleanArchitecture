@@ -22,7 +22,7 @@ public class StringRule(
         yield return new Clause(
             isValid: IsValid(),
             statement: Statement(),
-            sources: new ClauseSource(Source, Value));
+            (Source, Value));
     }
 
     private string Statement()

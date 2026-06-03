@@ -39,7 +39,7 @@ public static class Extensions
         (
             type: ErrorType.Validation,
             message: failure.ErrorMessage,
-            sources: [new ErrorSource(failure.PropertyName, failure.AttemptedValue)]
+            (failure.PropertyName, failure.AttemptedValue)
         );
     }
 }

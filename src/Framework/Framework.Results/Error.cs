@@ -1,22 +1,23 @@
-﻿using System.Text;
+﻿using Framework.Exceptions;
+using System.Text;
 
 namespace Framework.Results;
 
-public class Error(ErrorType type, string message, params ErrorSource[] sources)
+public class Error(ErrorType type, string message, params Fact[] facts)
 {
     public ErrorType Type { get; } = type;
     public string Message { get; } = message;
-    public ErrorSource[] Sources { get; } = sources;
+    public Fact[] Facts { get; } = facts;
 
     public override string ToString()
     {
         var result = new StringBuilder().AppendLine($"{Type} Error : {Message}");
 
-        if (Sources?.Length > 0)
+        if (Facts?.Length > 0)
         {
-            foreach (var item in Sources)
+            foreach (var fact in Facts)
             {
-                result.AppendLine(item.ToString());
+                result.AppendLine(fact.ToString());
             }
         }
 

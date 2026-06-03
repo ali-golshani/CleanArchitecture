@@ -32,6 +32,6 @@ public sealed class GetOrders : IMinimalEndpoint
         return await
             queryService
             .Handle(query, cancellationToken)
-            .ThrowIsFailure();
+            .ThrowIfFailure();
     }
 }

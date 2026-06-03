@@ -7,11 +7,11 @@ public class OperationAlreadyRunningException(string operationName)
 {
     public string OperationName { get; } = operationName;
 
-    public override IEnumerable<(string Name, object? Value)> LogProperties
+    public override IEnumerable<Fact> Facts
     {
         get
         {
-            yield return (nameof(OperationName), OperationName);
+            yield return new(nameof(OperationName), OperationName);
         }
     }
 }

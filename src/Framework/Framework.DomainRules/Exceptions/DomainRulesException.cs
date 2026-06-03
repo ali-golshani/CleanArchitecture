@@ -11,17 +11,7 @@ public sealed class DomainRulesException : DomainException
 
     public IReadOnlyCollection<Clause> Clauses { get; }
     public override IReadOnlyCollection<string> Messages { get; }
-
-    public override IEnumerable<(string Name, object? Value)> LogProperties
-    {
-        get
-        {
-            foreach (var clause in Clauses)
-            {
-                yield return (clause.Statement, string.Join(" ; ", clause.Sources));
-            }
-        }
-    }
+    public override IEnumerable<Fact> Facts => Clauses.SelectMany(x => x.Facts);
 
     private static string ErrorMessage(IReadOnlyCollection<Clause> clauses)
     {

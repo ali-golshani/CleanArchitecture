@@ -17,12 +17,7 @@ internal static class FailureMessageExtensions
 
     private static string ToString(Error[] errors)
     {
-        var result = new StringBuilder();
-        foreach (var error in errors)
-        {
-            result.AppendLine(error.ToString());
-        }
-        return result.ToString();
+        return string.Join(Environment.NewLine, errors);
     }
 
     private static string ToString(Exception exp)

@@ -12,11 +12,11 @@ public class InvalidEnvironmentVariableEncryptionException : ConfigurationExcept
 
     public string Variable { get; }
 
-    public override IEnumerable<(string Name, object? Value)> LogProperties
+    public override IEnumerable<Fact> Facts
     {
         get
         {
-            yield return (nameof(Variable), Variable);
+            yield return new(nameof(Variable), Variable);
         }
     }
 }

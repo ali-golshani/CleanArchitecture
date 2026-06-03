@@ -30,7 +30,7 @@ public sealed class SampleJobService : IJobService
         {
             OrderStatus = OrderStatus.Approved,
         }, stoppingToken)
-        .ThrowIsFailure();
+        .ThrowIfFailure();
 
         var commands = orders.Items.Select(ExampleCommand).ToList();
 

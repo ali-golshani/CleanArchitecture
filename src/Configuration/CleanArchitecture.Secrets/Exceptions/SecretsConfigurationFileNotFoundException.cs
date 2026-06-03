@@ -12,11 +12,11 @@ public class SecretsConfigurationFileNotFoundException : ConfigurationException
 
     public string FilePath { get; }
 
-    public override IEnumerable<(string Name, object? Value)> LogProperties
+    public override IEnumerable<Fact> Facts
     {
         get
         {
-            yield return (nameof(FilePath), FilePath);
+            yield return new(nameof(FilePath), FilePath);
         }
     }
 }
