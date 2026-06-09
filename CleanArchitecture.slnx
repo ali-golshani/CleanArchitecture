@@ -38,7 +38,6 @@
     <Project Path="src/Framework/Framework.Results/Framework.Results.csproj" />
     <Project Path="src/Framework/Framework.Scheduling/Framework.Scheduling.csproj" />
     <Project Path="src/Framework/Framework.Security/Framework.Security.csproj" />
-    <Project Path="src/Framework/Framework.Specification/Framework.Specification.csproj" />
     <Project Path="src/Framework/Framework.Test/Framework.Test.csproj" />
     <Project Path="src/Framework/Framework.Threading/Framework.Threading.csproj" />
     <Project Path="src/Framework/Framework.Utilities/Framework.Utilities.csproj" />
