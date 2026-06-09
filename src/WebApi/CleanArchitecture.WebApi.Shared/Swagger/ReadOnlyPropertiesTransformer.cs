@@ -4,30 +4,35 @@ using Microsoft.OpenApi;
 
 namespace CleanArchitecture.WebApi.Shared.Swagger;
 
-public abstract class ReadOnlyPropertiesTransformer<TModel> : IOpenApiSchemaTransformer
+public sealed class ReadOnlyPropertiesTransformer : IOpenApiSchemaTransformer
 {
     private static readonly LowerCamelCaser camelCaser = new();
-    protected abstract string[] ReadOnlyProperties { get; }
 
     public Task TransformAsync(OpenApiSchema schema, OpenApiSchemaTransformerContext context, CancellationToken cancellationToken)
     {
-        if (context.JsonTypeInfo.Type.IsAssignableTo(typeof(TModel)))
+        if (schema?.Properties == null || context.JsonTypeInfo.Type == null || context.ParameterDescription is null)
         {
-            if (schema.Properties is null)
-            {
-                return Task.CompletedTask;
-            }
+            return Task.CompletedTask;
+        }
 
-            foreach (var property in ReadOnlyProperties)
+        var type = context.JsonTypeInfo.Type;
+
+        var properties = type.GetProperties(
+            System.Reflection.BindingFlags.Public
+            | System.Reflection.BindingFlags.Instance);
+
+        foreach (var property in properties)
+        {
+            if (property.SetMethod is null)
             {
-                schema.Properties.Remove(ToLowerCamelCase(property));
+                schema.Properties.Remove(ToLowerCamelCase(property.Name));
             }
         }
 
         return Task.CompletedTask;
     }
 
-    protected static string ToLowerCamelCase(string value)
+    private static string ToLowerCamelCase(string value)
     {
         return camelCaser.ToLowerCamelCase(value);
     }

@@ -27,7 +27,7 @@ public static class SwaggerConfigs
                 options.ShouldInclude = x => x.GroupName == document.Name;
 
                 options.AddSchemaTransformer<EnumSchemaTransformer>();
-                options.AddSchemaTransformer<RequestReadOnlyPropertiesTransformer>();
+                options.AddSchemaTransformer<ReadOnlyPropertiesTransformer>();
                 options.AddDocumentTransformer<BearerSecuritySchemeTransformer>();
                 options.AddDocumentTransformer(new DocumentInfoTransformer(document));
             });
