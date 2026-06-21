@@ -51,7 +51,7 @@ public static class Program
             new UserManagement.Endpoints.UserManagementModule(),
             new Ordering.Endpoints.OrderingModule(),
             new Ordering.Endpoints.OrderingModule_V2(),
-            new Querying.Endpoints.ODataModule(),
+            new Querying.ODataModule(),
             new ProcessManager.Endpoints.OrderingProcessManagerModule(),
         };
 

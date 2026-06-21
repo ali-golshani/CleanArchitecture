@@ -1,11 +1,11 @@
-﻿using CleanArchitecture.Querying.Endpoints.Odata;
+﻿using CleanArchitecture.Querying.OData;
 using Framework.WebApi;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.Routing;
 
-namespace CleanArchitecture.Querying.Endpoints;
+namespace CleanArchitecture.Querying;
 
 public sealed class ODataModule : IModule
 {
@@ -32,6 +32,6 @@ public sealed class ODataModule : IModule
 
     public void RegisterEndpoints(IEndpointRouteBuilder app)
     {
-        app.Map<Orders.GetOrders>();
+        app.Map<GetOrders.Endpoint>();
     }
 }

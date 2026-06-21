@@ -1,6 +1,5 @@
 ﻿using CleanArchitecture.Authorization.Claims;
 using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
-using CleanArchitecture.Querying.GetOrders;
 using CleanArchitecture.Querying.Services;
 using Framework.Results.Extensions;
 using Framework.WebApi;
@@ -9,9 +8,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.OData;
 using Microsoft.AspNetCore.Routing;
 
-namespace CleanArchitecture.Querying.Endpoints.Orders;
+namespace CleanArchitecture.Querying.GetOrders;
 
-public sealed class GetOrders : IMinimalEndpoint
+public sealed class Endpoint : IMinimalEndpoint
 {
     public static void AddRoute(IEndpointRouteBuilder app)
     {

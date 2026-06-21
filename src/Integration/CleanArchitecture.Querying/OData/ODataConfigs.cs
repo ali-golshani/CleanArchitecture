@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.OData.Query;
 using Microsoft.AspNetCore.OData.Query.Validator;
 
-namespace CleanArchitecture.Querying.Endpoints.Odata;
+namespace CleanArchitecture.Querying.OData;
 
 internal static class ODataConfigs
 {

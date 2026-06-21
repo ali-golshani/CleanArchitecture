@@ -2,8 +2,8 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Framework\Framework.DurableTask\Framework.DurableTask.csproj" />
+		<ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
 		<ProjectReference Include="..\..\Integration\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
-		<ProjectReference Include="..\..\Integration\Querying\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application\CleanArchitecture.Ordering.Application.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.Cap.Subscribers\CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Application.MassTransit.Consumers\CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />

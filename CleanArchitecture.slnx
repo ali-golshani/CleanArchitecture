@@ -54,15 +54,12 @@
     <Project Path="src/Infrastructure/RequestAudit/Infrastructure.RequestAudit/Infrastructure.RequestAudit.csproj" />
   </Folder>
   <Folder Name="/src/Integration/">
+    <Project Path="src/Integration/CleanArchitecture.Querying/CleanArchitecture.Querying.csproj" />
     <Project Path="src/Integration/CleanArchitecture.Scheduling/CleanArchitecture.Scheduling.csproj" />
   </Folder>
   <Folder Name="/src/Integration/ProcessManager/">
     <Project Path="src/Integration/ProcessManager/CleanArchitecture.ProcessManager.Endpoints/CleanArchitecture.ProcessManager.Endpoints.csproj" />
     <Project Path="src/Integration/ProcessManager/CleanArchitecture.ProcessManager/CleanArchitecture.ProcessManager.csproj" />
-  </Folder>
-  <Folder Name="/src/Integration/Querying/">
-    <Project Path="src/Integration/Querying/CleanArchitecture.Querying.Endpoints/CleanArchitecture.Querying.Endpoints.csproj" />
-    <Project Path="src/Integration/Querying/CleanArchitecture.Querying/CleanArchitecture.Querying.csproj" />
   </Folder>
   <Folder Name="/src/Modules/" />
   <Folder Name="/src/Modules/Ordering/">
