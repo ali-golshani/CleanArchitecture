@@ -1,12 +1,11 @@
 ﻿using CleanArchitecture.Ordering.Domain.Orders.DomainRules;
 using CleanArchitecture.Ordering.Domain.Services.BusinessRules;
-using Infrastructure.CommoditySystem;
 
 namespace CleanArchitecture.Ordering.Domain.Services.BuildOrder;
 
-internal sealed class BuildOrderPolicyBuilder(ICommoditySystem commoditySystem)
+internal sealed class BuildOrderPolicyBuilder(ICustomerCommodityLicenseVerifier licenseVerifier)
 {
-    private readonly ICommoditySystem commoditySystem = commoditySystem;
+    private readonly ICustomerCommodityLicenseVerifier licenseVerifier = licenseVerifier;
 
     public BusinessPolicy Build(BuildOrderRequest value)
     {
@@ -18,7 +17,7 @@ internal sealed class BuildOrderPolicyBuilder(ICommoditySystem commoditySystem)
 
         var businessRules = new IBusinessRule[]
         {
-            new CustomerCommodityLicenseRule(commoditySystem, new CustomerCommodityLicenseRule.Inquiry
+            new CustomerCommodityLicenseRule(licenseVerifier, new CustomerCommodityLicenseRule.Inquiry
             {
                 CustomerId = value.CustomerId,
                 CommodityId = value.Commodity.CommodityId,

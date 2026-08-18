@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Contract\Infrastructure.CommoditySystem.Contract.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.Domain\CleanArchitecture.Ordering.Domain.csproj" />
 		<ProjectReference Include="..\CleanArchitecture.Ordering.IntegrationEvents\CleanArchitecture.Ordering.IntegrationEvents.csproj" />
 	</ItemGroup>

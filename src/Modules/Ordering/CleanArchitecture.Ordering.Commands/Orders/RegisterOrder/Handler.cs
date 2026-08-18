@@ -6,9 +6,6 @@ using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Notifications;
 using Framework.Results;
 using Framework.Results.Extensions;
-using Infrastructure.CommoditySystem;
-using Infrastructure.CommoditySystem.Models;
-using Infrastructure.CommoditySystem.Requests;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
 
@@ -16,20 +13,20 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 {
     private readonly IOrderRepository orderRepository;
     private readonly IBuildOrderService buildOrderService;
-    private readonly ICommoditySystem commoditySystem;
+    private readonly ICommodityCatalog commodityCatalog;
     private readonly INotificationPublisher notificationPublisher;
     private readonly IIntegrationEventBus integrationEventBus;
 
     public Handler(
         IOrderRepository orderRepository,
         IBuildOrderService buildOrderService,
-        ICommoditySystem commoditySystem,
+        ICommodityCatalog commodityCatalog,
         INotificationPublisher notificationPublisher,
         IIntegrationEventBus integrationEventBus)
     {
         this.orderRepository = orderRepository;
         this.buildOrderService = buildOrderService;
-        this.commoditySystem = commoditySystem;
+        this.commodityCatalog = commodityCatalog;
         this.notificationPublisher = notificationPublisher;
         this.integrationEventBus = integrationEventBus;
     }
@@ -64,20 +61,14 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         return await OnOrderRegistered(order, request.CorrelationId, cancellationToken);
     }
 
-    private async Task<Result<Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
+    private async Task<Result<Domain.Orders.Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
     {
-        var request = new GetCommodityRequest
-        {
-            CommodityId = commodityId
-        };
-
         return await
-            commoditySystem
-            .Handle(request, cancellationToken)
+            commodityCatalog.Find(commodityId, cancellationToken)
             .NotFoundIfNull(new CommodityNotFoundError(commodityId));
     }
 
-    private Task<Result<Domain.Orders.Order>> BuildOrder(Command request, Commodity commodity)
+    private Task<Result<Domain.Orders.Order>> BuildOrder(Command request, Domain.Orders.Commodity commodity)
     {
         return buildOrderService.BuildOrder(new BuildOrderRequest
         {
@@ -86,7 +77,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             Price = request.Price,
             CustomerId = request.CustomerId,
             BrokerId = request.BrokerId,
-            Commodity = new Domain.Orders.Commodity(commodity.CommodityId, commodity.CommodityName)
+            Commodity = commodity
         });
     }
 

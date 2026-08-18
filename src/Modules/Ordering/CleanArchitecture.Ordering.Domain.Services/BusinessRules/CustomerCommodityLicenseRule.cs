@@ -1,6 +1,3 @@
-﻿using Infrastructure.CommoditySystem;
-using Infrastructure.CommoditySystem.Requests;
-
 namespace CleanArchitecture.Ordering.Domain.Services.BusinessRules;
 
 internal sealed class CustomerCommodityLicenseRule : IBusinessRule
@@ -11,22 +8,21 @@ internal sealed class CustomerCommodityLicenseRule : IBusinessRule
         public required readonly int CommodityId { get; init; }
     }
 
-    private readonly ICommoditySystem commoditySystem;
+    private readonly ICustomerCommodityLicenseVerifier licenseVerifier;
     private readonly Inquiry inquiry;
 
-    public CustomerCommodityLicenseRule(ICommoditySystem commoditySystem, Inquiry inquiry)
+    public CustomerCommodityLicenseRule(ICustomerCommodityLicenseVerifier licenseVerifier, Inquiry inquiry)
     {
-        this.commoditySystem = commoditySystem;
+        this.licenseVerifier = licenseVerifier;
         this.inquiry = inquiry;
     }
 
     public async IAsyncEnumerable<Error> Evaluate()
     {
-        var result = await commoditySystem.Handle(new VerifyCustomerCommodityLicenseRequest
-        {
-            CustomerId = inquiry.CustomerId,
-            CommodityId = inquiry.CommodityId,
-        }, default);
+        var result = await licenseVerifier.Verify(
+            inquiry.CustomerId,
+            inquiry.CommodityId,
+            default);
 
         if (result.IsFailure)
         {
@@ -35,7 +31,7 @@ internal sealed class CustomerCommodityLicenseRule : IBusinessRule
                 yield return error;
             }
         }
-        else if (!result.Value)
+        else if (result.Value is CustomerCommodityLicenseStatus.Invalid)
         {
             yield return new Error
             (
