@@ -8,7 +8,7 @@ public static class EndpointExtensions
         T.AddRoute(app);
     }
 
-    public static void RegisterModule(this IEndpointRouteBuilder app, IModule module)
+    public static void RegisterEndpointModule(this IEndpointRouteBuilder app, IEndpointModule module)
     {
         var route = module.RouteBuilder(app);
         module.RegisterEndpoints(route);

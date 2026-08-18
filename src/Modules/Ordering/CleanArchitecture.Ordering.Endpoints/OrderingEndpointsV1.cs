@@ -1,6 +1,6 @@
 ﻿namespace CleanArchitecture.Ordering.Endpoints;
 
-public sealed class OrderingModule : IModule
+public sealed class OrderingEndpointsV1 : IEndpointModule
 {
     public ModuleDocument Document { get; } = new()
     {

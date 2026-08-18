@@ -13,7 +13,7 @@ public static class SwaggerConfigs
         Version = "1.0.0"
     };
 
-    public static void Configure(IServiceCollection services, IModule[] modules)
+    public static void Configure(IServiceCollection services, IEndpointModule[] modules)
     {
         ModuleDocument[] documents = [.. modules.Select(x => x.Document).Concat([DefaultDocument]).DistinctBy(x => x.Name)];
 
@@ -36,7 +36,7 @@ public static class SwaggerConfigs
         services.AddEndpointsApiExplorer();
     }
 
-    public static void Configure(WebApplication app, IModule[] modules)
+    public static void Configure(WebApplication app, IEndpointModule[] modules)
     {
         string[] documents = [.. modules.Select(x => x.Document.Name).Concat([DefaultDocument.Name]).Distinct()];
 

@@ -46,13 +46,13 @@ public static class Program
 
         services.AddDistributedMemoryCache();
 
-        var modules = new IModule[]
+        var modules = new IEndpointModule[]
         {
-            new UserManagement.Endpoints.UserManagementModule(),
-            new Ordering.Endpoints.OrderingModule(),
-            new Ordering.Endpoints.OrderingModule_V2(),
-            new Querying.ODataModule(),
-            new ProcessManager.Endpoints.OrderingProcessManagerModule(),
+            new UserManagement.Endpoints.UserManagementEndpoints(),
+            new Ordering.Endpoints.OrderingEndpointsV1(),
+            new Ordering.Endpoints.OrderingEndpointsV2(),
+            new Querying.ODataEndpoints(),
+            new ProcessManager.Endpoints.OrderingProcessManagerEndpoints(),
         };
 
         SwaggerConfigs.Configure(services, modules);
@@ -75,7 +75,7 @@ public static class Program
 
         foreach (var module in modules)
         {
-            app.RegisterModule(module);
+            app.RegisterEndpointModule(module);
         }
 
         try

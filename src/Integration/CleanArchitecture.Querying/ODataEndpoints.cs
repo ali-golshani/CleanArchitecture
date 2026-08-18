@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace CleanArchitecture.Querying;
 
-public sealed class ODataModule : IModule
+public sealed class ODataEndpoints : IEndpointModule
 {
     public ModuleDocument Document { get; } = new()
     {

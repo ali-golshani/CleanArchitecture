@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace CleanArchitecture.UserManagement.Endpoints;
 
-public sealed class UserManagementModule : IModule
+public sealed class UserManagementEndpoints : IEndpointModule
 {
     public ModuleDocument Document { get; } = new()
     {

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace CleanArchitecture.ProcessManager.Endpoints;
 
-public sealed class OrderingProcessManagerModule : IModule
+public sealed class OrderingProcessManagerEndpoints : IEndpointModule
 {
     public ModuleDocument Document { get; } = new()
     {

@@ -1,6 +1,6 @@
 ﻿namespace Framework.WebApi;
 
-public interface IModule
+public interface IEndpointModule
 {
     ModuleDocument Document { get; }
     string RoutePrefix { get; }
