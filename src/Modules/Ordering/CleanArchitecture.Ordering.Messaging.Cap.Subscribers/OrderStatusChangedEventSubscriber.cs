@@ -3,7 +3,7 @@ using CleanArchitecture.Ordering.Commands;
 using DotNetCore.CAP;
 using CleanArchitecture.Ordering.IntegrationEvents;
 
-namespace CleanArchitecture.Ordering.Application.Cap.Subscribers;
+namespace CleanArchitecture.Ordering.Messaging.Cap.Subscribers;
 
 public sealed class OrderStatusChangedEventSubscriber(ICommandService commandService) :
     SubscriberBase(commandService),

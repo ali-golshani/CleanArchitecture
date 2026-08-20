@@ -63,9 +63,8 @@
   </Folder>
   <Folder Name="/src/Modules/" />
   <Folder Name="/src/Modules/Ordering/">
-    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.Cap.Subscribers/CleanArchitecture.Ordering.Application.Cap.Subscribers.csproj" />
-    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.MassTransit.Consumers/CleanArchitecture.Ordering.Application.MassTransit.Consumers.csproj" />
-    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Runtime/CleanArchitecture.Ordering.Runtime.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.Cap.Subscribers/CleanArchitecture.Ordering.Messaging.Cap.Subscribers.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.MassTransit.Consumers/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Commands/CleanArchitecture.Ordering.Commands.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain.Services/CleanArchitecture.Ordering.Domain.Services.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain/CleanArchitecture.Ordering.Domain.csproj" />
@@ -73,6 +72,7 @@
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.IntegrationEvents/CleanArchitecture.Ordering.IntegrationEvents.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Persistence/CleanArchitecture.Ordering.Persistence.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Queries/CleanArchitecture.Ordering.Queries.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Runtime/CleanArchitecture.Ordering.Runtime.csproj" />
   </Folder>
   <Folder Name="/src/Modules/UserManagement/">
     <Project Path="src/Modules/UserManagement/CleanArchitecture.UserManagement.Endpoints/CleanArchitecture.UserManagement.Endpoints.csproj" />

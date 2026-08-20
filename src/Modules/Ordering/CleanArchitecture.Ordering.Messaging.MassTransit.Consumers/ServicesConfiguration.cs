@@ -1,7 +1,7 @@
 ﻿using MassTransit.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Ordering.Application.MassTransit.Consumers;
+namespace CleanArchitecture.Ordering.Messaging.MassTransit.Consumers;
 
 public static class ServicesConfiguration
 {

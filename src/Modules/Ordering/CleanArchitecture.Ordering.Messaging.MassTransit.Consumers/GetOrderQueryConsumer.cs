@@ -3,7 +3,7 @@ using CleanArchitecture.Ordering.Queries;
 using MassTransit;
 using GetOrder = CleanArchitecture.Ordering.Queries.Orders.GetOrder;
 
-namespace CleanArchitecture.Ordering.Application.MassTransit.Consumers;
+namespace CleanArchitecture.Ordering.Messaging.MassTransit.Consumers;
 
 public class GetOrderQueryConsumer(ICommandService commandService, IQueryService queryService) :
     ConsumerBase(commandService, queryService),

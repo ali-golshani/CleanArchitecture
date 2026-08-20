@@ -3,7 +3,7 @@ using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Application.MassTransit.Consumers;
+namespace CleanArchitecture.Ordering.Messaging.MassTransit.Consumers;
 
 public abstract class ConsumerBase
 {

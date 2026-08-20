@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Ordering.Application.Cap.Subscribers;
+namespace CleanArchitecture.Ordering.Messaging.Cap.Subscribers;
 
 public static class ServicesConfiguration
 {

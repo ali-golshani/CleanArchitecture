@@ -53,12 +53,12 @@ internal static class ServicesRegistration
     {
         if (messagingSystem == MessagingSystem.Cap)
         {
-            Ordering.Application.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
+            Ordering.Messaging.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
         }
 
         if (GlobalSettings.Messaging.SupportMassTransit && messagingSystem == MessagingSystem.MassTransit)
         {
-            Ordering.Application.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
+            Ordering.Messaging.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
         }
     }
 

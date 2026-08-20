@@ -2,7 +2,7 @@
 using CleanArchitecture.Ordering.Commands;
 using Framework.Results.Extensions;
 
-namespace CleanArchitecture.Ordering.Application.Cap.Subscribers;
+namespace CleanArchitecture.Ordering.Messaging.Cap.Subscribers;
 
 public abstract class SubscriberBase
 {
