@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Contract\Infrastructure.CommoditySystem.Contract.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Commands\CleanArchitecture.Ordering.Commands.csproj" />
+    <ProjectReference Include="..\CleanArchitecture.Ordering.Domain.Services\CleanArchitecture.Ordering.Domain.Services.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -3,7 +3,7 @@ using Framework.Results;
 using Infrastructure.CommoditySystem;
 using Infrastructure.CommoditySystem.Requests;
 
-namespace CleanArchitecture.Ordering.Runtime.AntiCorruption.CommoditySystem;
+namespace CleanArchitecture.Ordering.Infrastructure.CommoditySystem;
 
 internal sealed class CustomerCommodityLicenseVerifierAcl(ICommoditySystem commoditySystem)
     : ICustomerCommodityLicenseVerifier

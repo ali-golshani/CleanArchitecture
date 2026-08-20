@@ -67,6 +67,7 @@
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain.Services/CleanArchitecture.Ordering.Domain.Services.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain/CleanArchitecture.Ordering.Domain.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Endpoints/CleanArchitecture.Ordering.Endpoints.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Infrastructure/CleanArchitecture.Ordering.Infrastructure.csproj" Id="9fe9a2dc-1bd2-4f87-900b-893b4a29c736" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.IntegrationEvents/CleanArchitecture.Ordering.IntegrationEvents.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Messaging.Cap.Subscribers/CleanArchitecture.Ordering.Messaging.Cap.Subscribers.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers.csproj" />

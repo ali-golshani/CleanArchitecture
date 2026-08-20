@@ -1,6 +1,3 @@
-using CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
-using CleanArchitecture.Ordering.Domain.Services.BusinessRules;
-using CleanArchitecture.Ordering.Runtime.AntiCorruption.CommoditySystem;
 using CleanArchitecture.Ordering.Runtime.Pipelines;
 using CleanArchitecture.Ordering.Runtime.Services;
 using Framework.Mediator.Extensions;
@@ -13,12 +10,11 @@ public static class ServicesConfiguration
     public static void RegisterServices(IServiceCollection services)
     {
         services.AddTransient<IQueryService, QueryService>();
-        services.AddTransient<ICommandService, CommandService>();
-        services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
-        services.AddTransient<ICommodityCatalog, CommodityCatalogAcl>();
-        services.AddTransient<ICustomerCommodityLicenseVerifier, CustomerCommodityLicenseVerifierAcl>();
-
         services.AddKeyedPipeline<QueryPipeline.Configuration>(typeof(QueryPipeline.Pipeline<,>));
+
+        services.AddTransient<ICommandService, CommandService>();
         services.AddKeyedPipeline<CommandPipeline.Configuration>(typeof(CommandPipeline.Pipeline<,>));
+
+        services.AddTransient(typeof(IBatchCommandsService<>), typeof(BatchCommandsService<>));
     }
 }

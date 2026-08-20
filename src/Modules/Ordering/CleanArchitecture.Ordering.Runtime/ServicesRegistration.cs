@@ -26,7 +26,7 @@ public static class ServicesRegistration
         Persistence.ServicesConfiguration.RegisterServices(services);
         Queries.ServicesConfiguration.RegisterServices(services);
         Commands.ServicesConfiguration.RegisterServices(services);
+        Infrastructure.ServicesConfiguration.RegisterServices(services);
         ServicesConfiguration.RegisterServices(services);
     }
-
 }
