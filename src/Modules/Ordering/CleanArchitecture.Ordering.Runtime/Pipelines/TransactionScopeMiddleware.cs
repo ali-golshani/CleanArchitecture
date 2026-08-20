@@ -4,7 +4,7 @@ using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Application.Pipelines;
+namespace CleanArchitecture.Ordering.Runtime.Pipelines;
 
 internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
     IMiddleware<TRequest, TResponse>

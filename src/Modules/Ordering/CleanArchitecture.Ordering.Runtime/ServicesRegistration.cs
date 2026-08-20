@@ -3,7 +3,7 @@ using Framework.Persistence.Interceptors;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Ordering.Application;
+namespace CleanArchitecture.Ordering.Runtime;
 
 public static class ServicesRegistration
 {

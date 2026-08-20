@@ -1,10 +1,10 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.Ordering.Application.Pipelines;
+using CleanArchitecture.Ordering.Runtime.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.Ordering.Application.Services;
+namespace CleanArchitecture.Ordering.Runtime.Services;
 
 internal sealed class QueryService(ActorPreservingScopeFactory scopeFactory) : IQueryService
 {

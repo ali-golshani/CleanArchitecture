@@ -1,7 +1,7 @@
 ﻿using Framework.Mediator.BatchCommands;
 using Framework.Results;
 
-namespace CleanArchitecture.Ordering.Application.Services;
+namespace CleanArchitecture.Ordering.Runtime.Services;
 
 internal class BatchCommandsService<TCommand>(ICommandService commandService) :
     BatchCommandsServiceBase<TCommand>,

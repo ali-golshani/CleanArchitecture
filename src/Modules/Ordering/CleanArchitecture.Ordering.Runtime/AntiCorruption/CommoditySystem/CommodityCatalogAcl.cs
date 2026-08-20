@@ -3,7 +3,7 @@ using Framework.Results;
 using Infrastructure.CommoditySystem;
 using Infrastructure.CommoditySystem.Requests;
 
-namespace CleanArchitecture.Ordering.Application.AntiCorruption.CommoditySystem;
+namespace CleanArchitecture.Ordering.Runtime.AntiCorruption.CommoditySystem;
 
 internal sealed class CommodityCatalogAcl(ICommoditySystem commoditySystem) : ICommodityCatalog
 {

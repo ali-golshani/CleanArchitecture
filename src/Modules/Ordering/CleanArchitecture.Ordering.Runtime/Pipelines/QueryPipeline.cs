@@ -2,12 +2,12 @@
 using Framework.Mediator.Middlewares;
 using Infrastructure.RequestAudit;
 
-namespace CleanArchitecture.Ordering.Application.Pipelines;
+namespace CleanArchitecture.Ordering.Runtime.Pipelines;
 
-internal static class CommandPipeline
+internal static class QueryPipeline
 {
     public sealed class Pipeline<TRequest, TResponse> : KeyedPipeline<TRequest, TResponse>
-        where TRequest : CommandBase, ICommand<TRequest, TResponse>
+        where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         public Pipeline(IServiceProvider serviceProvider)
             : base(serviceProvider, Configuration.PipelineName)
@@ -16,7 +16,7 @@ internal static class CommandPipeline
 
     public sealed class Configuration : IKeyedPipelineConfiguration
     {
-        public static string PipelineName { get; } = typeof(CommandPipeline).FullName!;
+        public static string PipelineName { get; } = typeof(QueryPipeline).FullName!;
 
         public static Type[] Middlewares()
         {
@@ -27,8 +27,7 @@ internal static class CommandPipeline
                 typeof(RequestAuditMiddleware<,>),
                 typeof(AuthorizationMiddleware<,>),
                 typeof(ValidationMiddleware<,>),
-                typeof(TransactionScopeMiddleware<,>),
-                typeof(OrderRequestMiddleware<,>),
+                typeof(FilteringMiddleware<,>),
             ];
         }
     }
