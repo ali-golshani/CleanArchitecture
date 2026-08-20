@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.Ordering.Runtime;
 using CleanArchitecture.ProcessManager;
-using CleanArchitecture.UserManagement.Application;
 using CleanArchitecture.Querying;
 using CleanArchitecture.ServicesConfigurations.OptionsProviders;
 using CleanArchitecture.Shared;
@@ -10,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using CleanArchitecture.UserManagement.Runtime;
 
 namespace CleanArchitecture.ServicesConfigurations;
 

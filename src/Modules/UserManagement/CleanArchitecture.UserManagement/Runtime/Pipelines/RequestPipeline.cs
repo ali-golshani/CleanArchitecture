@@ -3,7 +3,7 @@ using CleanArchitecture.UserManagement.Application.Requests;
 using Framework.Mediator.Middlewares;
 using Infrastructure.RequestAudit;
 
-namespace CleanArchitecture.UserManagement.Application.Pipelines;
+namespace CleanArchitecture.UserManagement.Runtime.Pipelines;
 
 internal static class RequestPipeline
 {

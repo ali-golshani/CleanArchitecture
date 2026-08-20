@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.UserManagement.Application.Pipelines;
+﻿using CleanArchitecture.UserManagement.Application.Services;
 using CleanArchitecture.UserManagement.Contracts;
 using CleanArchitecture.UserManagement.Domain.Repositories;
 using CleanArchitecture.UserManagement.Domain.Services;
@@ -8,6 +8,8 @@ using CleanArchitecture.UserManagement.Infrastructure;
 using CleanArchitecture.UserManagement.Options;
 using CleanArchitecture.UserManagement.Persistence;
 using CleanArchitecture.UserManagement.Persistence.Repositories;
+using CleanArchitecture.UserManagement.Runtime.Pipelines;
+using CleanArchitecture.UserManagement.Runtime.Services;
 using Framework.DependencyInjection.Extensions;
 using Framework.Mediator.Extensions;
 using Framework.Validation;
@@ -46,7 +48,7 @@ public static class ServicesConfiguration
         services.RegisterRequestHandlers();
         services.RegisterSelfTransientServices();
 
-        services.AddTransient<Application.Services.IRequestService, Application.Services.RequestService>();
+        services.AddTransient<IRequestService, RequestService>();
         services.AddKeyedPipeline<RequestPipeline.Configuration>(typeof(RequestPipeline.Pipeline<,>));
     }
 }

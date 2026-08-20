@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.UserManagement.Application.Requests.Models;
+﻿using CleanArchitecture.UserManagement.Application.Models;
 using CleanArchitecture.UserManagement.Persistence;
 using Framework.Mediator;
 using Framework.Results;

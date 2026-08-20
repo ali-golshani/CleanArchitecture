@@ -1,4 +1,5 @@
-﻿using CleanArchitecture.UserManagement.Application.Requests.Users.GetUser;
+﻿using CleanArchitecture.UserManagement.Application.Models;
+using CleanArchitecture.UserManagement.Application.Requests.Users.GetUser;
 using CleanArchitecture.UserManagement.Application.Services;
 using CleanArchitecture.UserManagement.Errors;
 using Framework.WebApi;
@@ -22,7 +23,7 @@ internal sealed class GetUser : IMinimalEndpoint
     }
 
     private static
-        async Task<Results<Ok<Application.Requests.Models.User>, ProblemHttpResult>>
+        async Task<Results<Ok<User>, ProblemHttpResult>>
         Handle(IRequestService requestService, Guid userId, CancellationToken cancellationToken)
     {
         var result = await requestService.Handle(new Request { UserId = userId }, cancellationToken);

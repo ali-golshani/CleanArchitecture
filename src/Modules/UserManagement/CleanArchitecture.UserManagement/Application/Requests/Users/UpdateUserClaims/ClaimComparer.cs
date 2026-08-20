@@ -1,4 +1,4 @@
-﻿using CleanArchitecture.UserManagement.Application.Requests.Models;
+﻿using CleanArchitecture.UserManagement.Application.Models;
 using System.Diagnostics.CodeAnalysis;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Users.UpdateUserClaims;

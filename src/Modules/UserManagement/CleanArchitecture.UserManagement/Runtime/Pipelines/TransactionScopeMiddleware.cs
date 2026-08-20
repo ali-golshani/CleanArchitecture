@@ -3,7 +3,7 @@ using CleanArchitecture.UserManagement.Application.Requests;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
 
-namespace CleanArchitecture.UserManagement.Application.Pipelines;
+namespace CleanArchitecture.UserManagement.Runtime.Pipelines;
 
 internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
     IMiddleware<TRequest, TResponse>

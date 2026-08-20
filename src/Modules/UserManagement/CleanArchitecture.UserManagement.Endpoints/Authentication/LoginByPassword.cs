@@ -1,5 +1,4 @@
-﻿using CleanArchitecture.UserManagement.Application.Services;
-using Framework.WebApi;
+﻿using Framework.WebApi;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -7,6 +6,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using CleanArchitecture.UserManagement.Application.Requests.Authentication.LoginByPassword;
+using CleanArchitecture.UserManagement.Application.Services;
 
 namespace CleanArchitecture.UserManagement.Endpoints.Authentication;
 

@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture.UserManagement.Application.Requests.Models;
+﻿namespace CleanArchitecture.UserManagement.Application.Models;
 
 public enum Role
 {

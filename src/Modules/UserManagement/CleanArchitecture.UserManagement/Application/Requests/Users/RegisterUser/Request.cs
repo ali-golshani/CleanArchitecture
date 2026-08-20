@@ -1,4 +1,5 @@
-﻿using Framework.Results;
+﻿using CleanArchitecture.UserManagement.Application.Models;
+using Framework.Results;
 using System.Text.Json.Serialization;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Users.RegisterUser;
@@ -11,7 +12,7 @@ public sealed class Request : RequestBase, IRequest<Request, Empty>
     public required string FirstName { get; init; }
     public required string LastName { get; init; }
     public required string PhoneNumber { get; init; }
-    public required Models.Role Role { get; init; }
+    public required Role Role { get; init; }
     public required int? BrokerId { get; init;  }
     public required int? CustomerId { get; init; }
 

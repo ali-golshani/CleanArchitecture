@@ -63,13 +63,13 @@
   </Folder>
   <Folder Name="/src/Modules/" />
   <Folder Name="/src/Modules/Ordering/">
-    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.Cap.Subscribers/CleanArchitecture.Ordering.Messaging.Cap.Subscribers.csproj" />
-    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Application.MassTransit.Consumers/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Commands/CleanArchitecture.Ordering.Commands.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain.Services/CleanArchitecture.Ordering.Domain.Services.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain/CleanArchitecture.Ordering.Domain.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Endpoints/CleanArchitecture.Ordering.Endpoints.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.IntegrationEvents/CleanArchitecture.Ordering.IntegrationEvents.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Messaging.Cap.Subscribers/CleanArchitecture.Ordering.Messaging.Cap.Subscribers.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Persistence/CleanArchitecture.Ordering.Persistence.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Queries/CleanArchitecture.Ordering.Queries.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Runtime/CleanArchitecture.Ordering.Runtime.csproj" />

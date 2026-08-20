@@ -1,11 +1,12 @@
 ﻿using CleanArchitecture.Actors;
-using CleanArchitecture.UserManagement.Application.Pipelines;
 using CleanArchitecture.UserManagement.Application.Requests;
+using CleanArchitecture.UserManagement.Application.Services;
+using CleanArchitecture.UserManagement.Runtime.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace CleanArchitecture.UserManagement.Application.Services;
+namespace CleanArchitecture.UserManagement.Runtime.Services;
 
 internal sealed class RequestService(ActorPreservingScopeFactory scopeFactory) : IRequestService
 {

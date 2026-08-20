@@ -1,5 +1,4 @@
 ﻿using CleanArchitecture.Authorization.WebApi.Policies.Permissions;
-using CleanArchitecture.UserManagement.Application.Services;
 using Framework.WebApi;
 using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Builder;
@@ -9,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 using CleanArchitecture.Authorization.Claims;
 using CleanArchitecture.UserManagement.Application.Requests.Users.RegisterUser;
+using CleanArchitecture.UserManagement.Application.Services;
 
 namespace CleanArchitecture.UserManagement.Endpoints.Users;
 
