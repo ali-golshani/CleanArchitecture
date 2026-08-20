@@ -6,6 +6,7 @@ using Framework.Results.Extensions;
 using Framework.Scheduling;
 using GetOrders = CleanArchitecture.Ordering.Queries.Orders.GetOrders;
 using DoNothings = CleanArchitecture.Ordering.Commands.DoNothings;
+using CleanArchitecture.Ordering;
 
 namespace CleanArchitecture.Scheduling;
 

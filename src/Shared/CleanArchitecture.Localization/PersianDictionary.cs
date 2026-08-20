@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture;
+﻿namespace CleanArchitecture.Localization;
 
 public static class PersianDictionary
 {

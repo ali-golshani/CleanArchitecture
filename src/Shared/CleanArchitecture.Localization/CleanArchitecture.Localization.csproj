@@ -1,9 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<RootNamespace>CleanArchitecture</RootNamespace>
-	</PropertyGroup>
-
 	<ItemGroup>
 		<Compile Update="Resources\PersianDictionary.Designer.cs">
 			<DesignTime>True</DesignTime>

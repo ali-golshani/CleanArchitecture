@@ -64,6 +64,7 @@
   <Folder Name="/src/Modules/" />
   <Folder Name="/src/Modules/Ordering/">
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Commands/CleanArchitecture.Ordering.Commands.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Constants/CleanArchitecture.Ordering.Constants.csproj" Id="32f9393f-182f-4ae7-b306-6ad9601fd3b3" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain.Services/CleanArchitecture.Ordering.Domain.Services.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Domain/CleanArchitecture.Ordering.Domain.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Endpoints/CleanArchitecture.Ordering.Endpoints.csproj" />
@@ -85,8 +86,8 @@
     <Project Path="src/Shared/CleanArchitecture.Authorization.Claims/CleanArchitecture.Authorization.Claims.csproj" Id="1a354612-ad6a-4388-be58-335edd577750" />
     <Project Path="src/Shared/CleanArchitecture.Authorization.WebApi/CleanArchitecture.Authorization.WebApi.csproj" />
     <Project Path="src/Shared/CleanArchitecture.Authorization/CleanArchitecture.Authorization.csproj" />
-    <Project Path="src/Shared/CleanArchitecture.Constants/CleanArchitecture.Constants.csproj" />
     <Project Path="src/Shared/CleanArchitecture.Exceptions/CleanArchitecture.Exceptions.csproj" />
+    <Project Path="src/Shared/CleanArchitecture.Localization/CleanArchitecture.Localization.csproj" />
     <Project Path="src/Shared/CleanArchitecture.Mediator.Middlewares/CleanArchitecture.Mediator.Middlewares.csproj" />
     <Project Path="src/Shared/CleanArchitecture.Mediator/CleanArchitecture.Mediator.csproj" />
     <Project Path="src/Shared/CleanArchitecture.Shared/CleanArchitecture.Shared.csproj" />

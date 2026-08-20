@@ -1,6 +1,6 @@
-﻿namespace CleanArchitecture;
+﻿namespace CleanArchitecture.Shared;
 
-public static class Strings
+public static class TextSymbols
 {
     public const string Question = "?";
     public const string Dash = "⚊";

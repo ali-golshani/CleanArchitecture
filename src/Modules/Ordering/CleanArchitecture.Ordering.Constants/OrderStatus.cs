@@ -1,4 +1,4 @@
-﻿namespace CleanArchitecture;
+﻿namespace CleanArchitecture.Ordering;
 
 public enum OrderStatus
 {

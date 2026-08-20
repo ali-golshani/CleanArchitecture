@@ -1,4 +1,6 @@
-﻿namespace CleanArchitecture.Querying.GetOrders;
+﻿using CleanArchitecture.Ordering;
+
+namespace CleanArchitecture.Querying.GetOrders;
 
 public class Order
 {

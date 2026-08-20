@@ -21,7 +21,6 @@
     <ProjectReference Include="..\..\..\Framework\Framework.Utilities\Framework.Utilities.csproj" />
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization.Claims\CleanArchitecture.Authorization.Claims.csproj" />
     <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Authorization\CleanArchitecture.Authorization.csproj" />
-    <ProjectReference Include="..\..\..\Shared\CleanArchitecture.Constants\CleanArchitecture.Constants.csproj" />
     <ProjectReference Include="..\..\..\Infrastructure\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj" />
   </ItemGroup>
 
