@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/docs/">
     <File Path="docs/CleanArchitecture-Execution-Flow.pdf" />
+    <File Path="docs/CleanArchitecture-Execution-Flow.PNG" />
     <File Path="docs/CleanArchitecture-Execution-Flow.pptx" />
   </Folder>
   <Folder Name="/Solution Items/">
