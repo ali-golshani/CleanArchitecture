@@ -15,8 +15,8 @@ public static class ExceptionExtensions
             result.AppendLine(message);
         }
 
-        var traceId = new Fact(nameof(BaseSystemException.TraceId), exception.TraceId);
-        result.AppendLine(traceId.ToString());
+        var errorId = new Fact(nameof(BaseSystemException.ErrorId), exception.ErrorId);
+        result.AppendLine(errorId.ToString());
 
         foreach (var fact in exception.Facts)
         {

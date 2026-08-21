@@ -8,12 +8,12 @@ namespace Framework.WebApi.Results;
 
 internal static class ErrorsToProblemResultConverter
 {
-    public static ProblemHttpResult ToProblemResult(Error[] errors)
+    public static ProblemHttpResult ToProblemResult(Error[] errors, string? errorId = null)
     {
-        return TypedResults.Problem(ToProblemDetails(errors));
+        return TypedResults.Problem(ToProblemDetails(errors, errorId));
     }
 
-    private static ProblemDetails ToProblemDetails(Error[] errors)
+    private static ProblemDetails ToProblemDetails(Error[] errors, string? errorId)
     {
         var error = errors.Length == 0 ? Framework.Results.Errors.Unexpected : errors[0];
 
@@ -32,6 +32,7 @@ internal static class ErrorsToProblemResultConverter
                 Title = ErrorTitle(error.Type),
                 Detail = error.Message,
                 ErrorMessages = ErrorMessages(errors),
+                ErrorId = errorId,
             };
         }
     }

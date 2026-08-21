@@ -22,20 +22,22 @@ public sealed class Result<T>
         return Failure([.. errors]);
     }
 
-    public static Result<T> Success(T value) => new(true, value, [], null);
-    public static Result<T> Failure(Error[] errors, string? correlationId = null) => new(false, default, errors, correlationId);
+    public static Result<T> Success(T value) => new(true, value, [], null, null);
+    public static Result<T> Failure(Error[] errors, string? errorId = null, string? correlationId = null) => new(false, default, errors, errorId, correlationId);
 
-    private Result(bool isSuccess, T? value, Error[] errors, string? correlationId)
+    private Result(bool isSuccess, T? value, Error[] errors, string? errorId, string? correlationId)
     {
         IsSuccess = isSuccess;
         Value = value;
         Errors = errors;
+        ErrorId = errorId;
         CorrelationId = correlationId;
     }
 
     public bool IsSuccess { get; }
     public T? Value { get; }
     public Error[] Errors { get; }
+    public string? ErrorId { get; }
     public string? CorrelationId { get; }
 
     public bool IsFailure => !IsSuccess;

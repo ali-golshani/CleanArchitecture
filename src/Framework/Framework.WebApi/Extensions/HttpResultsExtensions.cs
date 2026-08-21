@@ -35,7 +35,7 @@ public static class HttpResultsExtensions
         }
         else
         {
-            return result.Errors.ToProblemResult();
+            return result.ToProblemResult();
         }
     }
 
@@ -47,7 +47,7 @@ public static class HttpResultsExtensions
         }
         else
         {
-            return ToProblemResult(result.Errors);
+            return result.ToProblemResult();
         }
     }
 
@@ -59,7 +59,7 @@ public static class HttpResultsExtensions
         }
         else
         {
-            return ToProblemResult(result.Errors);
+            return result.ToProblemResult();
         }
     }
 
@@ -71,8 +71,13 @@ public static class HttpResultsExtensions
         }
         else
         {
-            return ToProblemResult(result.Errors);
+            return result.ToProblemResult();
         }
+    }
+
+    public static ProblemHttpResult ToProblemResult<T>(this Result<T> result)
+    {
+        return ErrorsToProblemResultConverter.ToProblemResult(result.Errors, result.ErrorId);
     }
 
     public static ProblemHttpResult ToProblemResult(this Error[] errors)

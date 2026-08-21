@@ -27,7 +27,7 @@ public sealed class GetOrder : IMinimalEndpoint
 
         if (result.IsFailure)
         {
-            return result.Errors.ToProblemResult();
+            return result.ToProblemResult();
         }
         else if (result.Value is null)
         {

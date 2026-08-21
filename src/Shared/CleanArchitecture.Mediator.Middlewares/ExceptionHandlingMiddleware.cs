@@ -30,7 +30,7 @@ public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
         {
             logger.LogError(exp, "{@Request} {@Error}", context.Request, exp);
             var systemException = exp.TranslateToSystemException();
-            return Errors(systemException);
+            return Result<TResponse>.Failure(Errors(systemException), errorId: systemException.ErrorId);
         }
     }
 

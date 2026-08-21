@@ -19,10 +19,7 @@ public static class ExceptionExtensions
             Title = ErrorType.Failure.ToString(),
             Detail = ex.Message,
             ErrorMessages = [.. ex.Messages],
-            Extensions = new Dictionary<string, object?>
-            {
-                [nameof(BaseSystemException.TraceId)] = ex.TraceId,
-            }
+            ErrorId = ex.ErrorId,
         };
     }
 }
