@@ -33,9 +33,13 @@ public class ExceptionHandlingMiddleware
                 logger.LogError(@"{@Status} {@Connection}", context.Response?.StatusCode, connection);
             }
         }
-        catch (OperationCanceledException)
+        catch (Exception exp) when (IsRequestCancellation(context, exp))
         {
-            throw;
+            if (!context.Response.HasStarted)
+            {
+                context.Response.Clear();
+                context.Response.StatusCode = StatusCodes.Status499ClientClosedRequest;
+            }
         }
         catch (Exception exp)
         {
@@ -55,6 +59,13 @@ public class ExceptionHandlingMiddleware
 
             throw;
         }
+    }
+
+    private static bool IsRequestCancellation(HttpContext context, Exception exception)
+    {
+        return
+            context.RequestAborted.IsCancellationRequested &&
+            exception.UnwrapAll() is OperationCanceledException;
     }
 
     private static async Task WriteAsProblem(HttpContext context, Exception exp)
