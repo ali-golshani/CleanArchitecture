@@ -1,4 +1,5 @@
-﻿using Framework.Threading.BackgroundServices;
+﻿using Framework.Exceptions;
+using Framework.Threading.BackgroundServices;
 using Microsoft.EntityFrameworkCore;
 
 namespace Framework.Persistence;
@@ -24,6 +25,10 @@ public abstract class DbContextBase : DbContext
         {
             throw;
         }
+        catch (BaseSystemException)
+        {
+            throw;
+        }
         catch (Exception exp)
         {
             throw PersistenceException.Translate(exp);
@@ -37,6 +42,10 @@ public abstract class DbContextBase : DbContext
             return await base.SaveChangesAsync(cancellationToken);
         }
         catch (OperationCanceledException)
+        {
+            throw;
+        }
+        catch (BaseSystemException)
         {
             throw;
         }

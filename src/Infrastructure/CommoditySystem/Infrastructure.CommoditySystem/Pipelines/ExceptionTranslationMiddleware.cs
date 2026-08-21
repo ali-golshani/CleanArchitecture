@@ -12,6 +12,10 @@ internal sealed class ExceptionTranslationMiddleware<TRequest, TResponse> :
         {
             return await next.Handle(context);
         }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
         catch (CommoditySystemException)
         {
             throw;
