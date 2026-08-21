@@ -22,6 +22,10 @@ public sealed class ExceptionHandlingMiddleware<TRequest, TResponse> :
         {
             return await next.Handle(context);
         }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
         catch (Exception exp)
         {
             logger.LogError(exp, "{@Request} {@Error}", context.Request, exp);

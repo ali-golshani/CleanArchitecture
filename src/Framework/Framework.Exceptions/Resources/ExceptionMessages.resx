@@ -123,9 +123,6 @@
   <data name="ProgrammerException" xml:space="preserve">
     <value>خطای پیش بینی نشده</value>
   </data>
-  <data name="RequestCanceledException" xml:space="preserve">
-    <value>عملیات لغو گردید</value>
-  </data>
   <data name="UnknownException" xml:space="preserve">
     <value>خطای نامشخص</value>
   </data>

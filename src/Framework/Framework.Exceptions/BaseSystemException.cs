@@ -4,10 +4,7 @@ namespace Framework.Exceptions;
 
 public abstract class BaseSystemException : Exception
 {
-    public abstract bool ShouldLog { get; }
-
     public string TraceId { get; } = SmallGuid.GetUniqueKey();
-    public virtual bool IsFatal => false;
     public virtual IReadOnlyCollection<string> Messages => [Message];
 
     private protected BaseSystemException() { }

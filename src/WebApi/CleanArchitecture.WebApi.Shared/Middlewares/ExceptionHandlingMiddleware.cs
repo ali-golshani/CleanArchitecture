@@ -33,9 +33,14 @@ public class ExceptionHandlingMiddleware
                 logger.LogError(@"{@Status} {@Connection}", context.Response?.StatusCode, connection);
             }
         }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
         catch (Exception exp)
         {
             exp = exp.UnwrapAll();
+            exp.ThrowIfCancellation();
 
             switch (exp)
             {

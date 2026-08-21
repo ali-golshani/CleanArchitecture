@@ -20,6 +20,10 @@ public abstract class DbContextBase : DbContext
         {
             return base.SaveChanges();
         }
+        catch (OperationCanceledException)
+        {
+            throw;
+        }
         catch (Exception exp)
         {
             throw PersistenceException.Translate(exp);
@@ -31,6 +35,10 @@ public abstract class DbContextBase : DbContext
         try
         {
             return await base.SaveChangesAsync(cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
         }
         catch (Exception exp)
         {

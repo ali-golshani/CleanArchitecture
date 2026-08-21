@@ -57,15 +57,23 @@ public static class ExceptionExtensions
     public static BaseSystemException TranslateToSystemException(this Exception exp)
     {
         exp = exp.UnwrapAll();
+        exp.ThrowIfCancellation();
 
         var result = exp switch
         {
             BaseSystemException systemException => systemException,
-            TaskCanceledException or OperationCanceledException => new RequestCanceledException(exp),
             _ => new UnknownException(exp),
         };
 
         return result.Demystify();
+    }
+
+    public static void ThrowIfCancellation(this Exception exception)
+    {
+        if (exception is OperationCanceledException)
+        {
+            ExceptionDispatchInfo.Capture(exception).Throw();
+        }
     }
 
     public static Exception UnwrapAll(this Exception exception)
@@ -74,13 +82,12 @@ public static class ExceptionExtensions
         return innerException;
     }
 
-    private static bool UnwrapAll(Exception exception, out Exception innerException)
+    private static void UnwrapAll(Exception exception, out Exception innerException)
     {
         ArgumentNullException.ThrowIfNull(exception);
 
-        bool hasChanges = true;
-
         innerException = exception;
+        bool hasChanges = true;
 
         while (hasChanges)
         {
@@ -96,25 +103,6 @@ public static class ExceptionExtensions
                 innerException = aggregateException.InnerExceptions[0];
                 hasChanges = true;
             }
-        }
-
-        return hasChanges;
-    }
-
-    public static object? InvokeAndUnwrapException(this MethodInfo method, object? obj, object?[]? parameters)
-    {
-        try
-        {
-            return method.Invoke(obj, parameters);
-        }
-        catch (Exception exp)
-        {
-            if (UnwrapAll(exp, out var innerException))
-            {
-                ExceptionDispatchInfo.Throw(innerException);
-            }
-
-            throw;
         }
     }
 }

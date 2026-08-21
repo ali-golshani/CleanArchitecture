@@ -5,9 +5,6 @@ public class ProgrammerException(string? technicalMessage = null)
 {
     public string? TechnicalMessage { get; } = technicalMessage;
 
-    public override bool IsFatal => true;
-    public override bool ShouldLog => true;
-
     public override IEnumerable<Fact> Facts
     {
         get

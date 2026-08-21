@@ -79,15 +79,6 @@ namespace Framework.Exceptions.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to عملیات لغو گردید.
-        /// </summary>
-        internal static string RequestCanceledException {
-            get {
-                return ResourceManager.GetString("RequestCanceledException", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to خطای نامشخص.
         /// </summary>
         internal static string UnknownException {
