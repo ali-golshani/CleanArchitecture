@@ -1,4 +1,6 @@
-﻿namespace Framework.WebApi.Extensions;
+﻿using Microsoft.AspNetCore.Routing;
+
+namespace Framework.WebApi.Extensions;
 
 public static class EndpointExtensions
 {

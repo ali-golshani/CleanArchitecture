@@ -3,4 +3,4 @@ Modular Monolith & Clean Architecture
 
 ## Architecture
 
-[View the architecture execution flow (PDF)](docs/CleanArchitecture-Execution-Flow.pdf)
+[View the architecture execution flow (PNG)](docs/CleanArchitecture-Execution-Flow.png)

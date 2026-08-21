@@ -1,4 +1,7 @@
-﻿namespace Framework.WebApi;
+﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Routing;
+
+namespace Framework.WebApi;
 
 public interface IEndpointModule
 {

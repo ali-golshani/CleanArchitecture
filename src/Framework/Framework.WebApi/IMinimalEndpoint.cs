@@ -1,4 +1,6 @@
-﻿namespace Framework.WebApi;
+﻿using Microsoft.AspNetCore.Routing;
+
+namespace Framework.WebApi;
 
 public interface IMinimalEndpoint
 {

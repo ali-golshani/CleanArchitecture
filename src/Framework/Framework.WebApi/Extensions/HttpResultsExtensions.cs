@@ -1,5 +1,6 @@
 ﻿using Framework.Results;
 using Framework.WebApi.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Framework.WebApi.Extensions;

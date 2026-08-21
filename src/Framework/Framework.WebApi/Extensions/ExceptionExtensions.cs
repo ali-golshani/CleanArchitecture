@@ -2,6 +2,7 @@
 using Framework.Exceptions.Extensions;
 using Framework.Results;
 using Framework.WebApi.Results;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Framework.WebApi.Extensions;
