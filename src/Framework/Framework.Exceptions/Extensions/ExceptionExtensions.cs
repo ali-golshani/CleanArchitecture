@@ -70,6 +70,8 @@ public static class ExceptionExtensions
 
     public static void ThrowIfCancellation(this Exception exception)
     {
+        exception = exception.UnwrapAll();
+        
         if (exception is OperationCanceledException)
         {
             ExceptionDispatchInfo.Capture(exception).Throw();
