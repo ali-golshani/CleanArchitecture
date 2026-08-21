@@ -28,7 +28,6 @@
     <Project Path="src/Framework/Framework.Application/Framework.Application.csproj" />
     <Project Path="src/Framework/Framework.Cap/Framework.Cap.csproj" />
     <Project Path="src/Framework/Framework.Collections/Framework.Collections.csproj" />
-    <Project Path="src/Framework/Framework.Commands/Framework.Commands.csproj" />
     <Project Path="src/Framework/Framework.DependencyInjection/Framework.DependencyInjection.csproj" />
     <Project Path="src/Framework/Framework.Domain/Framework.Domain.csproj" />
     <Project Path="src/Framework/Framework.DomainRules/Framework.DomainRules.csproj" />
