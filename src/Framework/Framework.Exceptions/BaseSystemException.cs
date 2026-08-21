@@ -1,4 +1,6 @@
-﻿namespace Framework.Exceptions;
+﻿using Framework.Exceptions.Utilities;
+
+namespace Framework.Exceptions;
 
 public abstract class BaseSystemException : Exception
 {
@@ -26,6 +28,6 @@ public abstract class BaseSystemException : Exception
 
     private static string CreateErrorId()
     {
-        return Guid.NewGuid().ToString("N");
+        return SmallGuid.GetUniqueKey();
     }
 }
