@@ -6,8 +6,6 @@ namespace Framework.Persistence;
 
 public class PersistenceException : Exceptions.PersistenceException
 {
-    private const string TransientFailureMessage = "An exception has been raised that is likely due to a transient failure";
-
     public enum Reasons
     {
         Other = 0,
@@ -22,7 +20,7 @@ public class PersistenceException : Exceptions.PersistenceException
         PermissionWasDenied = 20,
         LoginFailed = 21,
 
-        TransientFailure = 100
+        TransientDatabaseFailure = 100
     }
 
     public Reasons Reason { get; }
@@ -35,13 +33,17 @@ public class PersistenceException : Exceptions.PersistenceException
 
     public static PersistenceException Translate(Exception exception)
     {
+        if (IsTransientFailure(exception))
+        {
+            return new PersistenceException(Reasons.TransientDatabaseFailure, exception);
+        }
+
         return exception switch
         {
             DbUpdateConcurrencyException _ => new PersistenceException(Reasons.DbUpdateConcurrencyException, exception),
             DbUpdateException dbUpdateException => Translate(dbUpdateException),
             NotSupportedException _ => new PersistenceException(Reasons.NotSupportedException, exception),
             ObjectDisposedException _ => new PersistenceException(Reasons.ObjectDisposedException, exception),
-            InvalidOperationException exp when IsTransientFailure(exp) => new PersistenceException(Reasons.TransientFailure, exception),
             InvalidOperationException _ => new PersistenceException(Reasons.InvalidOperationException, exception),
             _ => new PersistenceException(Reasons.Other, exception),
         };
@@ -109,16 +111,24 @@ public class PersistenceException : Exceptions.PersistenceException
         return new PersistenceException(Reasons.DbUpdateException, exception);
     }
 
-    private static bool IsTransientFailure(InvalidOperationException exp)
-    {
-        return exp.Message.Contains(TransientFailureMessage);
-    }
-
     public override IEnumerable<Fact> Facts
     {
         get
         {
             yield return new(nameof(Reason), Reason);
         }
+    }
+
+    private static bool IsTransientFailure(Exception exception)
+    {
+        for (Exception? current = exception; current is not null; current = current.InnerException)
+        {
+            if (current is SqlException sqlException)
+            {
+                return sqlException.IsTransient;
+            }
+        }
+
+        return false;
     }
 }
