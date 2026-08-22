@@ -37,6 +37,7 @@ public static class Extensions
     {
         return new Error
         (
+            code: ErrorCodes.InvalidValue,
             type: ErrorType.Validation,
             message: failure.ErrorMessage,
             (failure.PropertyName, failure.AttemptedValue)

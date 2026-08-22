@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class UsernameAlreadyExistsError()
-    : Error(ErrorType.Forbidden, ErrorMessages.UsernameAlreadyExistsError);
+    : Error(ErrorCodes.UsernameAlreadyExists, ErrorType.Forbidden, ErrorMessages.UsernameAlreadyExistsError);

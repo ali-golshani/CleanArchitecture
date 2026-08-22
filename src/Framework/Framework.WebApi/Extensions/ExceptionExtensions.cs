@@ -15,6 +15,8 @@ public static class ExceptionExtensions
 
         return new ResultProblemDetails
         {
+            Type = $"urn:problem:{ErrorCodes.Unexpected}",
+            ErrorCodes = [ErrorCodes.Unexpected],
             Status = StatusCodes.Status500InternalServerError,
             Title = ErrorType.Failure.ToString(),
             Detail = ex.Message,

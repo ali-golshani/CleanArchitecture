@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class MobileNumberNotFoundError()
-    : Error(ErrorType.NotFound, ErrorMessages.MobileNumberNotFoundError);
+    : Error(ErrorCodes.MobileNumberNotFound, ErrorType.NotFound, ErrorMessages.MobileNumberNotFoundError);

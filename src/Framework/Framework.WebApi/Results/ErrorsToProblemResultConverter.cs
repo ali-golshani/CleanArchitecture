@@ -21,6 +21,8 @@ internal static class ErrorsToProblemResultConverter
         {
             return new ResultValidationProblemDetails(ValidationErrors(errors))
             {
+                Type = $"urn:problem:{error.Code}",
+                ErrorCodes = ErrorCodes(errors),
                 ErrorMessages = ErrorMessages(errors),
             };
         }
@@ -28,6 +30,8 @@ internal static class ErrorsToProblemResultConverter
         {
             return new ResultProblemDetails
             {
+                Type = $"urn:problem:{error.Code}",
+                ErrorCodes = ErrorCodes(errors),
                 Status = StatusCode(error.Type),
                 Title = ErrorTitle(error.Type),
                 Detail = error.Message,
@@ -47,6 +51,11 @@ internal static class ErrorsToProblemResultConverter
     private static string[] ErrorMessages(Error[] errors)
     {
         return [.. errors.Select(x => x.Message)];
+    }
+
+    private static string[] ErrorCodes(Error[] errors)
+    {
+        return [.. errors.Select(x => x.Code)];
     }
 
     private static Dictionary<string, string[]> ValidationErrors(Error[] errors)

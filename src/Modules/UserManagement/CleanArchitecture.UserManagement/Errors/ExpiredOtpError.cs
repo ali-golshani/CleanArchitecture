@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class ExpiredOtpError()
-    : Error(ErrorType.Forbidden, ErrorMessages.ExpiredOtpError);
+    : Error(ErrorCodes.ExpiredOtp, ErrorType.Forbidden, ErrorMessages.ExpiredOtpError);

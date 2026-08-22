@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class InvalidPassworError()
-    : Error(ErrorType.Forbidden, ErrorMessages.InvalidPassworError);
+    : Error(ErrorCodes.InvalidPassword, ErrorType.Forbidden, ErrorMessages.InvalidPassworError);

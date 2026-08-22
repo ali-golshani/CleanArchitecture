@@ -8,7 +8,7 @@ public sealed class OrderQuantityRule(int quantity) : IDomainRule
     {
         if (Quantity <= 0)
         {
-            yield return new Error(ErrorType.Validation, Resources.RuleMessages.OrderQuantityRule, (nameof(Quantity), Quantity));
+            yield return new Error(ErrorCodes.InvalidOrderQuantity, ErrorType.Validation, Resources.RuleMessages.OrderQuantityRule, (nameof(Quantity), Quantity));
         }
     }
 }

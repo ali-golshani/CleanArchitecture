@@ -8,7 +8,7 @@ public sealed class OrderPriceRule(decimal price) : IDomainRule
     {
         if (Price <= 0)
         {
-            yield return new(ErrorType.Validation, Resources.RuleMessages.OrderPriceRule, (nameof(Price), Price));
+            yield return new(ErrorCodes.InvalidOrderPrice, ErrorType.Validation, Resources.RuleMessages.OrderPriceRule, (nameof(Price), Price));
         }
     }
 }

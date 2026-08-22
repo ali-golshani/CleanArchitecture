@@ -3,6 +3,7 @@
 namespace Framework.DomainRules.Templates;
 
 public abstract class StringRule(
+    string code,
     string source,
     string? value,
     bool acceptEmptyValue = false,
@@ -10,6 +11,7 @@ public abstract class StringRule(
     int? maxLength = null)
     : IDomainRule
 {
+    public string Code { get; } = code;
     public string Source { get; } = source;
     public string? Value { get; } = value;
     public int? MinLength { get; } = minLength;
@@ -21,6 +23,7 @@ public abstract class StringRule(
         if (!IsValid())
         {
             yield return new Error(
+                Code,
                 ErrorType.Validation,
                 Statement(),
                 (Source, Value));

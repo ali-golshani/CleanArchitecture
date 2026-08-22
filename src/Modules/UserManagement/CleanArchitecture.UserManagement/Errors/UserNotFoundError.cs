@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class UserNotFoundError()
-    : Error(ErrorType.NotFound, ErrorMessages.UserNotFoundError);
+    : Error(ErrorCodes.NotFound, ErrorType.NotFound, ErrorMessages.UserNotFoundError);

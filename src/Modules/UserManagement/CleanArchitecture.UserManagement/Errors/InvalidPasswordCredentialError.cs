@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class InvalidPasswordCredentialError()
-    : Error(ErrorType.Forbidden, ErrorMessages.InvalidPasswordCredentialError);
+    : Error(ErrorCodes.InvalidPasswordCredential, ErrorType.Forbidden, ErrorMessages.InvalidPasswordCredentialError);

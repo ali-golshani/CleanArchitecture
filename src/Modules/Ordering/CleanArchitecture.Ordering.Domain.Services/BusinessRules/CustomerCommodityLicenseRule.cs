@@ -35,6 +35,7 @@ internal sealed class CustomerCommodityLicenseRule : IBusinessRule
         {
             yield return new Error
             (
+                ErrorCodes.InvalidCustomerCommodityLicense,
                 ErrorType.Conflict,
                 Resources.RuleMessages.CustomerCommodityRelationRule,
                 (nameof(Inquiry.CustomerId), inquiry.CustomerId),

@@ -3,7 +3,7 @@ using Framework.Results;
 
 namespace CleanArchitecture.Ordering.Commands.Errors;
 
-public sealed class CommodityNotFoundError(int commodityId) : Error(ErrorType.NotFound, ErrorMessageBuilder.CommodityNotFound(commodityId))
+public sealed class CommodityNotFoundError(int commodityId) : Error(ErrorCodes.CommodityNotFound, ErrorType.NotFound, ErrorMessageBuilder.CommodityNotFound(commodityId))
 {
     public int CommodityId { get; } = commodityId;
 }

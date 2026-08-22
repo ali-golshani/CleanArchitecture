@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class InvalidOtpError()
-    : Error(ErrorType.Forbidden, ErrorMessages.InvalidOtpError);
+    : Error(ErrorCodes.InvalidOtp, ErrorType.Forbidden, ErrorMessages.InvalidOtpError);

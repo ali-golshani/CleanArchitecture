@@ -4,4 +4,4 @@ using Framework.Results;
 namespace CleanArchitecture.UserManagement.Errors;
 
 public sealed class UnauthorizedError()
-    : Error(ErrorType.Unauthorized, ErrorMessages.UnauthorizedError);
+    : Error(ErrorCodes.Unauthorized, ErrorType.Unauthorized, ErrorMessages.UnauthorizedError);
