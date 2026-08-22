@@ -22,23 +22,21 @@ public sealed class Result<T>
         return Failure([.. errors]);
     }
 
-    public static Result<T> Success(T value) => new(true, value, [], null, null);
-    public static Result<T> Failure(Error[] errors, string? errorId = null, string? correlationId = null) => new(false, default, errors, errorId, correlationId);
+    public static Result<T> Success(T value) => new(true, value, [], null);
+    public static Result<T> Failure(Error[] errors, string? errorId = null) => new(false, default, errors, errorId);
 
-    private Result(bool isSuccess, T? value, Error[] errors, string? errorId, string? correlationId)
+    private Result(bool isSuccess, T? value, Error[] errors, string? errorId)
     {
         IsSuccess = isSuccess;
         Value = value;
         Errors = errors;
         ErrorId = errorId;
-        CorrelationId = correlationId;
     }
 
     public bool IsSuccess { get; }
     public T? Value { get; }
     public Error[] Errors { get; }
     public string? ErrorId { get; }
-    public string? CorrelationId { get; }
 
     public bool IsFailure => !IsSuccess;
 
@@ -46,9 +44,9 @@ public sealed class Result<T>
     {
         if (IsSuccess)
         {
-            throw new InvalidOperationException("A successful result cannot be propagated as a failure.");
+            throw new Framework.Exceptions.ProgrammerException("A successful result cannot be propagated as a failure.");
         }
 
-        return Result<TTarget>.Failure(Errors, ErrorId, CorrelationId);
+        return Result<TTarget>.Failure(Errors, ErrorId);
     }
 }
