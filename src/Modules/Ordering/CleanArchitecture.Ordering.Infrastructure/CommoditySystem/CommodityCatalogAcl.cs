@@ -18,7 +18,7 @@ internal sealed class CommodityCatalogAcl(ICommoditySystem commoditySystem) : IC
 
         if (result.IsFailure)
         {
-            return result.Errors;
+            return result.AsFailure<Domain.Orders.Commodity?>();
         }
 
         if (result.Value is null)

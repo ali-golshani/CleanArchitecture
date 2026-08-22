@@ -21,7 +21,7 @@ internal sealed class CustomerCommodityLicenseVerifierAcl(ICommoditySystem commo
 
         if (result.IsFailure)
         {
-            return result.Errors;
+            return result.AsFailure<CustomerCommodityLicenseStatus>();
         }
 
         return result.Value

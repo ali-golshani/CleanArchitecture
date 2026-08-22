@@ -1,5 +1,5 @@
 ﻿using Framework.Results;
-using Framework.Results.Extensions;
+using Framework.WebApi.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;

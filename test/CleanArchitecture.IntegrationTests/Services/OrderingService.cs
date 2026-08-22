@@ -50,7 +50,7 @@ internal class OrderingService(IQueryService queryService, ICommandService comma
 
         if (result.IsFailure)
         {
-            return result.Errors;
+            return result.AsFailure<int>();
         }
 
         return orderId;

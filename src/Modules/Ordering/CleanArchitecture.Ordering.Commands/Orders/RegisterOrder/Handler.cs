@@ -42,7 +42,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (commodityResult.IsFailure)
         {
-            return commodityResult.Errors;
+            return commodityResult.AsFailure<Empty>();
         }
 
         var commodity = commodityResult.Value!;
@@ -51,7 +51,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (orderResult.IsFailure)
         {
-            return orderResult.Errors;
+            return orderResult.AsFailure<Empty>();
         }
 
         var order = orderResult.Value!;

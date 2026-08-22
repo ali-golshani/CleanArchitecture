@@ -1,27 +1,7 @@
-﻿using System.Net;
-
 namespace Framework.Results.Extensions;
 
 public static class Extensions
 {
-    public static HttpStatusCode AsHttpStatusCode(this ErrorType errorType)
-    {
-        return errorType switch
-        {
-            ErrorType.Validation => HttpStatusCode.BadRequest,
-            ErrorType.Conflict => HttpStatusCode.Conflict,
-            ErrorType.NotFound => HttpStatusCode.NotFound,
-            ErrorType.Unauthorized => HttpStatusCode.Unauthorized,
-            ErrorType.Forbidden => HttpStatusCode.Forbidden,
-            ErrorType.Timeout => HttpStatusCode.RequestTimeout,
-            ErrorType.Locked => HttpStatusCode.Locked,
-            ErrorType.Unavailable => HttpStatusCode.ServiceUnavailable,
-            ErrorType.NotSupported or ErrorType.NotImplemented => HttpStatusCode.NotImplemented,
-            ErrorType.Canceled => HttpStatusCode.RequestTimeout,
-            _ => HttpStatusCode.InternalServerError,
-        };
-    }
-
     public static Result<T> AsResult<T>(this T value)
     {
         return Result<T>.Success(value);
@@ -59,7 +39,7 @@ public static class Extensions
     {
         if (result.IsFailure)
         {
-            return result.Errors;
+            return result.AsFailure<T>();
         }
 
         if (result.Value == null)
@@ -85,7 +65,7 @@ public static class Extensions
         }
         else
         {
-            return result.Errors;
+            return result.AsFailure<Empty>();
         }
     }
 }

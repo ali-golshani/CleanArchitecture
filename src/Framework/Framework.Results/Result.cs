@@ -41,4 +41,14 @@ public sealed class Result<T>
     public string? CorrelationId { get; }
 
     public bool IsFailure => !IsSuccess;
+
+    public Result<TTarget> AsFailure<TTarget>()
+    {
+        if (IsSuccess)
+        {
+            throw new InvalidOperationException("A successful result cannot be propagated as a failure.");
+        }
+
+        return Result<TTarget>.Failure(Errors, ErrorId, CorrelationId);
+    }
 }
