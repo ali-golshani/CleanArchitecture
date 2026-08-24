@@ -1,8 +1,6 @@
 # CleanArchitecture
 
-An opinionated reference template for building modular monoliths with Clean Architecture, CQRS, explicit module boundaries, and reusable technical capabilities.
-
-The repository is intended as an architectural guide rather than a production-ready application. It demonstrates how recurring application and infrastructure concerns can be solved once, validated in the template, and reused consistently in future projects.
+This repository is organized as a modular monolith based on Clean Architecture and CQRS. Business modules, cross-module capabilities, shared technical components, and application hosts are separated into dedicated projects.
 
 ## Architecture
 
@@ -24,7 +22,7 @@ The repository is intended as an architectural guide rather than a production-re
 
 The diagram describes runtime execution flow, not compile-time dependency direction.
 
-## Architectural principles
+## Dependency boundaries
 
 - Business modules own their models, use cases, persistence, infrastructure adapters, and public entry points.
 - Domain code does not depend on infrastructure or application hosts.
@@ -37,7 +35,7 @@ The diagram describes runtime execution flow, not compile-time dependency direct
 
 ## Ordering module
 
-`Ordering` is the primary reference module and demonstrates the complete modular structure.
+`Ordering` contains the complete structure of a business module.
 
 | Project | Responsibility |
 | --- | --- |
@@ -75,18 +73,18 @@ These components may coordinate modules, but they do not own module business rul
 
 ## Framework projects
 
-`Framework.*` projects form the template's internal technical platform. They are not a single general-purpose utility library. Each project represents a focused abstraction or an approved solution to a recurring engineering problem.
+`Framework.*` projects contain shared technical abstractions and implementations. They are split by capability instead of being grouped into a single general-purpose utility library.
 
 Examples include:
 
 - `Framework.Queries` provides query-side abstractions such as `PaginatedItems<T>` without depending on a database technology.
-- `Framework.Persistence` provides the accepted EF Core and SQL Server persistence conventions.
-- `Framework.Scheduling` standardizes scheduling through Quartz and exposes the template's job contract.
+- `Framework.Persistence` provides EF Core and SQL Server persistence conventions.
+- `Framework.Scheduling` provides Quartz scheduling integration and the shared job contract.
 - `Framework.Cap` and `Framework.MassTransit` provide alternative messaging integrations.
-- `Framework.DurableTask` provides the selected orchestration infrastructure.
+- `Framework.DurableTask` provides orchestration infrastructure.
 - `Framework.WebApi` contains reusable ASP.NET Core endpoint and result conventions.
 
-The size of a Framework project is not the deciding factor for keeping it separate. A project boundary is justified when it protects dependency direction, isolates a technology, or represents a capability that can evolve independently.
+Each project boundary protects dependency direction, isolates a technology, or separates a capability that can evolve independently.
 
 ## Repository structure
 
@@ -104,84 +102,3 @@ src/
 test/
 └── CleanArchitecture.IntegrationTests/
 ```
-
-## Included technologies
-
-- .NET 10 and ASP.NET Core
-- Entity Framework Core with SQL Server
-- Minimal APIs, Controllers, OpenAPI, Swagger UI, Scalar, and OData
-- FluentValidation
-- CAP and MassTransit messaging adapters
-- Quartz scheduling
-- Durable Task orchestration
-- Seq logging
-- MSTest, Bogus, and Moq
-
-These integrations are examples of accepted solutions in the template. Applications can enable, replace, or omit them according to their requirements.
-
-## Getting started
-
-### Prerequisites
-
-- .NET 10 SDK
-- SQL Server
-
-### Configuration
-
-Development configuration is stored under:
-
-```text
-src/Configuration/CleanArchitecture.Options/Options/
-src/Configuration/CleanArchitecture.Secrets/Secrets/
-```
-
-Update the development connection string and other local settings before running the applications.
-
-### Restore and build
-
-```powershell
-dotnet restore CleanArchitecture.slnx
-dotnet build CleanArchitecture.slnx
-```
-
-### Apply migrations and seed sample data
-
-```powershell
-dotnet run --project src/Administration/CleanArchitecture.Administration.DbMigrationApp
-```
-
-The migration application updates the configured module, audit, messaging, and orchestration databases and seeds the sample administrator account.
-
-### Run the Web API
-
-```powershell
-dotnet run --project src/WebApi/CleanArchitecture.WebApi --launch-profile https
-```
-
-In the Development environment, Swagger UI is available at the application root. The default HTTPS profile uses `https://localhost:7266`.
-
-### Run the sample tests
-
-```powershell
-dotnet test test/CleanArchitecture.IntegrationTests
-```
-
-The included tests demonstrate the integration-test setup and are not intended as comprehensive coverage.
-
-## Adding a module
-
-When introducing a new business module:
-
-1. Define its Domain Model and module-owned contracts.
-2. Add Command and Query use cases with their required ports.
-3. Implement persistence and external-system adapters outside the use-case layers.
-4. Add a Runtime project that composes the module and owns its execution pipelines.
-5. Expose transport-specific entry points through an Endpoints or messaging adapter project.
-6. Register the module in application composition and add its endpoint module to the relevant host.
-7. Keep orchestration or read models spanning multiple modules in the Integration area.
-
-Use the `Ordering` module as the detailed reference implementation.
-
-## Scope
-
-This repository intentionally favors explicit examples over minimal project count. Individual applications should select only the capabilities they need and must complete their own security, operational, deployment, and testing requirements.
