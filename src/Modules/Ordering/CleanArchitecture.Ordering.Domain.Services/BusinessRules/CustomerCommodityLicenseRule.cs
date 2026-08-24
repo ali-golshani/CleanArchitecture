@@ -17,12 +17,13 @@ internal sealed class CustomerCommodityLicenseRule : IBusinessRule
         this.inquiry = inquiry;
     }
 
-    public async IAsyncEnumerable<Error> Evaluate()
+    public async IAsyncEnumerable<Error> Evaluate(
+        [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
         var result = await licenseVerifier.Verify(
             inquiry.CustomerId,
             inquiry.CommodityId,
-            default);
+            cancellationToken);
 
         if (result.IsFailure)
         {

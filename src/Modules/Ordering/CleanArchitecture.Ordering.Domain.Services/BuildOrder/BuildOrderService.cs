@@ -10,10 +10,12 @@ internal class BuildOrderService(
     private readonly BuildOrderPolicyBuilder policyBuilder = policyBuilder;
     private readonly IOrderTrackingCodeBuilder trackingCodeBuilder = trackingCodeBuilder;
 
-    public async Task<Result<Order>> BuildOrder(BuildOrderRequest request)
+    public async Task<Result<Order>> BuildOrder(
+        BuildOrderRequest request,
+        CancellationToken cancellationToken = default)
     {
         var policy = policyBuilder.Build(request);
-        var errors = await policy.Evaluate().ToListAsync();
+        var errors = await policy.Evaluate(cancellationToken).ToListAsync(cancellationToken);
 
         if (errors.Count > 0)
         {

@@ -47,7 +47,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         var commodity = commodityResult.Value!;
 
-        var orderResult = await BuildOrder(request, commodity);
+        var orderResult = await BuildOrder(request, commodity, cancellationToken);
 
         if (orderResult.IsFailure)
         {
@@ -68,7 +68,10 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             .NotFoundIfNull(new CommodityNotFoundError(commodityId));
     }
 
-    private Task<Result<Domain.Orders.Order>> BuildOrder(Command request, Domain.Orders.Commodity commodity)
+    private Task<Result<Domain.Orders.Order>> BuildOrder(
+        Command request,
+        Domain.Orders.Commodity commodity,
+        CancellationToken cancellationToken)
     {
         return buildOrderService.BuildOrder(new BuildOrderRequest
         {
@@ -78,7 +81,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             CustomerId = request.CustomerId,
             BrokerId = request.BrokerId,
             Commodity = commodity
-        });
+        }, cancellationToken);
     }
 
     private async Task<Result<Empty>> OnOrderRegistered(

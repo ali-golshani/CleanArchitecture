@@ -2,21 +2,48 @@
 
 namespace Framework.DomainRules.Templates;
 
-public abstract class StringRule(
-    string code,
-    string source,
-    string? value,
-    bool acceptEmptyValue = false,
-    int? minLength = 1,
-    int? maxLength = null)
-    : IDomainRule
+public abstract class StringRule : IDomainRule
 {
-    public string Code { get; } = code;
-    public string Source { get; } = source;
-    public string? Value { get; } = value;
-    public int? MinLength { get; } = minLength;
-    public int? MaxLength { get; } = maxLength;
-    public bool AcceptEmptyValue { get; } = acceptEmptyValue;
+    protected StringRule(
+        string code,
+        string source,
+        string? value,
+        bool acceptEmptyValue = false,
+        int? minLength = 1,
+        int? maxLength = null)
+    {
+        ArgumentException.ThrowIfNullOrWhiteSpace(code);
+        ArgumentException.ThrowIfNullOrWhiteSpace(source);
+
+        if (minLength < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(minLength));
+        }
+
+        if (maxLength < 0)
+        {
+            throw new ArgumentOutOfRangeException(nameof(maxLength));
+        }
+
+        if (minLength > maxLength)
+        {
+            throw new ArgumentException("Minimum length cannot be greater than maximum length.", nameof(minLength));
+        }
+
+        Code = code;
+        Source = source;
+        Value = value;
+        AcceptEmptyValue = acceptEmptyValue;
+        MinLength = minLength;
+        MaxLength = maxLength;
+    }
+
+    public string Code { get; }
+    public string Source { get; }
+    public string? Value { get; }
+    public int? MinLength { get; }
+    public int? MaxLength { get; }
+    public bool AcceptEmptyValue { get; }
 
     public IEnumerable<Error> Evaluate()
     {
@@ -25,12 +52,12 @@ public abstract class StringRule(
             yield return new Error(
                 Code,
                 ErrorType.Validation,
-                Statement(),
+                Statement()!,
                 (Source, Value));
         }
     }
 
-    private string Statement()
+    private string? Statement()
     {
         if (MinLength == 1)
         {
@@ -58,7 +85,7 @@ public abstract class StringRule(
         {
             if (MaxLength == null)
             {
-                return string.Empty;
+                return null;
             }
             else
             {
@@ -69,7 +96,7 @@ public abstract class StringRule(
 
     private bool IsValid()
     {
-        var length = Value?.Trim().Length;
+        var length = Value?.Trim().Length ?? 0;
 
         return
             (AcceptEmptyValue || !string.IsNullOrWhiteSpace(Value)) &&
