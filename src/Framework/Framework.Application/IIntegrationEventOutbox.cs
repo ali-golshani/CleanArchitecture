@@ -8,9 +8,9 @@ public interface IIntegrationEventOutbox
     Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken);
     Task Publish<TEvent>(IReadOnlyCollection<TEvent> events, string topic, CancellationToken cancellationToken);
 
-    public async Task PublishEvents(IIntegrationEventBus eventBus, CancellationToken cancellationToken)
+    public async Task PublishEvents(IIntegrationEventCollector eventCollector, CancellationToken cancellationToken)
     {
-        var events = eventBus.Events;
+        var events = eventCollector.Drain();
 
         if (events.Count == 0)
         {

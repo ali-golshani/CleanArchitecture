@@ -13,16 +13,16 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 {
     private readonly IActorResolver actorResolver;
     private readonly IOrderRepository orderRepository;
-    private readonly IIntegrationEventBus integrationEventBus;
+    private readonly IIntegrationEventCollector integrationEvents;
 
     public Handler(
         IActorResolver actorResolver,
         IOrderRepository orderRepository,
-        IIntegrationEventBus integrationEventBus)
+        IIntegrationEventCollector integrationEvents)
     {
         this.actorResolver = actorResolver;
         this.orderRepository = orderRepository;
-        this.integrationEventBus = integrationEventBus;
+        this.integrationEvents = integrationEvents;
     }
 
     public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
@@ -42,7 +42,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (order.Submit())
         {
-            await integrationEventBus.Post(new OrderStatusChangedEvent
+            integrationEvents.Add(new OrderStatusChangedEvent
             {
                 CorrelationId = request.CorrelationId,
                 OrderId = order.OrderId,

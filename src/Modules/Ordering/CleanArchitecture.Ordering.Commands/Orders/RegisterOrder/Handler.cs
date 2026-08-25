@@ -15,20 +15,20 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     private readonly IBuildOrderService buildOrderService;
     private readonly ICommodityCatalog commodityCatalog;
     private readonly INotificationPublisher notificationPublisher;
-    private readonly IIntegrationEventBus integrationEventBus;
+    private readonly IIntegrationEventCollector integrationEvents;
 
     public Handler(
         IOrderRepository orderRepository,
         IBuildOrderService buildOrderService,
         ICommodityCatalog commodityCatalog,
         INotificationPublisher notificationPublisher,
-        IIntegrationEventBus integrationEventBus)
+        IIntegrationEventCollector integrationEvents)
     {
         this.orderRepository = orderRepository;
         this.buildOrderService = buildOrderService;
         this.commodityCatalog = commodityCatalog;
         this.notificationPublisher = notificationPublisher;
-        this.integrationEventBus = integrationEventBus;
+        this.integrationEvents = integrationEvents;
     }
 
     public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
@@ -100,7 +100,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             return result;
         }
 
-        await integrationEventBus.Post(new IntegrationEvents.OrderStatusChangedEvent
+        integrationEvents.Add(new IntegrationEvents.OrderStatusChangedEvent
         {
             CorrelationId = correlationId,
             OrderId = order.OrderId,
