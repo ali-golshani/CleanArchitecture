@@ -7,9 +7,9 @@ internal sealed class CapOutboxTransaction(IDbContextTransaction transaction) : 
 {
     private readonly IDbContextTransaction transaction = transaction;
 
-    public async Task CommitAsync()
+    public async Task CommitAsync(CancellationToken cancellationToken)
     {
-        await transaction.CommitAsync();
+        await transaction.CommitAsync(cancellationToken);
     }
 
     public async Task RollbackAsync()

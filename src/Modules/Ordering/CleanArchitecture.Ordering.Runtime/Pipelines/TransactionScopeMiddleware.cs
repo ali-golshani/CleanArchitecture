@@ -40,7 +40,7 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
         await db.SaveChangesAsync(cancellationToken);
         await eventOutbox.PublishEvents(eventCollector, cancellationToken);
 
-        await transaction.CommitAsync();
+        await transaction.CommitAsync(cancellationToken);
 
         return result;
     }
