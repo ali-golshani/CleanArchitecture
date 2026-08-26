@@ -17,9 +17,8 @@ public class OrderStatusChangedEventConsumer(ICommandService commandService, IQu
         var command = new Commands.DoNothings.Command
         {
             Id = context.Message.OrderId,
-        }
-        .WithCorrelationId(context.Message.CorrelationId);
+        };
 
-        return Handle(command, context.CancellationToken);
+        return Handle(command, context.CancellationToken, context.Message.CorrelationId);
     }
 }

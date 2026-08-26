@@ -17,10 +17,9 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
         var command = new Commands.DoNothings.Command
         {
             Id = @event.OrderId,
-        }
-        .WithCorrelationId(@event.CorrelationId);
+        };
 
-        return Handle(command, cancellationToken);
+        return Handle(command, cancellationToken, @event.CorrelationId);
     }
 
     [CapSubscribe(OrderStatusChangedEvent.EventTopic, Group = "Group-B")]
@@ -31,9 +30,8 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
         var command = new Commands.DoNothings.Command
         {
             Id = @event.OrderId,
-        }
-        .WithCorrelationId(@event.CorrelationId);
+        };
 
-        return Handle(command, cancellationToken);
+        return Handle(command, cancellationToken, @event.CorrelationId);
     }
 }

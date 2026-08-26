@@ -7,8 +7,8 @@ public sealed class RequestContextAccessor : ICorrelationIdProvider
 {
     public Guid? CorrelationId { get; private set; }
 
-    public void SetContext(Request request)
+    public void SetContext(Guid correlationId)
     {
-        CorrelationId = request.CorrelationId;
+        CorrelationId = correlationId;
     }
 }

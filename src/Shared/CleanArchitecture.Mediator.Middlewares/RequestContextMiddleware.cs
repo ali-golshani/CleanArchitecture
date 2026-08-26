@@ -16,7 +16,7 @@ public sealed class RequestContextMiddleware<TRequest, TResponse> :
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
     {
-        requestContextAccessor.SetContext(context.Request);
+        requestContextAccessor.SetContext(context.CorrelationId);
         return await next.Handle(context);
     }
 }

@@ -16,6 +16,7 @@ internal sealed class CommoditySystem(IServiceProvider serviceProvider) : ICommo
         {
             Request = request.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }

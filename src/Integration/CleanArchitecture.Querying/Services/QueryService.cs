@@ -10,7 +10,7 @@ namespace CleanArchitecture.Querying.Services;
 
 internal sealed class QueryService(IServiceProvider serviceProvider) : IQueryService
 {
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, Guid? correlationId = null)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         var pipeline = serviceProvider.GetRequiredService<QueryPipeline.Pipeline<TRequest, TResponse>>();
@@ -18,11 +18,12 @@ internal sealed class QueryService(IServiceProvider serviceProvider) : IQuerySer
         {
             Request = query.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = correlationId ?? Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }
 
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, Guid? correlationId = null)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         serviceProvider.UseActor(actor);
@@ -31,6 +32,7 @@ internal sealed class QueryService(IServiceProvider serviceProvider) : IQuerySer
         {
             Request = query.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = correlationId ?? Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }

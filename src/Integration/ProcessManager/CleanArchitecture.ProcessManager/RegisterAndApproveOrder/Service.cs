@@ -16,6 +16,7 @@ internal sealed class Service(
         {
             Request = request,
             CancellationToken = cancellationToken,
+            CorrelationId = Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }

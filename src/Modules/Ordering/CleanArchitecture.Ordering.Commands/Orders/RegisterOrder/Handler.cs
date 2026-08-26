@@ -60,7 +60,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         orderRepository.Add(order);
 
-        return await OnOrderRegistered(order, request.CorrelationId, cancellationToken);
+        return await OnOrderRegistered(order, context.CorrelationId, cancellationToken);
     }
 
     private async Task<Result<Domain.Orders.Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
@@ -88,7 +88,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
     private async Task<Result<Empty>> OnOrderRegistered(
         Domain.Orders.Order order,
-        Guid? correlationId,
+        Guid correlationId,
         CancellationToken cancellationToken)
     {
         var result = await notificationPublisher.Publish

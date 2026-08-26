@@ -9,7 +9,7 @@ namespace CleanArchitecture.Ordering.Runtime.Services;
 
 internal sealed class QueryService(ActorPreservingScopeFactory scopeFactory) : IQueryService
 {
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, Guid? correlationId = null)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope();
@@ -18,11 +18,12 @@ internal sealed class QueryService(ActorPreservingScopeFactory scopeFactory) : I
         {
             Request = query.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = correlationId ?? Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }
 
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, Guid? correlationId = null)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope(actor);
@@ -31,6 +32,7 @@ internal sealed class QueryService(ActorPreservingScopeFactory scopeFactory) : I
         {
             Request = query.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = correlationId ?? Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }

@@ -9,7 +9,7 @@ namespace CleanArchitecture.Ordering.Runtime.Services;
 
 internal sealed class CommandService(ActorPreservingScopeFactory scopeFactory) : ICommandService
 {
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken, Guid? correlationId = null)
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope();
@@ -18,11 +18,12 @@ internal sealed class CommandService(ActorPreservingScopeFactory scopeFactory) :
         {
             Request = command.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = correlationId ?? Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }
 
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, ICommand<TRequest, TResponse> command, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, ICommand<TRequest, TResponse> command, CancellationToken cancellationToken, Guid? correlationId = null)
         where TRequest : CommandBase, ICommand<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope(actor);
@@ -31,6 +32,7 @@ internal sealed class CommandService(ActorPreservingScopeFactory scopeFactory) :
         {
             Request = command.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = correlationId ?? Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }

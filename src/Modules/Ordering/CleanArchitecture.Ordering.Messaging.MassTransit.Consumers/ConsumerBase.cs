@@ -19,17 +19,17 @@ public abstract class ConsumerBase
         actor = new InternalServiceActor(GetType().Name);
     }
 
-    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken) where TRequest :
+    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken, Guid? correlationId = null) where TRequest :
         CommandBase,
         ICommand<TRequest, TResponse>
     {
-        return await commandService.Handle(actor, command, cancellationToken);
+        return await commandService.Handle(actor, command, cancellationToken, correlationId);
     }
 
-    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken) where TRequest :
+    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, Guid? correlationId = null) where TRequest :
         QueryBase,
         IQuery<TRequest, TResponse>
     {
-        return await queryService.Handle(actor, query, cancellationToken);
+        return await queryService.Handle(actor, query, cancellationToken, correlationId);
     }
 }

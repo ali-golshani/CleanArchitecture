@@ -10,7 +10,7 @@ namespace CleanArchitecture.UserManagement.Runtime.Services;
 
 internal sealed class RequestService(ActorPreservingScopeFactory scopeFactory) : IRequestService
 {
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken, Guid? correlationId = null)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
         using var scope = scopeFactory.CreateScope();
@@ -19,6 +19,7 @@ internal sealed class RequestService(ActorPreservingScopeFactory scopeFactory) :
         {
             Request = request.AsRequestType(),
             CancellationToken = cancellationToken,
+            CorrelationId = correlationId ?? Guid.NewGuid(),
             ExecutionStartTime = DateTime.Now,
         });
     }

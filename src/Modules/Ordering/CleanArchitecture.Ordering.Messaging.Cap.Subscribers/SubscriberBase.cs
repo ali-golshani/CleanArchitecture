@@ -15,10 +15,10 @@ public abstract class SubscriberBase
         actor = new InternalServiceActor(GetType().Name);
     }
 
-    protected async Task Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken) where TRequest :
+    protected async Task Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken, Guid? correlationId = null) where TRequest :
         CommandBase,
         ICommand<TRequest, TResponse>
     {
-        await commandService.Handle(actor, command, cancellationToken).ThrowIfFailure();
+        await commandService.Handle(actor, command, cancellationToken, correlationId).ThrowIfFailure();
     }
 }
