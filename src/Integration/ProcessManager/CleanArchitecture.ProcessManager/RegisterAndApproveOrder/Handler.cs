@@ -1,5 +1,6 @@
 ﻿using Framework.Mediator;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.ProcessManager.RegisterAndApproveOrder;
 
@@ -7,8 +8,10 @@ internal sealed class Handler(Ordering.Commands.ICommandService commandService) 
 {
     private readonly Ordering.Commands.ICommandService commandService = commandService;
 
-    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> Handle(RequestContext<Request> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var control = false;
 
         try

@@ -3,6 +3,7 @@ using Framework.Mediator;
 using Framework.Persistence.Extensions;
 using Framework.Queries;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Queries.Orders.GetOrders;
 
@@ -10,8 +11,10 @@ internal sealed class Handler(IOrderingQueryDb db) : IRequestHandler<Query, Pagi
 {
     private readonly IOrderingQueryDb db = db;
 
-    public async Task<Result<PaginatedItems<Models.Order>>> Handle(Query request, CancellationToken cancellationToken)
+    public async Task<Result<PaginatedItems<Models.Order>>> Handle(RequestContext<Query> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var orders = SelectOrders(request);
         return await orders.Materialize(x => x.Convert(), request.PageIndex, request.PageSize);
     }

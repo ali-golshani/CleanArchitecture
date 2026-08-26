@@ -6,6 +6,7 @@ using CleanArchitecture.UserManagement.Errors;
 using CleanArchitecture.UserManagement.Utilities;
 using Framework.Mediator;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Authentication.RequestSmsOtpForLogin;
 
@@ -20,8 +21,10 @@ internal sealed class Handler(
     private readonly IOneTimePasswordRepository oneTimePasswordRepository = oneTimePasswordRepository;
     private readonly SmsOtpChannel otpChannel = otpChannel;
 
-    public async Task<Result<Response>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Response>> Handle(RequestContext<Request> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var user = await userRepository.FindByPhoneNumber(request.MobileNumber);
 
         if (user is null)

@@ -2,6 +2,7 @@
 using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Ordering.Queries.Orders.GetOrder;
@@ -11,8 +12,10 @@ internal sealed class Handler(IActorResolver actorResolver, IOrderingQueryDb db)
     private readonly IActorResolver actorResolver = actorResolver;
     private readonly IOrderingQueryDb db = db;
 
-    public async Task<Result<Models.Order?>> Handle(Query request, CancellationToken cancellationToken)
+    public async Task<Result<Models.Order?>> Handle(RequestContext<Query> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var actor = actorResolver.Actor;
 
         var customerId = (actor as CustomerActor)?.CustomerId;

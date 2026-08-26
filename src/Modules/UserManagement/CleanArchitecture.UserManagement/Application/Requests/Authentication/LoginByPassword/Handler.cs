@@ -6,6 +6,7 @@ using CleanArchitecture.UserManagement.Errors;
 using CleanArchitecture.UserManagement.Utilities;
 using Framework.Mediator;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Authentication.LoginByPassword;
 
@@ -20,8 +21,10 @@ internal sealed class Handler(
     private readonly IUserRepository userRepository = userRepository;
     private readonly ISessionRepository sessionRepository = sessionRepository;
 
-    public async Task<Result<Response>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Response>> Handle(RequestContext<Request> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var user = await userRepository.Find(request.Username);
 
         if (user is null)

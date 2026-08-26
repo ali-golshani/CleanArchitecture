@@ -4,6 +4,7 @@ using CleanArchitecture.Ordering.IntegrationEvents;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 using Framework.Mediator;
 using CleanArchitecture.Authorization.Extensions;
 
@@ -25,8 +26,10 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         this.integrationEvents = integrationEvents;
     }
 
-    public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> Handle(RequestContext<Command> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var actor = actorResolver.Actor;
         var order = await orderRepository.FindOrder(request.OrderId);
 

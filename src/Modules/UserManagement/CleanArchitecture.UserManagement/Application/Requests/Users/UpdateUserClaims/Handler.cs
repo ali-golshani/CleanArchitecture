@@ -4,6 +4,7 @@ using CleanArchitecture.UserManagement.Domain.Repositories;
 using CleanArchitecture.UserManagement.Errors;
 using Framework.Mediator;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Users.UpdateUserClaims;
 
@@ -12,8 +13,10 @@ internal sealed class Handler(IUserRepository userRepository) : IRequestHandler<
     private readonly IUserRepository userRepository = userRepository;
     private static readonly StringComparison stringComparison = StringComparison.OrdinalIgnoreCase;
 
-    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> Handle(RequestContext<Request> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var user = await userRepository.Find(request.UserId);
 
         if (user is null)

@@ -2,6 +2,7 @@
 using CleanArchitecture.UserManagement.Persistence;
 using Framework.Mediator;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Users.GetUser;
@@ -10,8 +11,10 @@ internal sealed class Handler(UserManagementDbContext db) : IRequestHandler<Requ
 {
     private readonly UserManagementDbContext db = db;
 
-    public async Task<Result<User?>> Handle(Request request, CancellationToken cancellationToken)
+    public async Task<Result<User?>> Handle(RequestContext<Request> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         var user = await
             db.QuerySet<Domain.User>()
             .FirstOrDefaultAsync(x => x.Id == request.UserId, cancellationToken);

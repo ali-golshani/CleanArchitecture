@@ -5,6 +5,7 @@ using Framework.Mediator;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Notifications;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 using Framework.Results.Extensions;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;
@@ -31,8 +32,10 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         this.integrationEvents = integrationEvents;
     }
 
-    public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
+    public async Task<Result<Empty>> Handle(RequestContext<Command> context)
     {
+        var request = context.Request;
+        var cancellationToken = context.CancellationToken;
         if (await orderRepository.Exists(request.OrderId))
         {
             return new DuplicateOrderError(request.OrderId);

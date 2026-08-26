@@ -1,6 +1,7 @@
 ﻿using Framework.Mediator;
 using Framework.Mediator.Extensions;
 using Framework.Results;
+using Framework.Mediator.Middlewares;
 using Infrastructure.CommoditySystem.Requests;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -12,6 +13,10 @@ internal sealed class CommoditySystem(IServiceProvider serviceProvider) : ICommo
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
         var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-        return await handler.Handle(request.AsRequestType(), cancellationToken);
+        return await handler.Handle(new RequestContext<TRequest>
+        {
+            Request = request.AsRequestType(),
+            CancellationToken = cancellationToken,
+        });
     }
 }
