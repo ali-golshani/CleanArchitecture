@@ -2,7 +2,6 @@
 using CleanArchitecture.UserManagement.Utilities;
 using Framework.Mediator;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Authentication.Logout;
 

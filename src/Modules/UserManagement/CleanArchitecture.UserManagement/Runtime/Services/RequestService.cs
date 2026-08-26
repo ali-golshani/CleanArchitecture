@@ -15,6 +15,11 @@ internal sealed class RequestService(ActorPreservingScopeFactory scopeFactory) :
     {
         using var scope = scopeFactory.CreateScope();
         var pipeline = scope.ServiceProvider.GetRequiredService<RequestPipeline.Pipeline<TRequest, TResponse>>();
-        return await pipeline.Handle(request.AsRequestType(), cancellationToken);
+        return await pipeline.Handle(new Framework.Mediator.RequestContext<TRequest>
+        {
+            Request = request.AsRequestType(),
+            CancellationToken = cancellationToken,
+            ExecutionStartTime = DateTime.Now,
+        });
     }
 }

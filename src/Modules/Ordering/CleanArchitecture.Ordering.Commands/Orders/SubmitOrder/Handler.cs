@@ -4,7 +4,6 @@ using CleanArchitecture.Ordering.IntegrationEvents;
 using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 using Framework.Mediator;
 using CleanArchitecture.Authorization.Extensions;
 

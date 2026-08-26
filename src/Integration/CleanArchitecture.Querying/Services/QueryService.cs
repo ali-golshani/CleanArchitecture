@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Actors.Extensions;
 using CleanArchitecture.Querying.Pipelines;
+using Framework.Mediator;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,7 +14,12 @@ internal sealed class QueryService(IServiceProvider serviceProvider) : IQuerySer
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
         var pipeline = serviceProvider.GetRequiredService<QueryPipeline.Pipeline<TRequest, TResponse>>();
-        return await pipeline.Handle(query.AsRequestType(), cancellationToken);
+        return await pipeline.Handle(new RequestContext<TRequest>
+        {
+            Request = query.AsRequestType(),
+            CancellationToken = cancellationToken,
+            ExecutionStartTime = DateTime.Now,
+        });
     }
 
     public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
@@ -21,6 +27,11 @@ internal sealed class QueryService(IServiceProvider serviceProvider) : IQuerySer
     {
         serviceProvider.UseActor(actor);
         var pipeline = serviceProvider.GetRequiredService<QueryPipeline.Pipeline<TRequest, TResponse>>();
-        return await pipeline.Handle(query.AsRequestType(), cancellationToken);
+        return await pipeline.Handle(new RequestContext<TRequest>
+        {
+            Request = query.AsRequestType(),
+            CancellationToken = cancellationToken,
+            ExecutionStartTime = DateTime.Now,
+        });
     }
 }

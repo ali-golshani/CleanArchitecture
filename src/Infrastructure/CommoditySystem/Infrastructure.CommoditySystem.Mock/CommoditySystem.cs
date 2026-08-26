@@ -1,7 +1,6 @@
 ﻿using Framework.Mediator;
 using Framework.Mediator.Extensions;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 using Infrastructure.CommoditySystem.Requests;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,6 +16,7 @@ internal sealed class CommoditySystem(IServiceProvider serviceProvider) : ICommo
         {
             Request = request.AsRequestType(),
             CancellationToken = cancellationToken,
+            ExecutionStartTime = DateTime.Now,
         });
     }
 }

@@ -2,7 +2,6 @@
 using CleanArchitecture.UserManagement.Persistence;
 using Framework.Mediator;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.UserManagement.Application.Requests.Users.GetUser;

@@ -1,5 +1,6 @@
 ﻿using Framework.Mediator.Middlewares;
 using Framework.Results;
+using Framework.Mediator;
 
 namespace Infrastructure.CommoditySystem.Pipelines;
 

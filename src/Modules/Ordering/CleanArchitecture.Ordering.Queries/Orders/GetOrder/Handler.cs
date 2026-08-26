@@ -2,7 +2,6 @@
 using CleanArchitecture.Ordering.Domain.Repositories;
 using Framework.Mediator;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Ordering.Queries.Orders.GetOrder;

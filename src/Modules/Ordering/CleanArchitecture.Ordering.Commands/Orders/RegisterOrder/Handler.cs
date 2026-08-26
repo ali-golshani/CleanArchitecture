@@ -5,7 +5,6 @@ using Framework.Mediator;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Notifications;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 using Framework.Results.Extensions;
 
 namespace CleanArchitecture.Ordering.Commands.Orders.RegisterOrder;

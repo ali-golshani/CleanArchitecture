@@ -1,6 +1,5 @@
 ﻿using Framework.Mediator;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 using Infrastructure.CommoditySystem.Mock.MockData;
 using Infrastructure.CommoditySystem.Requests;
 

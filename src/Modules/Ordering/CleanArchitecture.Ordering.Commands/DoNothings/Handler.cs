@@ -1,6 +1,5 @@
 ﻿using Framework.Mediator;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Commands.DoNothings;
 

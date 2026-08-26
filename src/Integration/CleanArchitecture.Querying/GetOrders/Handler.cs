@@ -1,7 +1,6 @@
 ﻿using CleanArchitecture.Querying.Persistence;
 using Framework.Mediator;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 using Framework.Results.Extensions;
 using Microsoft.EntityFrameworkCore;
 

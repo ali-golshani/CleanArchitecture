@@ -3,7 +3,6 @@ using Framework.Mediator;
 using Framework.Persistence.Extensions;
 using Framework.Queries;
 using Framework.Results;
-using Framework.Mediator.Middlewares;
 
 namespace CleanArchitecture.Ordering.Queries.Orders.GetOrders;
 

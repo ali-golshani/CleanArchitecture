@@ -4,8 +4,8 @@ public class Query : QueryBase, IQuery<Query, Framework.Queries.PaginatedItems<M
 {
     public override string RequestTitle => "Get Orders";
 
-    public int? CustomerId { get; init; }
-    public int? BrokerId { get; init; }
+    public int? CustomerId { get; set; }
+    public int? BrokerId { get; set; }
     public int? CommodityId { get; init; }
     public OrderStatus? OrderStatus { get; init; }
     public Models.OrderOrderBy? OrderBy { get; init; }
