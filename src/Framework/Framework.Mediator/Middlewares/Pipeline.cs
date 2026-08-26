@@ -19,14 +19,8 @@ public abstract class Pipeline<TRequest, TResponse> : IPipeline<TRequest, TRespo
         entryProcessor = PipelineBuilder.EntryProcessor(handler, middlewares);
     }
 
-    public Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken)
+    public Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        var context = new RequestContext<TRequest>
-        {
-            Request = request,
-            CancellationToken = cancellationToken,
-        };
-
         return entryProcessor.Handle(context);
     }
 }

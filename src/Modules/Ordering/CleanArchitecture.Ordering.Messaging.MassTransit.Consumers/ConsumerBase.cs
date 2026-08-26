@@ -2,6 +2,7 @@
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using Framework.Results;
+using Framework.Mediator;
 
 namespace CleanArchitecture.Ordering.Messaging.MassTransit.Consumers;
 
@@ -19,17 +20,17 @@ public abstract class ConsumerBase
         actor = new InternalServiceActor(GetType().Name);
     }
 
-    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken) where TRequest :
+    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(ICommand<TRequest, TResponse> command, CancellationToken cancellationToken, RequestExecutionOptions? options = null) where TRequest :
         CommandBase,
         ICommand<TRequest, TResponse>
     {
-        return await commandService.Handle(actor, command, cancellationToken);
+        return await commandService.Handle(actor, command, cancellationToken, options);
     }
 
-    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken) where TRequest :
+    protected async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, RequestExecutionOptions? options = null) where TRequest :
         QueryBase,
         IQuery<TRequest, TResponse>
     {
-        return await queryService.Handle(actor, query, cancellationToken);
+        return await queryService.Handle(actor, query, cancellationToken, options);
     }
 }

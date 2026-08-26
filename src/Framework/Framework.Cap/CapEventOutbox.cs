@@ -1,6 +1,7 @@
 ﻿using DotNetCore.CAP;
 using Framework.Application;
 using Microsoft.EntityFrameworkCore;
+using Framework.Mediator.IntegrationEvents;
 
 namespace Framework.Cap;
 
@@ -18,16 +19,20 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
         return Task.FromResult(result);
     }
 
-    public async Task Publish<TEvent>(
-        IReadOnlyCollection<TEvent> events,
-        string topic,
+    public async Task Publish(
+        IReadOnlyCollection<IIntegrationEvent> events,
         CancellationToken cancellationToken)
     {
         publisher.Transaction ??= publisherTransaction;
 
         foreach (var @event in events)
         {
-            await publisher.PublishAsync(topic, @event, cancellationToken: cancellationToken);
+            await Publish(@event.Topic, @event, cancellationToken);
         }
+    }
+
+    private async Task Publish(string topic, dynamic @event, CancellationToken cancellationToken)
+    {
+        await publisher.PublishAsync(topic, @event, cancellationToken: cancellationToken);
     }
 }

@@ -23,11 +23,4 @@ public static class Extensions
 
         return result;
     }
-
-    public static TRequest WithCorrelationId<TRequest>(this TRequest request, Guid? correlationId)
-        where TRequest : Request
-    {
-        request.SetCorrelationId(correlationId);
-        return request;
-    }
 }

@@ -3,6 +3,6 @@
 public interface IFilter<TRequest, TResponse>
 {
     int Order => 1;
-    TRequest Filter(TRequest request, Actor actor) => request;
+    void Filter(TRequest request, Actor actor) { }
     TResponse Filter(TResponse response, Actor actor) => response;
 }

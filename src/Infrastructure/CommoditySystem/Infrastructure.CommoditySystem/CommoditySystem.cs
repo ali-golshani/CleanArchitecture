@@ -13,6 +13,12 @@ internal sealed class CommoditySystem(IServiceProvider serviceProvider) : ICommo
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
         var pipeline = serviceProvider.GetRequiredService<RequestPipeline<TRequest, TResponse>>();
-        return await pipeline.Handle(request.AsRequestType(), cancellationToken);
+        return await pipeline.Handle(new RequestContext<TRequest>
+        {
+            Request = request.AsRequestType(),
+            CancellationToken = cancellationToken,
+            CorrelationId = Guid.NewGuid(),
+            ExecutionStartTime = DateTime.Now,
+        });
     }
 }

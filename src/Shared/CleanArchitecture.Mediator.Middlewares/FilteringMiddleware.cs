@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
 using Framework.Mediator.Middlewares;
+using Framework.Mediator;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
@@ -27,19 +28,10 @@ public sealed class FilteringMiddleware<TRequest, TResponse> :
             return await next.Handle(context);
         }
 
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
-
         foreach (var filter in filters)
         {
-            request = filter.Filter(request, actor);
+            filter.Filter(context.Request, actor);
         }
-
-        context = new RequestContext<TRequest>
-        {
-            Request = request,
-            CancellationToken = cancellationToken
-        };
 
         var responseResult = await next.Handle(context);
 
