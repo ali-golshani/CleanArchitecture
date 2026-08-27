@@ -10,10 +10,8 @@ internal sealed class Handler(UserManagementDbContext db) : IRequestHandler<Requ
 {
     private readonly UserManagementDbContext db = db;
 
-    public async Task<Result<User?>> Handle(RequestContext<Request> context)
+    public async Task<Result<User?>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         var user = await
             db.QuerySet<Domain.User>()
             .FirstOrDefaultAsync(x => x.Id == request.UserId, cancellationToken);

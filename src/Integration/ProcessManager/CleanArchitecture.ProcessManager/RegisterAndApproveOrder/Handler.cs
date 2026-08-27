@@ -7,10 +7,8 @@ internal sealed class Handler(Ordering.Commands.ICommandService commandService) 
 {
     private readonly Ordering.Commands.ICommandService commandService = commandService;
 
-    public async Task<Result<Empty>> Handle(RequestContext<Request> context)
+    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         var control = false;
 
         try

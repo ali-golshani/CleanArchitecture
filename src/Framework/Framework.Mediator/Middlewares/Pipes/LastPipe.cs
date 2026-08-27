@@ -13,6 +13,6 @@ internal sealed class LastPipe<TRequest, TResponse> :
 
     public Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        return handler.Handle(context);
+        return handler.Handle(context.Request, context.CancellationToken);
     }
 }

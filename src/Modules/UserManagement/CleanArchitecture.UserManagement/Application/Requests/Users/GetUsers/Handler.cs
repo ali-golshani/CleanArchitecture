@@ -10,10 +10,8 @@ internal sealed class Handler(UserManagementDbContext db) : IRequestHandler<Requ
 {
     private readonly UserManagementDbContext db = db;
 
-    public async Task<Result<IReadOnlyCollection<User>>> Handle(RequestContext<Request> context)
+    public async Task<Result<IReadOnlyCollection<User>>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         var query = db.QuerySet<Domain.User>();
 
         if (!string.IsNullOrEmpty(request.Name))

@@ -31,10 +31,8 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
         this.integrationEvents = integrationEvents;
     }
 
-    public async Task<Result<Empty>> Handle(RequestContext<Command> context)
+    public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         if (await orderRepository.Exists(request.OrderId))
         {
             return new DuplicateOrderError(request.OrderId);

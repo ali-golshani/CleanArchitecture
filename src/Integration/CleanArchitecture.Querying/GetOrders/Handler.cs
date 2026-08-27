@@ -11,10 +11,8 @@ internal sealed class Handler(EmptyDbContext db) : IRequestHandler<Query, IQuery
     private static readonly string SqlQuery = Properties.Resources.OrdersSqlView;
     private readonly EmptyDbContext db = db;
 
-    public async Task<Result<IQueryable<Order>>> Handle(RequestContext<Query> context)
+    public async Task<Result<IQueryable<Order>>> Handle(Query request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         await Task.CompletedTask;
 
         IQueryable<Order> orders = db.Database.SqlQueryRaw<Order>(SqlQuery);

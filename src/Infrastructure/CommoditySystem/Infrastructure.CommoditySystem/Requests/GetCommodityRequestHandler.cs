@@ -6,10 +6,8 @@ namespace Infrastructure.CommoditySystem.Requests;
 
 internal sealed class GetCommodityRequestHandler : IRequestHandler<GetCommodityRequest, Commodity?>
 {
-    public async Task<Result<Commodity?>> Handle(RequestContext<GetCommodityRequest> context)
+    public async Task<Result<Commodity?>> Handle(GetCommodityRequest request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         await Task.CompletedTask;
 
         if (request.CommodityId <= 0)

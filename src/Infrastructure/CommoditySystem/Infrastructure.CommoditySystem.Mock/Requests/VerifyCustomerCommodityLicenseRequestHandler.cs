@@ -7,10 +7,8 @@ namespace Infrastructure.CommoditySystem.Mock.Requests;
 
 internal sealed class VerifyCustomerCommodityLicenseRequestHandler : IRequestHandler<VerifyCustomerCommodityLicenseRequest, bool>
 {
-    public async Task<Result<bool>> Handle(RequestContext<VerifyCustomerCommodityLicenseRequest> context)
+    public async Task<Result<bool>> Handle(VerifyCustomerCommodityLicenseRequest request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
 
         await Task.CompletedTask;
 

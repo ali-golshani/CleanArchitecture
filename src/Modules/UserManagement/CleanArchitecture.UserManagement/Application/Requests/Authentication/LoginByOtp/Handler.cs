@@ -22,10 +22,8 @@ internal sealed class Handler(
     private readonly ISessionRepository sessionRepository = sessionRepository;
     private readonly IOneTimePasswordRepository oneTimePasswordRepository = oneTimePasswordRepository;
 
-    public async Task<Result<Response>> Handle(RequestContext<Request> context)
+    public async Task<Result<Response>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         var otp = await oneTimePasswordRepository.Find(request.OtpId);
 
         if (otp is null)

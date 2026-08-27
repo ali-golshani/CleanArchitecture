@@ -12,10 +12,8 @@ internal sealed class Handler(IUserRepository userRepository) : IRequestHandler<
 {
     private readonly IUserRepository userRepository = userRepository;
 
-    public async Task<Result<Empty>> Handle(RequestContext<Request> context)
+    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         var exists = await userRepository.DoesUsernameExist(request.Username);
 
         if (exists)

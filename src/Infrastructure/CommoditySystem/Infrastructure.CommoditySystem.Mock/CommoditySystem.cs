@@ -12,12 +12,6 @@ internal sealed class CommoditySystem(IServiceProvider serviceProvider) : ICommo
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
         var handler = serviceProvider.GetRequiredService<IRequestHandler<TRequest, TResponse>>();
-        return await handler.Handle(new RequestContext<TRequest>
-        {
-            Request = request.AsRequestType(),
-            CancellationToken = cancellationToken,
-            CorrelationId = Guid.NewGuid(),
-            ExecutionStartTime = DateTime.Now,
-        });
+        return await handler.Handle(request.AsRequestType(), cancellationToken);
     }
 }

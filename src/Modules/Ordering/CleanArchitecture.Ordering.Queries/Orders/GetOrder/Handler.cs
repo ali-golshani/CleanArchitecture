@@ -11,10 +11,8 @@ internal sealed class Handler(IActorResolver actorResolver, IOrderingQueryDb db)
     private readonly IActorResolver actorResolver = actorResolver;
     private readonly IOrderingQueryDb db = db;
 
-    public async Task<Result<Models.Order?>> Handle(RequestContext<Query> context)
+    public async Task<Result<Models.Order?>> Handle(Query request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         var actor = actorResolver.Actor;
 
         var customerId = (actor as CustomerActor)?.CustomerId;

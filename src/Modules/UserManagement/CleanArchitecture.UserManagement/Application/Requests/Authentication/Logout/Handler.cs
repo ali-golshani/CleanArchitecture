@@ -9,10 +9,8 @@ internal sealed class Handler(ISessionRepository sessionRepository) : IRequestHa
 {
     private readonly ISessionRepository sessionRepository = sessionRepository;
 
-    public async Task<Result<Empty>> Handle(RequestContext<Request> context)
+    public async Task<Result<Empty>> Handle(Request request, CancellationToken cancellationToken)
     {
-        var request = context.Request;
-        var cancellationToken = context.CancellationToken;
         var hashedRefreshToken = RefreshTokenHasher.Hash(request.RefreshToken);
         var session = await sessionRepository.FindByRefreshToken(hashedRefreshToken);
 

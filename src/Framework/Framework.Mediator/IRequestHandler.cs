@@ -1,7 +1,7 @@
 ﻿namespace Framework.Mediator;
 
-public interface IRequestHandler<TRequest, TResponse>
+public interface IRequestHandler<in TRequest, TResponse>
     where TRequest : IRequest<TRequest, TResponse>
 {
-    Task<Result<TResponse>> Handle(RequestContext<TRequest> context);
+    Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken);
 }
