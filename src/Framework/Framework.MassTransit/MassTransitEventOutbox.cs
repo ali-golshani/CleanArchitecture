@@ -1,5 +1,6 @@
 ﻿using Framework.Application;
 using Framework.Persistence;
+using Framework.Mediator.IntegrationEvents;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,11 +17,11 @@ internal sealed class MassTransitEventOutbox(MassTransitDbContext massTransitDb,
         return new MassTransitOutboxTransaction(connection, transaction);
     }
 
-    public async Task Publish<TEvent>(IReadOnlyCollection<TEvent> events, string topic, CancellationToken cancellationToken)
+    public async Task Publish(IReadOnlyCollection<IIntegrationEventEnvelope> events, string topic, CancellationToken cancellationToken)
     {
         foreach (var @event in events)
         {
-            await publishEndpoint.Publish(@event!, cancellationToken);
+            await publishEndpoint.Publish((object)@event, cancellationToken);
         }
 
         await massTransitDb.SaveChangesAsync(cancellationToken);

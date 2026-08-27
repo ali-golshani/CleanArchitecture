@@ -2,6 +2,6 @@ namespace Framework.Mediator.IntegrationEvents;
 
 public interface IIntegrationEventCollector
 {
-    void Add(IIntegrationEvent @event);
-    IReadOnlyCollection<IIntegrationEvent> Drain();
+    void Add<TEvent>(TEvent @event) where TEvent : IIntegrationEvent;
+    IReadOnlyCollection<IIntegrationEventEnvelope> Drain();
 }

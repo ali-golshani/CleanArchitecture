@@ -7,7 +7,6 @@ public class OrderStatusChangedEvent : IIntegrationEvent
     public const string EventTopic = nameof(OrderStatusChangedEvent);
     public string Topic { get; } = EventTopic;
 
-    public required Guid? CorrelationId { get; init; }
     public required int OrderId { get; init; }
     public required OrderStatus OrderStatus { get; init; }
 }
