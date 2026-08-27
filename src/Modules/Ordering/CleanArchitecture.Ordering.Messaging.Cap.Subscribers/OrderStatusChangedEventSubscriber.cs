@@ -2,6 +2,7 @@
 using CleanArchitecture.Ordering.Commands;
 using DotNetCore.CAP;
 using CleanArchitecture.Ordering.IntegrationEvents;
+using Framework.Mediator;
 
 namespace CleanArchitecture.Ordering.Messaging.Cap.Subscribers;
 
@@ -19,7 +20,10 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
             Id = @event.OrderId,
         };
 
-        return Handle(command, cancellationToken, @event.CorrelationId);
+        return Handle(command, cancellationToken, new RequestExecutionOptions
+        {
+            CorrelationId = @event.CorrelationId,
+        });
     }
 
     [CapSubscribe(OrderStatusChangedEvent.EventTopic, Group = "Group-B")]
@@ -32,6 +36,9 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
             Id = @event.OrderId,
         };
 
-        return Handle(command, cancellationToken, @event.CorrelationId);
+        return Handle(command, cancellationToken, new RequestExecutionOptions
+        {
+            CorrelationId = @event.CorrelationId,
+        });
     }
 }

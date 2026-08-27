@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.UserManagement.Application.Requests;
 using CleanArchitecture.UserManagement.Application.Services;
+using CleanArchitecture.Mediator.Middlewares;
 using CleanArchitecture.UserManagement.Runtime.Pipelines;
 using Framework.Mediator.Extensions;
 using Framework.Results;
@@ -8,18 +9,18 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.UserManagement.Runtime.Services;
 
-internal sealed class RequestService(ActorPreservingScopeFactory scopeFactory) : IRequestService
+internal sealed class RequestService(RequestExecutionScopeFactory scopeFactory) : IRequestService
 {
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken, Guid? correlationId = null)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IRequest<TRequest, TResponse> request, CancellationToken cancellationToken, Framework.Mediator.RequestExecutionOptions? options = null)
         where TRequest : RequestBase, IRequest<TRequest, TResponse>
     {
-        using var scope = scopeFactory.CreateScope();
+        using var scope = scopeFactory.CreateScope(options);
         var pipeline = scope.ServiceProvider.GetRequiredService<RequestPipeline.Pipeline<TRequest, TResponse>>();
         return await pipeline.Handle(new Framework.Mediator.RequestContext<TRequest>
         {
             Request = request.AsRequestType(),
             CancellationToken = cancellationToken,
-            CorrelationId = correlationId ?? Guid.NewGuid(),
+            CorrelationId = scope.CorrelationId,
             ExecutionStartTime = DateTime.Now,
         });
     }

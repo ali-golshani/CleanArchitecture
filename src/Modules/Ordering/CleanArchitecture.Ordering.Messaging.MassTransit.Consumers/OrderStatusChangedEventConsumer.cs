@@ -3,6 +3,7 @@ using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.Queries;
 using MassTransit;
 using CleanArchitecture.Ordering.IntegrationEvents;
+using Framework.Mediator;
 
 namespace CleanArchitecture.Ordering.Messaging.MassTransit.Consumers;
 
@@ -19,6 +20,9 @@ public class OrderStatusChangedEventConsumer(ICommandService commandService, IQu
             Id = context.Message.OrderId,
         };
 
-        return Handle(command, context.CancellationToken, context.Message.CorrelationId);
+        return Handle(command, context.CancellationToken, new RequestExecutionOptions
+        {
+            CorrelationId = context.Message.CorrelationId,
+        });
     }
 }

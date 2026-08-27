@@ -1,13 +1,13 @@
-﻿using Framework.Mediator;
+using Framework.Mediator;
 using Framework.Persistence.Interceptors;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 
-public sealed class RequestContextAccessor : ICorrelationIdProvider
+public sealed class CorrelationIdAccessor : ICorrelationIdAccessor, ICorrelationIdProvider
 {
     public Guid? CorrelationId { get; private set; }
 
-    public void SetContext(Guid correlationId)
+    internal void Initialize(Guid correlationId)
     {
         CorrelationId = correlationId;
     }
