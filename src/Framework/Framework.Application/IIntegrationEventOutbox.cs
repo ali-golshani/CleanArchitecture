@@ -6,7 +6,7 @@ namespace Framework.Application;
 public interface IIntegrationEventOutbox
 {
     Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken);
-    Task Publish(IReadOnlyCollection<IIntegrationEventEnvelope> events, string topic, CancellationToken cancellationToken);
+    Task Publish(IReadOnlyCollection<IIntegrationEventEnvelope> events, CancellationToken cancellationToken);
 
     public async Task PublishEvents(IIntegrationEventCollector eventCollector, CancellationToken cancellationToken)
     {
@@ -17,10 +17,6 @@ public interface IIntegrationEventOutbox
             return;
         }
 
-        var groups = events.GroupBy(x => x.Topic);
-        foreach (var group in groups)
-        {
-            await Publish([.. group], group.Key, cancellationToken);
-        }
+        await Publish(events, cancellationToken);
     }
 }

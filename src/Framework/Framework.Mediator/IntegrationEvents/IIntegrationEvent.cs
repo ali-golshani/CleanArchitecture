@@ -2,5 +2,5 @@
 
 public interface IIntegrationEvent
 {
-    public string Topic { get; }
+    static abstract string Topic { get; }
 }

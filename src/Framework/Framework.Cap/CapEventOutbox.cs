@@ -21,14 +21,13 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
 
     public async Task Publish(
         IReadOnlyCollection<IIntegrationEventEnvelope> events,
-        string topic,
         CancellationToken cancellationToken)
     {
         publisher.Transaction ??= publisherTransaction;
 
         foreach (var @event in events)
         {
-            await Publish(topic, @event, cancellationToken);
+            await Publish(@event.Topic, @event, cancellationToken);
         }
     }
 
