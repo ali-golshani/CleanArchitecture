@@ -6,5 +6,6 @@ public sealed class IntegrationEventEnvelope<TEvent> : IIntegrationEventEnvelope
     public required Guid MessageId { get; init; }
     public required Guid CorrelationId { get; init; }
     public required TEvent Payload { get; init; }
+
     public string Topic => Payload.Topic;
 }

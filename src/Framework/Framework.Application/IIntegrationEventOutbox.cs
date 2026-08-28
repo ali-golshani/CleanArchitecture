@@ -20,7 +20,7 @@ public interface IIntegrationEventOutbox
         var groups = events.GroupBy(x => x.Topic);
         foreach (var group in groups)
         {
-            await Publish(group.ToList(), group.Key, cancellationToken);
+            await Publish([.. group], group.Key, cancellationToken);
         }
     }
 }

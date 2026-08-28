@@ -28,7 +28,12 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
 
         foreach (var @event in events)
         {
-            await publisher.PublishAsync(topic, (dynamic)@event, cancellationToken: cancellationToken);
+            await Publish(topic, @event, cancellationToken);
         }
+    }
+
+    private async Task Publish(string topic, dynamic @event, CancellationToken cancellationToken)
+    {
+        await publisher.PublishAsync(topic, @event, cancellationToken: cancellationToken);
     }
 }

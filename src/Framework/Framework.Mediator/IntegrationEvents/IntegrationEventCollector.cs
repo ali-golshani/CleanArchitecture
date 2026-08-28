@@ -6,7 +6,8 @@ internal sealed class IntegrationEventCollector(ICorrelationIdAccessor correlati
 
     public void Add<TEvent>(TEvent @event) where TEvent : IIntegrationEvent
     {
-        var correlationId = correlationIdAccessor.CorrelationId
+        var correlationId = 
+            correlationIdAccessor.CorrelationId
             ?? throw new InvalidOperationException("CorrelationId is not initialized for the current request execution.");
 
         events.Enqueue(new IntegrationEventEnvelope<TEvent>
