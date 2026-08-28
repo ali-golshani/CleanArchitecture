@@ -16,7 +16,7 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
         this.db = db;
     }
 
-    public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
+    public async Task<Result<TResponse>> Handle(Framework.Mediator.RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
     {
         var cancellationToken = context.CancellationToken;
 

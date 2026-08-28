@@ -8,13 +8,14 @@ internal static class AuditTrailExtensions
 {
     public static AuditTrail LogEntry(
         this Request request,
+        Guid correlationId,
         Actor? actor,
         string? domain = null,
         bool? shouldLog = null)
     {
         return new AuditTrail
         (
-            correlationId: request.CorrelationId,
+            correlationId: correlationId,
             actor: actor?.ToString() ?? Strings.Question,
             domain: domain ?? nameof(CleanArchitecture),
             requestType: request.GetType().FullName ?? Strings.Question,

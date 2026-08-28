@@ -18,14 +18,8 @@ public abstract class KeyedPipeline<TRequest, TResponse> : IPipeline<TRequest, T
         entryProcessor = PipelineBuilder.EntryProcessor(serviceProvider, processor, pipelineName);
     }
 
-    public Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken)
+    public Task<Result<TResponse>> Handle(RequestContext<TRequest> context)
     {
-        var context = new RequestContext<TRequest>
-        {
-            Request = request,
-            CancellationToken = cancellationToken,
-        };
-
         return entryProcessor.Handle(context);
     }
 }

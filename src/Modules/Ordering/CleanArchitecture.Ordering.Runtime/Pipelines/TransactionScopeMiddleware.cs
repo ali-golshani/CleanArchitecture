@@ -3,6 +3,7 @@ using Framework.Application;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
+using Framework.Mediator;
 
 namespace CleanArchitecture.Ordering.Runtime.Pipelines;
 

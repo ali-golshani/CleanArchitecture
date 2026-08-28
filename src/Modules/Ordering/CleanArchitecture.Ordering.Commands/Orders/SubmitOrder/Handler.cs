@@ -42,9 +42,9 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         if (order.Submit())
         {
-            integrationEvents.Add(new OrderStatusChangedEvent
+            integrationEvents.Add(header => new OrderStatusChangedEvent
             {
-                CorrelationId = request.CorrelationId,
+                Header = header,
                 OrderId = order.OrderId,
                 OrderStatus = order.Status,
             });

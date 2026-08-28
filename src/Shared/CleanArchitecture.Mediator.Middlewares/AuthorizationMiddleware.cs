@@ -1,6 +1,7 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Authorization;
 using Framework.Mediator.Middlewares;
+using Framework.Mediator;
 
 namespace CleanArchitecture.Mediator.Middlewares;
 

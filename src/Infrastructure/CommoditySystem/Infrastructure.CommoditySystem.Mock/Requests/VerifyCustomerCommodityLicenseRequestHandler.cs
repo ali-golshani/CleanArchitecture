@@ -9,6 +9,7 @@ internal sealed class VerifyCustomerCommodityLicenseRequestHandler : IRequestHan
 {
     public async Task<Result<bool>> Handle(VerifyCustomerCommodityLicenseRequest request, CancellationToken cancellationToken)
     {
+
         await Task.CompletedTask;
 
         var customerId = request.CustomerId;
