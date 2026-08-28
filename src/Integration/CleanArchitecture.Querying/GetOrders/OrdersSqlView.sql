@@ -9,4 +9,4 @@
        [CommodityName],
        [InsertCommandCorrelationId],
        [UpdateCommandCorrelationId]
-FROM   [CleanArchitectureDb].[ordering].[Orders]
+FROM   [CleanArchitecture].[ordering].[Orders]
