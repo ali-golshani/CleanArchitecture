@@ -2,5 +2,6 @@
 
 public interface IIntegrationEvent
 {
-    static abstract string Topic { get; }
+    string Topic { get; }
+    IntegrationEventHeader Header { get; }
 }

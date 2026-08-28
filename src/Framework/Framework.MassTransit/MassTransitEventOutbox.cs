@@ -17,7 +17,7 @@ internal sealed class MassTransitEventOutbox(MassTransitDbContext massTransitDb,
         return new MassTransitOutboxTransaction(connection, transaction);
     }
 
-    public async Task Publish(IReadOnlyCollection<IIntegrationEventEnvelope> events, CancellationToken cancellationToken)
+    public async Task Publish(IReadOnlyCollection<IIntegrationEvent> events, CancellationToken cancellationToken)
     {
         foreach (var @event in events)
         {

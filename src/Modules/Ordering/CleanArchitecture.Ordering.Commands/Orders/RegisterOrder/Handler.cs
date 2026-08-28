@@ -99,8 +99,9 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             return result;
         }
 
-        integrationEvents.Add(new IntegrationEvents.OrderStatusChangedEvent
+        integrationEvents.Add(header => new IntegrationEvents.OrderStatusChangedEvent
         {
+            Header = header,
             OrderId = order.OrderId,
             OrderStatus = order.Status
         });

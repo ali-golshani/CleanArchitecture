@@ -3,7 +3,6 @@ using CleanArchitecture.Ordering.Commands;
 using DotNetCore.CAP;
 using CleanArchitecture.Ordering.IntegrationEvents;
 using Framework.Mediator;
-using Framework.Mediator.IntegrationEvents;
 
 namespace CleanArchitecture.Ordering.Messaging.Cap.Subscribers;
 
@@ -12,9 +11,8 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
     ICapSubscribe
 {
     [CapSubscribe(OrderStatusChangedEvent.EventTopic, Group = "Group-A")]
-    public Task Handle_A(IntegrationEventEnvelope<OrderStatusChangedEvent> envelope, CancellationToken cancellationToken)
+    public Task Handle_A(OrderStatusChangedEvent @event, CancellationToken cancellationToken)
     {
-        var @event = envelope.Payload;
         Console.WriteLine($"{GetType().Name} A: Order-Id = {@event.OrderId}");
 
         var command = new Commands.DoNothings.Command
@@ -24,14 +22,13 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
 
         return Handle(command, cancellationToken, new RequestExecutionOptions
         {
-            CorrelationId = envelope.CorrelationId,
+            CorrelationId = @event.Header.CorrelationId,
         });
     }
 
     [CapSubscribe(OrderStatusChangedEvent.EventTopic, Group = "Group-B")]
-    public Task Handle_B(IntegrationEventEnvelope<OrderStatusChangedEvent> envelope, CancellationToken cancellationToken)
+    public Task Handle_B(OrderStatusChangedEvent @event, CancellationToken cancellationToken)
     {
-        var @event = envelope.Payload;
         Console.WriteLine($"{GetType().Name} B: Order-Id = {@event.OrderId}");
 
         var command = new Commands.DoNothings.Command
@@ -41,7 +38,7 @@ public sealed class OrderStatusChangedEventSubscriber(ICommandService commandSer
 
         return Handle(command, cancellationToken, new RequestExecutionOptions
         {
-            CorrelationId = envelope.CorrelationId,
+            CorrelationId = @event.Header.CorrelationId,
         });
     }
 }

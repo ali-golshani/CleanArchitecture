@@ -20,7 +20,7 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
     }
 
     public async Task Publish(
-        IReadOnlyCollection<IIntegrationEventEnvelope> events,
+        IReadOnlyCollection<IIntegrationEvent> events,
         CancellationToken cancellationToken)
     {
         publisher.Transaction ??= publisherTransaction;

@@ -4,18 +4,16 @@ using CleanArchitecture.Ordering.Queries;
 using MassTransit;
 using CleanArchitecture.Ordering.IntegrationEvents;
 using Framework.Mediator;
-using Framework.Mediator.IntegrationEvents;
 
 namespace CleanArchitecture.Ordering.Messaging.MassTransit.Consumers;
 
 public class OrderStatusChangedEventConsumer(ICommandService commandService, IQueryService queryService) :
     ConsumerBase(commandService, queryService),
-    IConsumer<IntegrationEventEnvelope<OrderStatusChangedEvent>>
+    IConsumer<OrderStatusChangedEvent>
 {
-    public Task Consume(ConsumeContext<IntegrationEventEnvelope<OrderStatusChangedEvent>> context)
+    public Task Consume(ConsumeContext<OrderStatusChangedEvent> context)
     {
-        var envelope = context.Message;
-        var @event = envelope.Payload;
+        var @event = context.Message;
         Console.WriteLine($"{GetType().Name}: Order-Id = {@event.OrderId}");
 
         var command = new Commands.DoNothings.Command
@@ -25,7 +23,7 @@ public class OrderStatusChangedEventConsumer(ICommandService commandService, IQu
 
         return Handle(command, context.CancellationToken, new RequestExecutionOptions
         {
-            CorrelationId = envelope.CorrelationId,
+            CorrelationId = @event.Header.CorrelationId,
         });
     }
 }

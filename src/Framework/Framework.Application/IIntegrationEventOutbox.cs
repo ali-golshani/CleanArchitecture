@@ -6,7 +6,7 @@ namespace Framework.Application;
 public interface IIntegrationEventOutbox
 {
     Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken);
-    Task Publish(IReadOnlyCollection<IIntegrationEventEnvelope> events, CancellationToken cancellationToken);
+    Task Publish(IReadOnlyCollection<IIntegrationEvent> events, CancellationToken cancellationToken);
 
     public async Task PublishEvents(IIntegrationEventCollector eventCollector, CancellationToken cancellationToken)
     {
