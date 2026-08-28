@@ -14,24 +14,24 @@ public abstract class BatchCommandsServiceBase<TCommand>
         foreach (var command in commands)
         {
             await TryHandle(command, parameters, cancellationToken);
+            await DelayOnIteration(parameters, cancellationToken);
         }
     }
 
-    private async Task TryHandle(TCommand command, BatchCommandHandlingParameters parameters, CancellationToken cancellationToken)
+    private async Task TryHandle(
+        TCommand command,
+        BatchCommandHandlingParameters parameters,
+        CancellationToken cancellationToken)
     {
+        Result<Empty> result;
+
         try
         {
-            var result = await Handle(command, cancellationToken);
-
-            if (result.IsFailure)
-            {
-                await OnError(command, result.Errors);
-
-                if (!parameters.ContinueOnErrors)
-                {
-                    throw new ErrorsException(result.Errors);
-                }
-            }
+            result = await Handle(command, cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            throw;
         }
         catch (Exception exp)
         {
@@ -41,18 +41,39 @@ public abstract class BatchCommandsServiceBase<TCommand>
             {
                 throw;
             }
-            
-            if (parameters.DelayOnError > TimeSpan.Zero)
-            {
-                await Task.Delay(parameters.DelayOnError.Value, cancellationToken);
-            }
+
+            await DelayOnError(parameters, cancellationToken);
+            return;
         }
-        finally
+
+        if (result.IsSuccess)
         {
-            if (parameters.IterationDelay > TimeSpan.Zero)
-            {
-                await Task.Delay(parameters.IterationDelay.Value, cancellationToken);
-            }
+            return;
+        }
+
+        await OnError(command, result.Errors);
+
+        if (!parameters.ContinueOnErrors)
+        {
+            throw new ErrorsException(result.Errors);
+        }
+
+        await DelayOnError(parameters, cancellationToken);
+    }
+
+    private static async Task DelayOnIteration(BatchCommandHandlingParameters parameters, CancellationToken cancellationToken)
+    {
+        if (parameters.IterationDelay > TimeSpan.Zero)
+        {
+            await Task.Delay(parameters.IterationDelay.Value, cancellationToken);
+        }
+    }
+
+    private static async Task DelayOnError(BatchCommandHandlingParameters parameters, CancellationToken cancellationToken)
+    {
+        if (parameters.DelayOnError > TimeSpan.Zero)
+        {
+            await Task.Delay(parameters.DelayOnError.Value, cancellationToken);
         }
     }
 
