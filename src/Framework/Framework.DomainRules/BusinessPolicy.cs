@@ -16,18 +16,18 @@ public sealed class BusinessPolicy(IDomainRule[] domainRules, params IBusinessRu
     public async IAsyncEnumerable<Error> Evaluate(
         [System.Runtime.CompilerServices.EnumeratorCancellation] CancellationToken cancellationToken = default)
     {
-        var hasDomainErrors = false;
+        var shouldBreak = false;
 
         foreach (var rule in DomainRules)
         {
             foreach (var error in rule.Evaluate())
             {
-                hasDomainErrors = true;
+                shouldBreak = true;
                 yield return error;
             }
         }
 
-        if (hasDomainErrors)
+        if (shouldBreak)
         {
             yield break;
         }
@@ -37,6 +37,12 @@ public sealed class BusinessPolicy(IDomainRule[] domainRules, params IBusinessRu
             await foreach (var error in rule.Evaluate(cancellationToken).WithCancellation(cancellationToken))
             {
                 yield return error;
+                shouldBreak = true;
+            }
+
+            if (shouldBreak)
+            {
+                yield break;
             }
         }
     }

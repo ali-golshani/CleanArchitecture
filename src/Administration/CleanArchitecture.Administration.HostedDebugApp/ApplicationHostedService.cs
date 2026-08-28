@@ -11,7 +11,7 @@ internal class ApplicationHostedService(IServiceScopeFactory serviceScopeFactory
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         using var scope = serviceScopeFactory.CreateScope();
-        await scope.ServiceProvider.GetRequiredService<RegisterAndApproveOrderSchedulingService>().ScheduleNextOrder();
+        await scope.ServiceProvider.GetRequiredService<RegisterOrderService>().RegisterNextOrder();
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
