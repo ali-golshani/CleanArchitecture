@@ -6,6 +6,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Configuration\CleanArchitecture.ServicesConfigurations\CleanArchitecture.ServicesConfigurations.csproj" />
+		<ProjectReference Include="..\..\Framework\IntegrationEventBus\IntegrationEventBus.csproj" />
 	</ItemGroup>
 
 </Project>

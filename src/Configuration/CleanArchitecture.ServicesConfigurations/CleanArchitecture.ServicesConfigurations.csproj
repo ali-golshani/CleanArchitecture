@@ -2,10 +2,13 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Framework\Framework.DurableTask\Framework.DurableTask.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.SqlEventBus\Framework.SqlEventBus.csproj" />
+		<ProjectReference Include="..\..\Framework\IntegrationEventBus\IntegrationEventBus.csproj" />
 		<ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
 		<ProjectReference Include="..\..\Integration\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Runtime\CleanArchitecture.Ordering.Runtime.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Messaging.Cap.Subscribers\CleanArchitecture.Ordering.Messaging.Cap.Subscribers.csproj" />
+		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Messaging.SqlEventBus.Subscribers\CleanArchitecture.Ordering.Messaging.SqlEventBus.Subscribers.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Messaging.MassTransit.Consumers\CleanArchitecture.Ordering.Messaging.MassTransit.Consumers.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem.Mock\Infrastructure.CommoditySystem.Mock.csproj" />
 		<ProjectReference Include="..\..\Infrastructure\CommoditySystem\Infrastructure.CommoditySystem\Infrastructure.CommoditySystem.csproj" />

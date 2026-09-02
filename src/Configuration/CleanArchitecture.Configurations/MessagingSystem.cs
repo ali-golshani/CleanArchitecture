@@ -3,5 +3,6 @@
 public enum MessagingSystem
 {
     Cap = 0,
-    MassTransit = 1
+    MassTransit = 1,
+    SqlEventBus = 2
 }

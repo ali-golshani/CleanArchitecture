@@ -63,9 +63,8 @@ public static class Configuration
         services.AddProcessManagerModule();
 
         services.AddScheduling();
-        services.AddIntegrationEventProcessing(GlobalSettings.Messaging.MessagingSystem);
         services.AddDurableTasks(configuration, connectionStrings, TaskHubname);
-        services.AddMessaging(configuration, connectionStrings);
+        services.AddMessaging(configuration, connectionStrings , GlobalSettings.Messaging.MessagingSystem);
     }
 
     public static void ConfigureLogging(ILoggingBuilder builder)

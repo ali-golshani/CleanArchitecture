@@ -4,6 +4,7 @@ using CleanArchitecture.ServicesConfigurations.OptionsProviders;
 using Framework.Cap;
 using Framework.DurableTask;
 using Framework.MassTransit;
+using Framework.SqlEventBus;
 using Infrastructure.CommoditySystem;
 using Infrastructure.CommoditySystem.Mock;
 using Microsoft.Extensions.Configuration;
@@ -49,30 +50,30 @@ internal static class ServicesRegistration
         Scheduling.ServicesConfiguration.RegisterJobs(services);
     }
 
-    public static void AddIntegrationEventProcessing(this IServiceCollection services, MessagingSystem messagingSystem)
-    {
-        if (messagingSystem == MessagingSystem.Cap)
-        {
-            Ordering.Messaging.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
-        }
-
-        if (GlobalSettings.Messaging.SupportMassTransit && messagingSystem == MessagingSystem.MassTransit)
-        {
-            Ordering.Messaging.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
-        }
-    }
-
     public static void AddMessaging(
         this IServiceCollection services,
         IConfiguration configuration,
-        ConnectionStrings connectionStrings)
+        ConnectionStrings connectionStrings,
+        MessagingSystem messagingSystem)
     {
-        var capOptions = configuration.CapOptions();
-        services.AddCapMessaging(capOptions, connectionStrings.CleanArchitectureConnectionString);
+        if (messagingSystem == MessagingSystem.SqlEventBus)
+        {
+            services.AddSqlMessaging(
+                connectionStrings.CleanArchitectureConnectionString,
+                Ordering.Messaging.SqlEventBus.Subscribers.ServicesConfiguration.ConfigureTopology);
+        }
+        else if (messagingSystem == MessagingSystem.Cap)
+        {
+            var capOptions = configuration.CapOptions();
+            services.AddCapMessaging(capOptions, connectionStrings.CleanArchitectureConnectionString);
 
-        if (GlobalSettings.Messaging.SupportMassTransit)
+            Ordering.Messaging.Cap.Subscribers.ServicesConfiguration.RegisterServices(services);
+        }
+        else if (messagingSystem == MessagingSystem.MassTransit && GlobalSettings.Messaging.SupportMassTransit)
         {
             services.AddMassTransitMessaging(connectionStrings.CleanArchitectureConnectionString);
+
+            Ordering.Messaging.MassTransit.Consumers.ServicesConfiguration.RegisterServices(services);
         }
     }
 

@@ -48,7 +48,7 @@ internal sealed class RegisterMultipleOrdersService(
         {
             var orderId = NextOrderId;
 
-            var result = await commandService.Handle(new Command
+            var result = await commandService.Handle(Admin, new Command
             {
                 OrderId = orderId,
                 BrokerId = 1,

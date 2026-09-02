@@ -45,6 +45,11 @@ internal static class Program
 
             Console.WriteLine();
 
+            var sqlEventBusDb = new SqlEventBusDbMigrationService(serviceProvider);
+            await sqlEventBusDb.Migrate();
+
+            Console.WriteLine();
+
             var capDb = new CapDbMigrationService(serviceProvider);
             await capDb.Migrate();
 

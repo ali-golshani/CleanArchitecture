@@ -78,6 +78,7 @@
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.IntegrationEvents/CleanArchitecture.Ordering.IntegrationEvents.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Messaging.Cap.Subscribers/CleanArchitecture.Ordering.Messaging.Cap.Subscribers.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers/CleanArchitecture.Ordering.Messaging.MassTransit.Consumers.csproj" />
+    <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Messaging.SqlEventBus.Subscribers/CleanArchitecture.Ordering.Messaging.SqlEventBus.Subscribers.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Persistence/CleanArchitecture.Ordering.Persistence.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Queries/CleanArchitecture.Ordering.Queries.csproj" />
     <Project Path="src/Modules/Ordering/CleanArchitecture.Ordering.Runtime/CleanArchitecture.Ordering.Runtime.csproj" />

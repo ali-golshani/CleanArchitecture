@@ -9,7 +9,7 @@ public static class GlobalSettings
         /// </summary>
         public static readonly bool SupportMassTransit = false;
 
-        public static readonly MessagingSystem MessagingSystem = MessagingSystem.Cap;
+        public static readonly MessagingSystem MessagingSystem = MessagingSystem.SqlEventBus;
     }
 
     public static class Database
