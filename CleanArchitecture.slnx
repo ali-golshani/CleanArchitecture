@@ -33,7 +33,6 @@
     <Project Path="src/Framework/Framework.DomainRules/Framework.DomainRules.csproj" />
     <Project Path="src/Framework/Framework.DurableTask/Framework.DurableTask.csproj" />
     <Project Path="src/Framework/Framework.Exceptions/Framework.Exceptions.csproj" />
-    <Project Path="src/Framework/Framework.IntegrationEventBus/Framework.IntegrationEventBus.csproj" Id="9ab74cd3-4713-4474-aa2f-4dc07eb02de8" />
     <Project Path="src/Framework/Framework.Json/Framework.Json.csproj" />
     <Project Path="src/Framework/Framework.Logging/Framework.Logging.csproj" />
     <Project Path="src/Framework/Framework.MassTransit/Framework.MassTransit.csproj" />
@@ -43,6 +42,7 @@
     <Project Path="src/Framework/Framework.Results/Framework.Results.csproj" />
     <Project Path="src/Framework/Framework.Scheduling/Framework.Scheduling.csproj" />
     <Project Path="src/Framework/Framework.Security/Framework.Security.csproj" />
+    <Project Path="src/Framework/Framework.SqlEventBus/Framework.SqlEventBus.csproj" Id="0537544b-7c31-4aac-b182-124393e8a941" />
     <Project Path="src/Framework/Framework.Test/Framework.Test.csproj" />
     <Project Path="src/Framework/Framework.Threading/Framework.Threading.csproj" />
     <Project Path="src/Framework/Framework.Utilities/Framework.Utilities.csproj" />
