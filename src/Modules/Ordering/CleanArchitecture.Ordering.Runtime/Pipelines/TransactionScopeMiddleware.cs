@@ -3,6 +3,7 @@ using Framework.Application;
 using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
+using Framework.Mediator;
 
 namespace CleanArchitecture.Ordering.Runtime.Pipelines;
 
@@ -12,16 +13,16 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
 {
     private readonly OrderingDbContext db;
     private readonly IIntegrationEventOutbox eventOutbox;
-    private readonly IIntegrationEventBus eventBus;
+    private readonly IIntegrationEventCollector eventCollector;
 
     public TransactionScopeMiddleware(
         OrderingDbContext db,
         IIntegrationEventOutbox eventOutbox,
-        IIntegrationEventBus eventBus)
+        IIntegrationEventCollector eventCollector)
     {
         this.db = db;
         this.eventOutbox = eventOutbox;
-        this.eventBus = eventBus;
+        this.eventCollector = eventCollector;
     }
 
     public async Task<Result<TResponse>> Handle(RequestContext<TRequest> context, IRequestProcessor<TRequest, TResponse> next)
@@ -38,9 +39,9 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
         }
 
         await db.SaveChangesAsync(cancellationToken);
-        await eventOutbox.PublishEvents(eventBus, cancellationToken);
+        await eventOutbox.PublishEvents(eventCollector, cancellationToken);
 
-        await transaction.CommitAsync();
+        await transaction.CommitAsync(cancellationToken);
 
         return result;
     }

@@ -2,6 +2,6 @@
 
 public interface IOutboxTransaction : IAsyncDisposable
 {
-    Task CommitAsync();
+    Task CommitAsync(CancellationToken cancellationToken);
     Task RollbackAsync();
 }

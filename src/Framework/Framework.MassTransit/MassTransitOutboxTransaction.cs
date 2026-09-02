@@ -8,9 +8,9 @@ internal sealed class MassTransitOutboxTransaction(DbConnection connection, DbTr
     private readonly DbConnection connection = connection;
     private readonly DbTransaction transaction = transaction;
 
-    public async Task CommitAsync()
+    public async Task CommitAsync(CancellationToken cancellationToken)
     {
-        await transaction.CommitAsync();
+        await transaction.CommitAsync(cancellationToken);
     }
 
     public async Task RollbackAsync()

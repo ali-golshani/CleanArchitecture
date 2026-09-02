@@ -9,6 +9,7 @@ public class BatchCommandHandlingParameters
     {
         ContinueOnErrors = continueOnErrors;
         IterationDelay = iterationDelay;
+        DelayOnError = delayOnError;
     }
 
     public bool ContinueOnErrors { get; }

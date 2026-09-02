@@ -1,6 +1,6 @@
 ﻿namespace Framework.Mediator.Middlewares;
 
-public interface IPipeline<in TRequest, TResponse>
+public interface IPipeline<TRequest, TResponse>
 {
-    Task<Result<TResponse>> Handle(TRequest request, CancellationToken cancellationToken);
+    Task<Result<TResponse>> Handle(RequestContext<TRequest> context);
 }

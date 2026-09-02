@@ -60,21 +60,6 @@ namespace CleanArchitecture.Querying.Properties {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to SELECT [OrderId],
-        ///       [Quantity],
-        ///       [CustomerId],
-        ///       [BrokerId],
-        ///       [Price],
-        ///       [TrackingCode],
-        ///       [Status],
-        ///       [CommodityId],
-        ///       [CommodityName],
-        ///       [InsertCommandCorrelationId],
-        ///       [UpdateCommandCorrelationId]
-        ///FROM   [CleanArchitectureDb].[ordering].[Orders]
-        ///.
-        /// </summary>
         internal static string OrdersSqlView {
             get {
                 return ResourceManager.GetString("OrdersSqlView", resourceCulture);

@@ -33,7 +33,8 @@ internal sealed class InMemoryConsumer(InMemoryConsumerGroup group) : IConsumerC
 
         if (callBack is null)
         {
-            return;
+            throw new InvalidOperationException(
+                "The CAP message callback has not been configured for the in-memory consumer.");
         }
 
         await callBack(message, this);

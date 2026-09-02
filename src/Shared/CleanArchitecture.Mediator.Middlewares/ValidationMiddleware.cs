@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using Framework.Mediator.Middlewares;
+using Framework.Mediator;
 using Framework.Validation;
 
 namespace CleanArchitecture.Mediator.Middlewares;

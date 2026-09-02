@@ -15,20 +15,20 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
     private readonly IBuildOrderService buildOrderService;
     private readonly ICommodityCatalog commodityCatalog;
     private readonly INotificationPublisher notificationPublisher;
-    private readonly IIntegrationEventBus integrationEventBus;
+    private readonly IIntegrationEventCollector integrationEvents;
 
     public Handler(
         IOrderRepository orderRepository,
         IBuildOrderService buildOrderService,
         ICommodityCatalog commodityCatalog,
         INotificationPublisher notificationPublisher,
-        IIntegrationEventBus integrationEventBus)
+        IIntegrationEventCollector integrationEvents)
     {
         this.orderRepository = orderRepository;
         this.buildOrderService = buildOrderService;
         this.commodityCatalog = commodityCatalog;
         this.notificationPublisher = notificationPublisher;
-        this.integrationEventBus = integrationEventBus;
+        this.integrationEvents = integrationEvents;
     }
 
     public async Task<Result<Empty>> Handle(Command request, CancellationToken cancellationToken)
@@ -47,7 +47,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         var commodity = commodityResult.Value!;
 
-        var orderResult = await BuildOrder(request, commodity);
+        var orderResult = await BuildOrder(request, commodity, cancellationToken);
 
         if (orderResult.IsFailure)
         {
@@ -58,7 +58,7 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
 
         orderRepository.Add(order);
 
-        return await OnOrderRegistered(order, request.CorrelationId, cancellationToken);
+        return await OnOrderRegistered(order, cancellationToken);
     }
 
     private async Task<Result<Domain.Orders.Commodity>> GetCommodity(int commodityId, CancellationToken cancellationToken)
@@ -68,7 +68,10 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             .NotFoundIfNull(new CommodityNotFoundError(commodityId));
     }
 
-    private Task<Result<Domain.Orders.Order>> BuildOrder(Command request, Domain.Orders.Commodity commodity)
+    private Task<Result<Domain.Orders.Order>> BuildOrder(
+        Command request,
+        Domain.Orders.Commodity commodity,
+        CancellationToken cancellationToken)
     {
         return buildOrderService.BuildOrder(new BuildOrderRequest
         {
@@ -78,12 +81,11 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             CustomerId = request.CustomerId,
             BrokerId = request.BrokerId,
             Commodity = commodity
-        });
+        }, cancellationToken);
     }
 
     private async Task<Result<Empty>> OnOrderRegistered(
         Domain.Orders.Order order,
-        Guid? correlationId,
         CancellationToken cancellationToken)
     {
         var result = await notificationPublisher.Publish
@@ -97,9 +99,9 @@ internal sealed class Handler : IRequestHandler<Command, Empty>
             return result;
         }
 
-        await integrationEventBus.Post(new IntegrationEvents.OrderStatusChangedEvent
+        integrationEvents.Add(header => new IntegrationEvents.OrderStatusChangedEvent
         {
-            CorrelationId = correlationId,
+            Header = header,
             OrderId = order.OrderId,
             OrderStatus = order.Status
         });

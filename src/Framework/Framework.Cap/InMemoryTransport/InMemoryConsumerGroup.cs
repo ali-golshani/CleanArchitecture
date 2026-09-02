@@ -22,7 +22,8 @@ internal sealed class InMemoryConsumerGroup(string groupName)
 
         if (consumer is null)
         {
-            return;
+            throw new DotNetCore.CAP.SubscriberNotFoundException(
+                $"No in-memory consumer in group '{GroupName}' is subscribed to topic '{topic}'.");
         }
 
         await consumer.Consume(message);

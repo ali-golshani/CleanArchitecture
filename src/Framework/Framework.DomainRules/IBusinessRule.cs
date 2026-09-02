@@ -2,5 +2,5 @@
 
 public interface IBusinessRule
 {
-    IAsyncEnumerable<Error> Evaluate();
+    IAsyncEnumerable<Error> Evaluate(CancellationToken cancellationToken = default);
 }

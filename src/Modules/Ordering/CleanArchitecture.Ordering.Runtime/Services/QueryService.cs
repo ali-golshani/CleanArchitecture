@@ -1,26 +1,40 @@
 ﻿using CleanArchitecture.Actors;
 using CleanArchitecture.Ordering.Runtime.Pipelines;
+using CleanArchitecture.Mediator.Middlewares;
+using Framework.Mediator;
 using Framework.Mediator.Extensions;
 using Framework.Results;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CleanArchitecture.Ordering.Runtime.Services;
 
-internal sealed class QueryService(ActorPreservingScopeFactory scopeFactory) : IQueryService
+internal sealed class QueryService(RequestExecutionScopeFactory scopeFactory) : IQueryService
 {
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, RequestExecutionOptions? options = null)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        using var scope = scopeFactory.CreateScope();
+        using var scope = scopeFactory.CreateScope(options);
         var pipeline = scope.ServiceProvider.GetRequiredService<QueryPipeline.Pipeline<TRequest, TResponse>>();
-        return await pipeline.Handle(query.AsRequestType(), cancellationToken);
+        return await pipeline.Handle(new RequestContext<TRequest>
+        {
+            Request = query.AsRequestType(),
+            CancellationToken = cancellationToken,
+            CorrelationId = scope.CorrelationId,
+            ExecutionStartTime = DateTime.Now,
+        });
     }
 
-    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken)
+    public async Task<Result<TResponse>> Handle<TRequest, TResponse>(Actor actor, IQuery<TRequest, TResponse> query, CancellationToken cancellationToken, RequestExecutionOptions? options = null)
         where TRequest : QueryBase, IQuery<TRequest, TResponse>
     {
-        using var scope = scopeFactory.CreateScope(actor);
+        using var scope = scopeFactory.CreateScope(actor, options);
         var pipeline = scope.ServiceProvider.GetRequiredService<QueryPipeline.Pipeline<TRequest, TResponse>>();
-        return await pipeline.Handle(query.AsRequestType(), cancellationToken);
+        return await pipeline.Handle(new RequestContext<TRequest>
+        {
+            Request = query.AsRequestType(),
+            CancellationToken = cancellationToken,
+            CorrelationId = scope.CorrelationId,
+            ExecutionStartTime = DateTime.Now,
+        });
     }
 }

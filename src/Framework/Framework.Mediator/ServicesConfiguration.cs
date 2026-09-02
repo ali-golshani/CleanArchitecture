@@ -9,7 +9,7 @@ public static class ServicesConfiguration
     public static void RegisterServices(IServiceCollection services)
     {
         services.AddTransient(typeof(NotificationPublisher<>));
-        services.AddScoped<IIntegrationEventBus, IntegrationEventBus>();
+        services.AddScoped<IIntegrationEventCollector, IntegrationEventCollector>();
         services.AddTransient<INotificationPublisher, NotificationPublisher>();
     }
 }
