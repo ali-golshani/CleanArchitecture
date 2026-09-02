@@ -95,7 +95,7 @@ namespace IntegrationEventBus.Properties {
         ///    FROM [Active]
         ///    WHERE [BlocksFollowing] = 1
         ///),
-        ///[Candida [rest of string was truncated]&quot;;.
+        ///[Candi [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ClaimNextDelivery {
             get {
@@ -124,7 +124,7 @@ namespace IntegrationEventBus.Properties {
         ///BEGIN
         ///    CREATE TABLE [cap].[Events]
         ///    (
-        ///        [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string CreateSchema {
             get {
