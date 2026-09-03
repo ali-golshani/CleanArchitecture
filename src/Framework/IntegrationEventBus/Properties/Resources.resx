@@ -119,27 +119,27 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="AcquireSubscriptionLock" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Processing\AcquireSubscriptionLock.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Processing\AcquireSubscriptionLock.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="ClaimNextDelivery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Processing\ClaimNextDelivery.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Processing\ClaimNextDelivery.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="CreateSchema" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Schema\CreateSchema.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Schema\CreateSchema.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="InsertDelivery" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Publishing\InsertDelivery.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Publishing\InsertDelivery.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="InsertEvent" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Publishing\InsertEvent.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Publishing\InsertEvent.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="MarkFailed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Processing\MarkFailed.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Processing\MarkFailed.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="MarkSucceeded" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Processing\MarkSucceeded.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Processing\MarkSucceeded.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
   <data name="ReleaseCancelledAttempt" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\SqlServer\Sql\Processing\ReleaseCancelledAttempt.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+    <value>..\Sql\Processing\ReleaseCancelledAttempt.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
 </root>

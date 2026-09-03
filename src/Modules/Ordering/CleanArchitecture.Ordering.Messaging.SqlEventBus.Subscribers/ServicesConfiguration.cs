@@ -1,5 +1,5 @@
 using CleanArchitecture.Ordering.IntegrationEvents;
-using IntegrationEventBus.Core.Topology;
+using IntegrationEventBus.Topology;
 
 namespace CleanArchitecture.Ordering.Messaging.SqlEventBus.Subscribers;
 

@@ -1,7 +1,4 @@
-﻿using IntegrationEventBus.Core.DependencyInjection;
-using IntegrationEventBus.Core.Topology;
-using IntegrationEventBus.Hosting.DependencyInjection;
-using IntegrationEventBus.SqlServer.DependencyInjection;
+﻿using IntegrationEventBus.Topology;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.Json;
 

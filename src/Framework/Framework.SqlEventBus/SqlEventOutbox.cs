@@ -1,6 +1,6 @@
 ﻿using Framework.Application;
 using Framework.Mediator.IntegrationEvents;
-using IntegrationEventBus.Abstractions;
+using IntegrationEventBus;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using System.Data.Common;

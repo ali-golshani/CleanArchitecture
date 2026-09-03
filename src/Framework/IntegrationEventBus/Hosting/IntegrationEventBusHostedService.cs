@@ -1,6 +1,5 @@
-using IntegrationEventBus.Core.Infrastructure;
-using IntegrationEventBus.Core.Topology;
-using IntegrationEventBus.Hosting.Logging;
+using IntegrationEventBus.Internal;
+using IntegrationEventBus.Topology;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 

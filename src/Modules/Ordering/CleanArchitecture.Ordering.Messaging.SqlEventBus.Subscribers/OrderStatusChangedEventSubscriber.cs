@@ -1,7 +1,7 @@
 using CleanArchitecture.Ordering.Commands;
 using CleanArchitecture.Ordering.IntegrationEvents;
 using Framework.Mediator;
-using IntegrationEventBus.Abstractions;
+using IntegrationEventBus;
 
 namespace CleanArchitecture.Ordering.Messaging.SqlEventBus.Subscribers;
 
