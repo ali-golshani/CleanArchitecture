@@ -45,22 +45,28 @@ internal static class Program
 
             Console.WriteLine();
 
-            var sqlEventBusDb = new SqlEventBusDbMigrationService(serviceProvider);
-            await sqlEventBusDb.Migrate();
+            if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.SqlEventBus)
+            {
+                var sqlEventBusDb = new SqlEventBusDbMigrationService(serviceProvider);
+                await sqlEventBusDb.Migrate();
 
-            Console.WriteLine();
+                Console.WriteLine();
+            }
 
-            var capDb = new CapDbMigrationService(serviceProvider);
-            await capDb.Migrate();
+            if (GlobalSettings.Messaging.MessagingSystem == MessagingSystem.Cap)
+            {
+                var capDb = new CapDbMigrationService(serviceProvider);
+                await capDb.Migrate();
 
-            Console.WriteLine();
+                Console.WriteLine();
+            }
 
             var durableTaskDb = new DurableTaskDbMigrationService(serviceProvider);
             await durableTaskDb.Migrate();
 
             Console.WriteLine();
 
-            if (GlobalSettings.Messaging.SupportMassTransit)
+            if (GlobalSettings.Messaging.SupportMassTransit && GlobalSettings.Messaging.MessagingSystem == MessagingSystem.MassTransit)
             {
                 var massTransitDb = new MassTransitDbMigrationService(serviceProvider);
                 await massTransitDb.Migrate();

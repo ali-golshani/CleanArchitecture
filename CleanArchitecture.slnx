@@ -48,7 +48,6 @@
     <Project Path="src/Framework/Framework.Utilities/Framework.Utilities.csproj" />
     <Project Path="src/Framework/Framework.Validation/Framework.Validation.csproj" />
     <Project Path="src/Framework/Framework.WebApi/Framework.WebApi.csproj" />
-    <Project Path="src/Framework/IntegrationEventBus/IntegrationEventBus.csproj" Id="082da8d1-1af9-4d89-b619-f901d8bbd227" />
   </Folder>
   <Folder Name="/src/Infrastructure/" />
   <Folder Name="/src/Infrastructure/CommoditySystem/">

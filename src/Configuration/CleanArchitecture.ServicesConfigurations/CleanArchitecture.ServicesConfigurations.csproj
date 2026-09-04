@@ -3,7 +3,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\Framework\Framework.DurableTask\Framework.DurableTask.csproj" />
 		<ProjectReference Include="..\..\Framework\Framework.SqlEventBus\Framework.SqlEventBus.csproj" />
-		<ProjectReference Include="..\..\Framework\IntegrationEventBus\IntegrationEventBus.csproj" />
 		<ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
 		<ProjectReference Include="..\..\Integration\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Runtime\CleanArchitecture.Ordering.Runtime.csproj" />

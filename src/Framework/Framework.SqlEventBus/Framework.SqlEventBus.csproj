@@ -2,7 +2,10 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Framework.Application\Framework.Application.csproj" />
-		<ProjectReference Include="..\IntegrationEventBus\IntegrationEventBus.csproj" />
 	</ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Minimal.IntegrationEventBus" />
+  </ItemGroup>
 
 </Project>
