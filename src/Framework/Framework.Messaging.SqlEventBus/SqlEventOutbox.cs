@@ -16,7 +16,7 @@ internal sealed class SqlEventOutbox(IIntegrationEventPublisher publisher) : IIn
     {
         var efTransaction = await db.Database.BeginTransactionAsync(cancellationToken);
         transaction = efTransaction.GetDbTransaction();
-        return new SqlOutboxTransaction(transaction);
+        return new SqlOutboxTransaction(efTransaction);
     }
 
     public async Task Publish(

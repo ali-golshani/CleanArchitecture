@@ -1,12 +1,14 @@
 ﻿using Framework.Persistence.Extensions;
 using Microsoft.EntityFrameworkCore;
-using System.Data.Common;
 
 namespace Framework.Persistence;
 
 public static class DualDbContext
 {
-    public static async Task<(DbConnection Connection, DbTransaction Transaction)> BeginTransaction(DbContext firstDb, DbContext secondDb, CancellationToken cancellationToken)
+    public static async Task<DualDbContextTransaction> BeginTransaction(
+        DbContext firstDb,
+        DbContext secondDb,
+        CancellationToken cancellationToken)
     {
         var connection = firstDb.SqlConnection();
         await connection.OpenAsync(cancellationToken);
@@ -16,9 +18,15 @@ public static class DualDbContext
 
         var transaction = await connection.BeginTransactionAsync(cancellationToken);
 
-        await firstDb.Database.UseTransactionAsync(transaction, cancellationToken);
-        await secondDb.Database.UseTransactionAsync(transaction, cancellationToken);
+        var firstDbTransaction = await firstDb.Database.UseTransactionAsync(transaction, cancellationToken)
+            ?? throw new InvalidOperationException("Could not enlist the first DbContext in the shared transaction.");
+        var secondDbTransaction = await secondDb.Database.UseTransactionAsync(transaction, cancellationToken)
+            ?? throw new InvalidOperationException("Could not enlist the second DbContext in the shared transaction.");
 
-        return new (connection, transaction);
+        return new DualDbContextTransaction(
+            connection,
+            transaction,
+            firstDbTransaction,
+            secondDbTransaction);
     }
 }

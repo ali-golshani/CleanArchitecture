@@ -35,6 +35,7 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
 
         if (result.IsFailure)
         {
+            await transaction.RollbackAsync();
             return result;
         }
 
