@@ -1,10 +1,10 @@
 ﻿using CleanArchitecture.Configurations;
 using CleanArchitecture.ProcessManager;
 using CleanArchitecture.ServicesConfigurations.OptionsProviders;
-using Framework.Cap;
 using Framework.DurableTask;
-using Framework.MassTransit;
-using Framework.SqlEventBus;
+using Framework.Messaging.Cap;
+using Framework.Messaging.MassTransit;
+using Framework.Messaging.SqlEventBus;
 using Infrastructure.CommoditySystem;
 using Infrastructure.CommoditySystem.Mock;
 using Microsoft.Extensions.Configuration;

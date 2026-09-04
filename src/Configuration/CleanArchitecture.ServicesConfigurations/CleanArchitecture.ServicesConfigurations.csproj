@@ -2,7 +2,9 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\Framework\Framework.DurableTask\Framework.DurableTask.csproj" />
-		<ProjectReference Include="..\..\Framework\Framework.SqlEventBus\Framework.SqlEventBus.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Messaging.Cap\Framework.Messaging.Cap.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Messaging.MassTransit\Framework.Messaging.MassTransit.csproj" />
+		<ProjectReference Include="..\..\Framework\Framework.Messaging.SqlEventBus\Framework.Messaging.SqlEventBus.csproj" />
 		<ProjectReference Include="..\..\Integration\CleanArchitecture.Querying\CleanArchitecture.Querying.csproj" />
 		<ProjectReference Include="..\..\Integration\ProcessManager\CleanArchitecture.ProcessManager\CleanArchitecture.ProcessManager.csproj" />
 		<ProjectReference Include="..\..\Modules\Ordering\CleanArchitecture.Ordering.Runtime\CleanArchitecture.Ordering.Runtime.csproj" />

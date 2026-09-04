@@ -25,8 +25,6 @@
     <Project Path="src/Configuration/CleanArchitecture.ServicesConfigurations/CleanArchitecture.ServicesConfigurations.csproj" />
   </Folder>
   <Folder Name="/src/Framework/">
-    <Project Path="src/Framework/Framework.Application/Framework.Application.csproj" />
-    <Project Path="src/Framework/Framework.Cap/Framework.Cap.csproj" />
     <Project Path="src/Framework/Framework.Collections/Framework.Collections.csproj" />
     <Project Path="src/Framework/Framework.DependencyInjection/Framework.DependencyInjection.csproj" />
     <Project Path="src/Framework/Framework.Domain/Framework.Domain.csproj" />
@@ -35,14 +33,16 @@
     <Project Path="src/Framework/Framework.Exceptions/Framework.Exceptions.csproj" />
     <Project Path="src/Framework/Framework.Json/Framework.Json.csproj" />
     <Project Path="src/Framework/Framework.Logging/Framework.Logging.csproj" />
-    <Project Path="src/Framework/Framework.MassTransit/Framework.MassTransit.csproj" />
     <Project Path="src/Framework/Framework.Mediator/Framework.Mediator.csproj" />
+    <Project Path="src/Framework/Framework.Messaging.Cap/Framework.Messaging.Cap.csproj" />
+    <Project Path="src/Framework/Framework.Messaging.MassTransit/Framework.Messaging.MassTransit.csproj" />
+    <Project Path="src/Framework/Framework.Messaging.SqlEventBus/Framework.Messaging.SqlEventBus.csproj" />
+    <Project Path="src/Framework/Framework.Messaging/Framework.Messaging.csproj" />
     <Project Path="src/Framework/Framework.Persistence/Framework.Persistence.csproj" />
     <Project Path="src/Framework/Framework.Queries/Framework.Queries.csproj" />
     <Project Path="src/Framework/Framework.Results/Framework.Results.csproj" />
     <Project Path="src/Framework/Framework.Scheduling/Framework.Scheduling.csproj" />
     <Project Path="src/Framework/Framework.Security/Framework.Security.csproj" />
-    <Project Path="src/Framework/Framework.SqlEventBus/Framework.SqlEventBus.csproj" Id="0537544b-7c31-4aac-b182-124393e8a941" />
     <Project Path="src/Framework/Framework.Test/Framework.Test.csproj" />
     <Project Path="src/Framework/Framework.Threading/Framework.Threading.csproj" />
     <Project Path="src/Framework/Framework.Utilities/Framework.Utilities.csproj" />

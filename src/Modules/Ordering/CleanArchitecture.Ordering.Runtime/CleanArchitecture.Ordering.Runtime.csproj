@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\Framework\Framework.Application\Framework.Application.csproj" />
+		<ProjectReference Include="..\..\..\Framework\Framework.Messaging\Framework.Messaging.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Logging\Framework.Logging.csproj" />
 		<ProjectReference Include="..\..\..\Framework\Framework.Validation\Framework.Validation.csproj" />
 		<ProjectReference Include="..\..\..\Infrastructure\RequestAudit\Infrastructure.RequestAudit\Infrastructure.RequestAudit.csproj" />

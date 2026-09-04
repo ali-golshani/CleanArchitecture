@@ -1,4 +1,4 @@
-﻿using Framework.MassTransit;
+﻿using Framework.Messaging.MassTransit;
 using Framework.Persistence;
 using MassTransit.SqlTransport;
 using Microsoft.Extensions.DependencyInjection;

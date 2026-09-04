@@ -1,4 +1,4 @@
-﻿using Framework.Cap;
+﻿using Framework.Messaging.Cap;
 using Microsoft.Extensions.Configuration;
 
 namespace CleanArchitecture.ServicesConfigurations.OptionsProviders;
@@ -9,6 +9,6 @@ internal static class CapOptionsProvider
     {
         var section = configuration.GetSection(Configurations.ConfigurationSections.Cap.Options);
         var options = section.Get<CapOptions>();
-        return options ?? Framework.Cap.CapOptions.Default;
+        return options ?? Framework.Messaging.Cap.CapOptions.Default;
     }
 }

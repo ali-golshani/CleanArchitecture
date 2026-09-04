@@ -80,7 +80,7 @@ Examples include:
 - `Framework.Queries` provides query-side abstractions such as `PaginatedItems<T>` without depending on a database technology.
 - `Framework.Persistence` provides EF Core and SQL Server persistence conventions.
 - `Framework.Scheduling` provides Quartz scheduling integration and the shared job contract.
-- `Framework.Cap` and `Framework.MassTransit` provide alternative messaging integrations.
+- `Framework.Messaging.Cap` and `Framework.Messaging.MassTransit` provide alternative messaging integrations.
 - `Framework.DurableTask` provides orchestration infrastructure.
 - `Framework.WebApi` contains reusable ASP.NET Core endpoint and result conventions.
 
