@@ -18,10 +18,8 @@ public static class DualDbContext
 
         var transaction = await connection.BeginTransactionAsync(cancellationToken);
 
-        var firstDbTransaction = await firstDb.Database.UseTransactionAsync(transaction, cancellationToken)
-            ?? throw new InvalidOperationException("Could not enlist the first DbContext in the shared transaction.");
-        var secondDbTransaction = await secondDb.Database.UseTransactionAsync(transaction, cancellationToken)
-            ?? throw new InvalidOperationException("Could not enlist the second DbContext in the shared transaction.");
+        var firstDbTransaction = (await firstDb.Database.UseTransactionAsync(transaction, cancellationToken))!;
+        var secondDbTransaction = (await secondDb.Database.UseTransactionAsync(transaction, cancellationToken))!;
 
         return new DualDbContextTransaction(
             connection,

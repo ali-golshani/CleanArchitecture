@@ -1,11 +1,13 @@
 ﻿using Framework.Messaging;
-using Microsoft.EntityFrameworkCore.Storage;
+using System.Data.Common;
 
 namespace Framework.Messaging.SqlEventBus;
 
-internal sealed class SqlOutboxTransaction(IDbContextTransaction transaction) : IOutboxTransaction
+internal sealed class SqlOutboxTransaction(DbTransaction transaction) : IOutboxTransaction
 {
-    private readonly IDbContextTransaction transaction = transaction;
+    private readonly DbTransaction transaction = transaction;
+
+    public DbTransaction DbTransaction => transaction;
 
     public async Task CommitAsync(CancellationToken cancellationToken)
     {

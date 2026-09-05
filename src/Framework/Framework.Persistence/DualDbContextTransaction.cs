@@ -21,4 +21,22 @@ public sealed class DualDbContextTransaction
     public DbTransaction Transaction { get; }
     public IDbContextTransaction FirstDbTransaction { get; }
     public IDbContextTransaction SecondDbTransaction { get; }
+
+    public async Task CommitAsync(CancellationToken cancellationToken)
+    {
+        await Transaction.CommitAsync(cancellationToken);
+    }
+
+    public async Task RollbackAsync()
+    {
+        await Transaction.RollbackAsync();
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        await SecondDbTransaction.DisposeAsync();
+        await FirstDbTransaction.DisposeAsync();
+        await Transaction.DisposeAsync();
+        await Connection.DisposeAsync();
+    }
 }

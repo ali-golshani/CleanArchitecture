@@ -1,8 +1,7 @@
 ﻿using Framework.Messaging;
 using Framework.Mediator.IntegrationEvents;
 using IntegrationEventBus;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
+using System.Data;
 using System.Data.Common;
 
 namespace Framework.Messaging.SqlEventBus;
@@ -12,11 +11,15 @@ internal sealed class SqlEventOutbox(IIntegrationEventPublisher publisher) : IIn
     private readonly IIntegrationEventPublisher publisher = publisher;
     private DbTransaction? transaction;
 
-    public async Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken)
+    public async Task<IOutboxTransaction> BeginTransaction(DbConnection connection, CancellationToken cancellationToken)
     {
-        var efTransaction = await db.Database.BeginTransactionAsync(cancellationToken);
-        transaction = efTransaction.GetDbTransaction();
-        return new SqlOutboxTransaction(efTransaction);
+        if (connection.State != ConnectionState.Open)
+        {
+            await connection.OpenAsync(cancellationToken);
+        }
+
+        transaction = await connection.BeginTransactionAsync(cancellationToken);
+        return new SqlOutboxTransaction(transaction);
     }
 
     public async Task Publish(

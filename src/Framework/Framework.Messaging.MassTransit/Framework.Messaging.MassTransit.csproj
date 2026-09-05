@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Framework.Messaging\Framework.Messaging.csproj" />
+    <ProjectReference Include="..\Framework.Persistence\Framework.Persistence.csproj" />
   </ItemGroup>
 
   <ItemGroup>

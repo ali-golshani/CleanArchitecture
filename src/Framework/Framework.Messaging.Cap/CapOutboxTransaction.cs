@@ -1,11 +1,15 @@
 ﻿using Framework.Messaging;
-using Microsoft.EntityFrameworkCore.Storage;
+
+using DotNetCore.CAP;
+using System.Data.Common;
 
 namespace Framework.Messaging.Cap;
 
-internal sealed class CapOutboxTransaction(IDbContextTransaction transaction) : IOutboxTransaction
+internal sealed class CapOutboxTransaction(DbTransaction transaction) : IOutboxTransaction
 {
-    private readonly IDbContextTransaction transaction = transaction;
+    private readonly DbTransaction transaction = transaction;
+
+    public DbTransaction DbTransaction => transaction;
 
     public async Task CommitAsync(CancellationToken cancellationToken)
     {
@@ -14,7 +18,7 @@ internal sealed class CapOutboxTransaction(IDbContextTransaction transaction) : 
 
     public async Task RollbackAsync()
     {
-        await transaction.RollbackAsync();
+        await transaction.RollbackAsync(CancellationToken.None);
     }
 
     public async ValueTask DisposeAsync()

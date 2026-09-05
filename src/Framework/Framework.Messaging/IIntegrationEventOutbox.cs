@@ -1,11 +1,11 @@
 ﻿using Framework.Mediator.IntegrationEvents;
-using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace Framework.Messaging;
 
 public interface IIntegrationEventOutbox
 {
-    Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken);
+    Task<IOutboxTransaction> BeginTransaction(DbConnection connection, CancellationToken cancellationToken);
     Task Publish(IReadOnlyCollection<IIntegrationEvent> events, CancellationToken cancellationToken);
 
     public async Task PublishEvents(IIntegrationEventCollector eventCollector, CancellationToken cancellationToken)

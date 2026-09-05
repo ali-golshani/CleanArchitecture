@@ -1,19 +1,18 @@
 ﻿using DotNetCore.CAP;
 using Framework.Mediator.IntegrationEvents;
-using Microsoft.EntityFrameworkCore;
+using System.Data.Common;
 
 namespace Framework.Messaging.Cap;
 
 internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEventOutbox
 {
     private readonly ICapPublisher publisher = publisher;
-    private ICapTransaction? publisherTransaction;
 
-    public Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken)
+    public Task<IOutboxTransaction> BeginTransaction(DbConnection connection, CancellationToken cancellationToken)
     {
         // Cap do 'sync over async' in BeginTransactionAsync: use sync version here
-        var transaction = db.Database.BeginTransaction(publisher, autoCommit: false);
-        publisherTransaction = publisher.Transaction;
+        var transaction = (DbTransaction)connection.BeginTransaction(publisher, autoCommit: false);
+
         IOutboxTransaction result = new CapOutboxTransaction(transaction);
         return Task.FromResult(result);
     }
@@ -22,8 +21,6 @@ internal sealed class CapEventOutbox(ICapPublisher publisher) : IIntegrationEven
         IReadOnlyCollection<IIntegrationEvent> events,
         CancellationToken cancellationToken)
     {
-        publisher.Transaction ??= publisherTransaction;
-
         foreach (var @event in events)
         {
             await Publish(@event.Topic, @event, cancellationToken);

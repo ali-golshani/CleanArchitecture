@@ -1,8 +1,9 @@
 ﻿using Framework.Messaging;
 using Framework.Mediator.IntegrationEvents;
-using Framework.Persistence;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
+using System.Data.Common;
 
 namespace Framework.Messaging.MassTransit;
 
@@ -11,10 +12,27 @@ internal sealed class MassTransitEventOutbox(MassTransitDbContext massTransitDb,
     private readonly MassTransitDbContext massTransitDb = massTransitDb;
     private readonly IPublishEndpoint publishEndpoint = publishEndpoint;
 
-    public async Task<IOutboxTransaction> BeginTransaction(DbContext db, CancellationToken cancellationToken)
+    public async Task<IOutboxTransaction> BeginTransaction(DbConnection connection, CancellationToken cancellationToken)
     {
-        var transaction = await DualDbContext.BeginTransaction(db, massTransitDb, cancellationToken);
-        return new MassTransitOutboxTransaction(transaction);
+        massTransitDb.Database.SetDbConnection(connection, contextOwnsConnection: false);
+
+        if (connection.State != ConnectionState.Open)
+        {
+            await connection.OpenAsync(cancellationToken);
+        }
+
+        var transaction = await connection.BeginTransactionAsync(cancellationToken);
+        
+        try
+        {
+            var massTransitTransaction = await massTransitDb.Database.UseTransactionAsync(transaction, cancellationToken);
+            return new MassTransitOutboxTransaction(transaction, massTransitTransaction!);
+        }
+        catch
+        {
+            await transaction.DisposeAsync();
+            throw;
+        }
     }
 
     public async Task Publish(IReadOnlyCollection<IIntegrationEvent> events, CancellationToken cancellationToken)

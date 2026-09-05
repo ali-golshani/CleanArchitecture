@@ -4,6 +4,7 @@ using Framework.Mediator.IntegrationEvents;
 using Framework.Mediator.Middlewares;
 using Framework.Results;
 using Framework.Mediator;
+using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Ordering.Runtime.Pipelines;
 
@@ -29,7 +30,9 @@ internal sealed class TransactionScopeMiddleware<TRequest, TResponse> :
     {
         var cancellationToken = context.CancellationToken;
 
-        await using var transaction = await eventOutbox.BeginTransaction(db, cancellationToken);
+        var connection = db.Database.GetDbConnection();
+        await using var transaction = await eventOutbox.BeginTransaction(connection, cancellationToken);
+        await using var dbTransaction = await db.Database.UseTransactionAsync(transaction.DbTransaction, cancellationToken);
 
         var result = await next.Handle(context);
 
